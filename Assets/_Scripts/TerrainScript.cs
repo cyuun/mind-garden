@@ -18,11 +18,12 @@ public class TerrainScript : MonoBehaviour
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
         _mesh = new Mesh();
-        _meshFilter.mesh = _mesh;
-        _meshCollider.sharedMesh = _mesh;
 
         InitializeTerrain();
         UpdateTerrainMesh();
+        
+        _meshFilter.mesh = _mesh;
+        _meshCollider.sharedMesh = _mesh;
     }
 
     private void InitializeTerrain()
@@ -61,5 +62,7 @@ public class TerrainScript : MonoBehaviour
         _mesh.triangles = _triangles;
         
         _mesh.RecalculateNormals();
+        _mesh.RecalculateBounds();
+        _mesh.RecalculateTangents();
     }
 }
