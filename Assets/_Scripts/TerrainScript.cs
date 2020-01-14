@@ -6,9 +6,8 @@ using Random = UnityEngine.Random;
 
 public class TerrainScript : MonoBehaviour
 {
-    public int xMax = 10;
-    public int zMax = 10;
     public int radius = 20;
+    public int horizontalScale = 1;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -31,30 +30,39 @@ public class TerrainScript : MonoBehaviour
 
     private void InitializeTerrain()
     {
-        int radius_squared = radius * radius;
+        int rr = radius * radius;
         
-        _vertices = new Vector3[GetInscribedPoints()];
-        _triangles = new int[GetInscribedSquares() * 6];
+        _vertices = new Vector3[NumPointsInCircle(radius)];
+        _triangles = new int[NumSquaresInCircle(radius) * 6];
 
-        for (int i = 0, v = 0, t = 0, z = -radius/2; z < radius/2; z++)
+        for (int i = 0, v = 0, t = 0, dx = 0, dz = -1, x = 0, z = 0, n = 0; n < rr; n++)
         {
-            for (int x = -radius/2; x < radius/2; x++)
+            int xx = x * x;
+            int zz = z * z;
+            if (xx * xx + zz * zz <= rr)
             {
-                if (x * x + z * z <= radius_squared)
+                _vertices[i] = new Vector3(x, 0, z);
+                i++;
+                if (x * x + z * z != rr || (x < 0 && z < 0))
                 {
-                    _vertices[i] = new Vector3(x, 0, z);
-                    i++;
-                    if (x * x + z * z != radius_squared || (x < 0 && z < 0))
-                    {
-                        //TODO: fill out triangles array
-                    }
+                    //TODO: fill out triangles array
                 }
             }
+
+            if (x == z || (x < 0 && x == -z) || (x > 0 && x == 1 - z))
+            {
+                int dtemp = dx;
+                dx = -dz;
+                dz = dtemp;
+            }
+
+            x += dx;
+            z += dz;
         }
 
         
 
-        for (int v = 0, t = 0, z = -radius/2; z < radius/2; z++, v++)
+        /*for (int v = 0, t = 0, z = -radius/2; z < radius/2; z++, v++)
         {
             for (int x = -radius / 2; x < radius / 2; x++, v++, t += 6)
             {
@@ -69,7 +77,7 @@ public class TerrainScript : MonoBehaviour
                     _triangles[t + 5] = v + xMax + 2;
                 }
             }
-        }
+        }*/
     }
 
     private void UpdateTerrainMesh()
@@ -84,7 +92,7 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateTangents();
     }
 
-    private int GetInscribedPoints(int r)
+    private int NumPointsInCircle(int r)
     {
         int N_r = 0
         for (int n = 0; n <= r * r; n++)
@@ -129,7 +137,7 @@ public class TerrainScript : MonoBehaviour
         return 4 * (d1 - d3);
     }
     
-    private int GetInscribedSquares(int r)
+    private int NumSquaresInCircle(int r)
     {
         int n = 0;
         for (int i = 1; i <= r; i++)
