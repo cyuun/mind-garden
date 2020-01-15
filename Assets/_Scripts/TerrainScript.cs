@@ -6,6 +6,9 @@ public class TerrainScript : MonoBehaviour
 {
     public int xMax = 10;
     public int zMax = 10;
+    public int scale = 1;
+    public int xScale = 1;
+    public int zScale = 1;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -28,30 +31,33 @@ public class TerrainScript : MonoBehaviour
 
     private void InitializeTerrain()
     {
-        _vertices = new Vector3[(xMax + 1) * (zMax + 1)];
+        List<Vector3> tempVertices = new List<Vector3>();
 
         for (int i = 0, z = 0; z <= zMax; z++)
         {
             for (int x = 0; x <= xMax; x++, i++)
             {
-                _vertices[i] = new Vector3(x, 0, z);
+                tempVertices.Add(new Vector3(x, 0, z));
             }
         }
 
-        _triangles = new int[xMax * zMax * 6];
+        List<int> tempTriangles = new List<int>();
 
         for (int v = 0, t = 0, z = 0; z < zMax; z++, v++)
         {
             for (int x = 0; x < xMax; x++, v++, t+= 6)
             {
-                _triangles[t + 0] = v + 0;
-                _triangles[t + 1] = v + xMax + 1;
-                _triangles[t + 2] = v + 1;
-                _triangles[t + 3] = v + 1;
-                _triangles[t + 4] = v + xMax + 1;
-                _triangles[t + 5] = v + xMax + 2;
+                tempTriangles.Add(v + 0);
+                tempTriangles.Add(v + xMax + 1);
+                tempTriangles.Add(v + 1);
+                tempTriangles.Add(v + 1);
+                tempTriangles.Add(v + xMax + 1);
+                tempTriangles.Add(v + xMax + 2);
             }
         }
+
+        _vertices = tempVertices.ToArray();
+        _triangles = tempTriangles.ToArray();
     }
 
     private void UpdateTerrainMesh()
