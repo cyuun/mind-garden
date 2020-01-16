@@ -7,7 +7,7 @@ public class TerrainScript : MonoBehaviour
     //lattice variables
     public int xMax = 10;
     public int zMax = 10;
-    public int scale = 1;
+    public float resolution = 1;
     public int xScale = 1;
     public int zScale = 1;
     //mesh bounds variables for a circle
@@ -37,9 +37,13 @@ public class TerrainScript : MonoBehaviour
         List<Vector3> tempVertices = new List<Vector3>();
         List<int> tempTriangles = new List<int>();
 
-        for (int v = 0, vPrevious = 0, z = 0; z <= zMax; z++)
+        float xStep = (1 / resolution) * xScale;
+        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * zScale;
+
+        int v = 0, vPrevious = 0;
+        for (float z = 0; z <= zMax; z += zStep)
         {
-            int zz = z * z;
+            //int zz = z * z;
             
             if (v != 0)
             {
@@ -47,9 +51,9 @@ public class TerrainScript : MonoBehaviour
                 v = 0;
             }
             
-            for (int x = 0; x <= xMax; x++)
+            for (float x = 0; x <= xMax; x += xStep)
             {
-                int xx = x * x;
+                //int xx = x * x;
                 
                 tempVertices.Add(new Vector3(x, 0, z));
                 v++;
