@@ -13,9 +13,6 @@ public class TerrainScript : MonoBehaviour
     public float zScale = 1;         //  "    " z   "   "   "
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
-    //mesh bounds variables for a circle
-    public int radius = 10; //must be less than or equal to the min of xMax and zMax
-
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
@@ -46,17 +43,15 @@ public class TerrainScript : MonoBehaviour
 
     private void InitializeTerrain()
     {
-        List<Vector3> tempVertices = new List<Vector3>();
-        List<int> tempTriangles = new List<int>();
+        List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
+        List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
 
-        float xStep = (1 / resolution) * xScale;
-        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * zScale;
+        float xStep = (1 / resolution) * xScale;                      //the horizontal distance from one grid point to another within the same row
+        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * zScale; // "  vertical      "       "   "    "    "    "   "       "     "    "  column
 
-        int v = 0, vPrevious = 0, c = 0;
-        for (float z = -zMax/2; z <= zMax/2; z += zStep)
-        {
-            //int zz = z * z;
-            
+        int v = 0, vPrevious = 0, c = 0;                              //v = number of vertices in the current row being filled
+        for (float z = -zMax/2; z <= zMax/2; z += zStep)              //vPrevious = num  "      "  "  previous...
+        {                                                             //c = number of rows that have been filled yet
             if (v != 0)
             {
                 vPrevious = v;
@@ -66,47 +61,42 @@ public class TerrainScript : MonoBehaviour
 
             for (float x = -xMax/2; x <= xMax/2; x += xStep)
             {
-                //int xx = x * x;
-                
-                if (x < -xMax/2 + xStep/4)
-                {
-                    if (c % 2 == 1)
-                    {
-                        x -= xStep / 2;
-                    }
+                if (x < -xMax/2 + xStep/4 && c % 2 == 1)              //if we are at the beginning of our potential to create
+                {                                                     //an odd indexed row (not necessarily the beginning of the row itself)
+                    x -= xStep / 2;                                   //then shift the row back by a half step
                 }
                 
-                tempVertices.Add(new Vector3(x, 0, z));
-                v++;
+                tempVertices.Add(new Vector3(x, 0, z));     //add new vertex
+                v++;                                                  //and increase this row's vertex counter
 
                 if (vPrevious != 0)
                 {
-                    int vTotal = tempVertices.Count - 1;
-                    if (v > 1 || x > tempVertices[vTotal - vPrevious].x)
-                    {
-                        if (x < tempVertices[vTotal - vPrevious + 1].x)
-                        {
-                            tempTriangles.Add(vTotal - 0);
+                    int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
+                    if (v > 1 || x > tempVertices[vTotal - vPrevious].x) //if more than one vertex has been added this row
+                    {                                                    //or if the first vertex of the previous row is to the left of this one
+                        if (x < tempVertices[vTotal - vPrevious + 1].x)  //then if the previous row contains a vertex to the right of this
+                        {                                                //then add the "first" triangle of the vertex
+                            tempTriangles.Add(vTotal - 0);         //listed clockwise by index of vertex in vertices array
                             tempTriangles.Add(vTotal - vPrevious + 1);
                             tempTriangles.Add(vTotal - vPrevious);
                         }
-                        if (v > 1)
-                        {
+                        if (v > 1)                                       //if more than one vertex has been added this row
+                        {                                                //then add the "second" triangle of the vertex
                             tempTriangles.Add(vTotal - 0);
                             tempTriangles.Add(vTotal - vPrevious);
                             tempTriangles.Add(vTotal - 1);
                         }
                     }
-                    else
-                    {
-                        vPrevious++;
-                    }
+                    else                                                 //if no vertices have been placed this row and the first vertex of the previous row is to the right
+                    {                                                    //then no triangles are created for this vertex right now
+                        vPrevious++;                                     //and adjust the vPrevious counter so it's wrong
+                    }                                                    //but so that all successive triangles this row are created properly
                 }
             }
         }
 
-        _vertices = tempVertices.ToArray();
-        _triangles = tempTriangles.ToArray();
+        _vertices = tempVertices.ToArray();                           //convert the temporary vertex list to a proper array
+        _triangles = tempTriangles.ToArray();                         //   "     "      "     triangle "  "  "   "      "
     }
 
     private void UpdateTerrainMesh()
