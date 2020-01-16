@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TerrainScript : MonoBehaviour
 {
+    //lattice variables
     public int xMax = 10;
     public int zMax = 10;
     public int scale = 1;
     public int xScale = 1;
     public int zScale = 1;
+    //mesh bounds variables for a circle
+    public int radius = 10; //must be less than or equal to the min of xMax and zMax
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -32,27 +35,38 @@ public class TerrainScript : MonoBehaviour
     private void InitializeTerrain()
     {
         List<Vector3> tempVertices = new List<Vector3>();
-
-        for (int i = 0, z = 0; z <= zMax; z++)
-        {
-            for (int x = 0; x <= xMax; x++, i++)
-            {
-                tempVertices.Add(new Vector3(x, 0, z));
-            }
-        }
-
         List<int> tempTriangles = new List<int>();
 
-        for (int v = 0, t = 0, z = 0; z < zMax; z++, v++)
+        for (int v = 0, vPrevious = 0, z = 0; z <= zMax; z++)
         {
-            for (int x = 0; x < xMax; x++, v++, t+= 6)
+            int zz = z * z;
+            
+            if (v != 0)
             {
-                tempTriangles.Add(v + 0);
-                tempTriangles.Add(v + xMax + 1);
-                tempTriangles.Add(v + 1);
-                tempTriangles.Add(v + 1);
-                tempTriangles.Add(v + xMax + 1);
-                tempTriangles.Add(v + xMax + 2);
+                vPrevious = v;
+                v = 0;
+            }
+            
+            for (int x = 0; x <= xMax; x++)
+            {
+                int xx = x * x;
+                
+                tempVertices.Add(new Vector3(x, 0, z));
+                v++;
+
+                if (vPrevious != 0)
+                {
+                    if (v > 1)
+                    {
+                        int vTotal = tempVertices.Count - 1;
+                        tempTriangles.Add(vTotal - 0);
+                        tempTriangles.Add(vTotal - vPrevious - 1);
+                        tempTriangles.Add(vTotal - 1);
+                        tempTriangles.Add(vTotal - 0);
+                        tempTriangles.Add(vTotal - vPrevious);
+                        tempTriangles.Add(vTotal - vPrevious - 1);
+                    }
+                }
             }
         }
 
