@@ -40,8 +40,8 @@ public class TerrainScript : MonoBehaviour
         float xStep = (1 / resolution) * xScale;
         float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * zScale;
 
-        int v = 0, vPrevious = 0;
-        for (float z = 0; z <= zMax; z += zStep)
+        int v = 0, vPrevious = 0, c = 0;
+        for (float z = -zMax/2; z <= zMax/2; z += zStep)
         {
             //int zz = z * z;
             
@@ -49,9 +49,15 @@ public class TerrainScript : MonoBehaviour
             {
                 vPrevious = v;
                 v = 0;
+                c++;
             }
+
+            /*if (c % 2 == 1)
+            {
+                tempVertices.Add(new Vector3());
+            }*/
             
-            for (float x = 0; x <= xMax; x += xStep)
+            for (float x = -xMax/2; x <= xMax/2; x += xStep)
             {
                 //int xx = x * x;
                 
