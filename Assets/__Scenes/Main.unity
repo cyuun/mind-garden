@@ -158,6 +158,7 @@ MonoBehaviour:
   resolution: 1
   xScale: 1
   zScale: 1
+  liveEditing: 0
   radius: 10
 --- !u!23 &508138751
 MeshRenderer:
