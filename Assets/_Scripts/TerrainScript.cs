@@ -10,8 +10,7 @@ public class TerrainScript : MonoBehaviour
     public float xMax = 10;          //the max x size of the canvas for the outline to be "drawn" upon
     public float zMax = 10;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
-    public float xScale = 1;         //larger = x axis is longer
-    public float zScale = 1;         //  "    " z   "   "   "
+    public float skew = 1;
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
     private MeshFilter _meshFilter;
@@ -37,6 +36,10 @@ public class TerrainScript : MonoBehaviour
     {
         if (liveEditing)
         {
+            if (skew <= 0)
+            {
+                skew = 0.00001f;
+            }
             InitializeTerrain();
             UpdateTerrainMesh();
         }
@@ -47,8 +50,8 @@ public class TerrainScript : MonoBehaviour
         List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
         List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
 
-        float xStep = (1 / resolution) * xScale;                      //the horizontal distance from one grid point to another within the same row
-        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * zScale; // "  vertical      "       "   "    "    "    "   "       "     "    "  column
+        float xStep = (1 / resolution) * skew;                        //the horizontal distance from one grid point to another within the same row
+        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * (1 / skew); //vertical      "       "   "    "    "    "   "       "     "    "  column
 
         int v = 0, vPrevious = 0, c = 0;                              //v = number of vertices in the current row being filled
         for (float z = -zMax/2; z <= zMax/2; z += zStep)              //vPrevious = num  "      "  "  previous...
