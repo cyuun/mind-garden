@@ -67,7 +67,7 @@ public class TerrainScript : MonoBehaviour
                     x -= xStep / 2;                                   //then shift the row back by a half step
                 }
 
-                //if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1)  //checking if the point is within the ellipse defined by the x and z maxes
+                if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1)  //checking if the point is within the ellipse defined by the x and z maxes
                 {
                     tempVertices.Add(new Vector3(x, 0, z));        //add new vertex
                     v++;                                                     //and increase this row's vertex counter
@@ -77,11 +77,12 @@ public class TerrainScript : MonoBehaviour
                         int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
                         int rowOffsetL = CheckVerticesL(vTotal, vPrevious, 2, xStep, tempVertices);
                         int rowOffsetR = CheckVerticesR(vTotal, vPrevious, 2, xStep, tempVertices);
-                        if (rowOffsetL == rowOffsetR && rowOffsetR > 0) //if more than one vertex has been added this row
+                        Debug.Log("x = " + x + ", z = " + z + ", rowOffsetL = " + rowOffsetL + ", rowOffsetR = " + rowOffsetR + ", vPrevious = " + vPrevious);
+                        if (rowOffsetL > 0 && rowOffsetR > 0) //if more than one vertex has been added this row
                         {
                             tempTriangles.Add(vTotal - 0);
-                            tempTriangles.Add(vTotal - rowOffsetL + 1);
-                            tempTriangles.Add(vTotal - rowOffsetL);
+                            tempTriangles.Add(vTotal - rowOffsetR + 1);
+                            tempTriangles.Add(vTotal - rowOffsetR);
                             
                             if (v > 1)                                       //if more than one vertex has been added this row
                             {                                                //then add the "second" triangle of the vertex
@@ -121,8 +122,8 @@ public class TerrainScript : MonoBehaviour
     {
         float x = vertices[index].x;
 
-        int tempOffset = offset - correctionSearchRadius;
-        for (int i = 0; i <= correctionSearchRadius; tempOffset++, i++)
+        int returnOffset = 0;
+        for (int tempOffset = offset - correctionSearchRadius; tempOffset <= offset + correctionSearchRadius; tempOffset++)
         {
             if (tempOffset > 0 && index - tempOffset >= 0)
             {
@@ -130,24 +131,20 @@ public class TerrainScript : MonoBehaviour
 
                 if (CompareFloats(xCheck, x - xStep / 2, xStep / 4))
                 {
-                    break;
-                }
-                else if (i == correctionSearchRadius)
-                {
-                    tempOffset = 0;
+                    returnOffset = tempOffset;
                 }
             }
         }
 
-        return tempOffset;
+        return returnOffset;
     }
 
     private int CheckVerticesR(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
     {
         float x = vertices[index].x;
 
-        int tempOffset = offset - correctionSearchRadius;
-        for (int i = 0; i <= correctionSearchRadius; tempOffset++, i++)
+        int returnOffset = 0;
+        for (int tempOffset = offset - correctionSearchRadius; tempOffset <= offset + correctionSearchRadius; tempOffset++)
         {
             if (tempOffset > 0 && index - tempOffset + 1 >= 0)
             {
@@ -155,16 +152,12 @@ public class TerrainScript : MonoBehaviour
 
                 if (CompareFloats(xCheck, x + xStep / 2, xStep / 4))
                 {
-                    break;
-                }
-                else if (i == correctionSearchRadius)
-                {
-                    tempOffset = 0;
+                    returnOffset = tempOffset;
                 }
             }
         }
 
-        return tempOffset;
+        return returnOffset;
     }
 
     private bool CompareFloats(float f1, float f2, float tolerance)
