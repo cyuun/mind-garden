@@ -66,32 +66,35 @@ public class TerrainScript : MonoBehaviour
                 {                                                     //an odd indexed row (not necessarily the beginning of the row itself)
                     x -= xStep / 2;                                   //then shift the row back by a half step
                 }
-                
-                tempVertices.Add(new Vector3(x, 0, z));     //add new vertex
-                v++;                                                  //and increase this row's vertex counter
 
-                if (vPrevious != 0)
+                if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1)  //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
-                    if (v > 1 || x > tempVertices[vTotal - vPrevious].x) //if more than one vertex has been added this row
-                    {                                                    //or if the first vertex of the previous row is to the left of this one
-                        if (x < tempVertices[vTotal - vPrevious + 1].x)  //then if the previous row contains a vertex to the right of this
-                        {                                                //then add the "first" triangle of the vertex
-                            tempTriangles.Add(vTotal - 0);         //listed clockwise by index of vertex in vertices array
-                            tempTriangles.Add(vTotal - vPrevious + 1);
-                            tempTriangles.Add(vTotal - vPrevious);
+                    tempVertices.Add(new Vector3(x, 0, z));        //add new vertex
+                    v++;                                                     //and increase this row's vertex counter
+
+                    if (vPrevious != 0)
+                    {
+                        int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
+                        if (v > 1 || x > tempVertices[vTotal - vPrevious].x) //if more than one vertex has been added this row
+                        {                                                    //or if the first vertex of the previous row is to the left of this one
+                            if (x < tempVertices[vTotal - vPrevious + 1].x)  //then if the previous row contains a vertex to the right of this
+                            {                                                //then add the "first" triangle of the vertex
+                                tempTriangles.Add(vTotal - 0);         //listed clockwise by index of vertex in vertices array
+                                tempTriangles.Add(vTotal - vPrevious + 1);
+                                tempTriangles.Add(vTotal - vPrevious);
+                            }
+                            if (v > 1)                                       //if more than one vertex has been added this row
+                            {                                                //then add the "second" triangle of the vertex
+                                tempTriangles.Add(vTotal - 0);
+                                tempTriangles.Add(vTotal - vPrevious);
+                                tempTriangles.Add(vTotal - 1);
+                            }
                         }
-                        if (v > 1)                                       //if more than one vertex has been added this row
-                        {                                                //then add the "second" triangle of the vertex
-                            tempTriangles.Add(vTotal - 0);
-                            tempTriangles.Add(vTotal - vPrevious);
-                            tempTriangles.Add(vTotal - 1);
-                        }
+                        else                                                 //if no vertices have been placed this row and the first vertex of the previous row is to the right
+                        {                                                    //then no triangles are created for this vertex right now
+                            vPrevious++;                                     //and adjust the vPrevious counter so it's wrong
+                        }                                                    //but so that all successive triangles this row are created properly
                     }
-                    else                                                 //if no vertices have been placed this row and the first vertex of the previous row is to the right
-                    {                                                    //then no triangles are created for this vertex right now
-                        vPrevious++;                                     //and adjust the vPrevious counter so it's wrong
-                    }                                                    //but so that all successive triangles this row are created properly
                 }
             }
         }
