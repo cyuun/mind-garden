@@ -75,28 +75,31 @@ public class TerrainScript : MonoBehaviour
                     tempVertices.Add(new Vector3(x, 0, z));        //add new vertex
                     v++;                                                     //and increase this row's vertex counter
 
-                    if (vPrevious != 0)
+                    if (vPrevious > 0)
                     {
                         int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
-                        if (v > 1 || x > tempVertices[vTotal - vPrevious].x) //if more than one vertex has been added this row
-                        {                                                    //or if the first vertex of the previous row is to the left of this one
-                            if (x < tempVertices[vTotal - vPrevious + 1].x)  //then if the previous row contains a vertex to the right of this
-                            {                                                //then add the "first" triangle of the vertex
-                                tempTriangles.Add(vTotal - 0);         //listed clockwise by index of vertex in vertices array
-                                tempTriangles.Add(vTotal - vPrevious + 1);
-                                tempTriangles.Add(vTotal - vPrevious);
-                            }
+                        int rowOffsetL = CheckVerticesL(vTotal, vPrevious, 2, xStep, tempVertices);
+                        int rowOffsetR = CheckVerticesR(vTotal, vPrevious, 2, xStep, tempVertices);
+                        Debug.Log("x = " + x + ", z = " + z + ", rowOffsetL = " + rowOffsetL + ", rowOffsetR = " + rowOffsetR + ", vPrevious = " + vPrevious);
+                        if (rowOffsetL > 0 && rowOffsetR > 0) //if more than one vertex has been added this row
+                        {
+                            tempTriangles.Add(vTotal - 0);
+                            tempTriangles.Add(vTotal - rowOffsetR + 1);
+                            tempTriangles.Add(vTotal - rowOffsetR);
+                            
                             if (v > 1)                                       //if more than one vertex has been added this row
                             {                                                //then add the "second" triangle of the vertex
                                 tempTriangles.Add(vTotal - 0);
-                                tempTriangles.Add(vTotal - vPrevious);
+                                tempTriangles.Add(vTotal - rowOffsetL);
                                 tempTriangles.Add(vTotal - 1);
                             }
                         }
-                        else                                                 //if no vertices have been placed this row and the first vertex of the previous row is to the right
-                        {                                                    //then no triangles are created for this vertex right now
-                            vPrevious++;                                     //and adjust the vPrevious counter so it's wrong
-                        }                                                    //but so that all successive triangles this row are created properly
+                        else if (rowOffsetL > 0 && rowOffsetR == 0)
+                        {
+                            tempTriangles.Add(vTotal - 0);
+                            tempTriangles.Add(vTotal - rowOffsetL);
+                            tempTriangles.Add(vTotal - 1);
+                        }
                     }
                 }
             }
@@ -116,5 +119,52 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateNormals();
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
+    }
+
+    private int CheckVerticesL(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
+    {
+        float x = vertices[index].x;
+
+        int returnOffset = 0;
+        for (int tempOffset = offset - correctionSearchRadius; tempOffset <= offset + correctionSearchRadius; tempOffset++)
+        {
+            if (tempOffset > 0 && index - tempOffset >= 0)
+            {
+                float xCheck = vertices[index - tempOffset].x;
+
+                if (CompareFloats(xCheck, x - xStep / 2, xStep / 4))
+                {
+                    returnOffset = tempOffset;
+                }
+            }
+        }
+
+        return returnOffset;
+    }
+
+    private int CheckVerticesR(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
+    {
+        float x = vertices[index].x;
+
+        int returnOffset = 0;
+        for (int tempOffset = offset - correctionSearchRadius; tempOffset <= offset + correctionSearchRadius; tempOffset++)
+        {
+            if (tempOffset > 0 && index - tempOffset + 1 >= 0)
+            {
+                float xCheck = vertices[index - tempOffset + 1].x;
+
+                if (CompareFloats(xCheck, x + xStep / 2, xStep / 4))
+                {
+                    returnOffset = tempOffset;
+                }
+            }
+        }
+
+        return returnOffset;
+    }
+
+    private bool CompareFloats(float f1, float f2, float tolerance)
+    {
+        return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
     }
 }
