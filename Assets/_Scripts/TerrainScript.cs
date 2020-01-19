@@ -80,7 +80,6 @@ public class TerrainScript : MonoBehaviour
                         int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
                         int rowOffsetL = CheckVerticesL(vTotal, vPrevious, 2, xStep, tempVertices);
                         int rowOffsetR = CheckVerticesR(vTotal, vPrevious, 2, xStep, tempVertices);
-                        Debug.Log("x = " + x + ", z = " + z + ", rowOffsetL = " + rowOffsetL + ", rowOffsetR = " + rowOffsetR + ", vPrevious = " + vPrevious);
                         if (rowOffsetL > 0 && rowOffsetR > 0) //if more than one vertex has been added this row
                         {
                             tempTriangles.Add(vTotal - 0);
