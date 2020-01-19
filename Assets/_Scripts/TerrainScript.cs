@@ -10,7 +10,7 @@ public class TerrainScript : MonoBehaviour
     public float xMax = 10;          //the max x size of the canvas for the outline to be "drawn" upon
     public float zMax = 10;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
-    public float skew = 1;
+    public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
     private MeshFilter _meshFilter;
@@ -70,19 +70,19 @@ public class TerrainScript : MonoBehaviour
                     x -= xStep / 2;                                   //then shift the row back by a half step
                 }
 
-                if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1)  //checking if the point is within the ellipse defined by the x and z maxes
+                if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    tempVertices.Add(new Vector3(x, 0, z));        //add new vertex
-                    v++;                                                     //and increase this row's vertex counter
+                    tempVertices.Add(new Vector3(x, 0, z));         //add new vertex
+                    v++;                                                      //and increase this row's vertex counter
 
                     if (vPrevious > 0)
                     {
-                        int vTotal = tempVertices.Count - 1;                 //the index of the last vertex added
+                        int vTotal = tempVertices.Count - 1;                  //the index of the last vertex added
                         int rowOffsetL = CheckVerticesL(vTotal, vPrevious, 2, xStep, tempVertices);
                         int rowOffsetR = CheckVerticesR(vTotal, vPrevious, 2, xStep, tempVertices);
-                        if (rowOffsetL > 0 && rowOffsetR > 0) //if more than one vertex has been added this row
-                        {
-                            tempTriangles.Add(vTotal - 0);
+                        if (rowOffsetL > 0 && rowOffsetR > 0)                 //if both vertices from the previous line are good to go
+                        {                                                     //then add the "first" triangle
+                            tempTriangles.Add(vTotal - 0);              //by listing vertices in clockwise order
                             tempTriangles.Add(vTotal - rowOffsetR + 1);
                             tempTriangles.Add(vTotal - rowOffsetR);
                             
@@ -93,8 +93,8 @@ public class TerrainScript : MonoBehaviour
                                 tempTriangles.Add(vTotal - 1);
                             }
                         }
-                        else if (rowOffsetL > 0 && rowOffsetR == 0)
-                        {
+                        else if (rowOffsetL > 0 && rowOffsetR == 0)          //if there's no vertex down one row and to the right
+                        {                                                    //then just add the "second" triangle
                             tempTriangles.Add(vTotal - 0);
                             tempTriangles.Add(vTotal - rowOffsetL);
                             tempTriangles.Add(vTotal - 1);
@@ -120,6 +120,8 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateTangents();
     }
 
+    //CheckVerticesL returns 0 if there is no vertex down one row and to the left of the vertex at 'index'
+    //otherwise it returns the proper number of indices back the aforementioned vertex is.
     private int CheckVerticesL(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
     {
         float x = vertices[index].x;
@@ -141,6 +143,8 @@ public class TerrainScript : MonoBehaviour
         return returnOffset;
     }
 
+    //CheckVerticesR returns 0 if there is no vertex down one row and to the right of the vertex at 'index'
+    //otherwise it returns the proper number of indices back the aforementioned vertex is.
     private int CheckVerticesR(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
     {
         float x = vertices[index].x;
