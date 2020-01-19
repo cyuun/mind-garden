@@ -13,6 +13,9 @@ public class TerrainScript : MonoBehaviour
     public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
+    //terrain generation variables
+    public float noiseSampleScale = 1;
+    
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
@@ -50,8 +53,8 @@ public class TerrainScript : MonoBehaviour
         List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
         List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
 
-        float xStep = (1 / resolution) * skew;                        //the horizontal distance from one grid point to another within the same row
-        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * (1 / skew); //vertical      "       "   "    "    "    "   "       "     "    "  column
+        float xStep = skew / resolution;                              //the horizontal distance from one grid point to another within the same row
+        float zStep = Mathf.Sqrt(3) / (2 * resolution * skew);     //vertical      "       "   "    "    "    "   "       "     "    "  column
 
         int v = 0, vPrevious = 0, c = 0;                              //v = number of vertices in the current row being filled
         for (float z = -zMax/2; z <= zMax/2; z += zStep)              //vPrevious = num  "      "  "  previous...
@@ -72,7 +75,7 @@ public class TerrainScript : MonoBehaviour
 
                 if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    tempVertices.Add(new Vector3(x, 0, z));         //add new vertex
+                    tempVertices.Add(new Vector3(x, GetPerlinHeight(x, z), z));         //add new vertex
                     v++;                                                      //and increase this row's vertex counter
 
                     if (vPrevious > 0)
@@ -169,5 +172,13 @@ public class TerrainScript : MonoBehaviour
     private bool CompareFloats(float f1, float f2, float tolerance)
     {
         return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
+    }
+
+    private float GetPerlinHeight(float x, float z)
+    {
+        float xPerlin = x / noiseSampleScale;
+        float zPerlin = z / noiseSampleScale;
+
+        return Mathf.PerlinNoise(xPerlin, zPerlin);
     }
 }
