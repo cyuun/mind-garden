@@ -14,7 +14,12 @@ public class TerrainScript : MonoBehaviour
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
     //terrain generation variables
-    public float noiseSampleScale = 1;
+    public float noiseScale = 1;
+    public float noiseAmplitude = 1;
+    public   int noiseOctaves = 1;
+    public float noisePersistance = 0.5f;
+    public float noiseLacunarity = 1.5f;
+    
     
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -176,9 +181,21 @@ public class TerrainScript : MonoBehaviour
 
     private float GetPerlinHeight(float x, float z)
     {
-        float xPerlin = x / noiseSampleScale;
-        float zPerlin = z / noiseSampleScale;
+        float amplitude = noiseAmplitude;
+        float frequency = 1;
+        float height = 0;
 
-        return Mathf.PerlinNoise(xPerlin, zPerlin);
+        for (int i = 0; i < noiseOctaves; i++)
+        {
+            float xPerlin = x / noiseScale * frequency;
+            float zPerlin = z / noiseScale * frequency;
+
+            height += Mathf.PerlinNoise(xPerlin, zPerlin) * amplitude;
+
+            amplitude *= noisePersistance;
+            frequency *= noiseLacunarity;
+        }
+
+        return height;
     }
 }
