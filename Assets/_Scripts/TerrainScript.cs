@@ -11,7 +11,6 @@ public class TerrainScript : MonoBehaviour
     public float zMax = 10;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
     public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
-    public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
     //terrain generation variables
     public float noiseScale = 1;
@@ -20,15 +19,33 @@ public class TerrainScript : MonoBehaviour
     [Range(0,1)]
     public float noisePersistance = 0.5f;
     public float noiseLacunarity = 1.5f;
-    
-    
+    public int seed = 1;
+
+    public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
+
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
     private Vector3[] _vertices;
     private int[] _triangles;
 
-    void Start()
+    private System.Random _rng;
+    private Vector2[] _offsets;
+
+    public void UpdateRandom()
+    {
+        _rng = new System.Random(seed);
+        
+        _offsets = new Vector2[noiseOctaves];
+        for (int i = 0; i < noiseOctaves; i++)
+        {
+            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
+            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
+            _offsets[i] = new Vector2(xOffset, zOffset);
+        }
+    }
+    
+    private void Start()
     {
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
@@ -37,18 +54,13 @@ public class TerrainScript : MonoBehaviour
         InitializeTerrain();
         UpdateTerrainMesh();
         
-        _meshFilter.mesh = _mesh;
-        _meshCollider.sharedMesh = _mesh;
+        UpdateRandom();
     }
 
-    void Update()
+    private void Update()
     {
         if (liveEditing)
         {
-            if (skew <= 0)
-            {
-                skew = 0.00001f;
-            }
             InitializeTerrain();
             UpdateTerrainMesh();
         }
@@ -84,6 +96,7 @@ public class TerrainScript : MonoBehaviour
         {
             noiseLacunarity = 1;
         }
+        UpdateRandom();
     }
 
     private void InitializeTerrain()
@@ -159,6 +172,9 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateNormals();
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
+        
+        _meshFilter.mesh = _mesh;
+        _meshCollider.sharedMesh = _mesh;
     }
 
     //CheckVerticesL returns 0 if there is no vertex down one row and to the left of the vertex at 'index'
@@ -217,11 +233,11 @@ public class TerrainScript : MonoBehaviour
         float amplitude = noiseAmplitude;
         float frequency = 1;
         float height = 0;
-
+        
         for (int i = 0; i < noiseOctaves; i++)
         {
-            float xPerlin = x / noiseScale * frequency;
-            float zPerlin = z / noiseScale * frequency;
+            float xPerlin = x / noiseScale * frequency + _offsets[i].x;
+            float zPerlin = z / noiseScale * frequency + _offsets[i].y;
 
             height += Mathf.PerlinNoise(xPerlin, zPerlin) * amplitude;
 
