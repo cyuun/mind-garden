@@ -17,6 +17,7 @@ public class TerrainScript : MonoBehaviour
     public float noiseScale = 1;
     public float noiseAmplitude = 1;
     public   int noiseOctaves = 1;
+    [Range(0,1)]
     public float noisePersistance = 0.5f;
     public float noiseLacunarity = 1.5f;
     
@@ -40,7 +41,7 @@ public class TerrainScript : MonoBehaviour
         _meshCollider.sharedMesh = _mesh;
     }
 
-    private void Update()
+    void Update()
     {
         if (liveEditing)
         {
@@ -50,6 +51,38 @@ public class TerrainScript : MonoBehaviour
             }
             InitializeTerrain();
             UpdateTerrainMesh();
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (xMax < 1)
+        {
+            xMax = 1;
+        }
+        if (zMax < 1)
+        {
+            zMax = 1;
+        }
+        if (resolution <= 0)
+        {
+            resolution = 0.00001f;
+        }
+        if (skew <= 0)
+        {
+            skew = 0.00001f;
+        }
+        if (noiseScale <= 0)
+        {
+            skew = 0.00001f;
+        }
+        if (noiseOctaves < 0)
+        {
+            noiseOctaves = 0;
+        }
+        if (noiseLacunarity < 1)
+        {
+            noiseLacunarity = 1;
         }
     }
 
