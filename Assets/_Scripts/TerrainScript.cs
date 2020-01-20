@@ -11,6 +11,16 @@ public class TerrainScript : MonoBehaviour
     public float zMax = 10;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
     public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
+
+    //terrain generation variables
+    public float noiseScale = 1;
+    public float noiseAmplitude = 1;
+    public   int noiseOctaves = 1;
+    [Range(0,1)]
+    public float noisePersistance = 0.5f;
+    public float noiseLacunarity = 1.5f;
+    public int seed = 1;
+
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
     private MeshFilter _meshFilter;
@@ -19,7 +29,23 @@ public class TerrainScript : MonoBehaviour
     private Vector3[] _vertices;
     private int[] _triangles;
 
-    void Start()
+    private System.Random _rng;
+    private Vector2[] _offsets;
+
+    public void UpdateRandom()
+    {
+        _rng = new System.Random(seed);
+        
+        _offsets = new Vector2[noiseOctaves];
+        for (int i = 0; i < noiseOctaves; i++)
+        {
+            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
+            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
+            _offsets[i] = new Vector2(xOffset, zOffset);
+        }
+    }
+    
+    private void Start()
     {
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
@@ -28,21 +54,49 @@ public class TerrainScript : MonoBehaviour
         InitializeTerrain();
         UpdateTerrainMesh();
         
-        _meshFilter.mesh = _mesh;
-        _meshCollider.sharedMesh = _mesh;
+        UpdateRandom();
     }
 
     private void Update()
     {
         if (liveEditing)
         {
-            if (skew <= 0)
-            {
-                skew = 0.00001f;
-            }
             InitializeTerrain();
             UpdateTerrainMesh();
         }
+    }
+
+    private void OnValidate()
+    {
+        if (xMax < 1)
+        {
+            xMax = 1;
+        }
+        if (zMax < 1)
+        {
+            zMax = 1;
+        }
+        if (resolution <= 0)
+        {
+            resolution = 0.00001f;
+        }
+        if (skew <= 0)
+        {
+            skew = 0.00001f;
+        }
+        if (noiseScale <= 0)
+        {
+            skew = 0.00001f;
+        }
+        if (noiseOctaves < 0)
+        {
+            noiseOctaves = 0;
+        }
+        if (noiseLacunarity < 1)
+        {
+            noiseLacunarity = 1;
+        }
+        UpdateRandom();
     }
 
     private void InitializeTerrain()
@@ -50,8 +104,8 @@ public class TerrainScript : MonoBehaviour
         List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
         List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
 
-        float xStep = (1 / resolution) * skew;                        //the horizontal distance from one grid point to another within the same row
-        float zStep = (Mathf.Sqrt(3) / (2 * resolution)) * (1 / skew); //vertical      "       "   "    "    "    "   "       "     "    "  column
+        float xStep = skew / resolution;                              //the horizontal distance from one grid point to another within the same row
+        float zStep = Mathf.Sqrt(3) / (2 * resolution * skew);     //vertical      "       "   "    "    "    "   "       "     "    "  column
 
         int v = 0, vPrevious = 0, c = 0;                              //v = number of vertices in the current row being filled
         for (float z = -zMax/2; z <= zMax/2; z += zStep)              //vPrevious = num  "      "  "  previous...
@@ -72,7 +126,7 @@ public class TerrainScript : MonoBehaviour
 
                 if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    tempVertices.Add(new Vector3(x, 0, z));         //add new vertex
+                    tempVertices.Add(new Vector3(x, GetPerlinHeight(x, z), z));         //add new vertex
                     v++;                                                      //and increase this row's vertex counter
 
                     if (vPrevious > 0)
@@ -118,6 +172,9 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateNormals();
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
+        
+        _meshFilter.mesh = _mesh;
+        _meshCollider.sharedMesh = _mesh;
     }
 
     //CheckVerticesL returns 0 if there is no vertex down one row and to the left of the vertex at 'index'
@@ -169,5 +226,25 @@ public class TerrainScript : MonoBehaviour
     private bool CompareFloats(float f1, float f2, float tolerance)
     {
         return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
+    }
+
+    private float GetPerlinHeight(float x, float z)
+    {
+        float amplitude = noiseAmplitude;
+        float frequency = 1;
+        float height = 0;
+        
+        for (int i = 0; i < noiseOctaves; i++)
+        {
+            float xPerlin = x / noiseScale * frequency + _offsets[i].x;
+            float zPerlin = z / noiseScale * frequency + _offsets[i].y;
+
+            height += Mathf.PerlinNoise(xPerlin, zPerlin) * amplitude;
+
+            amplitude *= noisePersistance;
+            frequency *= noiseLacunarity;
+        }
+
+        return height;
     }
 }

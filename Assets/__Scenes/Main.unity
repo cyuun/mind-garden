@@ -153,11 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95196577b8ab61277b1d81aacec2dd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMax: 20
-  zMax: 30
+  xMax: 150
+  zMax: 170
   resolution: 1.25
-  xScale: 1
-  zScale: 1
+  skew: 1
+  noiseScale: 45
+  noiseAmplitude: 19
+  noiseOctaves: 4
+  noisePersistance: 0.125
+  noiseLacunarity: 4
+  seed: 1
   liveEditing: 0
 --- !u!23 &508138751
 MeshRenderer:
@@ -231,7 +236,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: -1
   m_Mesh: {fileID: 0}
 --- !u!1001 &783075867
@@ -245,13 +250,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPSController
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.18
+      value: 35.82
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.z
