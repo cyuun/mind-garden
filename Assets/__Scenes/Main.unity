@@ -153,16 +153,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95196577b8ab61277b1d81aacec2dd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMax: 100
-  zMax: 120
-  resolution: 2.5
+  xMax: 150
+  zMax: 170
+  resolution: 1.25
   skew: 1
+  noiseScale: 45
+  noiseAmplitude: 19
+  noiseOctaves: 4
+  noisePersistance: 0.125
+  noiseLacunarity: 4
+  seed: 1
   liveEditing: 0
-  noiseScale: 40
-  noiseAmplitude: 15
-  noiseOctaves: 5
-  noisePersistance: 0.4
-  noiseLacunarity: 2.5
 --- !u!23 &508138751
 MeshRenderer:
   m_ObjectHideFlags: 0
