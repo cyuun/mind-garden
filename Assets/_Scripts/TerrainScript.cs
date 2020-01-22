@@ -170,7 +170,18 @@ public class TerrainScript : MonoBehaviour
         float yOffset = AdjustHeightForPond();
         for (int i = 0; i < _vertices.Length; i++)
         {
-            _vertices[i].y -= yOffset;
+            float x = _vertices[i].x;
+            float y = _vertices[i].y - yOffset;
+            float z = _vertices[i].z;
+
+            if (x * x + z * z <= 1.5f * pondRadius * pondRadius)
+            {
+                _vertices[i].y = y * (Mathf.Sqrt((x * x + z * z) / (1.5f * pondRadius * pondRadius)));
+            }
+            else
+            {
+                _vertices[i].y = y;
+            }
         }
     }
 
@@ -269,7 +280,7 @@ public class TerrainScript : MonoBehaviour
             float x = _vertices[i].x;
             float y = _vertices[i].y;
             float z = _vertices[i].z;
-            if (x * x + z * z <= pondRadius)
+            if (x * x + z * z <= pondRadius * pondRadius)
             {
                 numVertices++;
                 avgHeight += y;
