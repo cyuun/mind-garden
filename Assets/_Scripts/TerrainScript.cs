@@ -8,8 +8,8 @@ public class TerrainScript : MonoBehaviour
 {
     //lattice variables
     [Header("Lattice")]
-    public float xMax = 100;          //the max x size of the canvas for the outline to be "drawn" upon
-    public float zMax = 100;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
+    public float xMax = 100;         //the max x size of the canvas for the outline to be "drawn" upon
+    public float zMax = 100;         // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
     public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
 
@@ -21,14 +21,14 @@ public class TerrainScript : MonoBehaviour
     [Range(0,1)]
     public float noisePersistance = 0.5f;
     public float noiseLacunarity = 1.5f;
+    public float flattenFactor = 2; //the flattening factor should leave mountains but create more flat terrain elsewhere
+    public float flattenSmoothRadius = 1;
     public int seed = 1;
 
     //pond variables
     [Header("Center Pond")]
     public float pondRadius = 10;
     
-    public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
-
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
@@ -56,20 +56,10 @@ public class TerrainScript : MonoBehaviour
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
         _mesh = new Mesh();
-
-        InitializeTerrain();
-        UpdateTerrainMesh();
         
         UpdateRandom();
-    }
-
-    private void Update()
-    {
-        if (liveEditing)
-        {
-            InitializeTerrain();
-            UpdateTerrainMesh();
-        }
+        InitializeTerrain();
+        UpdateTerrainMesh();
     }
 
     private void OnValidate()
@@ -102,7 +92,28 @@ public class TerrainScript : MonoBehaviour
         {
             noiseLacunarity = 1;
         }
+        if (flattenFactor < 1)
+        {
+            flattenFactor = 1;
+        }
+        if (flattenSmoothRadius < 0)
+        {
+            flattenSmoothRadius = 0.00001f;
+        }
+        if (pondRadius < 1)
+        {
+            pondRadius = 1;
+        }
+        if (pondRadius > Mathf.Min(xMax, zMax))
+        {
+            pondRadius = Mathf.Min(xMax, zMax);
+        }
         UpdateRandom();
+        if (_mesh != null)
+        {
+            InitializeTerrain();
+            UpdateTerrainMesh();
+        }
     }
 
     private void InitializeTerrain()
@@ -174,6 +185,11 @@ public class TerrainScript : MonoBehaviour
             float y = _vertices[i].y - yOffset;
             float z = _vertices[i].z;
 
+            if (y < 0)
+            {
+                y /= flattenFactor;
+            }
+            
             if (x * x + z * z <= 1.5f * pondRadius * pondRadius)
             {
                 _vertices[i].y = y * (Mathf.Sqrt((x * x + z * z) / (1.5f * pondRadius * pondRadius)));
