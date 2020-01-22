@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 public class TerrainScript : MonoBehaviour
 {
     //lattice variables
-    public float xMax = 10;          //the max x size of the canvas for the outline to be "drawn" upon
-    public float zMax = 10;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
+    [Header("Lattice")]
+    public float xMax = 100;          //the max x size of the canvas for the outline to be "drawn" upon
+    public float zMax = 100;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
     public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
 
     //terrain generation variables
+    [Header("Terrain Generation")]
     public float noiseScale = 1;
     public float noiseAmplitude = 1;
     public   int noiseOctaves = 1;
@@ -21,6 +23,10 @@ public class TerrainScript : MonoBehaviour
     public float noiseLacunarity = 1.5f;
     public int seed = 1;
 
+    //pond variables
+    [Header("Center Pond")]
+    public float pondRadius = 10;
+    
     public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
 
     private MeshFilter _meshFilter;
@@ -160,6 +166,12 @@ public class TerrainScript : MonoBehaviour
 
         _vertices = tempVertices.ToArray();                           //convert the temporary vertex list to a proper array
         _triangles = tempTriangles.ToArray();                         //   "     "      "     triangle "  "  "   "      "
+
+        float yOffset = AdjustHeightForPond();
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            _vertices[i].y -= yOffset;
+        }
     }
 
     private void UpdateTerrainMesh()
@@ -246,5 +258,29 @@ public class TerrainScript : MonoBehaviour
         }
 
         return height;
+    }
+
+    private float AdjustHeightForPond()
+    {
+        float avgHeight = 0;
+        int numVertices = 0;
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            float x = _vertices[i].x;
+            float y = _vertices[i].y;
+            float z = _vertices[i].z;
+            if (x * x + z * z <= pondRadius)
+            {
+                numVertices++;
+                avgHeight += y;
+            }
+        }
+
+        if (numVertices > 0)
+        {
+            avgHeight /= numVertices;
+        }
+
+        return avgHeight;
     }
 }
