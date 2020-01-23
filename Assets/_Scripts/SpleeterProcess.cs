@@ -12,7 +12,18 @@ public class SpleeterProcess : MonoBehaviour
 
     void Awake()
     {
-        StartCoroutine(Spleet());
+        Process process = new Process();
+        // Configure the process using the StartInfo properties.
+        string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
+        string outputPath = Application.persistentDataPath + "/Spleets/";
+        process.StartInfo.FileName = filePath + "spleeter.exe";
+        print("File:" + process.StartInfo.FileName);
+        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+        print("Output:" + outputPath);
+        process.StartInfo.Arguments = "separate -i Assets/Songs/" + inputSong.name + ".mp3 -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
+
+        process.Start();
+        process.WaitForExit();
 
         LoadSongTrack("vocals");
         LoadSongTrack("other");
@@ -24,24 +35,6 @@ public class SpleeterProcess : MonoBehaviour
         {
             audio.Play();
         }
-    }
-
-    IEnumerator Spleet()
-    {
-        Process process = new Process();
-        // Configure the process using the StartInfo properties.
-        string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
-        string outputPath = Application.persistentDataPath + "/Spleets/";
-        process.StartInfo.FileName = filePath + "spleeter.exe";
-        print("File:" + process.StartInfo.FileName);
-        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-        print("Output:" + outputPath);
-        process.StartInfo.Arguments = "separate -i Assets/Songs/" + inputSong.name + ".mp3 -p spleeter:4stems -o " + outputPath; //Shell executable
-
-        process.Start();
-        process.WaitForExit();
-        yield return new WaitForSeconds(3f);
-
     }
 
     void LoadSongTrack(string track)
