@@ -26,9 +26,7 @@ public class TerrainScript : MonoBehaviour
     //pond variables
     [Header("Center Pond")]
     public float pondRadius = 10;
-    
-    public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
-
+   
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
@@ -38,17 +36,15 @@ public class TerrainScript : MonoBehaviour
     private System.Random _rng;
     private Vector2[] _offsets;
 
-    public void UpdateRandom()
+    private float _seaLevel;
+
+    public void RefreshTerrain()
     {
-        _rng = new System.Random(seed);
+        UpdateRandom();
+        UpdateSeaLevel();
         
-        _offsets = new Vector2[noiseOctaves];
-        for (int i = 0; i < noiseOctaves; i++)
-        {
-            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
-            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
-            _offsets[i] = new Vector2(xOffset, zOffset);
-        }
+        InitializeTerrain();
+        UpdateTerrainMesh();
     }
     
     private void Start()
@@ -57,19 +53,7 @@ public class TerrainScript : MonoBehaviour
         _meshCollider = GetComponent<MeshCollider>();
         _mesh = new Mesh();
 
-        InitializeTerrain();
-        UpdateTerrainMesh();
-        
-        UpdateRandom();
-    }
-
-    private void Update()
-    {
-        if (liveEditing)
-        {
-            InitializeTerrain();
-            UpdateTerrainMesh();
-        }
+        RefreshTerrain();
     }
 
     private void OnValidate()
@@ -102,7 +86,11 @@ public class TerrainScript : MonoBehaviour
         {
             noiseLacunarity = 1;
         }
-        UpdateRandom();
+
+        if (_mesh != null)
+        {
+            RefreshTerrain();
+        }
     }
 
     private void InitializeTerrain()
@@ -269,6 +257,24 @@ public class TerrainScript : MonoBehaviour
         }
 
         return height;
+    }
+    
+    private void UpdateRandom()
+    {
+        _rng = new System.Random(seed);
+        
+        _offsets = new Vector2[noiseOctaves];
+        for (int i = 0; i < noiseOctaves; i++)
+        {
+            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
+            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
+            _offsets[i] = new Vector2(xOffset, zOffset);
+        }
+    }
+
+    private void UpdateSeaLevel()
+    {
+        
     }
 
     private float AdjustHeightForPond()
