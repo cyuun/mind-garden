@@ -46,6 +46,18 @@ public class TerrainScript : MonoBehaviour
         InitializeTerrain();
         UpdateTerrainMesh();
     }
+
+    public float GetTerrainHeight(float x, float z)
+    {
+        float height = GetPerlinHeight(x, z) - _seaLevel;
+
+        if (x * x + z * z <= Mathf.Sqrt(1.5f) * pondRadius * pondRadius)
+        {
+            height = height * (Mathf.Sqrt(x * x + z * z) / (1.5f * pondRadius));
+        }
+
+        return height;
+    }
     
     private void Start()
     {
@@ -120,7 +132,7 @@ public class TerrainScript : MonoBehaviour
 
                 if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    tempVertices.Add(new Vector3(x, GetPerlinHeight(x, z), z));         //add new vertex
+                    tempVertices.Add(new Vector3(x, GetTerrainHeight(x, z), z));         //add new vertex
                     v++;                                                      //and increase this row's vertex counter
 
                     if (vPrevious > 0)
@@ -154,23 +166,6 @@ public class TerrainScript : MonoBehaviour
 
         _vertices = tempVertices.ToArray();                           //convert the temporary vertex list to a proper array
         _triangles = tempTriangles.ToArray();                         //   "     "      "     triangle "  "  "   "      "
-
-        float yOffset = AdjustHeightForPond();
-        for (int i = 0; i < _vertices.Length; i++)
-        {
-            float x = _vertices[i].x;
-            float y = _vertices[i].y - yOffset;
-            float z = _vertices[i].z;
-
-            if (x * x + z * z <= 1.5f * pondRadius * pondRadius)
-            {
-                _vertices[i].y = y * (Mathf.Sqrt((x * x + z * z) / (1.5f * pondRadius * pondRadius)));
-            }
-            else
-            {
-                _vertices[i].y = y;
-            }
-        }
     }
 
     private void UpdateTerrainMesh()
@@ -274,7 +269,24 @@ public class TerrainScript : MonoBehaviour
 
     private void UpdateSeaLevel()
     {
-        
+        int rSteps = 20;
+        int thetaSteps = 360;
+        float sum = 0;
+
+        for (int rIndex = 0; rIndex < rSteps; rIndex++)
+        {
+            float r = rIndex * pondRadius / rSteps;
+            for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
+            {
+                float theta = thetaIndex * 360 / thetaSteps;
+                float x = r * Mathf.Cos(theta);
+                float z = r * Mathf.Sin(theta);
+
+                sum += GetPerlinHeight(x, z);
+            }
+        }
+
+        _seaLevel = sum / (rSteps * thetaSteps);
     }
 
     private float AdjustHeightForPond()
