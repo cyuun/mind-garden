@@ -121,42 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &297304202 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4740461425675393785, guid: 3520b67c802abd84d8d12ce9369b3f49,
-    type: 3}
-  m_PrefabInstance: {fileID: 681196866}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &305367982 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6663494328693571907, guid: 3520b67c802abd84d8d12ce9369b3f49,
-    type: 3}
-  m_PrefabInstance: {fileID: 681196866}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &458009278 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6695551261796708267, guid: 3520b67c802abd84d8d12ce9369b3f49,
-    type: 3}
-  m_PrefabInstance: {fileID: 681196866}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &458009280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458009278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25cd475e4a2c9b44a233682ffc6e6ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputSong: {fileID: 8300000, guid: 2d45a0456006e2945a01d72067623013, type: 3}
-  orbs:
-  - {fileID: 305367982}
-  - {fileID: 1598533070}
-  - {fileID: 297304202}
-  - {fileID: 2011402549}
 --- !u!1 &508138749
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,12 +670,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
---- !u!82 &1598533070 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6934921085143040155, guid: 3520b67c802abd84d8d12ce9369b3f49,
-    type: 3}
-  m_PrefabInstance: {fileID: 681196866}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615352664
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,9 +762,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!82 &2011402549 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3484447725151036532, guid: 3520b67c802abd84d8d12ce9369b3f49,
-    type: 3}
-  m_PrefabInstance: {fileID: 681196866}
-  m_PrefabAsset: {fileID: 0}
