@@ -21,14 +21,14 @@ public class TerrainScript : MonoBehaviour
     [Range(0,1)]
     public float noisePersistance = 0.5f;
     public float noiseLacunarity = 1.5f;
-    public float flattenFactor = 2; //the flattening factor should leave mountains but create more flat terrain elsewhere
-    public float flattenSmoothRadius = 1;
+    [Range(0, 1)]
+    public float lowHeightFlattening = 0.5f; //low height flattening should give us flatter terrain but with peakier mountains
     public int seed = 1;
 
     //pond variables
     [Header("Center Pond")]
     public float pondRadius = 10;
-    
+
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
@@ -38,17 +38,38 @@ public class TerrainScript : MonoBehaviour
     private System.Random _rng;
     private Vector2[] _offsets;
 
-    public void UpdateRandom()
+    private float _seaLevel;
+    private float _minHeight;
+
+    public void RefreshTerrain()
     {
-        _rng = new System.Random(seed);
+        SetRandom();
+        SetSeaLevel();
+        SetMinHeight();
         
-        _offsets = new Vector2[noiseOctaves];
-        for (int i = 0; i < noiseOctaves; i++)
+        InitializeTerrain();
+        UpdateTerrainMesh();
+    }
+
+    public float GetTerrainHeight(float x, float z)
+    {
+        float height = GetPerlinHeight(x, z) - _seaLevel;
+
+        if (x * x + z * z <= Mathf.Sqrt(1.5f) * pondRadius * pondRadius)
         {
-            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
-            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
-            _offsets[i] = new Vector2(xOffset, zOffset);
+            height *= Mathf.Sqrt(x * x + z * z) / (1.5f * pondRadius);
         }
+
+        if (height < 0 && height > _minHeight)
+        {
+            height *= 1 + (height * (lowHeightFlattening - 1) / _minHeight);
+        }
+        if (height <= _minHeight)
+        {
+            height *= lowHeightFlattening;
+        }
+
+        return height;
     }
     
     private void Start()
@@ -56,10 +77,8 @@ public class TerrainScript : MonoBehaviour
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
         _mesh = new Mesh();
-        
-        UpdateRandom();
-        InitializeTerrain();
-        UpdateTerrainMesh();
+
+        RefreshTerrain();
     }
 
     private void OnValidate()
@@ -92,14 +111,6 @@ public class TerrainScript : MonoBehaviour
         {
             noiseLacunarity = 1;
         }
-        if (flattenFactor < 1)
-        {
-            flattenFactor = 1;
-        }
-        if (flattenSmoothRadius < 0)
-        {
-            flattenSmoothRadius = 0.00001f;
-        }
         if (pondRadius < 1)
         {
             pondRadius = 1;
@@ -108,11 +119,9 @@ public class TerrainScript : MonoBehaviour
         {
             pondRadius = Mathf.Min(xMax, zMax);
         }
-        UpdateRandom();
         if (_mesh != null)
         {
-            InitializeTerrain();
-            UpdateTerrainMesh();
+            RefreshTerrain();
         }
     }
 
@@ -143,7 +152,7 @@ public class TerrainScript : MonoBehaviour
 
                 if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    tempVertices.Add(new Vector3(x, GetPerlinHeight(x, z), z));         //add new vertex
+                    tempVertices.Add(new Vector3(x, GetTerrainHeight(x, z), z));         //add new vertex
                     v++;                                                      //and increase this row's vertex counter
 
                     if (vPrevious > 0)
@@ -177,28 +186,6 @@ public class TerrainScript : MonoBehaviour
 
         _vertices = tempVertices.ToArray();                           //convert the temporary vertex list to a proper array
         _triangles = tempTriangles.ToArray();                         //   "     "      "     triangle "  "  "   "      "
-
-        float yOffset = AdjustHeightForPond();
-        for (int i = 0; i < _vertices.Length; i++)
-        {
-            float x = _vertices[i].x;
-            float y = _vertices[i].y - yOffset;
-            float z = _vertices[i].z;
-
-            if (y < 0)
-            {
-                y /= flattenFactor;
-            }
-            
-            if (x * x + z * z <= 1.5f * pondRadius * pondRadius)
-            {
-                _vertices[i].y = y * (Mathf.Sqrt((x * x + z * z) / (1.5f * pondRadius * pondRadius)));
-            }
-            else
-            {
-                _vertices[i].y = y;
-            }
-        }
     }
 
     private void UpdateTerrainMesh()
@@ -286,28 +273,64 @@ public class TerrainScript : MonoBehaviour
 
         return height;
     }
-
-    private float AdjustHeightForPond()
+    
+    private void SetRandom()
     {
-        float avgHeight = 0;
-        int numVertices = 0;
-        for (int i = 0; i < _vertices.Length; i++)
+        _rng = new System.Random(seed);
+        
+        _offsets = new Vector2[noiseOctaves];
+        for (int i = 0; i < noiseOctaves; i++)
         {
-            float x = _vertices[i].x;
-            float y = _vertices[i].y;
-            float z = _vertices[i].z;
-            if (x * x + z * z <= pondRadius * pondRadius)
+            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
+            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
+            _offsets[i] = new Vector2(xOffset, zOffset);
+        }
+    }
+
+    private void SetSeaLevel()
+    {
+        int rSteps = 20;
+        int thetaSteps = 360;
+        float sum = 0;
+
+        for (int rIndex = 0; rIndex < rSteps; rIndex++)
+        {
+            float r = rIndex * pondRadius / rSteps;
+            for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
             {
-                numVertices++;
-                avgHeight += y;
+                float theta = thetaIndex * 360 / thetaSteps;
+                float x = r * Mathf.Cos(theta);
+                float z = r * Mathf.Sin(theta);
+
+                sum += GetPerlinHeight(x, z);
             }
         }
 
-        if (numVertices > 0)
+        _seaLevel = sum / (rSteps * thetaSteps);
+    }
+
+    private void SetMinHeight()
+    {
+        int rSteps = 20;
+        int thetaSteps = 360;
+        float minHeight = 0;
+
+        for (int rIndex = 0; rIndex < rSteps; rIndex++)
         {
-            avgHeight /= numVertices;
+            float r = rIndex * Mathf.Max(xMax, zMax) / rSteps;
+            for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
+            {
+                float theta = thetaIndex * 360 / thetaSteps;
+                float x = r * Mathf.Cos(theta);
+                float z = r * Mathf.Sin(theta);
+                float height = GetPerlinHeight(x, z);
+                if (height < minHeight)
+                {
+                    minHeight = height;
+                }
+            }
         }
 
-        return avgHeight;
+        _minHeight = minHeight;
     }
 }
