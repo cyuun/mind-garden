@@ -162,10 +162,12 @@ MonoBehaviour:
   noiseOctaves: 4
   noisePersistance: 0.2
   noiseLacunarity: 4.5
-  flattenFactor: 5.5
-  flattenSmoothRadius: 1
+  lowHeightFlattening: 0.33
   seed: 1
-  pondRadius: 1
+  pondRadius: 10
+  centerFlatteningRadius: 20
+  pondNoiseScale: 0.1
+  pondNoiseAmplitude: 3.5
 --- !u!23 &508138751
 MeshRenderer:
   m_ObjectHideFlags: 0

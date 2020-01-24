@@ -28,6 +28,10 @@ public class TerrainScript : MonoBehaviour
     //pond variables
     [Header("Center Pond")]
     public float pondRadius = 10;
+    public float centerFlatteningRadius = 20;
+    [Range(0.00001f, 1)]
+    public float pondNoiseScale = 1;
+    public float pondNoiseAmplitude = 5;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -41,13 +45,18 @@ public class TerrainScript : MonoBehaviour
     private float _seaLevel;
     private float _minHeight;
 
+    private float[] _pond;
+
     public void RefreshTerrain()
     {
-        SetRandom();
-        SetSeaLevel();
-        SetMinHeight();
+        ClampVariables();
         
-        InitializeTerrain();
+        SetRandom();
+        SetSeaLevel(20,360);
+        SetMinHeight(40, 360);
+        SetPond(360);
+        
+        GenerateTerrain();
         UpdateTerrainMesh();
     }
 
@@ -55,9 +64,9 @@ public class TerrainScript : MonoBehaviour
     {
         float height = GetPerlinHeight(x, z) - _seaLevel;
 
-        if (x * x + z * z <= Mathf.Sqrt(1.5f) * pondRadius * pondRadius)
+        if (x * x + z * z <= centerFlatteningRadius * centerFlatteningRadius)
         {
-            height *= Mathf.Sqrt(x * x + z * z) / (1.5f * pondRadius);
+            height *= Mathf.Sqrt(x * x + z * z) / centerFlatteningRadius;
         }
 
         if (height < 0 && height > _minHeight)
@@ -67,6 +76,31 @@ public class TerrainScript : MonoBehaviour
         if (height <= _minHeight)
         {
             height *= lowHeightFlattening;
+        }
+
+        if (x * x + z * z <= pondRadius * pondRadius)
+        {
+            float r = Mathf.Sqrt(x * x + z * z);
+            float theta;
+            
+            if (z > 0)
+            {
+                theta = Mathf.Atan2(z, x);
+            }
+            else
+            {
+                theta = Mathf.Atan2(-z, x) + Mathf.PI;
+            }
+            
+            int thetaIndex = FindPondIndex(theta, _pond.Length);
+
+            if (thetaIndex != -1)
+            {
+                if (r <= _pond[thetaIndex])
+                {
+                    height -= 4;
+                }
+            }
         }
 
         return height;
@@ -83,49 +117,13 @@ public class TerrainScript : MonoBehaviour
 
     private void OnValidate()
     {
-        if (xMax < 1)
-        {
-            xMax = 1;
-        }
-        if (zMax < 1)
-        {
-            zMax = 1;
-        }
-        if (resolution <= 0)
-        {
-            resolution = 0.00001f;
-        }
-        if (skew <= 0)
-        {
-            skew = 0.00001f;
-        }
-        if (noiseScale <= 0)
-        {
-            skew = 0.00001f;
-        }
-        if (noiseOctaves < 0)
-        {
-            noiseOctaves = 0;
-        }
-        if (noiseLacunarity < 1)
-        {
-            noiseLacunarity = 1;
-        }
-        if (pondRadius < 1)
-        {
-            pondRadius = 1;
-        }
-        if (pondRadius > Mathf.Min(xMax, zMax))
-        {
-            pondRadius = Mathf.Min(xMax, zMax);
-        }
         if (_mesh != null)
         {
             RefreshTerrain();
         }
     }
 
-    private void InitializeTerrain()
+    private void GenerateTerrain()
     {
         List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
         List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
@@ -287,10 +285,8 @@ public class TerrainScript : MonoBehaviour
         }
     }
 
-    private void SetSeaLevel()
+    private void SetSeaLevel(int rSteps, int thetaSteps)
     {
-        int rSteps = 20;
-        int thetaSteps = 360;
         float sum = 0;
 
         for (int rIndex = 0; rIndex < rSteps; rIndex++)
@@ -298,7 +294,7 @@ public class TerrainScript : MonoBehaviour
             float r = rIndex * pondRadius / rSteps;
             for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
             {
-                float theta = thetaIndex * 360 / thetaSteps;
+                float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
                 float x = r * Mathf.Cos(theta);
                 float z = r * Mathf.Sin(theta);
 
@@ -309,10 +305,8 @@ public class TerrainScript : MonoBehaviour
         _seaLevel = sum / (rSteps * thetaSteps);
     }
 
-    private void SetMinHeight()
+    private void SetMinHeight(int rSteps, int thetaSteps)
     {
-        int rSteps = 20;
-        int thetaSteps = 360;
         float minHeight = 0;
 
         for (int rIndex = 0; rIndex < rSteps; rIndex++)
@@ -320,7 +314,7 @@ public class TerrainScript : MonoBehaviour
             float r = rIndex * Mathf.Max(xMax, zMax) / rSteps;
             for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
             {
-                float theta = thetaIndex * 360 / thetaSteps;
+                float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
                 float x = r * Mathf.Cos(theta);
                 float z = r * Mathf.Sin(theta);
                 float height = GetPerlinHeight(x, z);
@@ -332,5 +326,91 @@ public class TerrainScript : MonoBehaviour
         }
 
         _minHeight = minHeight;
+    }
+
+    private void SetPond(int thetaSteps)
+    {
+        _pond = new float[thetaSteps];
+
+        for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
+        {
+            float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
+            float x = pondRadius * Mathf.Cos(theta) / (pondNoiseScale * noiseScale) + _offsets[0].x;
+            float z = pondRadius * Mathf.Sin(theta) / (pondNoiseScale * noiseScale) + _offsets[0].y;
+
+            _pond[thetaIndex] = pondRadius - (Mathf.PerlinNoise(x, z) * pondNoiseAmplitude);
+        }
+    }
+
+    private int FindPondIndex(float theta, float arrayLength)
+    {
+        float thetaStep = 2 * Mathf.PI / arrayLength;
+        float diff = Single.MaxValue;
+        int thetaIndex = Int32.MaxValue;
+        int searchIndex = Mathf.RoundToInt(theta / thetaStep);
+        
+        for (int i = -2; i <= 2; i++)
+        {
+            if (Mathf.Abs((searchIndex + i) * thetaStep - theta) < diff)
+            {
+                diff = Mathf.Abs(searchIndex * thetaStep + i * thetaStep - theta);
+                thetaIndex = searchIndex + i;
+            }
+        }
+
+        if (thetaIndex < 0 || thetaIndex > arrayLength)
+        {
+            thetaIndex = -1;
+        }
+
+        return thetaIndex;
+    }
+
+    private void ClampVariables()
+    {
+        if (xMax < 1)
+        {
+            xMax = 1;
+        }
+        if (zMax < 1)
+        {
+            zMax = 1;
+        }
+        if (resolution <= 0)
+        {
+            resolution = 0.00001f;
+        }
+        if (skew <= 0)
+        {
+            skew = 0.00001f;
+        }
+        if (noiseScale <= 0)
+        {
+            noiseScale = 0.00001f;
+        }
+        if (noiseOctaves < 0)
+        {
+            noiseOctaves = 0;
+        }
+        if (noiseLacunarity < 1)
+        {
+            noiseLacunarity = 1;
+        }
+        if (pondRadius < 1)
+        {
+            pondRadius = 1;
+        }
+        if (pondRadius > Mathf.Min(xMax, zMax))
+        {
+            pondRadius = Mathf.Min(xMax, zMax);
+        }
+        if (centerFlatteningRadius < pondRadius)
+        {
+            centerFlatteningRadius = pondRadius;
+        }
+        if (pondNoiseAmplitude <= 0)
+        {
+            pondNoiseAmplitude = 0.00001f;
+        }
     }
 }
