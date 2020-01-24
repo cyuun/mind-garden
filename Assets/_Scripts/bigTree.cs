@@ -1,0 +1,39 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class bigTree : MonoBehaviour
+{
+    public GameObject piece1;
+    public GameObject piece2;
+    public GameObject piece3;
+    public GameObject piece4;
+    public GameObject piece5;
+
+    //0 is unmoving, 40 is pretty fast/kinda seizure-y
+    float mainMusicVariable = 10f;
+
+    void Update()
+    {
+        Vector3 vec1 = new Vector3(0.0034f, 0.0034f, 0.0045f+(Mathf.Sin(Time.time * (mainMusicVariable+ 0.01f)) * 0.0009f));
+        Vector3 vec2 = new Vector3(0.0034f, 0.0034f, 0.003f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.08f)) * 0.001f));
+        Vector3 vec3 = new Vector3(0.0034f, 0.0034f, 0.003f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.04f)) * 0.001f));
+        Vector3 vec4 = new Vector3(0.0034f, 0.0034f, 0.0035f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.012f)) * 0.001f));
+        Vector3 vec5 = new Vector3(0.0034f, 0.0034f, 0.0035f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.06f)) * 0.001f));
+
+        piece1.transform.localScale = vec1;
+        piece2.transform.localScale = vec2;
+        piece3.transform.localScale = vec3;
+        piece4.transform.localScale = vec4;
+        piece5.transform.localScale = vec5;
+    }
+
+    // void Update()
+    //{
+    //piece1.transform.localScale+= new Vector3(0, 0, mainMusicVariable * scaleSpeed1 * Time.deltaTime);
+    //piece2.transform.localScale += new Vector3(0, 0, mainMusicVariable * scaleSpeed2 * Time.deltaTime);
+    //piece3.transform.localScale += new Vector3(0, 0, mainMusicVariable * scaleSpeed3 * Time.deltaTime);
+    //piece4.transform.localScale += new Vector3(0, 0, mainMusicVariable * scaleSpeed4 * Time.deltaTime);
+    //piece5.transform.localScale += new Vector3(0, 0, mainMusicVariable * scaleSpeed5 * Time.deltaTime);
+    //}
+}

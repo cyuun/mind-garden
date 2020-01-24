@@ -48,7 +48,7 @@ public class KochLine : KochGenerator
     {
         if (_matInstance)
         {
-            _color = _colorGrad.Evaluate(_audioPeer._audioBandBuffer[_audioBand[0]]);
+            _color = _colorGrad.Evaluate(_audioPeer._audioBand[_audioBandMaterial] * _scaleGradient);
             _matInstance.SetColor("_EmissionColor", _color * _audioPeer._amplitudeBuffer * _emissionMultiplier);
         }
         
