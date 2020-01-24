@@ -7,21 +7,32 @@ using Random = UnityEngine.Random;
 public class TerrainScript : MonoBehaviour
 {
     //lattice variables
-    public float xMax = 10;          //the max x size of the canvas for the outline to be "drawn" upon
-    public float zMax = 10;          // "   "  z   "   "  "    "     "   "     "     "  "    "     "
+    [Header("Lattice")]
+    public float xMax = 100;         //the max x size of the canvas for the outline to be "drawn" upon
+    public float zMax = 100;         // "   "  z   "   "  "    "     "   "     "     "  "    "     "
     public float resolution = 1;     //increase this number to increase the number of lattice points per meter
     public float skew = 1;           //increase greater than 1 to skew towards x, less than 1 to elongate z
 
     //terrain generation variables
+    [Header("Terrain Generation")]
     public float noiseScale = 1;
     public float noiseAmplitude = 1;
     public   int noiseOctaves = 1;
     [Range(0,1)]
     public float noisePersistance = 0.5f;
     public float noiseLacunarity = 1.5f;
+    [Range(0, 1)]
+    public float lowHeightFlattening = 0.5f; //low height flattening should give us flatter terrain but with peakier mountains
     public int seed = 1;
 
-    public bool liveEditing = false; //this can potentially be dangerous for performance, definitely not intended for use in running final game
+    //pond variables
+    [Header("Center Pond")]
+    public float pondDepth = 4.20f;
+    public float pondRadius = 10;
+    public float centerFlatteningRadius = 20;
+    [Range(0.00001f, 100)]
+    public float pondNoiseScale = 1;
+    public float pondNoiseAmplitude = 5;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -32,17 +43,75 @@ public class TerrainScript : MonoBehaviour
     private System.Random _rng;
     private Vector2[] _offsets;
 
-    public void UpdateRandom()
+    private float _seaLevel;
+    private float _minHeight;
+
+    private float[] _pond;
+
+    public void RefreshTerrain()
     {
-        _rng = new System.Random(seed);
+        ClampVariables();
         
-        _offsets = new Vector2[noiseOctaves];
-        for (int i = 0; i < noiseOctaves; i++)
+        SetRandom();
+        SetSeaLevel(20,360);
+        SetMinHeight(40, 360);
+        SetPond(360);
+        
+        GenerateTerrain();
+        UpdateTerrainMesh();
+    }
+
+    public float GetTerrainHeight(float x, float z)
+    {
+        float height = GetPerlinHeight(x, z) - _seaLevel;
+
+        if (x * x + z * z <= centerFlatteningRadius * centerFlatteningRadius)
         {
-            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
-            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
-            _offsets[i] = new Vector2(xOffset, zOffset);
+            if (x * x + z * z >= 4 * centerFlatteningRadius * centerFlatteningRadius / 9)
+            {
+                height *= Mathf.Sqrt(x * x + z * z) * 3 / centerFlatteningRadius - 2;
+            }
+            else
+            {
+                height = 0;
+            }
         }
+
+        if (height < 0 && height > _minHeight)
+        {
+            height *= 1 + (height * (lowHeightFlattening - 1) / _minHeight);
+        }
+        if (height <= _minHeight)
+        {
+            height *= lowHeightFlattening;
+        }
+
+        if (x * x + z * z <= pondRadius * pondRadius)
+        {
+            float r = Mathf.Sqrt(x * x + z * z);
+            float theta;
+            
+            if (z > 0)
+            {
+                theta = Mathf.Atan2(z, x);
+            }
+            else
+            {
+                theta = Mathf.Atan2(-z, x) + Mathf.PI;
+            }
+            
+            int thetaIndex = FindPondIndex(theta, _pond.Length);
+
+            if (thetaIndex != -1)
+            {
+                if (r <= _pond[thetaIndex])
+                {
+                    height -= pondDepth * (1 - r * r / (_pond[thetaIndex] * _pond[thetaIndex]));
+                }
+            }
+        }
+
+        return height;
     }
     
     private void Start()
@@ -51,55 +120,18 @@ public class TerrainScript : MonoBehaviour
         _meshCollider = GetComponent<MeshCollider>();
         _mesh = new Mesh();
 
-        InitializeTerrain();
-        UpdateTerrainMesh();
-        
-        UpdateRandom();
-    }
-
-    private void Update()
-    {
-        if (liveEditing)
-        {
-            InitializeTerrain();
-            UpdateTerrainMesh();
-        }
+        RefreshTerrain();
     }
 
     private void OnValidate()
     {
-        if (xMax < 1)
+        if (_mesh != null)
         {
-            xMax = 1;
+            RefreshTerrain();
         }
-        if (zMax < 1)
-        {
-            zMax = 1;
-        }
-        if (resolution <= 0)
-        {
-            resolution = 0.00001f;
-        }
-        if (skew <= 0)
-        {
-            skew = 0.00001f;
-        }
-        if (noiseScale <= 0)
-        {
-            skew = 0.00001f;
-        }
-        if (noiseOctaves < 0)
-        {
-            noiseOctaves = 0;
-        }
-        if (noiseLacunarity < 1)
-        {
-            noiseLacunarity = 1;
-        }
-        UpdateRandom();
     }
 
-    private void InitializeTerrain()
+    private void GenerateTerrain()
     {
         List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
         List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
@@ -126,7 +158,7 @@ public class TerrainScript : MonoBehaviour
 
                 if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
-                    tempVertices.Add(new Vector3(x, GetPerlinHeight(x, z), z));         //add new vertex
+                    tempVertices.Add(new Vector3(x, GetTerrainHeight(x, z), z));         //add new vertex
                     v++;                                                      //and increase this row's vertex counter
 
                     if (vPrevious > 0)
@@ -246,5 +278,151 @@ public class TerrainScript : MonoBehaviour
         }
 
         return height;
+    }
+    
+    private void SetRandom()
+    {
+        _rng = new System.Random(seed);
+        
+        _offsets = new Vector2[noiseOctaves];
+        for (int i = 0; i < noiseOctaves; i++)
+        {
+            float xOffset = _rng.Next(Mathf.CeilToInt(xMax) / 2, 10000);
+            float zOffset = _rng.Next(Mathf.CeilToInt(zMax) / 2, 10000);
+            _offsets[i] = new Vector2(xOffset, zOffset);
+        }
+    }
+
+    private void SetSeaLevel(int rSteps, int thetaSteps)
+    {
+        float sum = 0;
+
+        for (int rIndex = 0; rIndex < rSteps; rIndex++)
+        {
+            float r = rIndex * pondRadius / rSteps;
+            for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
+            {
+                float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
+                float x = r * Mathf.Cos(theta);
+                float z = r * Mathf.Sin(theta);
+
+                sum += GetPerlinHeight(x, z);
+            }
+        }
+
+        _seaLevel = sum / (rSteps * thetaSteps);
+    }
+
+    private void SetMinHeight(int rSteps, int thetaSteps)
+    {
+        float minHeight = 0;
+
+        for (int rIndex = 0; rIndex < rSteps; rIndex++)
+        {
+            float r = rIndex * Mathf.Max(xMax, zMax) / rSteps;
+            for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
+            {
+                float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
+                float x = r * Mathf.Cos(theta);
+                float z = r * Mathf.Sin(theta);
+                float height = GetPerlinHeight(x, z);
+                if (height < minHeight)
+                {
+                    minHeight = height;
+                }
+            }
+        }
+
+        _minHeight = minHeight;
+    }
+
+    private void SetPond(int thetaSteps)
+    {
+        _pond = new float[thetaSteps];
+
+        for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
+        {
+            float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
+            float x = pondRadius * Mathf.Cos(theta) / pondNoiseScale + _offsets[0].x;
+            float z = pondRadius * Mathf.Sin(theta) / pondNoiseScale + _offsets[0].y;
+
+            _pond[thetaIndex] = pondRadius - (Mathf.PerlinNoise(x, z) * pondNoiseAmplitude);
+        }
+    }
+
+    private int FindPondIndex(float theta, float arrayLength)
+    {
+        float thetaStep = 2 * Mathf.PI / arrayLength;
+        float diff = Single.MaxValue;
+        int thetaIndex = Int32.MaxValue;
+        int searchIndex = Mathf.RoundToInt(theta / thetaStep);
+        
+        for (int i = -2; i <= 2; i++)
+        {
+            if (Mathf.Abs((searchIndex + i) * thetaStep - theta) < diff)
+            {
+                diff = Mathf.Abs(searchIndex * thetaStep + i * thetaStep - theta);
+                thetaIndex = searchIndex + i;
+            }
+        }
+
+        if (thetaIndex < 0 || thetaIndex > arrayLength)
+        {
+            thetaIndex = -1;
+        }
+
+        return thetaIndex;
+    }
+
+    private void ClampVariables()
+    {
+        if (xMax < 1)
+        {
+            xMax = 1;
+        }
+        if (zMax < 1)
+        {
+            zMax = 1;
+        }
+        if (resolution <= 0)
+        {
+            resolution = 0.00001f;
+        }
+        if (skew <= 0)
+        {
+            skew = 0.00001f;
+        }
+        if (noiseScale <= 0)
+        {
+            noiseScale = 0.00001f;
+        }
+        if (noiseOctaves < 0)
+        {
+            noiseOctaves = 0;
+        }
+        if (noiseLacunarity < 1)
+        {
+            noiseLacunarity = 1;
+        }
+        if (pondDepth < 0)
+        {
+            pondDepth = 0.00001f;
+        }
+        if (pondRadius < 1)
+        {
+            pondRadius = 1;
+        }
+        if (pondRadius > Mathf.Min(xMax, zMax))
+        {
+            pondRadius = Mathf.Min(xMax, zMax);
+        }
+        if (centerFlatteningRadius < pondRadius)
+        {
+            centerFlatteningRadius = pondRadius;
+        }
+        if (pondNoiseAmplitude <= 0)
+        {
+            pondNoiseAmplitude = 0.00001f;
+        }
     }
 }
