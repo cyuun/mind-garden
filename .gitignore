@@ -38,3 +38,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Spleeter Data Model(s)
+pretrained_models/

@@ -9,7 +9,6 @@ public class KochLine : KochGenerator
     /*[Range(0,1)]
     public float _lerpAmount;*/
     Vector3[] _lerpPosition;
-    public float _generatorMultiplier;
     private float[] _lerpAudio;
 
     [Header("AudioPeer")]

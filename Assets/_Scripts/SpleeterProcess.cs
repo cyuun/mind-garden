@@ -39,7 +39,7 @@ public class SpleeterProcess : MonoBehaviour
 
     void LoadSongTrack(string track)
     {
-        string url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/" + track + ".wav";
+        string url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/" + track + ".wav"; //TODO: Parse file url for invalid chars and rename if necessary
         var bytes = File.ReadAllBytes(url);
         WAV wav = new WAV(bytes);
         AudioClip audioClip = AudioClip.Create(track, wav.SampleCount, 1, wav.Frequency, false);
