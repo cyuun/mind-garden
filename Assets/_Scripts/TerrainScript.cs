@@ -27,9 +27,10 @@ public class TerrainScript : MonoBehaviour
 
     //pond variables
     [Header("Center Pond")]
+    public float pondDepth = 4.20f;
     public float pondRadius = 10;
     public float centerFlatteningRadius = 20;
-    [Range(0.00001f, 1)]
+    [Range(0.00001f, 100)]
     public float pondNoiseScale = 1;
     public float pondNoiseAmplitude = 5;
 
@@ -105,7 +106,7 @@ public class TerrainScript : MonoBehaviour
             {
                 if (r <= _pond[thetaIndex])
                 {
-                    height -= 4;
+                    height -= pondDepth * (1 - r * r / (_pond[thetaIndex] * _pond[thetaIndex]));
                 }
             }
         }
@@ -342,8 +343,8 @@ public class TerrainScript : MonoBehaviour
         for (int thetaIndex = 0; thetaIndex < thetaSteps; thetaIndex++)
         {
             float theta = thetaIndex * 2 * Mathf.PI / thetaSteps;
-            float x = pondRadius * Mathf.Cos(theta) / (pondNoiseScale * noiseScale) + _offsets[0].x;
-            float z = pondRadius * Mathf.Sin(theta) / (pondNoiseScale * noiseScale) + _offsets[0].y;
+            float x = pondRadius * Mathf.Cos(theta) / pondNoiseScale + _offsets[0].x;
+            float z = pondRadius * Mathf.Sin(theta) / pondNoiseScale + _offsets[0].y;
 
             _pond[thetaIndex] = pondRadius - (Mathf.PerlinNoise(x, z) * pondNoiseAmplitude);
         }
@@ -402,6 +403,10 @@ public class TerrainScript : MonoBehaviour
         if (noiseLacunarity < 1)
         {
             noiseLacunarity = 1;
+        }
+        if (pondDepth < 0)
+        {
+            pondDepth = 0.00001f;
         }
         if (pondRadius < 1)
         {
