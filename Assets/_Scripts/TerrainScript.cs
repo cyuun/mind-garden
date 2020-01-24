@@ -66,7 +66,14 @@ public class TerrainScript : MonoBehaviour
 
         if (x * x + z * z <= centerFlatteningRadius * centerFlatteningRadius)
         {
-            height *= Mathf.Sqrt(x * x + z * z) / centerFlatteningRadius;
+            if (x * x + z * z >= 4 * centerFlatteningRadius * centerFlatteningRadius / 9)
+            {
+                height *= Mathf.Sqrt(x * x + z * z) * 3 / centerFlatteningRadius - 2;
+            }
+            else
+            {
+                height = 0;
+            }
         }
 
         if (height < 0 && height > _minHeight)
