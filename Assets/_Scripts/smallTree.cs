@@ -37,7 +37,7 @@ public class smallTree : MonoBehaviour
     {
         if (decreasePoint >= totalShakeDuration)
         {
-            Debug.LogError("decreasePoint must be less than totalShakeDuration...Exiting");
+            //Debug.LogError("decreasePoint must be less than totalShakeDuration...Exiting");
             yield break; //Exit!
         }
 
@@ -122,6 +122,6 @@ public class smallTree : MonoBehaviour
         objTransform.rotation = defaultRot;//Reset to original rotation
 
         shaking = false; //So that we can call this function next time
-        Debug.Log("Done!");
+        //Debug.Log("Done!");
     }
 }

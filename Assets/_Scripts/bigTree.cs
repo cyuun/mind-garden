@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class bigTree : MonoBehaviour
 {
-    public GameObject piece1;
-    public GameObject piece2;
-    public GameObject piece3;
-    public GameObject piece4;
-    public GameObject piece5;
+    public AudioPeer _audioPeer;
+    [Range(0, 2)]
+    public float _amplitudeScale;
+
+    public Transform piece1;
+    public Transform piece2;
+    public Transform piece3;
+    public Transform piece4;
+    public Transform piece5;
 
     //0 is unmoving, 40 is pretty fast/kinda seizure-y
     float mainMusicVariable = 10f;
 
     void Update()
     {
-        Vector3 vec1 = new Vector3(0.0034f, 0.0034f, 0.0045f+(Mathf.Sin(Time.time * (mainMusicVariable+ 0.01f)) * 0.0009f));
-        Vector3 vec2 = new Vector3(0.0034f, 0.0034f, 0.003f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.08f)) * 0.001f));
-        Vector3 vec3 = new Vector3(0.0034f, 0.0034f, 0.003f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.04f)) * 0.001f));
-        Vector3 vec4 = new Vector3(0.0034f, 0.0034f, 0.0035f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.012f)) * 0.001f));
-        Vector3 vec5 = new Vector3(0.0034f, 0.0034f, 0.0035f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.06f)) * 0.001f));
-
-        piece1.transform.localScale = vec1;
-        piece2.transform.localScale = vec2;
-        piece3.transform.localScale = vec3;
-        piece4.transform.localScale = vec4;
-        piece5.transform.localScale = vec5;
+        if (_audioPeer)
+        {
+            piece1.localScale = new Vector3(0.0034f, 0.0034f, 0.0045f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
+            piece2.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
+            piece3.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
+            piece4.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
+            piece5.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
+        }
+        else
+        {
+            piece1.localScale = new Vector3(0.0034f, 0.0034f, 0.0045f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.01f)) * 0.0009f));
+            piece2.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.08f)) * 0.001f));
+            piece3.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.04f)) * 0.001f));
+            piece4.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.012f)) * 0.001f));
+            piece5.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.06f)) * 0.001f));
+        }
     }
 
     // void Update()
