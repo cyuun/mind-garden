@@ -2,6 +2,19 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 2
+January 21 - 28
+### More terrain
+TODO: Process on terrain: pond creation, low height flattening, shader changes
+### Asset integration
+#### 3D Assets
+TODO: Process on putting assets into unity including new ones this week like the head
+#### Audio visualizer
+TODO: Process on putting the audio visualizer prototype into the main project, fractals in the sky etc.
+### Main menu
+TODO: Process on the initial startings of a main menu
+
+---
 ## Week 1
 January 14 - 21
 ### Implementing Spleeter in Unity
