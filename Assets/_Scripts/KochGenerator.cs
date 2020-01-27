@@ -43,7 +43,13 @@ public class KochGenerator : MonoBehaviour
     {
         public bool outwards;
         public float scale;
+        public StartGen(bool o, float s)
+        {
+            outwards = o;
+            scale = s;
+        }
     };
+    
     public StartGen[] _startGen;
 
     [SerializeField]
@@ -67,8 +73,30 @@ public class KochGenerator : MonoBehaviour
 
     protected int _generationCount;
 
+    public bool _randomize;
+    [SerializeField]
+    [Range(0, 3)]
+    protected int _track;
+    [SerializeField]
+    [Range(0, 7)]
+    protected int _frequency;
+
+
     void Awake()
     {
+        if (_randomize)
+        {
+            Random.InitState((int)Random.Range(0, 1000));
+            initiator = (_initiator)Random.Range(0,6);
+            _startGen = new StartGen[Random.Range(1, 4)];
+            List<StartGen> startGenList = new List<StartGen>();
+            for(int i = 0; i < _startGen.Length; i++)
+            {
+                startGenList.Add(new StartGen(Random.Range(0, 2) != 0, Random.Range(0f, 5f)));
+            }
+            _startGen = startGenList.ToArray();
+            _useBezierCurves = (Random.Range(0, 1) != 0);
+        }
         GetInitiatorPoints();
         _position = new Vector3[_initiatorPointAmount + 1];
         _targetPosition = new Vector3[_initiatorPointAmount + 1];
