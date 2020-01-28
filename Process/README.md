@@ -5,7 +5,7 @@ Mind's Garden is a first person musical exploration game which reads in audio fi
 ## Week 2
 January 21 - 28
 ### More terrain
-TODO: Process on terrain: pond creation, low height flattening, shader changes
+After getting a solid start on procedural terrain generation last week, we just needed to make a few smaller improvements to the algorithm, and also throw in some specifics things that apply to our project. The first general improvement was to give a consistent height to all of the different randomly generated maps. This was done by loweringthe height of the map, until the point (x,z) = (0,0) has height y = 0. The next improvement was to partially flatten all of the terrain that is below height y = 0 (below the spawn point). This really brought out the mountains in the terrain and made it feel much more real and interesting. Finally we wanted to tailor the terrain more specifically to our needs, first we flattened out the area around the spawn to make room for a pond in the center of the map, and then we lowered the terrain in the middle of the flattened area to create an indent for the pond. The outline of the pond is randomly generated with a Perlin noise technique, so the pod changes shape with each seed as well.
 ### Asset integration
 #### 3D Assets
 TODO: Process on putting assets into unity including new ones this week like the head
