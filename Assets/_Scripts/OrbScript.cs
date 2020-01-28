@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class OrbScript : MonoBehaviour
     float fadeDuration = 2f;
 
     public AudioSource audioTrack;
+    public Image buttonLabel;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +30,26 @@ public class OrbScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
         {
-            ToggleVolume();
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                ToggleVolume();
+            }
+            ShowButtonLabel();
         }
+    }
+
+    private void OnMouseExit()
+    {
+        buttonLabel.gameObject.SetActive(false);
+    }
+
+    void ShowButtonLabel()
+    {
+        Vector3 labelPos = Camera.main.WorldToScreenPoint(this.transform.position);
+        buttonLabel.transform.position = labelPos + (new Vector3(1,1,0) * 30);
+        buttonLabel.gameObject.SetActive(true);
     }
 
     void ToggleVolume()
