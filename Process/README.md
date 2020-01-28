@@ -11,6 +11,9 @@ TODO: Process on terrain: pond creation, low height flattening, shader changes
 TODO: Process on putting assets into unity including new ones this week like the head
 #### Audio visualizer
 This week we began playing with different variations for audio visualized assets to build up an assortment of prefabs to spawn into the world. I expanded upon the fractal generator script to allow for randommization and streamlined customizability, meaning any number of unique fractal variations can be created with ease. While making modifications to audio-visualized objects and components, I also made some simple orb designs. Following the sound of these orbs will be the primary objective in our game loop, with each of them playing a different instrument from the desired song. Their behavior is very simple for now, with basic toggle control and UI components to activate/deactivate the volume, but they will eventually be able to emmit particles, follow players around, spawn in at random locations, and act as key game objects within the Mind Garden.
+![Progress pictures of audio visuals](Resources/gear+orb.png "Gear and Orb Prefabs")
+![Progress pictures of audio visuals](Resources/more-orbs.png "All Orbs")
+![Progress pictures of audio visuals](Resources/interactionUI.png "Basic UI interaction")
 ### Main menu
 TODO: Process on the initial startings of a main menu
 
