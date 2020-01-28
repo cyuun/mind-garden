@@ -7,6 +7,7 @@ public class AmplitudeRotate : MonoBehaviour
     public AudioPeer _audioPeer;
     public float _rotationSpeed;
     public int _direction;
+    public 
 
     void Start()
     {

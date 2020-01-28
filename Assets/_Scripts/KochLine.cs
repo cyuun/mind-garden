@@ -9,7 +9,6 @@ public class KochLine : KochGenerator
     /*[Range(0,1)]
     public float _lerpAmount;*/
     Vector3[] _lerpPosition;
-    public float _generatorMultiplier;
     private float[] _lerpAudio;
 
     [Header("AudioPeer")]
@@ -48,7 +47,7 @@ public class KochLine : KochGenerator
     {
         if (_matInstance)
         {
-            _color = _colorGrad.Evaluate(_audioPeer._audioBandBuffer[_audioBand[0]]);
+            _color = _colorGrad.Evaluate(_audioPeer._audioBand[_audioBandMaterial] * _scaleGradient);
             _matInstance.SetColor("_EmissionColor", _color * _audioPeer._amplitudeBuffer * _emissionMultiplier);
         }
         
