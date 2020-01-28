@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class TerrainScript : MonoBehaviour
 {
+    public static TerrainScript S;
+    
     //lattice variables
     [Header("Lattice")]
     public float xMax = 100;         //the max x size of the canvas for the outline to be "drawn" upon
@@ -113,9 +115,31 @@ public class TerrainScript : MonoBehaviour
 
         return height;
     }
+
+    public float GetSteepestSlope(float x, float z, int samples)
+    {
+        float maxSlope = 0;
+        for (int thetaStep = 0; thetaStep < samples; thetaStep++)
+        {
+            float theta = thetaStep * Mathf.PI / samples;
+            float r = 0.1f;
+            x += r * Mathf.Cos(theta);
+            z += r * Mathf.Sin(theta);
+            float finiteDifference = Mathf.Abs((GetTerrainHeight(x, z) - GetTerrainHeight(-x, -z)) / (2 * r));
+
+            if (finiteDifference > maxSlope)
+            {
+                maxSlope = finiteDifference;
+            }
+        }
+
+        return maxSlope;
+    }
     
     private void Start()
     {
+        S = this;
+        
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
         _mesh = new Mesh();
