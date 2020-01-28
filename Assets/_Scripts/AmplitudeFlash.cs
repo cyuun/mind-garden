@@ -26,7 +26,7 @@ public class AmplitudeFlash : MonoBehaviour
     {
         _emissionColor = _colorGrad.Evaluate(_audioPeer._amplitude);
 
-        Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, _audioPeer._amplitudeBuffer);
+        Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, _audioPeer._amplitudeBuffer );
         rend.material.SetColor("_EmissionColor", colorLerp);
         colorLerp = Color.Lerp(_startColor, _endColor, _audioPeer._amplitudeBuffer);
         rend.material.SetColor("_Color", colorLerp);

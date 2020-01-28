@@ -21,11 +21,11 @@ public class bigTree : MonoBehaviour
     {
         if (_audioPeer)
         {
-            piece1.localScale = new Vector3(0.0034f, 0.0034f, 0.0045f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
-            piece2.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
-            piece3.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
-            piece4.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
-            piece5.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale));
+            piece1.localScale = new Vector3(0.0034f, 0.0034f, 0.0045f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
+            piece2.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
+            piece3.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
+            piece4.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
+            piece5.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
         }
         else
         {

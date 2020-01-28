@@ -11,7 +11,10 @@ public class AmplitudeRotate : MonoBehaviour
 
     void Start()
     {
-        
+        while(_direction == 0)
+        {
+            _direction = Random.Range(-1, 2);
+        }
     }
 
     // Update is called once per frame

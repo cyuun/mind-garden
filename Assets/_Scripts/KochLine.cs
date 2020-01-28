@@ -39,7 +39,16 @@ public class KochLine : KochGenerator
         {
             _lineRenderer.material = _matInstance;
         }
-        
+        //Apply Random Settings
+        if (_randomize)
+        {
+            _audioBand = new int[_initiatorPointAmount];
+            for(int i = 0; i < _audioBand.Length; i++)
+            {
+                _audioBand[i] = _frequency;
+            }
+            _audioBandMaterial = _frequency;
+        }
     }
 
     // Update is called once per frame
@@ -104,4 +113,5 @@ public class KochLine : KochGenerator
             _lerpAmount = 0;
         }*/
     }
+
 }
