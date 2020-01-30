@@ -19,8 +19,6 @@ public class AudioPeer : MonoBehaviour
     float _amplitudeHighest = 0;
     public float _audioProfile;
 
-    public AmplitudeRotate rotator;
-
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -39,6 +37,7 @@ public class AudioPeer : MonoBehaviour
 
     void AudioProfile(float audioProfile)
     {
+        _amplitudeHighest = audioProfile;
         for (int i = 0; i < 8; i++)
         {
             _freqBandHighest[i] = audioProfile;

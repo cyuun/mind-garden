@@ -10,12 +10,14 @@ public class OrbScript : MonoBehaviour
     float currentTime;
     float fadeDuration = 2f;
 
-    public AudioSource audioTrack;
+    AudioSource audioTrack;
+    public GameObject audio;
     public Image buttonLabel;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioTrack = audio.GetComponent<AudioSource>();
         if (!audioTrack)
         {
             audioTrack = gameObject.GetComponentInChildren<AudioSource>();
@@ -34,15 +36,20 @@ public class OrbScript : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
-                ToggleVolume();
+                //TODO: Follow Player
+
+                //TODO: Toggle Particles
+
+
+                //ToggleVolume();
             }
-            ShowButtonLabel();
+           //ShowButtonLabel();
         }
     }
 
     private void OnMouseExit()
     {
-        buttonLabel.gameObject.SetActive(false);
+        //buttonLabel.gameObject.SetActive(false);
     }
 
     void ShowButtonLabel()
