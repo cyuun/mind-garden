@@ -113,6 +113,8 @@ public class TerrainScript : MonoBehaviour
             }
         }
 
+        height += 7;
+
         return height;
     }
 
