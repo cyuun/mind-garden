@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     public static PlayerScript S;
 
-    void Start()
+    void Awake()
     {
         S = this;
     }

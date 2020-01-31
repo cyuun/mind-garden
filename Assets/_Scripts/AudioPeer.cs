@@ -18,6 +18,8 @@ public class AudioPeer : MonoBehaviour
     public float _amplitude, _amplitudeBuffer;
     float _amplitudeHighest = 0;
     public float _audioProfile;
+    bool _signalAmplitude;
+    public bool amplitudeSignal { get { return _signalAmplitude; } }
 
     void Start()
     {
@@ -46,6 +48,9 @@ public class AudioPeer : MonoBehaviour
 
     void GetAmplitude()
     {
+        //Reset signal
+        _signalAmplitude = false;
+
         float currentAmplitude = 0;
         float currentAmplitudeBuff = 0;
         for (int i = 0; i < 8; i++)
@@ -56,6 +61,7 @@ public class AudioPeer : MonoBehaviour
         if (currentAmplitude > _amplitudeHighest)
         {
             _amplitudeHighest = currentAmplitude;
+            _signalAmplitude = true;
             //rotator._direction *= -1;
         }
         _amplitude = currentAmplitude / _amplitudeHighest;
