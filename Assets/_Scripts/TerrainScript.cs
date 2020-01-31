@@ -138,7 +138,7 @@ public class TerrainScript : MonoBehaviour
         return maxSlope;
     }
     
-    private void Start()
+    private void Awake()
     {
         S = this;
         

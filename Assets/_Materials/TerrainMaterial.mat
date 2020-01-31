@@ -81,11 +81,11 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GradientAngle: 9
+    - _GradientAngle: 2
     - _GradientCenterX: 0
     - _GradientCenterY: 10
     - _GradientEnabled: 1
-    - _GradientSize: -24.1
+    - _GradientSize: -29
     - _LightContribution: 0
     - _Metallic: 0
     - _Mode: 0
