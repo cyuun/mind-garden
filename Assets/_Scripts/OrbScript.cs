@@ -47,7 +47,6 @@ public class OrbScript : MonoBehaviour
 
         //Set Orb height to match terrain
         float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
-        y_pos += y_offset;
         transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
 
         //Set Up Amplitude Flash
@@ -79,9 +78,10 @@ public class OrbScript : MonoBehaviour
                 StartCoroutine(MoveOrb());
             }
         }
-        if (transform.position.y < TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z))
+
+        float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
+        if (transform.position.y < y)
         {
-            float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z);
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
         
@@ -144,24 +144,6 @@ public class OrbScript : MonoBehaviour
         following = particles.isPlaying;
     }
 
-    void ToggleVolume()
-    {
-        if (!fading)
-        {
-            fading = true;
-            if (soundOn)
-            {
-                StartCoroutine(FadeOut());
-                soundOn = false;
-            }
-            else
-            {
-                StartCoroutine(FadeIn());
-                soundOn = true;
-            }
-        }
-    }
-
     IEnumerator MoveOrb()
     {
         rb.AddForce(new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * 20);
@@ -169,6 +151,8 @@ public class OrbScript : MonoBehaviour
         moving = false;
     }
 
+
+    //Volume Coroutines
     IEnumerator FadeIn()
     {
         audioTrack.volume = 0f;

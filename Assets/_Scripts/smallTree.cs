@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class smallTree : MonoBehaviour
+public class smallTree : Tree
 {
     public List<GameObject> objectToShake = new List<GameObject>();
     bool shaking = false;
