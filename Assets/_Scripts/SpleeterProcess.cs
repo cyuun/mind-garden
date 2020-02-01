@@ -7,11 +7,15 @@ using UnityEditor;
 
 public class SpleeterProcess : MonoBehaviour
 {
+    public static SpleeterProcess S;
+
     public AudioClip inputSong;
     public AudioSource[] orbs;
 
     void Awake()
     {
+        S = this;
+
         Process process = new Process();
         // Configure the process using the StartInfo properties.
         string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
@@ -25,10 +29,7 @@ public class SpleeterProcess : MonoBehaviour
         process.Start();
         process.WaitForExit();
 
-        LoadSongTrack("vocals");
-        LoadSongTrack("other");
-        LoadSongTrack("drums");
-        LoadSongTrack("bass");
+        LoadSongTracks();
 
         //Play
         foreach (AudioSource audio in orbs)
@@ -37,28 +38,38 @@ public class SpleeterProcess : MonoBehaviour
         }
     }
 
-    void LoadSongTrack(string track)
+    void LoadSongTracks()
     {
-        string url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/" + track + ".wav"; //TODO: Parse file url for invalid chars and rename if necessary
-        var bytes = File.ReadAllBytes(url);
-        WAV wav = new WAV(bytes);
-        AudioClip audioClip = AudioClip.Create(track, wav.SampleCount, 1, wav.Frequency, false);
-        audioClip.SetData(wav.LeftChannel, 0);
-        switch (track)
+        string track;
+        string url = "";
+        for (int i = 0; i < orbs.Length; i++)
         {
-            case "bass":
-                orbs[0].clip = audioClip;
-                break;
-            case "drums":
-                orbs[1].clip = audioClip;
-                break;
-            case "other":
-                orbs[2].clip = audioClip;
-                break;
-            case "vocals":
-                orbs[3].clip = audioClip;
-                break;
+            track = orbs[i].name;
+
+            switch (track)
+            {
+                case "Melody":
+                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/other.wav"; //TODO: Parse file url for invalid chars and rename if necessary
+                    break;
+                case "Bass":
+                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/bass.wav"; 
+                    break;
+                case "Vocals":
+                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/vocals.wav"; 
+                    break;
+                case "Drums":
+                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/drums.wav";
+                    break;
+            }
+
+            var bytes = File.ReadAllBytes(url);
+            WAV wav = new WAV(bytes); //Use WAV class to convert audio file
+            AudioClip audioClip = AudioClip.Create(track, wav.SampleCount, 1, wav.Frequency, false);
+            audioClip.SetData(wav.LeftChannel, 0);
+
+            orbs[i].clip = audioClip;
         }
+        
         
     }
 }

@@ -11,7 +11,13 @@ public class AmplitudeRotate : MonoBehaviour
 
     void Start()
     {
-        while(_direction == 0)
+        if (_audioPeer == null)
+        {
+            AudioSource[] sources = SpleeterProcess.S.orbs;
+            _audioPeer = sources[Random.Range(0, sources.Length)].GetComponent<AudioPeer>();
+        }
+
+        while (_direction == 0)
         {
             _direction = Random.Range(-1, 2);
         }

@@ -44,7 +44,6 @@ public class RockSpawner : MonoBehaviour
             do
             {
                 offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnRadiusMax);
-                print("recalculating");
             } while (offsetFromOrb.magnitude < spawnRadiusMin);
             Vector3 pos = transform.position + offsetFromOrb;
             //Level with terrain

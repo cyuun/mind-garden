@@ -49,8 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3451ec70c2076be408c4c03effcd9981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioPeer: {fileID: 7029090725726160591, guid: 86c7f4fa40f2e48459405f5aed1527a2,
-    type: 3}
+  _audioPeer: {fileID: 0}
   _rotationSpeed: 90
   _direction: -1
 --- !u!1 &6695551260534191891
@@ -281,6 +280,9 @@ MonoBehaviour:
     scale: 1
   _useBezierCurves: 0
   _bezierVertexCount: 17
+  _randomize: 0
+  _track: 0
+  _frequency: 0
   _sideLength: 13.856407
   _trailPrefab: {fileID: 5132816966980484899, guid: 8b7efdba538189d44a2872a4d170cf4e,
     type: 3}
@@ -449,6 +451,9 @@ MonoBehaviour:
     scale: 1
   _useBezierCurves: 1
   _bezierVertexCount: 17
+  _randomize: 0
+  _track: 0
+  _frequency: 0
   _sideLength: 6.8883023
   _trailPrefab: {fileID: 5132816966980484899, guid: 8b7efdba538189d44a2872a4d170cf4e,
     type: 3}
@@ -617,6 +622,9 @@ MonoBehaviour:
     scale: 1
   _useBezierCurves: 1
   _bezierVertexCount: 17
+  _randomize: 0
+  _track: 0
+  _frequency: 0
   _sideLength: 14.142135
   _trailPrefab: {fileID: 5132816966980484899, guid: 8b7efdba538189d44a2872a4d170cf4e,
     type: 3}
@@ -740,7 +748,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6695551261796708264}
-  - component: {fileID: 112672031}
   m_Layer: 0
   m_Name: FractalObject
   m_TagString: Untagged
@@ -765,24 +772,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &112672031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6695551261796708267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25cd475e4a2c9b44a233682ffc6e6ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputSong: {fileID: 8300000, guid: 2d45a0456006e2945a01d72067623013, type: 3}
-  orbs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &6695551262147953451
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +876,9 @@ MonoBehaviour:
     scale: 1
   _useBezierCurves: 1
   _bezierVertexCount: 17
+  _randomize: 0
+  _track: 0
+  _frequency: 0
   _sideLength: 10
   _trailPrefab: {fileID: 5132816966980484899, guid: 8b7efdba538189d44a2872a4d170cf4e,
     type: 3}
@@ -976,7 +968,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 23.511412
+      value: 34.641018
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1321,7 +1313,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 23.511412
+      value: 34.641018
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1681,12 +1673,12 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].scale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1971,7 +1963,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 23.511412
+      value: 34.641018
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -2271,7 +2263,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 23.511412
+      value: 34.641018
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -2546,7 +2538,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 23.511412
+      value: 34.641018
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}

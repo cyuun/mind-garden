@@ -38,6 +38,12 @@ public class KochTrail : KochGenerator
 
     void Start()
     {
+        if (_audioPeer == null)
+        {
+            AudioSource[] sources = SpleeterProcess.S.orbs;
+            _audioPeer = sources[Random.Range(0, sources.Length)].GetComponent<AudioPeer>();
+        }
+
         _startColor = new Color(0, 0, 0, 0);
         _endColor = new Color(0, 0, 0, 1);
 

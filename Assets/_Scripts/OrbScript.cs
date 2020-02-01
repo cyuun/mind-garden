@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class OrbScript : MonoBehaviour
 {
     PlayerScript player;
+    AudioPeer audioPeer;
     bool fading = false;
     bool following = false;
     bool moving = false;
@@ -21,11 +22,23 @@ public class OrbScript : MonoBehaviour
     public float rotationSpeed;
     public float y_offset;
 
+    //Amplitude Flash
+    public Gradient _colorGrad;
+    public float _colorMultiplier;
+    public Vector3 _targetScale;
+
+    private Color _startColor, _endColor;
+    private Color _emissionColor;
+    private Vector3 _scale;
+    private Renderer rend;
+
+
     // Start is called before the first frame update
     void Start()
     {
         player = PlayerScript.S;
         rb = GetComponent<Rigidbody>();
+        audioPeer = audioTrack.GetComponent<AudioPeer>();
         if (!soundOn)
         {
             audioTrack.volume = 0;
@@ -36,6 +49,12 @@ public class OrbScript : MonoBehaviour
         float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
         y_pos += y_offset;
         transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
+
+        //Set Up Amplitude Flash
+        _startColor = new Color(0, 0, 0, 0);
+        _endColor = new Color(0, 0, 0, 1);
+        _scale = transform.localScale;
+        rend = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -43,6 +62,8 @@ public class OrbScript : MonoBehaviour
     {
         //Spin
         transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
+        //Flash
+        Flash();
 
         if (following)
         {
@@ -83,6 +104,19 @@ public class OrbScript : MonoBehaviour
     private void OnMouseExit()
     {
         //buttonLabel.gameObject.SetActive(false);
+    }
+
+    void Flash()
+    {
+        _emissionColor = _colorGrad.Evaluate(audioPeer._amplitude);
+
+        Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, audioPeer._amplitudeBuffer);
+        rend.material.SetColor("_EmissionColor", colorLerp);
+        colorLerp = Color.Lerp(_startColor, _endColor, audioPeer._amplitudeBuffer);
+        rend.material.SetColor("_Color", colorLerp);
+
+        transform.localScale = Vector3.Lerp(_scale, _targetScale, audioPeer._amplitudeBuffer);
+
     }
 
     void ShowButtonLabel()
