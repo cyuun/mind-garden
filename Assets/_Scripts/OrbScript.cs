@@ -5,42 +5,44 @@ using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
+    PlayerScript player;
     bool fading = false;
     bool following = false;
     bool moving = false;
     Vector3 rotPerSecond;
-    PlayerScript player;
     Rigidbody rb;
-    TerrainScript terrain;
+    Vector3 velocity = Vector3.one;
 
     public bool soundOn;
     public AudioSource audioTrack;
     Image buttonLabel;
     public ParticleSystem particles;
     public ParticleSystem burst;
-    public Vector3 velocity = Vector3.one;
+    public float rotationSpeed;
     public float y_offset;
 
     // Start is called before the first frame update
     void Start()
     {
         player = PlayerScript.S;
-        terrain = GameObject.FindGameObjectWithTag("Terrain").GetComponent<TerrainScript>();
         rb = GetComponent<Rigidbody>();
         if (!soundOn)
         {
             audioTrack.volume = 0;
         }
-        rotPerSecond = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
+        rotPerSecond = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1)) * rotationSpeed;
 
-        //TODO: Adjust y position to match terrain height
+        //Set Orb height to match terrain
+        float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
+        y_pos += y_offset;
+        transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
         //Spin
-        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * 5f);
+        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
 
         if (following)
         {
@@ -56,12 +58,12 @@ public class OrbScript : MonoBehaviour
                 StartCoroutine(MoveOrb());
             }
         }
-
-        //Set Orb height to match terrain
-        float y_pos = terrain.GetTerrainHeight(transform.position.x, transform.position.y);
-        y_pos += y_offset;
-        Vector3 pos = new Vector3(transform.position.x, y_pos, transform.position.z);
-        transform.position = pos;
+        if (transform.position.y < TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z))
+        {
+            float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z);
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        }
+        
     }
 
     private void OnMouseOver()

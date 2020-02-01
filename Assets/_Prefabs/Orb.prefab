@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1148383323363022961}
   - component: {fileID: 1148383323363022965}
   - component: {fileID: 1912402806797996887}
+  - component: {fileID: 1037232182304913055}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -193,10 +194,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOn: 0
   audioTrack: {fileID: 0}
-  particles: {fileID: 7188737167828546149}
+  particles: {fileID: 6335238476530716227}
   burst: {fileID: 1071362216182468901}
-  velocity: {x: 1, y: 1, z: 1}
-  y_offset: 0
+  rotationSpeed: 0
+  y_offset: 4
+--- !u!114 &1037232182304913055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148383323363022962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f252abb1ef063a48a830786d9201a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockPrefabs:
+  - {fileID: 4803499848723704304, guid: d50843b1ee9a8a14195d6e84b945bb56, type: 3}
+  - {fileID: 4380520468186172897, guid: 9266ad87d5b3a094e905e2571833e07e, type: 3}
+  - {fileID: 1212972099473142268, guid: e9dbe03907ab54542a2f67e6ca883d8d, type: 3}
+  spawnRadiusMin: 10
+  spawnRadiusMax: 70
+  numOfRocks: 30
 --- !u!1 &2917131535532204839
 GameObject:
   m_ObjectHideFlags: 0
@@ -5177,7 +5197,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 11
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5755,7 +5775,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -6656,7 +6676,7 @@ ParticleSystem:
     orbitalX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6709,7 +6729,7 @@ ParticleSystem:
     orbitalY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7631,7 +7651,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -7801,7 +7821,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.36
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9752,7 +9772,7 @@ ParticleSystemRenderer:
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 5.78
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2

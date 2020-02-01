@@ -266,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: y_offset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2338054701209965661, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -532,7 +532,7 @@ MonoBehaviour:
   resolution: 0.5
   skew: 1
   noiseScale: 55
-  noiseAmplitude: 30
+  noiseAmplitude: 35.79
   noiseOctaves: 4
   noisePersistance: 0.2
   noiseLacunarity: 4.5
@@ -774,7 +774,7 @@ PrefabInstance:
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: y_offset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2338054701209965661, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -995,7 +995,7 @@ PrefabInstance:
     - target: {fileID: 112672031, guid: 3520b67c802abd84d8d12ce9369b3f49, type: 3}
       propertyPath: inputSong
       value: 
-      objectReference: {fileID: 8300000, guid: a687f5bb575a0cd42805f4e45074a3e0, type: 3}
+      objectReference: {fileID: 8300000, guid: 4b067f745acebcf44b77428daeab0908, type: 3}
     - target: {fileID: 1005570444176647275, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: _audioBand.Array.size
@@ -1553,7 +1553,7 @@ PrefabInstance:
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: y_offset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2338054701209965661, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -1601,6 +1601,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2255,7 +2263,7 @@ PrefabInstance:
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: y_offset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2338054701209965661, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
