@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9120af31b8390db49b54e96ba1b5840d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  y_offset: -2.7
+  y_offset: -1
   _audioPeer: {fileID: 0}
-  _amplitudeScale: 1
+  _amplitudeScale: 0.15
   piece1: {fileID: 1460760302979196132}
   piece2: {fileID: 3076443363702087388}
   piece3: {fileID: 1679021866158524699}

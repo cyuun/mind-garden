@@ -7,7 +7,7 @@ public class Tree : MonoBehaviour
     public float y_offset;
     public AudioPeer _audioPeer;
 
-    private void Start()
+    private void Awake()
     {
         //Assign audio peer
         AudioSource[] audioSources = SpleeterProcess.S.orbs;

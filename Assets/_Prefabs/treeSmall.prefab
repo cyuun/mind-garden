@@ -988,7 +988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   y_offset: 0
   _audioPeer: {fileID: 0}
-  objectToShake:
+  objectsToShake:
   - {fileID: 4051578477689096913}
   - {fileID: 3941758356235436483}
   - {fileID: 4000192346311208617}

@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c570e5ed08b0f4a9bbcb83c991f245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  y_offset: 0
+  y_offset: -1
   _audioPeer: {fileID: 0}
   piece1: {fileID: 6581038756829289782}
   piece2: {fileID: 796108627890201140}
