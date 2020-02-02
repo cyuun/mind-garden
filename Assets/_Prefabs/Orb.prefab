@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad57bfbbf1d6864c8b4f5458360450b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPeer: {fileID: 4547690792564925864}
   treePrefabs:
   - {fileID: 7165674503626625641, guid: 896db407b5fb2254bb3c7c7752768f70, type: 3}
   - {fileID: 3380717346346703054, guid: f5bb678c22e579b49994f0a459a22e02, type: 3}
@@ -5180,6 +5181,7 @@ MonoBehaviour:
   _amplitude: 0
   _amplitudeBuffer: 0
   _audioProfile: 1.5
+  _signalResistance: 1.5
 --- !u!1 &6265987095224680506
 GameObject:
   m_ObjectHideFlags: 0

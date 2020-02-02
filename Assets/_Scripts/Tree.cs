@@ -10,13 +10,12 @@ public class Tree : MonoBehaviour
     private void Awake()
     {
         //Assign audio peer
-        AudioSource[] audioSources = SpleeterProcess.S.orbs;
-        _audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
+        if(_audioPeer == null)
+        {
+            AudioSource[] audioSources = SpleeterProcess.S.orbs;
+            _audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
+        }
 
-        //Level with terrain
-        Vector3 pos = transform.position;
-        pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z) + y_offset;
-        transform.position = pos;
 
 
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class TreeSpawner : MonoBehaviour
 {
     public static Transform TREE_PARENT;
-
+    public AudioPeer audioPeer;
     public GameObject[] treePrefabs;
     [Range(1, 10)]
     public float spawnRadiusMin;
@@ -40,6 +40,18 @@ public class TreeSpawner : MonoBehaviour
         {
             //Select random rock prefab
             GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
+            if (tree.GetComponent<smallTree>())
+            {
+                tree.GetComponent<smallTree>()._audioPeer = audioPeer;
+            }
+            else if (tree.GetComponent<medTree>())
+            {
+                tree.GetComponent<medTree>()._audioPeer = audioPeer;
+            }
+            else if (tree.GetComponent<bigTree>())
+            {
+                tree.GetComponent<bigTree>()._audioPeer = audioPeer;
+            }
 
             //Get/Set position
             Vector3 offsetFromOrb;

@@ -962,13 +962,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _initiatorSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _sideLength
-      value: 34.641018
+      propertyPath: axis
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -977,68 +972,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _useBezierCurves
-      value: 0
+      propertyPath: _initiatorSize
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _audioBand.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioBand.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioBand.Array.data[2]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioBandMaterial
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _emissionMultiplier
-      value: 2
+      propertyPath: _startGen.Array.data[0].outwards
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].scale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[2].scale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[2].outwards
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _color.b
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1047,13 +997,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _audioPeer
-      value: 
+      propertyPath: _sideLength
+      value: 23.511412
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _generatorMultiplier
-      value: 5
+      propertyPath: _audioBand.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _audioBand.Array.data[4]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _colorGrad.key0.r
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1074,16 +1039,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _colorGrad.key1.g
       value: 0.84648275
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _colorGrad.key1.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _colorGrad.key0.r
-      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1142,11 +1097,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _colorGrad.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
       propertyPath: _colorGrad.ctime1
       value: 29491
       objectReference: {fileID: 0}
@@ -1184,31 +1134,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _scaleGradient
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: axis
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[0].outwards
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[1].outwards
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioBand.Array.data[3]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioBand.Array.data[4]
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008089, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1275,11 +1200,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: KochLine (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008094, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a86df1d97eb3854d8306029e431f2a3, type: 3}
 --- !u!4 &5845637785849808167 stripped
@@ -1307,13 +1227,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _initiatorSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _sideLength
-      value: 34.641018
+      propertyPath: axis
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1322,8 +1237,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _useBezierCurves
-      value: 0
+      propertyPath: _initiatorSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _startGen.Array.data[0].outwards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _startGen.Array.data[0].scale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _startGen.Array.data[1].scale
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _bezierVertexCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _sideLength
+      value: 23.511412
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1342,63 +1282,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _audioBandMaterial
+      propertyPath: _audioBand.Array.data[3]
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _emissionMultiplier
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[0].scale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[1].scale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[2].scale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[2].outwards
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _color.g
-      value: 0
+      propertyPath: _audioBand.Array.data[4]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.b
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _bezierVertexCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioPeer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _generatorMultiplier
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1482,11 +1377,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _colorGrad.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
       propertyPath: _colorGrad.ctime1
       value: 29491
       objectReference: {fileID: 0}
@@ -1522,38 +1412,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _colorGrad.key1.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
       propertyPath: _scaleGradient
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: axis
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[0].outwards
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _startGen.Array.data[1].outwards
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioBand.Array.data[3]
+      propertyPath: _audioBandMaterial
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
-      propertyPath: _audioBand.Array.data[4]
-      value: 4
+      propertyPath: _emissionMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008089, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1620,11 +1490,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: KochLine (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008094, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a86df1d97eb3854d8306029e431f2a3, type: 3}
 --- !u!4 &5845637786251650366 stripped
@@ -1689,16 +1554,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _sideLength
       value: 23.511412
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _generatorMultiplier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioPeer
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1948,12 +1803,12 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].scale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -1963,17 +1818,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 34.641018
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _generatorMultiplier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioPeer
-      value: 
+      value: 23.511412
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -2248,12 +2093,12 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].scale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -2263,17 +2108,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 34.641018
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _generatorMultiplier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioPeer
-      value: 
+      value: 23.511412
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -2523,12 +2358,12 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].scale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -2538,17 +2373,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 34.641018
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _generatorMultiplier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
-        type: 3}
-      propertyPath: _audioPeer
-      value: 
+      value: 23.511412
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}

@@ -6,7 +6,7 @@ public class smallTree : Tree
 {
     public List<GameObject> objectToShake = new List<GameObject>();
     bool shaking = false;
-    public bool debug;
+    public bool debug = false;
 
     //send signals to turn signalFromMusic to true on beats the tree should shake
     bool signalFromMusic = false;
@@ -14,13 +14,8 @@ public class smallTree : Tree
     {
         if (_audioPeer.amplitudeSignal)
         {
-            if (debug)
-            {
-                print("signal");
-            }
-            shakeGameObject(0.8f, 0.5f, false);
+            shakeGameObject(0.2f, 0.1f, false);
         }
-
     }
 
     void shakeGameObject(float shakeDuration, float decreasePoint, bool objectIs2D = false)

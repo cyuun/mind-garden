@@ -986,9 +986,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77848bc16d5346249a9d5bfb9d89210b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  y_offset: 0
+  y_offset: 1
   _audioPeer: {fileID: 0}
-  objectsToShake:
+  objectToShake:
   - {fileID: 4051578477689096913}
   - {fileID: 3941758356235436483}
   - {fileID: 4000192346311208617}
@@ -1031,6 +1031,7 @@ MonoBehaviour:
   - {fileID: 5124894720822411706}
   - {fileID: 2467688748208470520}
   - {fileID: 5757604867671899070}
+  debug: 0
 --- !u!1 &3283512225830330882
 GameObject:
   m_ObjectHideFlags: 0
