@@ -38,28 +38,36 @@ public class TreeSpawner : MonoBehaviour
     {
         for (int i = 0; i < numOfTrees; i++)
         {
+            float yOffset = 0;
             //Select random rock prefab
             GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
             if (tree.GetComponent<smallTree>())
             {
                 tree.GetComponent<smallTree>()._audioPeer = audioPeer;
+                yOffset = tree.GetComponent<smallTree>().y_offset;
             }
             else if (tree.GetComponent<medTree>())
             {
                 tree.GetComponent<medTree>()._audioPeer = audioPeer;
+                yOffset = tree.GetComponent<medTree>().y_offset;
+
             }
             else if (tree.GetComponent<bigTree>())
             {
                 tree.GetComponent<bigTree>()._audioPeer = audioPeer;
+                yOffset = tree.GetComponent<bigTree>().y_offset;
+
             }
 
             //Get/Set position
-            Vector3 offsetFromOrb;
-            do
+            Vector3 offsetFromOrb = Vector3.zero;
+            while (offsetFromOrb.magnitude < spawnRadiusMin)
             {
                 offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnRadiusMax);
-            } while (offsetFromOrb.magnitude < spawnRadiusMin);
+            } 
             Vector3 pos = transform.position + offsetFromOrb;
+            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+            pos.y += yOffset;
             GameObject myTree = Instantiate(tree, pos, Quaternion.identity, TREE_PARENT);
         }
     }

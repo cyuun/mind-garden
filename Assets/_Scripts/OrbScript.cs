@@ -10,6 +10,7 @@ public class OrbScript : MonoBehaviour
     bool fading = false;
     bool following = false;
     bool moving = false;
+    Transform target;
     Vector3 rotPerSecond;
     Rigidbody rb;
     Vector3 velocity = Vector3.one;
@@ -36,14 +37,14 @@ public class OrbScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = PlayerScript.S;
+        target = PlayerScript.S.transform;
         rb = GetComponent<Rigidbody>();
         audioPeer = audioTrack.GetComponent<AudioPeer>();
         if (!soundOn)
         {
             audioTrack.volume = 0;
         }
-        rotPerSecond = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1)) * rotationSpeed;
+        rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f)) * rotationSpeed;
 
         //Set Orb height to match terrain
         float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
@@ -66,10 +67,10 @@ public class OrbScript : MonoBehaviour
 
         if (following)
         {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
+            float distance = Vector3.Distance(transform.position, target.position);
             if(distance > 3)
             {
-                transform.position = Vector3.SmoothDamp(transform.position, player.transform.position, ref velocity, 3f);
+                transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, 3f);
 
             }
             if (!moving)
@@ -104,6 +105,16 @@ public class OrbScript : MonoBehaviour
     private void OnMouseExit()
     {
         //buttonLabel.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pond")
+        {
+            audioTrack.transform.SetParent(target);
+            audioTrack.spatialBlend = 0;
+            target = other.transform;
+        }
     }
 
     void Flash()

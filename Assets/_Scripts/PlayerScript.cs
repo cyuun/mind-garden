@@ -14,6 +14,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //print(TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z));
     }
 }

@@ -14,7 +14,7 @@ public class smallTree : Tree
     {
         if (_audioPeer.amplitudeSignal)
         {
-            shakeGameObject(0.2f, 0.1f, false);
+            shakeGameObject(0.3f, 0.1f, false);
         }
     }
 

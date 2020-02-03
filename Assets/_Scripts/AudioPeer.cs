@@ -20,7 +20,7 @@ public class AudioPeer : MonoBehaviour
     public float _audioProfile;
     float _previousAmp;
     bool _signalAmplitude;
-    [Range(0,5)]
+    [Range(1,3)]
     public float _signalResistance;
     public bool amplitudeSignal { get { return _signalAmplitude; } set { _signalAmplitude = value; } }
 
