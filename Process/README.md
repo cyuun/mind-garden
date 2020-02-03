@@ -6,12 +6,12 @@ Mind's Garden is a first person musical exploration game which reads in audio fi
 January 29 - February 4
 ### Orb Particles and Behaviors
 The audio orbs now have a particle system which indicated the orb has be activated. Once activated the orb will follow the player using the Vector3.MoveTowards() function while being nudged by random force vectors to make each orb more floaty as opposed to following the player in a straight line. Once the orb nears the central pond, however, it stops following the player and hovers around the pond. Returning an orb to the pond sets the audio source's parent as the player so that the audio plays at a constant volume wherever they go.
-[!Orb particles](Resources/particles.gif "Particle System")
-[!Orb follow](Resources/orbs.png "Orb cluster")
+![Orb particles](Resources/particles.gif "Particle System")
+![Orb follow](Resources/orbs.png "Orb cluster")
 
 ### Prefab Spawning
 Trees and rocks can now be randomly generated around each orb given a certain radius. When instantiated, both trees and rocks use the GetTerrainHeight() function to determine the appropriate Y position and offset to make the prefabs level with the rest of the terrain. Trees, however, also get assigned that orb's audio peer to respond to the music being played. More work needs to be done to effectively generate a natural and appealing landscape, and eventually we'll want each orb to have its own biome, but this is a good introduction to prefab spawning and grouping.
-[!Prefab Spawning](Resources/prefabs.png "Random prefab generating")
+![Prefab Spawning](Resources/prefabs.png "Random prefab generating")
 
 ---
 ## Week 2
