@@ -6,6 +6,7 @@ Mind's Garden is a first person musical exploration game which reads in audio fi
 January 29 - February 4
 ### Orb Particles and Behaviors
 The audio orbs now have a particle system which indicated the orb has be activated. Once activated the orb will follow the player using the Vector3.MoveTowards() function while being nudged by random force vectors to make each orb more floaty as opposed to following the player in a straight line. Once the orb nears the central pond, however, it stops following the player and hovers around the pond. Returning an orb to the pond sets the audio source's parent as the player so that the audio plays at a constant volume wherever they go.
+
 ![Orb particles](Resources/particles.gif "Particle System")
 ![Orb follow](Resources/orbs.png "Orb cluster")
 
