@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7738387860571977945}
-  m_Layer: 0
+  - component: {fileID: -5927641554204023455}
+  m_Layer: 9
   m_Name: rock4
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +34,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &-5927641554204023455
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155815463140263726}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1367830448421845254
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +59,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7489301673815156819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,9 +92,9 @@ GameObject:
   - component: {fileID: 4927455633141686143}
   - component: {fileID: 7023049774326142930}
   - component: {fileID: 63461119641434919}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere240 (1)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791997810314949498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,9 +217,9 @@ GameObject:
   - component: {fileID: 4058956260577190889}
   - component: {fileID: 6868136409019812538}
   - component: {fileID: 2110867306286557180}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere261 (1)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,9 +311,9 @@ GameObject:
   - component: {fileID: 5001189470293591837}
   - component: {fileID: 8334052361643920287}
   - component: {fileID: 9059847876170257395}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere788 (1)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

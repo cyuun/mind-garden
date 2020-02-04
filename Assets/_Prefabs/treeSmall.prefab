@@ -910,9 +910,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2060223938929633694}
   - component: {fileID: 3083904824110930830}
+  - component: {fileID: 4656047865564737895}
   m_Layer: 0
   m_Name: treeSmall
-  m_TagString: Untagged
+  m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,8 +946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77848bc16d5346249a9d5bfb9d89210b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  y_offset: 0
   _audioPeer: {fileID: 0}
+  spawner: {fileID: 0}
+  y_offset: 0
   objectToShake:
   - {fileID: 4051578477689096913}
   - {fileID: 3941758356235436483}
@@ -991,6 +993,20 @@ MonoBehaviour:
   - {fileID: 2467688748208470520}
   - {fileID: 5757604867671899070}
   debug: 0
+--- !u!136 &4656047865564737895
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3083904824110930829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &3283512225830330882
 GameObject:
   m_ObjectHideFlags: 0

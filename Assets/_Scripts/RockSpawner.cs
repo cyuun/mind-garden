@@ -12,6 +12,8 @@ public class RockSpawner : MonoBehaviour
     [Range(11, 100)]
     public float spawnRadiusMax;
     public int numOfRocks;
+    public float scaleMin = 1;
+    public float scaleMax = 2;
 
     void Start()
     {
@@ -22,6 +24,8 @@ public class RockSpawner : MonoBehaviour
         {
             GameObject go = new GameObject("_RockParent");
             //go.layer = LayerMask.NameToLayer("Rocks");
+            go.layer = LayerMask.NameToLayer("Rocks");
+            go.tag = "Rocks";
             ROCK_PARENT = go.transform;
         }
 
@@ -51,8 +55,9 @@ public class RockSpawner : MonoBehaviour
             //Level with terrain
             pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
             GameObject myRock = Instantiate(selectedRock, pos, Random.rotation, ROCK_PARENT);
-            //Randomly reorient
-            //Apply offset if necessary
+            //Resize
+            float scale = Random.Range(scaleMin, scaleMax);
+            myRock.transform.localScale *= scale;
         }
     }
 }

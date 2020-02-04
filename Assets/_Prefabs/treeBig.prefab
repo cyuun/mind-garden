@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228558667894487146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DeadTree21.fbx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1679021866158524699}
   - component: {fileID: 2706026915479969706}
   - component: {fileID: 3295516106415418439}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7440922718290393186}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsules
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 5831886035006002075}
   - component: {fileID: 2836234880090324129}
   - component: {fileID: 5078493987784048958}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,9 +234,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6136945204548853882}
   - component: {fileID: 7165674503626625640}
-  m_Layer: 0
+  - component: {fileID: 3831719137410552119}
+  m_Layer: 10
   m_Name: treeBig
-  m_TagString: Untagged
+  m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,14 +270,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9120af31b8390db49b54e96ba1b5840d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  y_offset: -0.5
   _audioPeer: {fileID: 0}
+  spawner: {fileID: 0}
+  y_offset: -0.5
   _amplitudeScale: 0.15
   piece1: {fileID: 1460760302979196132}
   piece2: {fileID: 3076443363702087388}
   piece3: {fileID: 1679021866158524699}
   piece4: {fileID: 3574246189688084338}
   piece5: {fileID: 5831886035006002075}
+--- !u!136 &3831719137410552119
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165674503626625641}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.71
+  m_Height: 6.04
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &7204055267210025248
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +304,7 @@ GameObject:
   - component: {fileID: 3076443363702087388}
   - component: {fileID: 7908963212867825853}
   - component: {fileID: 4902279733983029826}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +383,7 @@ GameObject:
   - component: {fileID: 1707893593594720219}
   - component: {fileID: 3257089338396863413}
   - component: {fileID: 4591098032893145644}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DeadTree21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +463,7 @@ GameObject:
   - component: {fileID: 1460760302979196132}
   - component: {fileID: 2515996809807613906}
   - component: {fileID: 3543932020977843937}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +542,7 @@ GameObject:
   - component: {fileID: 3574246189688084338}
   - component: {fileID: 5723858664059663830}
   - component: {fileID: 2341536022275596480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule004
   m_TagString: Untagged
   m_Icon: {fileID: 0}

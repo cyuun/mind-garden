@@ -22,6 +22,7 @@ public class TreeSpawner : MonoBehaviour
         {
             GameObject go = new GameObject("_TreeParent");
             go.layer = LayerMask.NameToLayer("Trees");
+            go.tag = "Trees";
             TREE_PARENT = go.transform;
         }
 
@@ -43,32 +44,45 @@ public class TreeSpawner : MonoBehaviour
             GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
             if (tree.GetComponent<smallTree>())
             {
-                tree.GetComponent<smallTree>()._audioPeer = audioPeer;
-                yOffset = tree.GetComponent<smallTree>().y_offset;
+                smallTree t = tree.GetComponent<smallTree>();
+                t._audioPeer = audioPeer;
+                t.spawner = this;
+                yOffset = t.y_offset;
             }
             else if (tree.GetComponent<medTree>())
             {
-                tree.GetComponent<medTree>()._audioPeer = audioPeer;
-                yOffset = tree.GetComponent<medTree>().y_offset;
+                medTree t = tree.GetComponent<medTree>();
+                t._audioPeer = audioPeer;
+                t.spawner = this; 
+                yOffset = t.y_offset;
 
             }
             else if (tree.GetComponent<bigTree>())
             {
-                tree.GetComponent<bigTree>()._audioPeer = audioPeer;
-                yOffset = tree.GetComponent<bigTree>().y_offset;
+                bigTree t = tree.GetComponent<bigTree>();
+                t._audioPeer = audioPeer;
+                t.spawner = this;
+                yOffset = t.y_offset;
 
             }
 
             //Get/Set position
-            Vector3 offsetFromOrb = Vector3.zero;
-            while (offsetFromOrb.magnitude < spawnRadiusMin)
-            {
-                offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnRadiusMax);
-            } 
-            Vector3 pos = transform.position + offsetFromOrb;
-            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+            Vector3 pos = GetTreePos();
             pos.y += yOffset;
             GameObject myTree = Instantiate(tree, pos, Quaternion.identity, TREE_PARENT);
         }
     }
+
+    Vector3 GetTreePos()
+    {
+        Vector3 offsetFromOrb = Vector3.zero;
+        while (offsetFromOrb.magnitude < spawnRadiusMin)
+        {
+            offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnRadiusMax);
+        }
+        Vector3 pos = transform.position + offsetFromOrb;
+        pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+        return pos;
+    }
+
 }

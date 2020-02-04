@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4380520467914871232}
   - component: {fileID: 6663214360446520895}
   - component: {fileID: 8244005917836513763}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere261 (1)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380520468026894373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380520468105096534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,9 +178,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380520468186172910}
-  m_Layer: 0
+  - component: {fileID: 7390007099934070027}
+  m_Layer: 9
   m_Name: rock2
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4380520468186172897}
   m_LocalRotation: {x: -0, y: -0.000000029802315, z: 0.000000014901158, w: 1}
-  m_LocalPosition: {x: 2147.183, y: 327.9204, z: -982.8347}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00324796, y: 0.00324796, z: 0.00324796}
   m_Children:
   - {fileID: 4380520469527805401}
@@ -203,6 +204,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &7390007099934070027
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380520468186172897}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4380520468477784458
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,9 +233,9 @@ GameObject:
   - component: {fileID: 4380520468477784456}
   - component: {fileID: 8846518603684907290}
   - component: {fileID: 4366763324436828990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere788 (1)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,9 +341,9 @@ GameObject:
   - component: {fileID: 4380520468689722783}
   - component: {fileID: 831736154383707410}
   - component: {fileID: 5788929438659414704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere261 (2)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,9 +450,9 @@ GameObject:
   - component: {fileID: 4380520469527805382}
   - component: {fileID: 4985977996447161709}
   - component: {fileID: 8566100947238835575}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere240 (1)
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -538,7 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380520469689130977}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
