@@ -264,6 +264,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1005570444176647272, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005570444176647272, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1005570444176647275, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: _audioPeer
@@ -278,6 +288,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005570444405806492, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005570444405806492, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005570444405806495, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -294,6 +314,16 @@ PrefabInstance:
       propertyPath: _startGen.Array.data[1].scale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1005570444610388061, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005570444610388061, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1005570444610388062, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: _audioPeer
@@ -308,6 +338,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005570445204296349, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005570445204296349, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005570445204296350, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -324,6 +364,16 @@ PrefabInstance:
       propertyPath: _startGen.Array.data[1].scale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5845637785849808165, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785849808165, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5845637785849808166, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: _audioPeer
@@ -339,6 +389,16 @@ PrefabInstance:
       propertyPath: _startGen.Array.data[1].scale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5845637786251650364, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637786251650364, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5845637786251650367, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: _audioPeer
@@ -353,6 +413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _startGen.Array.data[1].scale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695551260534191854, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6695551261796708264, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -565,7 +630,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

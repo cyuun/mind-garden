@@ -24,7 +24,6 @@ public class Tree : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string tag = other.tag;
-        print("Reset");
 
         switch (tag)
         {
