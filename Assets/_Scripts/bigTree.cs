@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bigTree : MonoBehaviour
+public class bigTree : Tree
 {
-    public AudioPeer _audioPeer;
     [Range(0, 2)]
     public float _amplitudeScale;
 

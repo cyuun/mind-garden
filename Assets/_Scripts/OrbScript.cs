@@ -5,26 +5,86 @@ using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
-    bool soundOn = true;
+    PlayerScript player;
+    AudioPeer audioPeer;
     bool fading = false;
-    float currentTime;
-    float fadeDuration = 2f;
+    bool following = false;
+    bool moving = false;
+    Transform target;
+    Vector3 rotPerSecond;
+    Rigidbody rb;
+    Vector3 velocity = Vector3.one;
 
+    public bool soundOn;
     public AudioSource audioTrack;
-    public Image buttonLabel;
+    Image buttonLabel;
+    public ParticleSystem particles;
+    public ParticleSystem burst;
+    public float rotationSpeed;
+    public float y_offset;
+
+    //Amplitude Flash
+    public Gradient _colorGrad;
+    public float _colorMultiplier;
+    public Vector3 _targetScale;
+
+    private Color _startColor, _endColor;
+    private Color _emissionColor;
+    private Vector3 _scale;
+    private Renderer rend;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!audioTrack)
+        target = PlayerScript.S.transform;
+        rb = GetComponent<Rigidbody>();
+        audioPeer = audioTrack.GetComponent<AudioPeer>();
+        if (!soundOn)
         {
-            audioTrack = gameObject.GetComponentInChildren<AudioSource>();
+            audioTrack.volume = 0;
         }
+        rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f)) * rotationSpeed;
+
+        //Set Orb height to match terrain
+        float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
+        transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
+
+        //Set Up Amplitude Flash
+        _startColor = new Color(0, 0, 0, 0);
+        _endColor = new Color(0, 0, 0, 1);
+        _scale = transform.localScale;
+        rend = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Spin
+        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
+        //Flash
+        Flash();
+
+        if (following)
+        {
+            float distance = Vector3.Distance(transform.position, target.position);
+            if(distance > 3)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, 3f);
+
+            }
+            if (!moving)
+            {
+                moving = true;
+                StartCoroutine(MoveOrb());
+            }
+        }
+
+        float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
+        if (transform.position.y < y)
+        {
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        }
         
     }
 
@@ -34,15 +94,40 @@ public class OrbScript : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
-                ToggleVolume();
+                ToggleParticles();
+
+                ToggleFollow();
             }
-            ShowButtonLabel();
+            //ShowButtonLabel();
         }
     }
 
     private void OnMouseExit()
     {
-        buttonLabel.gameObject.SetActive(false);
+        //buttonLabel.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pond")
+        {
+            audioTrack.transform.SetParent(target);
+            audioTrack.spatialBlend = 0;
+            target = other.transform;
+        }
+    }
+
+    void Flash()
+    {
+        _emissionColor = _colorGrad.Evaluate(audioPeer._amplitude);
+
+        Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, audioPeer._amplitudeBuffer);
+        rend.material.SetColor("_EmissionColor", colorLerp);
+        colorLerp = Color.Lerp(_startColor, _endColor, audioPeer._amplitudeBuffer);
+        rend.material.SetColor("_Color", colorLerp);
+
+        transform.localScale = Vector3.Lerp(_scale, _targetScale, audioPeer._amplitudeBuffer);
+
     }
 
     void ShowButtonLabel()
@@ -52,26 +137,33 @@ public class OrbScript : MonoBehaviour
         buttonLabel.gameObject.SetActive(true);
     }
 
-    void ToggleVolume()
+    void ToggleParticles()
     {
-        if (!fading)
+        if (particles.isPlaying)
         {
-            if (soundOn)
-            {
-                currentTime = 0;
-                StartCoroutine(FadeOut());
-                soundOn = false;
-            }
-            else
-            {
-                currentTime = 0;
-                StartCoroutine(FadeIn());
-                soundOn = true;
-            }
-
+            particles.Stop();
+        }
+        else
+        {
+            burst.Play();
+            particles.Play();
         }
     }
 
+    void ToggleFollow()
+    {
+        following = particles.isPlaying;
+    }
+
+    IEnumerator MoveOrb()
+    {
+        rb.AddForce(new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * 20);
+        yield return new WaitForSeconds(1f);
+        moving = false;
+    }
+
+
+    //Volume Coroutines
     IEnumerator FadeIn()
     {
         audioTrack.volume = 0f;
@@ -81,7 +173,7 @@ public class OrbScript : MonoBehaviour
             audioTrack.volume += Time.deltaTime;
             yield return null;
         }
-        
+        fading = false;
     }
 
     IEnumerator FadeOut()
@@ -94,5 +186,7 @@ public class OrbScript : MonoBehaviour
             yield return null;
 
         }
+        fading = false;
+
     }
 }

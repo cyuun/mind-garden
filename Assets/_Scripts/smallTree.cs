@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class smallTree : MonoBehaviour
+public class smallTree : Tree
 {
     public List<GameObject> objectToShake = new List<GameObject>();
     bool shaking = false;
+    public bool debug = false;
 
     //send signals to turn signalFromMusic to true on beats the tree should shake
-
-
-    bool signalFromMusic = true;
+    bool signalFromMusic = false;
     private void Update()
     {
-        if (signalFromMusic)
+        if (_audioPeer.amplitudeSignal)
         {
-            shakeGameObject(0.8f, 0.5f, false);
+            shakeGameObject(0.3f, 0.1f, false);
         }
-
     }
 
     void shakeGameObject(float shakeDuration, float decreasePoint, bool objectIs2D = false)

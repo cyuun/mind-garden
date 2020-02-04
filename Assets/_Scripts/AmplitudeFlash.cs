@@ -15,6 +15,12 @@ public class AmplitudeFlash : MonoBehaviour
     private Renderer rend;
     void Start()
     {
+        if (_audioPeer == null)
+        {
+            AudioSource[] sources = SpleeterProcess.S.orbs;
+            _audioPeer = sources[Random.Range(0, sources.Length)].GetComponent<AudioPeer>();
+        }
+
         _startColor = new Color(0, 0, 0, 0);
         _endColor = new Color(0, 0, 0, 1);
         _scale = transform.localScale;
@@ -24,13 +30,19 @@ public class AmplitudeFlash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Flash();
+    }
+
+    void Flash()
+    {
         _emissionColor = _colorGrad.Evaluate(_audioPeer._amplitude);
 
-        Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, _audioPeer._amplitudeBuffer );
+        Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, _audioPeer._amplitudeBuffer);
         rend.material.SetColor("_EmissionColor", colorLerp);
         colorLerp = Color.Lerp(_startColor, _endColor, _audioPeer._amplitudeBuffer);
         rend.material.SetColor("_Color", colorLerp);
 
         transform.localScale = Vector3.Lerp(_scale, _targetScale, _audioPeer._amplitudeBuffer);
+
     }
 }
