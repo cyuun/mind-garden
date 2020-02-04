@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: TerrainMaterial
   m_Shader: {fileID: 4800000, guid: fea9ee138d4a84d90a0c3f187fb3cd8a, type: 3}
-  m_ShaderKeywords: DR_GRADIENT_ON DR_RIM_ON _CELPRIMARYMODE_CURVE _UNITYSHADOWMODE_NONE
+  m_ShaderKeywords: DR_GRADIENT_ON DR_RIM_ON _CELPRIMARYMODE_NONE _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,13 +67,13 @@ Material:
     - _BumpScale: 1
     - _CelExtraEnabled: 0
     - _CelNumSteps: 3
-    - _CelPrimaryMode: 3
+    - _CelPrimaryMode: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FlatRimEdgeSmoothness: 0.275
-    - _FlatRimLightAlign: 0
-    - _FlatRimSize: 0.176
+    - _FlatRimEdgeSmoothness: 0.4
+    - _FlatRimLightAlign: 0.1
+    - _FlatRimSize: 0.1
     - _FlatSpecularEdgeSmoothness: 0
     - _FlatSpecularSize: 0.1
     - _Flatness: 1
@@ -81,11 +81,11 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GradientAngle: 1
+    - _GradientAngle: 2
     - _GradientCenterX: 0
-    - _GradientCenterY: 2.2
+    - _GradientCenterY: 10
     - _GradientEnabled: 1
-    - _GradientSize: -13.42
+    - _GradientSize: -29
     - _LightContribution: 0
     - _Metallic: 0
     - _Mode: 0
@@ -106,13 +106,13 @@ Material:
     - _UnityShadowSharpness: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.7924528, g: 0.53453183, b: 0.53453183, a: 1}
+    - _Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimCurve: {r: 0.5, g: 0.2783019, b: 0.2783019, a: 1}
     - _ColorDimExtra: {r: 1, g: 0.5613208, b: 0.5613208, a: 1}
     - _ColorDimSteps: {r: 1, g: 0.5613208, b: 0.5613208, a: 1}
-    - _ColorGradient: {r: 1, g: 0.66849715, b: 0.5330188, a: 1}
+    - _ColorGradient: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0.7924528, g: 0.53453183, b: 0.53453183, a: 1}
+    - _FlatRimColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
     - _FlatSpecularColor: {r: 0.7924528, g: 0.53453183, b: 0.53453183, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
