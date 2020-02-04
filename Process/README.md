@@ -18,6 +18,13 @@ The audio orbs now have a particle system which indicated the orb has be activat
 Trees and rocks can now be randomly generated around each orb given a certain radius. When instantiated, both trees and rocks use the GetTerrainHeight() function to determine the appropriate Y position and offset to make the prefabs level with the rest of the terrain. Trees, however, also get assigned that orb's audio peer to respond to the music being played. More work needs to be done to effectively generate a natural and appealing landscape, and eventually we'll want each orb to have its own biome, but this is a good introduction to prefab spawning and grouping.
 ![Prefab Spawning](Resources/prefabs.png "Random prefab generating")
 
+### World Assembly
+Now that we can succesfully generate terrain to our liking, this week it was time to start assembling everything together. We filled the pond with water, and then placed the terrain inside of the head. To create bounds to the play area, we raised the edges of the head up to the same level as the terrain (plus some). This helped really pull the scene together to look like one cohesive unit. The picture below is of the whole unit of head and terrian tied together.
+![Progress of the scene assembly with the terrain sat inside the head](Resources/2020-02-04-mindsgarden-assembly "Head with terrain in it")
+
+### Project Branding
+This week we created the first iteration of the logo for this project, it's featured at the top of this page as well as the main page of the repo. The project branding will continue to evolve and expand as development continues, but for now we have a really good start.
+
 ---
 ## Week 2
 January 21 - 28
