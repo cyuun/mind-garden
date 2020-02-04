@@ -3,6 +3,12 @@ Mind's Garden is a first person musical exploration game which reads in audio fi
 
 
 ---
+## Week 3
+January 28 - February 4
+### Even more assets
+We made some of our last essential assets this week, which included writing a geometry shader for manipulating and constructing stylized grass, animating all trees on spawn, writing a color-changing script that takes shader aspects (including multiple color variables) and lerps them over time specified by the song, and modeling our first creature- a fish in the pond. The grass shader draws a series of bent triangles on specified verticies of a mesh, while randomly rotating the topmost triangles (to avoid the bottom of a blade of grass rotating). It also pushes a 2-channel noise map over the triangles to create the illusion of wind. Trees are animated in a cartoon-like fashion, with branches and the sort quickly popping out from the trunk of most trees. The color-changing script sets the starting and finishing color of the main color and shadow color and moves back and forth between the two colors, while also changing how float values for the shadow's fade and spread into the main color. This script will later be modified so that the color and shadow color start/end colors will be determined by a random color value within a range and color palette decided by the song, but we still need to discuss corresponding song values and palettes. The fish is in the low-poly style of our world, with a large dorsal and tail piece. It will be a good discussion piece for our meeting on Tuesday to finalize direction with the creature looks. 
+
+---
 ## Week 2
 January 21 - 28
 ### More terrain
