@@ -20,7 +20,7 @@ Trees and rocks can now be randomly generated around each orb given a certain ra
 
 ### World Assembly
 Now that we can succesfully generate terrain to our liking, this week it was time to start assembling everything together. We filled the pond with water, and then placed the terrain inside of the head. To create bounds to the play area, we raised the edges of the head up to the same level as the terrain (plus some). This helped really pull the scene together to look like one cohesive unit. The picture below is of the whole unit of head and terrian tied together.
-![Progress of the scene assembly with the terrain sat inside the head](Resources/2020-02-04-mindsgarden-assembly "Head with terrain in it")
+![Progress of the scene assembly with the terrain sat inside the head](Resources/2020-02-04_mindsgarden-assembly.png "Head with terrain in it")
 
 ### Project Branding
 This week we created the first iteration of the logo for this project, it's featured at the top of this page as well as the main page of the repo. The project branding will continue to evolve and expand as development continues, but for now we have a really good start.
