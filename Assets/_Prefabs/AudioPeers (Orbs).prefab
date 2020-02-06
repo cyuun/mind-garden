@@ -50,7 +50,7 @@ MonoBehaviour:
   inputSong: {fileID: 8300000, guid: 2d45a0456006e2945a01d72067623013, type: 3}
   orbs:
   - {fileID: 622096008652801013}
-  - {fileID: 0}
+  - {fileID: 2005747188495247120}
   - {fileID: 6626090287354774128}
   - {fileID: 1826924838045232967}
 --- !u!1001 &1604043670701725821
@@ -130,6 +130,12 @@ PrefabInstance:
 --- !u!4 &1224939473886636495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 485666167617106354, guid: d7584473a968ba643981b0304aa64ef1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604043670701725821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2005747188495247120 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
     type: 3}
   m_PrefabInstance: {fileID: 1604043670701725821}
   m_PrefabAsset: {fileID: 0}

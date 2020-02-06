@@ -321,6 +321,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 358572835729028068, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572836815350602, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8225327396123704959, guid: 4187f28011a183a4ab72369baa72ebd9,
         type: 3}
       propertyPath: m_Name
@@ -393,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 1005570444176647272, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_ReceiveShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005570444176647272, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -418,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 1005570444405806492, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_ReceiveShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005570444405806492, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -443,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 1005570444610388061, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_ReceiveShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005570444610388061, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -468,7 +478,7 @@ PrefabInstance:
     - target: {fileID: 1005570445204296349, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_ReceiveShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005570445204296349, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -493,7 +503,7 @@ PrefabInstance:
     - target: {fileID: 5845637785849808165, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_ReceiveShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785849808165, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -518,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 5845637786251650364, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_ReceiveShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637786251650364, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -1050,11 +1060,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2134540744059497184, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
-        type: 3}
-      propertyPath: inputSong
-      value: 
-      objectReference: {fileID: 8300000, guid: f15073d05fa465745b3e1cb78aecd2f9, type: 3}
     - target: {fileID: 5024681485722879886, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: rotationSpeed
