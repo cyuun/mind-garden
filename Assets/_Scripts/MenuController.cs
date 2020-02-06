@@ -17,6 +17,7 @@ public class MenuController : MonoBehaviour
     public float moveDuration = 1;
     public float moveDistance = 20;
 
+    public GameObject head;
     public AudioSource backgroundMusic;
     string _inputSongPath = "";
     AudioClip _inputSong;
@@ -180,6 +181,8 @@ public class MenuController : MonoBehaviour
             // Contrary to File.ReadAllBytes, this function works on Android 10+, as well
             byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result);
             backgroundMusic.clip = NAudioPlayer.FromMp3Data(bytes);
+            backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
+            head.GetComponent<HeadScript>().isRotating = true;
             _inputSong = backgroundMusic.clip;
             backgroundMusic.Play();
         }

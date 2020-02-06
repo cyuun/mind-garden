@@ -5,9 +5,12 @@ using UnityEngine;
 public class HeadScript : MonoBehaviour
 {
     public bool _matchTerrainHeight = true;
+    public float rotationSpeed = 300f;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
+    private bool _rotating = false;
+    public bool isRotating { get { return _rotating; } set { _rotating = value; } }
 
     void Start()
     {
@@ -17,6 +20,15 @@ public class HeadScript : MonoBehaviour
         if (_matchTerrainHeight)
         {
             AdjustMaxVerticesHeight(3);
+        }
+    }
+
+    void Update()
+    {
+        if (_rotating)
+        {
+            transform.Rotate(Vector3.up, Time.deltaTime * rotationSpeed);
+
         }
     }
 

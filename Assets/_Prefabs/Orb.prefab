@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d61b21e30ee1f439067601d9c2415c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: 1
   soundOn: 1
   audioTrack: {fileID: 343930581138773673}
   particles: {fileID: 6335238476530716227}

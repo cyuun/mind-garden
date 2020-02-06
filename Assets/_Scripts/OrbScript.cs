@@ -16,6 +16,7 @@ public class OrbScript : MonoBehaviour
     Vector3 velocity = Vector3.one;
 
     public bool _interactable = true;
+    public bool _matchTerrainHeight = true;
     public bool soundOn;
     public AudioSource audioTrack;
     Image buttonLabel;
@@ -47,8 +48,11 @@ public class OrbScript : MonoBehaviour
         rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f)) * rotationSpeed;
 
         //Set Orb height to match terrain
-        float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
-        transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
+        if (_matchTerrainHeight)
+        {
+            float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
+            transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
+        }
 
         //Set Up Amplitude Flash
         _startColor = new Color(0, 0, 0, 0);
@@ -80,12 +84,14 @@ public class OrbScript : MonoBehaviour
             }
         }
 
-        float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
-        if (transform.position.y < y)
+        if (_matchTerrainHeight)
         {
-            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
+            if (transform.position.y < y)
+            {
+                transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            }
         }
-        
     }
 
     private void OnMouseOver()
@@ -123,7 +129,6 @@ public class OrbScript : MonoBehaviour
     {
         _emissionColor = _colorGrad.Evaluate(audioPeer._amplitude);
         Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, audioPeer._amplitudeBuffer);
-        print(colorLerp);
         rend.material.SetColor("_EmissionColor", colorLerp);
         colorLerp = Color.Lerp(_startColor, _endColor, audioPeer._amplitudeBuffer);
         rend.material.SetColor("_Color", colorLerp);

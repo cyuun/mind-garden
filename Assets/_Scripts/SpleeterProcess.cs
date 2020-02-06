@@ -18,9 +18,16 @@ public class SpleeterProcess : MonoBehaviour
     {
         S = this;
 
-        inputSongPath = MenuController.S.songPath;
-        inputSong = MenuController.S.song;
-        inputSong.name = Path.GetFileNameWithoutExtension(inputSongPath);
+        if (MenuController.S)
+        {
+            inputSongPath = MenuController.S.songPath;
+            inputSong = MenuController.S.song;
+            inputSong.name = Path.GetFileNameWithoutExtension(inputSongPath);
+        }
+        else
+        {
+            inputSongPath = AssetDatabase.GetAssetPath(inputSong);
+        }
 
         //Use Regex to parse out illegal characters
         string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
