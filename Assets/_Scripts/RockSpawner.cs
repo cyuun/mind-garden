@@ -26,6 +26,7 @@ public class RockSpawner : MonoBehaviour
             //go.layer = LayerMask.NameToLayer("Rocks");
             go.layer = LayerMask.NameToLayer("Rocks");
             go.tag = "Rocks";
+            go.transform.SetParent(TerrainScript.S.transform);
             ROCK_PARENT = go.transform;
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeadScript : MonoBehaviour
 {
+    public bool _matchTerrainHeight = true;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -12,8 +13,11 @@ public class HeadScript : MonoBehaviour
     {
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
-        
-        AdjustMaxVerticesHeight(3);
+
+        if (_matchTerrainHeight)
+        {
+            AdjustMaxVerticesHeight(3);
+        }
     }
 
     private void AdjustMaxVerticesHeight(float tolerance)

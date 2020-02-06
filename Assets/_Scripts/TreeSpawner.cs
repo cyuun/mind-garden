@@ -23,6 +23,7 @@ public class TreeSpawner : MonoBehaviour
             GameObject go = new GameObject("_TreeParent");
             go.layer = LayerMask.NameToLayer("Trees");
             go.tag = "Trees";
+            go.transform.SetParent(TerrainScript.S.transform);
             TREE_PARENT = go.transform;
         }
 

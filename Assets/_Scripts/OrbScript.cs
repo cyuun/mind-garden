@@ -15,6 +15,7 @@ public class OrbScript : MonoBehaviour
     Rigidbody rb;
     Vector3 velocity = Vector3.one;
 
+    public bool _interactable = true;
     public bool soundOn;
     public AudioSource audioTrack;
     Image buttonLabel;
@@ -37,7 +38,6 @@ public class OrbScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerScript.S.transform;
         rb = GetComponent<Rigidbody>();
         audioPeer = audioTrack.GetComponent<AudioPeer>();
         if (!soundOn)
@@ -63,7 +63,7 @@ public class OrbScript : MonoBehaviour
         //Spin
         transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
         //Flash
-        Flash();
+        if(audioPeer) Flash();
 
         if (following)
         {
@@ -92,8 +92,10 @@ public class OrbScript : MonoBehaviour
     {
         if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
         {
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetKeyUp(KeyCode.E) && _interactable)
             {
+                target = PlayerScript.S.transform;
+
                 ToggleParticles();
 
                 ToggleFollow();
@@ -120,8 +122,8 @@ public class OrbScript : MonoBehaviour
     void Flash()
     {
         _emissionColor = _colorGrad.Evaluate(audioPeer._amplitude);
-
         Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, audioPeer._amplitudeBuffer);
+        print(colorLerp);
         rend.material.SetColor("_EmissionColor", colorLerp);
         colorLerp = Color.Lerp(_startColor, _endColor, audioPeer._amplitudeBuffer);
         rend.material.SetColor("_Color", colorLerp);
