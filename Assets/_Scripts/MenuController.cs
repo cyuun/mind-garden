@@ -12,6 +12,8 @@ public class MenuController : MonoBehaviour
     public static MenuController S;
     float firstScreenPos, secondScreenPos, thirdScreenPos;
     public Button fileSelection, play, gallery, settings;
+    public Text errorMessage;
+    bool _errorFading = false;
     public float moveDuration = 1;
     public float moveDistance = 20;
 
@@ -25,12 +27,14 @@ public class MenuController : MonoBehaviour
     {
         S = this;
 
-        if(!fileSelection || !play || !gallery || !settings)
+        if(!fileSelection || !play || !gallery || !settings || !errorMessage)
         {
+            //TODO: These finds don't work
             fileSelection = transform.Find("Text").GetComponent<Button>();
             play = transform.Find("Play").GetComponent<Button>();
             gallery = transform.Find("Gallery").GetComponent<Button>();
             settings = transform.Find("Settings").GetComponent<Button>();
+            errorMessage = transform.Find("Error").GetComponent<Text>();
         }
     }
 
@@ -73,7 +77,17 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1); //Loads Main Game Scene
+        if(_inputSong != null && _inputSongPath != null)
+        {
+            SceneManager.LoadScene(1); //Loads Main Game Scene
+        }
+        else
+        {
+            if (!_errorFading)
+            {
+                StartCoroutine(ShowErrorMessage());
+            }
+        }
     }
 
     public void Home()
@@ -106,7 +120,6 @@ public class MenuController : MonoBehaviour
         {
             tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
             transform.position = tempPos;
-            print(t);
             yield return new WaitForSeconds(.01f);
         }
     }
@@ -120,7 +133,6 @@ public class MenuController : MonoBehaviour
         {
             tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
             transform.position = tempPos;
-            print(t);
             yield return new WaitForSeconds(.01f);
         }
     }
@@ -134,9 +146,20 @@ public class MenuController : MonoBehaviour
         {
             tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
             transform.position = tempPos;
-            print(t);
             yield return new WaitForSeconds(.01f);
         }
+    }
+
+    IEnumerator ShowErrorMessage()
+    {
+        _errorFading = true;
+        errorMessage.color = new Color(255, 255, 255, 1);
+        yield return new WaitForSeconds(2f);
+        errorMessage.CrossFadeColor(new Color(255, 255, 255, 0), 1f, true, true);
+        yield return new WaitForSeconds(1f);
+        errorMessage.GetComponent<CanvasRenderer>().SetAlpha(1);
+        errorMessage.color = new Color(255, 255, 255, 0);
+        _errorFading = false;
     }
 
     IEnumerator ShowLoadDialogCoroutine()

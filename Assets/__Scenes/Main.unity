@@ -555,6 +555,11 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6695551260534191854, guid: 3520b67c802abd84d8d12ce9369b3f49,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6695551261796708264, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_LocalPosition.x

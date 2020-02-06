@@ -29,7 +29,6 @@ public class SpleeterProcess : MonoBehaviour
         inputSong.name = inputSong.name.Replace(" ", string.Empty);
         File.Move(inputSongPath, Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath))); //Renames song without illegal characters
         inputSongPath = Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath));
-        print(inputSongPath);
 
 
         Process process = new Process();
@@ -37,9 +36,7 @@ public class SpleeterProcess : MonoBehaviour
         string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
         string outputPath = Application.persistentDataPath + "/Spleets/";
         process.StartInfo.FileName = filePath + "spleeter.exe";
-        print("File:" + process.StartInfo.FileName);
         process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-        print("Output:" + outputPath);
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
 
         process.Start();
