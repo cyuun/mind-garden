@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class SpleeterProcess : MonoBehaviour
 {
@@ -20,7 +21,16 @@ public class SpleeterProcess : MonoBehaviour
         inputSongPath = MenuController.S.songPath;
         inputSong = MenuController.S.song;
         inputSong.name = Path.GetFileNameWithoutExtension(inputSongPath);
-        print(inputSong);
+
+        //Use Regex to parse out illegal characters
+        string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+        Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+        inputSong.name = r.Replace(inputSong.name, "");
+        inputSong.name = inputSong.name.Replace(" ", string.Empty);
+        File.Move(inputSongPath, Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath))); //Renames song without illegal characters
+        inputSongPath = Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath));
+        print(inputSongPath);
+
 
         Process process = new Process();
         // Configure the process using the StartInfo properties.

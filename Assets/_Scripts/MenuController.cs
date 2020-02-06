@@ -76,6 +76,12 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(1); //Loads Main Game Scene
     }
 
+    public void Home()
+    {
+        StartCoroutine(ViewHome(moveDuration));
+
+    }
+
     public void Gallery()
     {
         StartCoroutine(ViewGallery(moveDuration));
@@ -89,6 +95,20 @@ public class MenuController : MonoBehaviour
     public void ChangeMusic(string path)
     {
         fileSelection.GetComponent<Text>().text = path;
+    }
+
+    IEnumerator ViewHome(float duration)
+    {
+        float startingPos = transform.position.x;
+        float endPos = 0;
+        Vector3 tempPos = transform.position;
+        for (float t = 0; t < 1; t += (.01f / duration))
+        {
+            tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
+            transform.position = tempPos;
+            print(t);
+            yield return new WaitForSeconds(.01f);
+        }
     }
 
     IEnumerator ViewGallery(float duration)
