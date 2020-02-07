@@ -75,7 +75,10 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        if(Global.inputSong != null && Global.inputSongPath != null)
+        SceneManager.LoadScene(1);
+        return;
+
+        if (Global.inputSong != null && Global.inputSongPath != null)
         {
             SceneManager.LoadScene(1); //Loads Main Game Scene
         }
