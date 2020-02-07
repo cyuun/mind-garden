@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,10 +20,6 @@ public class MenuController : MonoBehaviour
 
     public GameObject head;
     public AudioSource backgroundMusic;
-    string _inputSongPath = "";
-    AudioClip _inputSong;
-    public string songPath { get { return _inputSongPath; } }
-    public AudioClip song { get { return _inputSong; } }
 
     void Awake()
     {
@@ -44,7 +41,7 @@ public class MenuController : MonoBehaviour
         // Set filters (optional)
         // It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
         // if all the dialogs will be using the same filters
-        FileBrowser.SetFilters(true, new FileBrowser.Filter("Music", ".mp3", ".wav"), new FileBrowser.Filter("Text Files", ".txt", ".pdf"));
+        FileBrowser.SetFilters(true, new FileBrowser.Filter("Music", ".mp3", ".wav"));
 
         // Set default filter that is selected when the dialog is shown (optional)
         // Returns true if the default filter is set successfully
@@ -78,7 +75,7 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        if(_inputSong != null && _inputSongPath != null)
+        if(Global.inputSong != null && Global.inputSongPath != null)
         {
             SceneManager.LoadScene(1); //Loads Main Game Scene
         }
@@ -105,6 +102,15 @@ public class MenuController : MonoBehaviour
     public void Settings()
     {
         StartCoroutine(ViewSettings(moveDuration));
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
     }
 
     public void ChangeMusic(string path)
@@ -154,12 +160,12 @@ public class MenuController : MonoBehaviour
     IEnumerator ShowErrorMessage()
     {
         _errorFading = true;
-        errorMessage.color = new Color(255, 255, 255, 1);
+        errorMessage.color = new Color(0, 0, 0, 1);
         yield return new WaitForSeconds(2f);
-        errorMessage.CrossFadeColor(new Color(255, 255, 255, 0), 1f, true, true);
+        errorMessage.CrossFadeColor(new Color(0, 0, 0, 0), 1f, true, true);
         yield return new WaitForSeconds(1f);
         errorMessage.GetComponent<CanvasRenderer>().SetAlpha(1);
-        errorMessage.color = new Color(255, 255, 255, 0);
+        errorMessage.color = new Color(0, 0, 0, 0);
         _errorFading = false;
     }
 
@@ -176,14 +182,31 @@ public class MenuController : MonoBehaviour
 
         if (FileBrowser.Success)
         {
-            _inputSongPath = FileBrowser.Result;
+            Global.inputSongPath = FileBrowser.Result;
             // If a file was chosen, read its bytes via FileBrowserHelpers
             // Contrary to File.ReadAllBytes, this function works on Android 10+, as well
-            byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result);
-            backgroundMusic.clip = NAudioPlayer.FromMp3Data(bytes);
+            if (Path.GetExtension(Global.inputSongPath) == ".mp3")
+            {
+                byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result);
+                backgroundMusic.clip = NAudioPlayer.FromMp3Data(bytes);
+            }
+            else if (Path.GetExtension(Global.inputSongPath) == ".wav")
+            {
+                byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result);
+                WAV wav = new WAV(bytes);
+
+                AudioClip audioClip;
+                audioClip = AudioClip.Create("Audio File Name", wav.SampleCount, 1, wav.Frequency, false);
+                audioClip.SetData(wav.LeftChannel, 0);
+                backgroundMusic.clip = audioClip;
+            }
+            else
+            {
+                UnityEngine.Debug.Log("Can't Read File");
+                yield break;
+            }
             backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
-            head.GetComponent<HeadScript>().isRotating = true;
-            _inputSong = backgroundMusic.clip;
+            Global.inputSong = backgroundMusic.clip;
             backgroundMusic.Play();
         }
 

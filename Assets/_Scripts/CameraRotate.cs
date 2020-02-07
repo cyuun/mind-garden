@@ -6,10 +6,7 @@ public class CameraRotate : MonoBehaviour
 {
     public float _speed;
     public Vector3 _axis;
-
-    [Header("AudioPeer")]
-    public AudioPeer _audioPeer;
-    public int _audioBand;
+    public bool _rotating;
 
     void Start()
     {
@@ -19,6 +16,6 @@ public class CameraRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(_axis, (_speed * Time.deltaTime % 360));
+        if(_rotating) transform.Rotate(_axis, (_speed * Time.deltaTime % 360));
     }
 }

@@ -13,7 +13,7 @@ public class OrbScript : MonoBehaviour
     Transform target;
     Vector3 rotPerSecond;
     Rigidbody rb;
-    Vector3 velocity = Vector3.one;
+    Vector3 velocity;
 
     public bool _interactable = true;
     public bool _matchTerrainHeight = true;
@@ -24,6 +24,7 @@ public class OrbScript : MonoBehaviour
     public ParticleSystem burst;
     public float rotationSpeed;
     public float y_offset;
+    public float speed = 10f;
 
     //Amplitude Flash
     public Gradient _colorGrad;
@@ -40,6 +41,7 @@ public class OrbScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        velocity = Vector3.one * speed;
         audioPeer = audioTrack.GetComponent<AudioPeer>();
         if (!soundOn)
         {
@@ -74,7 +76,7 @@ public class OrbScript : MonoBehaviour
             float distance = Vector3.Distance(transform.position, target.position);
             if(distance > 3)
             {
-                transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, 3f);
+                transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, 1f);
 
             }
             if (!moving)

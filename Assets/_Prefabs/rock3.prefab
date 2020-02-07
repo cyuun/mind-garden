@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1212972098894656412}
   - component: {fileID: 1212972098894656414}
   - component: {fileID: 1212972098894656413}
-  - component: {fileID: 2361300850137652557}
+  - component: {fileID: 6559211089329982306}
   m_Layer: 9
   m_Name: Sphere261 (2)
   m_TagString: Rocks
@@ -111,8 +111,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &2361300850137652557
-SphereCollider:
+--- !u!64 &6559211089329982306
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,9 +121,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 402
-  m_Center: {x: -28.658428, y: 68.27278, z: -6.060701}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2641964094126110563, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
 --- !u!1 &1212972098949358649
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ GameObject:
   - component: {fileID: 1212972099159862772}
   - component: {fileID: 1212972099159862774}
   - component: {fileID: 1212972099159862773}
-  - component: {fileID: 3002873125304451855}
+  - component: {fileID: 8241698682290183670}
   m_Layer: 9
   m_Name: Sphere240 (2)
   m_TagString: Rocks
@@ -265,8 +266,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3002873125304451855
-SphereCollider:
+--- !u!64 &8241698682290183670
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -275,9 +276,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 402
-  m_Center: {x: -19.489244, y: -0.015627148, z: -19.620594}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3133689818411161671, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
 --- !u!1 &1212972099435309188
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +291,7 @@ GameObject:
   - component: {fileID: 1212972099435309189}
   - component: {fileID: 1212972099435309191}
   - component: {fileID: 1212972099435309190}
-  - component: {fileID: 6297805698063296471}
+  - component: {fileID: 8392895642295453007}
   m_Layer: 9
   m_Name: Sphere261 (1)
   m_TagString: Rocks
@@ -359,8 +361,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &6297805698063296471
-SphereCollider:
+--- !u!64 &8392895642295453007
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -369,9 +371,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 402
-  m_Center: {x: -28.666224, y: 68.24543, z: -6.0255394}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2641964094126110563, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
 --- !u!1 &1212972099473142268
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +469,7 @@ GameObject:
   - component: {fileID: 1212972099658162562}
   - component: {fileID: 1212972099658162564}
   - component: {fileID: 1212972099658162563}
-  - component: {fileID: 7929772870417090406}
+  - component: {fileID: 2261211938558839412}
   m_Layer: 9
   m_Name: Sphere240 (1)
   m_TagString: Rocks
@@ -536,8 +539,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7929772870417090406
-SphereCollider:
+--- !u!64 &2261211938558839412
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -546,9 +549,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 402
-  m_Center: {x: -19.489244, y: -0.015627148, z: -19.651844}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3133689818411161671, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
 --- !u!1 &1212972100397528814
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +594,7 @@ GameObject:
   - component: {fileID: 1212972100658688093}
   - component: {fileID: 1212972100658688095}
   - component: {fileID: 1212972100658688094}
-  - component: {fileID: 5441556568595662583}
+  - component: {fileID: 7442195151730911504}
   m_Layer: 9
   m_Name: Sphere788 (1)
   m_TagString: Rocks
@@ -659,8 +663,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5441556568595662583
-SphereCollider:
+--- !u!64 &7442195151730911504
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -669,9 +673,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 402
-  m_Center: {x: -19.418932, y: 0.015622947, z: -19.620602}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4021683123045080041, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
 --- !u!1 &1212972100800250620
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +688,7 @@ GameObject:
   - component: {fileID: 1212972100800250621}
   - component: {fileID: 1212972100800250623}
   - component: {fileID: 1212972100800250622}
-  - component: {fileID: 1995030996755628562}
+  - component: {fileID: 1414656520941587857}
   m_Layer: 9
   m_Name: Sphere261 (3)
   m_TagString: Rocks
@@ -753,8 +758,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1995030996755628562
-SphereCollider:
+--- !u!64 &1414656520941587857
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -763,6 +768,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 402
-  m_Center: {x: -28.611538, y: 68.33528, z: -5.963042}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2641964094126110563, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
