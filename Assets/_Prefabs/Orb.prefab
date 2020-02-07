@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1912402806797996887}
   - component: {fileID: 1037232182304913055}
   - component: {fileID: 2680342850224791886}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148383323363022962}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 2338054701209965661}
   - component: {fileID: 1071362216182468901}
   - component: {fileID: 5915405281917514848}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5038,7 +5038,7 @@ GameObject:
   - component: {fileID: 7312100590255906602}
   - component: {fileID: 343930581138773673}
   - component: {fileID: 4547690792564925864}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AudioPeer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5200,7 +5200,7 @@ GameObject:
   - component: {fileID: 5691490399956396920}
   - component: {fileID: 6335238476530716227}
   - component: {fileID: 2211763202941834223}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10199,6 +10199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KochLine (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008094, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a86df1d97eb3854d8306029e431f2a3, type: 3}
 --- !u!4 &6840967919961292512 stripped
@@ -10453,6 +10458,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KochLine (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008094, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a86df1d97eb3854d8306029e431f2a3, type: 3}
@@ -10709,6 +10719,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KochLine
       objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008094, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a86df1d97eb3854d8306029e431f2a3, type: 3}
 --- !u!4 &6840967921979046790 stripped
@@ -10963,6 +10978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KochLine (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008094, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a86df1d97eb3854d8306029e431f2a3, type: 3}

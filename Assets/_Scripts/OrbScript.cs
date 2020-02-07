@@ -100,12 +100,10 @@ public class OrbScript : MonoBehaviour
     {
         if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
         {
-            if (Input.GetKeyUp(KeyCode.E) && _interactable)
+            if (Input.GetKeyUp(KeyCode.Mouse0) && _interactable)
             {
                 target = PlayerScript.S.transform;
-
                 ToggleParticles();
-
                 ToggleFollow();
             }
             //ShowButtonLabel();
@@ -117,6 +115,12 @@ public class OrbScript : MonoBehaviour
         //buttonLabel.gameObject.SetActive(false);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        string tag = collision.gameObject.tag;
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Pond")
@@ -124,6 +128,12 @@ public class OrbScript : MonoBehaviour
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             target = other.transform;
+        }
+        else if (other.tag == "Player")
+        {
+            target = other.transform;
+            ToggleParticles();
+            ToggleFollow();
         }
     }
 
@@ -148,20 +158,13 @@ public class OrbScript : MonoBehaviour
 
     void ToggleParticles()
     {
-        if (particles.isPlaying)
-        {
-            particles.Stop();
-        }
-        else
-        {
-            burst.Play();
-            particles.Play();
-        }
+        burst.Play();
+        particles.Play();
     }
 
     void ToggleFollow()
     {
-        following = particles.isPlaying;
+        following = true;
     }
 
     IEnumerator MoveOrb()
