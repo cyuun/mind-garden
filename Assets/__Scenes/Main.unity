@@ -238,6 +238,8 @@ MonoBehaviour:
   centerFlatteningRadius: 22
   pondNoiseScale: 18.5
   pondNoiseAmplitude: 10
+  textureResolution: 300
+  paintRadius: 5
 --- !u!23 &508138751
 MeshRenderer:
   m_ObjectHideFlags: 0
