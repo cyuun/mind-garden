@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: water
+  m_Name: WaterMaterial
   m_Shader: {fileID: 4800000, guid: d4e1c79d3cf940944b714538d577fbea, type: 3}
   m_ShaderKeywords: USE_DISPLACEMENT USE_FILTERING USE_MEAN_SKY_RADIANCE _ALLOWALPHAOVERFLOW_OFF
   m_LightmapFlags: 4
