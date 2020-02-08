@@ -227,6 +227,8 @@ public class TerrainScript : MonoBehaviour
         _mesh.vertices = _vertices;
         _mesh.triangles = _triangles;
         
+        UpdateMeshUV();
+        
         _mesh.RecalculateNormals();
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
@@ -398,6 +400,17 @@ public class TerrainScript : MonoBehaviour
         }
 
         return thetaIndex;
+    }
+
+    private void UpdateMeshUV()
+    {
+        Vector2[] uv = new Vector2[_vertices.Length];
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            uv[i] = new Vector2((_vertices[i].x + xMax / 2) / xMax, (_vertices[i].z + zMax / 2) / zMax);
+        }
+
+        _mesh.uv = uv;
     }
 
     private void ClampVariables()
