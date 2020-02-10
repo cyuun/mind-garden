@@ -14,6 +14,7 @@ public class SpleeterProcess : MonoBehaviour
     public AudioClip inputSong;
     public AudioSource[] orbs;
     public bool callSpleeter;
+    public bool playOnAwake;
 
     void Awake()
     {
@@ -26,34 +27,38 @@ public class SpleeterProcess : MonoBehaviour
                 inputSongPath = Global.inputSongPath;
                 inputSong = Global.inputSong;
                 inputSong.name = Path.GetFileNameWithoutExtension(inputSongPath);
-
-                //Use Regex to parse out illegal characters
-                string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
-                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
-                inputSong.name = r.Replace(inputSong.name, "");
-                inputSong.name = inputSong.name.Replace(" ", string.Empty);
-                File.Move(inputSongPath, Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath))); //Renames song without illegal characters
-                inputSongPath = Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath));
-
-
-                Process process = new Process();
-                // Configure the process using the StartInfo properties.
-                string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
-                string outputPath = Application.persistentDataPath + "/Spleets/";
-                print(outputPath);
-                process.StartInfo.FileName = filePath + "spleeter.exe";
-                process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
-
-                process.Start();
-                process.WaitForExit();
-
-                LoadSongTracks();
             }
             else
             {
-                LoadSongTracks();
+                inputSongPath = AssetDatabase.GetAssetPath(inputSong);
             }
+
+            //Use Regex to parse out illegal characters
+            string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+            string oldName = inputSong.name;
+            inputSong.name = r.Replace(inputSong.name, "");
+            inputSong.name = inputSong.name.Replace(" ", string.Empty);
+            if(inputSong.name != oldName)
+            {
+                File.Move(inputSongPath, Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath))); //Renames song without illegal characters
+            }
+            inputSongPath = Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath));
+
+
+            Process process = new Process();
+            // Configure the process using the StartInfo properties.
+            string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
+            string outputPath = Application.persistentDataPath + "/Spleets/";
+            print(outputPath);
+            process.StartInfo.FileName = filePath + "spleeter.exe";
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
+
+            process.Start();
+            process.WaitForExit();
+
+            LoadSongTracks();
         }
         else
         {
@@ -62,10 +67,19 @@ public class SpleeterProcess : MonoBehaviour
         }
 
         //Play
-        foreach (AudioSource audio in orbs)
+        if (playOnAwake)
         {
-            audio.Play();
+            foreach (AudioSource audio in orbs)
+            {
+                audio.Play();
+            }
+
         }
+    }
+
+    void Start()
+    {
+        GetComponent<AudioSource>().clip = inputSong;
     }
 
     void LoadSongTracks()
