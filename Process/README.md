@@ -2,6 +2,33 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Mentor Feedback
+February 11
+
+[Write-up of Ben Wander's feedback](MentorFeedback-BenWander.md)
+
+[Write-up of Ian Hales's feedback](MentorFeedback-IanHales.md)
+
+---
+## Week 4
+February 4 - 11
+### Creatures and Flocking
+Fish were finished and animated this week, and three kinds of bugs were animated and used as boids. These creatures are ready to be affected by a sound/music multiplier and by color-changing scripts. They require an area or target to swarm around (we made one for each flock system that randomly changes location every ~0.5 seconds). This can also be moved by music to path the flocks.
+
+### Rhythm Analysis Integration
+Up until now we've used one script for analyzing audio behavior in our game with help from the built in FFT function to get sample data. This AudioPeer class works very well for obtaining values moment to moment and getting things to react on demand, however, it lacks the analytical capacity to assess other song aspects such as tempo and segment changes. Segments, for the record, are distinct song regions such as verse, chorus, or bridge, and are often detected by sudden shifts in overall song volume. The Rhythm Tool analyzer from the Unity Asset Store helps to facilitate all this information and more. It comes with a robust, built in event system to detect the beat and onset of the actual notes being played, providing important information about the audio that couldn't be obtained with the AudioPeer script alone. Currently this tool is implemented to listen to the whole song (which is set to silent via its output on the audio mixer) as opposed to the individual song tracks; this gives a better estimation of the true tempo, onset, and song segments.
+![RhythmTool](Resources/audioAnalysis.png "Audio Tool")
+
+### Main Menu and File Importing
+To get a more complete test build to our mentors and peers, we touched up the main menu's overall design and functionality. Obtaining file paths using Unity is easier said than done sometimes, but with help from a file explorer GUI plugin this process got simplified dramatically. Now users can pick a song from their computers via the main menu, which gets imported as an mp3 or wav file to be used in the game. As it currently stands, the Spleeter process for separating out the song's tracks is still limited to those who have Spleeter already installed and working on their Windows system. This is a step in the right direction, at least, since now the main menu is capable of passing information such as songs and sound options to the main scene.
+![Main Menu](Resources/menu.png "Menu")
+![Files](Resources/fileExplorer.png "Files")
+
+### Terrain Painting
+This week to add some more interactivity into the game we added a terrain painting feature. This involves changing the terrain's texture to add color underneath the player. We are still brainstorming how the color will interact and change, but currently it is just rotating between red green and blue. A gif showing how the terrain actually gets painted is featured below.
+![A video of the terrain being painted in RGB rainbow vomit](Resources/mindsgarden-painting.gif "Terrain Painting")
+
+---
 ## Week 3
 January 28 - February 4
 ### Even more assets
