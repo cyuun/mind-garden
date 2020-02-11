@@ -13,8 +13,10 @@ public class OrbScript : MonoBehaviour
     Transform target;
     Vector3 rotPerSecond;
     Rigidbody rb;
-    Vector3 velocity = Vector3.one;
+    Vector3 velocity;
 
+    public bool _interactable = true;
+    public bool _matchTerrainHeight = true;
     public bool soundOn;
     public AudioSource audioTrack;
     Image buttonLabel;
@@ -22,6 +24,7 @@ public class OrbScript : MonoBehaviour
     public ParticleSystem burst;
     public float rotationSpeed;
     public float y_offset;
+    public float speed = 10f;
 
     //Amplitude Flash
     public Gradient _colorGrad;
@@ -37,8 +40,8 @@ public class OrbScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerScript.S.transform;
         rb = GetComponent<Rigidbody>();
+        velocity = Vector3.one * speed;
         audioPeer = audioTrack.GetComponent<AudioPeer>();
         if (!soundOn)
         {
@@ -47,8 +50,11 @@ public class OrbScript : MonoBehaviour
         rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f)) * rotationSpeed;
 
         //Set Orb height to match terrain
-        float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
-        transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
+        if (_matchTerrainHeight)
+        {
+            float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
+            transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
+        }
 
         //Set Up Amplitude Flash
         _startColor = new Color(0, 0, 0, 0);
@@ -63,14 +69,14 @@ public class OrbScript : MonoBehaviour
         //Spin
         transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
         //Flash
-        Flash();
+        if(audioPeer) Flash();
 
         if (following)
         {
             float distance = Vector3.Distance(transform.position, target.position);
             if(distance > 3)
             {
-                transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, 3f);
+                transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, 1f);
 
             }
             if (!moving)
@@ -80,22 +86,24 @@ public class OrbScript : MonoBehaviour
             }
         }
 
-        float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
-        if (transform.position.y < y)
+        if (_matchTerrainHeight)
         {
-            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
+            if (transform.position.y < y)
+            {
+                transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            }
         }
-        
     }
 
     private void OnMouseOver()
     {
         if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
         {
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetKeyUp(KeyCode.Mouse0) && _interactable)
             {
+                target = PlayerScript.S.transform;
                 ToggleParticles();
-
                 ToggleFollow();
             }
             //ShowButtonLabel();
@@ -107,6 +115,12 @@ public class OrbScript : MonoBehaviour
         //buttonLabel.gameObject.SetActive(false);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        string tag = collision.gameObject.tag;
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Pond")
@@ -115,12 +129,17 @@ public class OrbScript : MonoBehaviour
             audioTrack.spatialBlend = 0;
             target = other.transform;
         }
+        else if (other.tag == "Player")
+        {
+            target = other.transform;
+            ToggleParticles();
+            ToggleFollow();
+        }
     }
 
     void Flash()
     {
         _emissionColor = _colorGrad.Evaluate(audioPeer._amplitude);
-
         Color colorLerp = Color.Lerp(_startColor, _emissionColor * _colorMultiplier, audioPeer._amplitudeBuffer);
         rend.material.SetColor("_EmissionColor", colorLerp);
         colorLerp = Color.Lerp(_startColor, _endColor, audioPeer._amplitudeBuffer);
@@ -139,20 +158,13 @@ public class OrbScript : MonoBehaviour
 
     void ToggleParticles()
     {
-        if (particles.isPlaying)
-        {
-            particles.Stop();
-        }
-        else
-        {
-            burst.Play();
-            particles.Play();
-        }
+        burst.Play();
+        particles.Play();
     }
 
     void ToggleFollow()
     {
-        following = particles.isPlaying;
+        following = true;
     }
 
     IEnumerator MoveOrb()

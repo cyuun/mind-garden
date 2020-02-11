@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4380520467914871233}
   - component: {fileID: 4380520467914871232}
   - component: {fileID: 6663214360446520895}
-  - component: {fileID: 8244005917836513763}
   m_Layer: 9
   m_Name: Sphere261 (1)
   m_TagString: Rocks
@@ -93,22 +92,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2641964094126110563, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
---- !u!135 &8244005917836513763
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380520467914871234}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 397.5
-  m_Center: {x: -28.502165, y: 68.24152, z: -5.9942884}
 --- !u!1 &4380520468026894372
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +218,6 @@ GameObject:
   - component: {fileID: 4380520468477784457}
   - component: {fileID: 4380520468477784456}
   - component: {fileID: 8846518603684907290}
-  - component: {fileID: 4366763324436828990}
   m_Layer: 9
   m_Name: Sphere788 (1)
   m_TagString: Rocks
@@ -312,22 +297,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4021683123045080041, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
---- !u!135 &4366763324436828990
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380520468477784458}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 397.5
-  m_Center: {x: -19.395496, y: 0.03124969, z: -19.589354}
 --- !u!1 &4380520468689722769
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +312,6 @@ GameObject:
   - component: {fileID: 4380520468689722780}
   - component: {fileID: 4380520468689722783}
   - component: {fileID: 831736154383707410}
-  - component: {fileID: 5788929438659414704}
   m_Layer: 9
   m_Name: Sphere261 (2)
   m_TagString: Rocks
@@ -421,22 +392,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2641964094126110563, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
---- !u!135 &5788929438659414704
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380520468689722769}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 397.5
-  m_Center: {x: -28.564678, y: 68.05403, z: -5.9005446}
 --- !u!1 &4380520469527805400
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +407,6 @@ GameObject:
   - component: {fileID: 4380520469527805383}
   - component: {fileID: 4380520469527805382}
   - component: {fileID: 4985977996447161709}
-  - component: {fileID: 8566100947238835575}
   m_Layer: 9
   m_Name: Sphere240 (1)
   m_TagString: Rocks
@@ -530,22 +487,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3133689818411161671, guid: 1d6c0848f7b7e4e4a92ba4f50125cceb, type: 3}
---- !u!135 &8566100947238835575
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380520469527805400}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 397.5
-  m_Center: {x: -19.426744, y: 0.031247834, z: -19.620596}
 --- !u!1 &4380520469689130976
 GameObject:
   m_ObjectHideFlags: 0

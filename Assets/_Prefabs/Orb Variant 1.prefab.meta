@@ -1,6 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/water-shader/screenshots.meta
-guid: 2896b65c2bae1c1b88527eca80feb93c
+guid: d7584473a968ba643981b0304aa64ef1
 folderAsset: yes
 DefaultImporter:
 =======
@@ -8,6 +7,6 @@ guid: f1f18d66fdb591c4a8312d1f06546ab0
 PrefabImporter:
 >>>>>>> orb-particles-and-prefab-spawning:Assets/_Prefabs/Orb Variant 1.prefab.meta
   externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -13,6 +13,7 @@ public class AmplitudeFlash : MonoBehaviour
     private Color _emissionColor;
     private Vector3 _scale;
     private Renderer rend;
+
     void Start()
     {
         if (_audioPeer == null)
