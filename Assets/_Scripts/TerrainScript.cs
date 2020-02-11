@@ -40,6 +40,7 @@ public class TerrainScript : MonoBehaviour
     [Header("Painting")]
     public int textureResolution = 2048;
     public float paintRadius = 5;
+    public Color[] paintColors;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -60,6 +61,8 @@ public class TerrainScript : MonoBehaviour
     private GameObject _player;
     private bool _paintable;
     private Color[] _paint;
+    private Color _paintColor;
+    private int _paintColorIndex;
 
     public void RefreshTerrain()
     {
@@ -185,6 +188,8 @@ public class TerrainScript : MonoBehaviour
         {
             _paint[i] = Color.white;
         }
+        _paintColorIndex = 0;
+        StartCoroutine("RotateColors");
     }
 
     private void Update()
@@ -472,7 +477,7 @@ public class TerrainScript : MonoBehaviour
                     (pixelPos.y - playerPos.z) * (pixelPos.y - playerPos.z) <
                     paintRadius * paintRadius)
                 {
-                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], Color.green, 0.1f);
+                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], _paintColor, 0.1f);
                 }
             }
         }
@@ -485,6 +490,21 @@ public class TerrainScript : MonoBehaviour
     private Vector2 TexPxToWorldPos(Vector2 pos)
     {
         return new Vector2(pos.x * xMax / textureResolution - xMax / 2, pos.y * zMax / textureResolution - zMax / 2);
+    }
+
+    private IEnumerator RotateColors()
+    {
+        while (true)
+        {
+            _paintColor = paintColors[_paintColorIndex];
+            _paintColorIndex++;
+            if (_paintColorIndex == paintColors.Length)
+            {
+                _paintColorIndex = 0;
+            }
+            
+            yield return new WaitForSeconds(1);
+        }
     }
 
     private void ClampVariables()
