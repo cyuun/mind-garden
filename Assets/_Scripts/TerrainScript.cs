@@ -35,6 +35,12 @@ public class TerrainScript : MonoBehaviour
     [Range(0.00001f, 100)]
     public float pondNoiseScale = 1;
     public float pondNoiseAmplitude = 5;
+    
+    //painting variables
+    [Header("Painting")]
+    public int textureResolution = 2048;
+    public float paintRadius = 5;
+    public Color[] paintColors;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -49,6 +55,14 @@ public class TerrainScript : MonoBehaviour
     private float _minHeight;
 
     private float[] _pond;
+
+    private MeshRenderer _meshRenderer;
+    private Texture2D _texture;
+    private GameObject _player;
+    private bool _paintable;
+    private Color[] _paint;
+    private Color _paintColor;
+    private int _paintColorIndex;
 
     public void RefreshTerrain()
     {
@@ -137,6 +151,22 @@ public class TerrainScript : MonoBehaviour
 
         return maxSlope;
     }
+
+    public void SetPaintable(bool paintable)
+    {
+        if (_player != null && paintable == true)
+        {
+            _paintable = paintable;
+        }
+        else if (paintable == false)
+        {
+            _paintable = paintable;
+        }
+        else
+        {
+            Debug.Log("Error: unable to set terrain to paintable because the Player game object cannot be found.");
+        }
+    }
     
     private void Awake()
     {
@@ -144,9 +174,30 @@ public class TerrainScript : MonoBehaviour
         
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
+        _meshRenderer = GetComponent<MeshRenderer>();
         _mesh = new Mesh();
 
         RefreshTerrain();
+        
+        _player = GameObject.Find("Player");
+        SetPaintable(true);
+        _meshRenderer.material.mainTexture = new Texture2D(textureResolution, textureResolution);
+        _texture = (Texture2D)_meshRenderer.material.mainTexture;
+        _paint = new Color[textureResolution * textureResolution];
+        for (int i = 0; i < textureResolution * textureResolution; i++)
+        {
+            _paint[i] = Color.white;
+        }
+        _paintColorIndex = 0;
+        StartCoroutine("RotateColors");
+    }
+
+    private void Update()
+    {
+        if (_paintable)
+        {
+            PaintTerrain();
+        }
     }
 
     private void OnValidate()
@@ -226,6 +277,8 @@ public class TerrainScript : MonoBehaviour
 
         _mesh.vertices = _vertices;
         _mesh.triangles = _triangles;
+        
+        UpdateMeshUV();
         
         _mesh.RecalculateNormals();
         _mesh.RecalculateBounds();
@@ -398,6 +451,60 @@ public class TerrainScript : MonoBehaviour
         }
 
         return thetaIndex;
+    }
+
+    private void UpdateMeshUV()
+    {
+        Vector2[] uv = new Vector2[_vertices.Length];
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            uv[i] = new Vector2((_vertices[i].x + xMax / 2) / xMax, (_vertices[i].z + zMax / 2) / zMax);
+        }
+
+        _mesh.uv = uv;
+    }
+
+    private void PaintTerrain()
+    {
+        Vector3 playerPos = _player.transform.position;
+
+        for (int i = 0; i < textureResolution; i++)
+        {
+            for (int j = 0; j < textureResolution; j++)
+            {
+                Vector2 pixelPos = TexPxToWorldPos(new Vector2(i, j));
+                if ((pixelPos.x - playerPos.x) * (pixelPos.x - playerPos.x) +
+                    (pixelPos.y - playerPos.z) * (pixelPos.y - playerPos.z) <
+                    paintRadius * paintRadius)
+                {
+                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], _paintColor, 0.1f);
+                }
+            }
+        }
+
+        _texture.SetPixels(_paint);
+        _texture.Apply();
+        _meshRenderer.material.mainTexture = _texture;
+    }
+
+    private Vector2 TexPxToWorldPos(Vector2 pos)
+    {
+        return new Vector2(pos.x * xMax / textureResolution - xMax / 2, pos.y * zMax / textureResolution - zMax / 2);
+    }
+
+    private IEnumerator RotateColors()
+    {
+        while (true)
+        {
+            _paintColor = paintColors[_paintColorIndex];
+            _paintColorIndex++;
+            if (_paintColorIndex == paintColors.Length)
+            {
+                _paintColorIndex = 0;
+            }
+            
+            yield return new WaitForSeconds(1);
+        }
     }
 
     private void ClampVariables()
