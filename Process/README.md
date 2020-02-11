@@ -25,7 +25,7 @@ To get a more complete test build to our mentors and peers, we touched up the ma
 ![Files](Resources/fileExplorer.png "Files")
 
 ### Terrain Painting
-![A video of the terrain being painted in RGB rainbow vomit](Resources/mindsgarden-painting.webm "Terrain Painting")
+![A video of the terrain being painted in RGB rainbow vomit](Resources/mindsgarden-painting.gif "Terrain Painting")
 
 ---
 ## Week 3
