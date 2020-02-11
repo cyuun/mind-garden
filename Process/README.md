@@ -7,7 +7,7 @@ February 11
 
 [Write-up of Ben Wander's feedback](MentorFeedback-BenWander.md)
 
-As of February 11th, we are currently waiting to hear back from other mentors about their feedback.
+[Write-up of Ian Hales's feedback](MentorFeedback-IanHales.md)
 
 ---
 ## Week 4
