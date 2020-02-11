@@ -25,6 +25,7 @@ To get a more complete test build to our mentors and peers, we touched up the ma
 ![Files](Resources/fileExplorer.png "Files")
 
 ### Terrain Painting
+This week to add some more interactivity into the game we added a terrain painting feature. This involves changing the terrain's texture to add color underneath the player. We are still brainstorming how the color will interact and change, but currently it is just rotating between red green and blue. A gif showing how the terrain actually gets painted is featured below.
 ![A video of the terrain being painted in RGB rainbow vomit](Resources/mindsgarden-painting.gif "Terrain Painting")
 
 ---
