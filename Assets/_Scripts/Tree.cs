@@ -29,7 +29,7 @@ public class Tree : MonoBehaviour
         {
             case "Rocks":
                 Vector3 offsetFromOrb = Vector3.zero;
-                while (offsetFromOrb.magnitude < spawner.spawnRadiusMin)
+                while (offsetFromOrb.magnitude < spawner.spawnRadiusMax)
                 {
                     offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawner.spawnRadiusMax);
                 }

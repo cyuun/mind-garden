@@ -213,9 +213,10 @@ MonoBehaviour:
   - {fileID: 7165674503626625641, guid: 896db407b5fb2254bb3c7c7752768f70, type: 3}
   - {fileID: 3380717346346703054, guid: f5bb678c22e579b49994f0a459a22e02, type: 3}
   - {fileID: 3083904824110930829, guid: edc482bd4e35fc544adf9fba52eb18e0, type: 3}
-  spawnRadiusMin: 10
+  forestCount: 5
   spawnRadiusMax: 70
-  numOfTrees: 30
+  treesMin: 3
+  treesMax: 13
 --- !u!1 &2917131535532204839
 GameObject:
   m_ObjectHideFlags: 0
@@ -10008,33 +10009,38 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioBand.Array.size
-      value: 6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _generator.m_Curve.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _initiatorSize
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: axis
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioPeer
       value: 
-      objectReference: {fileID: 4547690792564925864}
+      objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].outwards
@@ -10048,7 +10054,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: initiator
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10063,17 +10069,17 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _useBuffer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _emissionMultiplier
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10083,27 +10089,27 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.b
-      value: 0.24642348
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.g
-      value: 0.84648275
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.g
-      value: 0.019607853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.b
-      value: 0.31080738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10113,22 +10119,22 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime1
-      value: 20432
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime2
-      value: 56283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.m_NumColorKeys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10138,27 +10144,37 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.g
-      value: 0.019607842
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.b
-      value: 0.31080735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _scaleGradient
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _audioBandMaterial
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008089, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10268,22 +10284,27 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioBand.Array.size
-      value: 6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _generator.m_Curve.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _initiatorSize
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10294,7 +10315,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _audioPeer
       value: 
-      objectReference: {fileID: 4547690792564925864}
+      objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].outwards
@@ -10308,7 +10329,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: initiator
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10323,17 +10344,17 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _useBuffer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _emissionMultiplier
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10343,27 +10364,27 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.b
-      value: 0.24642348
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.g
-      value: 0.84648275
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.g
-      value: 0.019607853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.b
-      value: 0.31080738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10373,22 +10394,22 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime1
-      value: 20432
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime2
-      value: 56283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.m_NumColorKeys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10398,27 +10419,37 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.g
-      value: 0.019607842
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.b
-      value: 0.31080735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _scaleGradient
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _audioBandMaterial
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008089, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10528,33 +10559,38 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioBand.Array.size
-      value: 6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _generator.m_Curve.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _initiatorSize
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: axis
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioPeer
       value: 
-      objectReference: {fileID: 4547690792564925864}
+      objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].outwards
@@ -10568,7 +10604,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: initiator
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10583,17 +10619,17 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _useBuffer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _emissionMultiplier
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10603,27 +10639,27 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.b
-      value: 0.24642348
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.g
-      value: 0.84648275
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.g
-      value: 0.019607853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.b
-      value: 0.31080738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10633,22 +10669,22 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime1
-      value: 20432
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime2
-      value: 56283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.m_NumColorKeys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10658,27 +10694,37 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.g
-      value: 0.019607842
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.b
-      value: 0.31080735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _scaleGradient
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _audioBandMaterial
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008089, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10788,33 +10834,38 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioBand.Array.size
-      value: 6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _generator.m_Curve.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _initiatorSize
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _sideLength
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: axis
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _audioPeer
       value: 
-      objectReference: {fileID: 4547690792564925864}
+      objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _startGen.Array.data[0].outwards
@@ -10828,7 +10879,7 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: initiator
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10843,17 +10894,17 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _useBuffer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _emissionMultiplier
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10863,27 +10914,27 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key0.b
-      value: 0.24642348
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key1.g
-      value: 0.84648275
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.g
-      value: 0.019607853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.b
-      value: 0.31080738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10893,22 +10944,22 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime1
-      value: 20432
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.ctime2
-      value: 56283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.m_NumColorKeys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _colorGrad.key2.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -10918,27 +10969,37 @@ PrefabInstance:
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.r
-      value: 0.8509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.g
-      value: 0.019607842
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.b
-      value: 0.31080735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
       propertyPath: _scaleGradient
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845637785142008088, guid: 8a86df1d97eb3854d8306029e431f2a3,
+        type: 3}
+      propertyPath: _audioBandMaterial
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845637785142008089, guid: 8a86df1d97eb3854d8306029e431f2a3,
         type: 3}
@@ -11050,9 +11111,49 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028070, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: analyzer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028070, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028070, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: eventProvider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028070, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: linePrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028071, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: songs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028071, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: analyzer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572835729028071, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 358572836815350598, guid: 4187f28011a183a4ab72369baa72ebd9,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358572836815350599, guid: 4187f28011a183a4ab72369baa72ebd9,
+        type: 3}
+      propertyPath: targets.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8225327396123704959, guid: 4187f28011a183a4ab72369baa72ebd9,

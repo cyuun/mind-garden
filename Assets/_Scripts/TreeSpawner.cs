@@ -7,11 +7,14 @@ public class TreeSpawner : MonoBehaviour
     public static Transform TREE_PARENT;
     public AudioPeer audioPeer;
     public GameObject[] treePrefabs;
-    [Range(1, 10)]
-    public float spawnRadiusMin;
-    [Range(11, 100)]
+
+    public int forestCount = 5;
+    const int spawnRadiusMin = 15;
+    [Range(16, 100)]
     public float spawnRadiusMax;
-    public int numOfTrees;
+    [Range(1,20)]
+    public int treesMin,treesMax;
+    float treeSeparation;
 
     void Start()
     {
@@ -38,40 +41,50 @@ public class TreeSpawner : MonoBehaviour
 
     void GenerateTrees()
     {
-        for (int i = 0; i < numOfTrees; i++)
+        for (int f = 0; f < forestCount; f++)
         {
-            float yOffset = 0;
-            //Select random rock prefab
-            GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
-            if (tree.GetComponent<smallTree>())
-            {
-                smallTree t = tree.GetComponent<smallTree>();
-                t._audioPeer = audioPeer;
-                t.spawner = this;
-                yOffset = t.y_offset;
-            }
-            else if (tree.GetComponent<medTree>())
-            {
-                medTree t = tree.GetComponent<medTree>();
-                t._audioPeer = audioPeer;
-                t.spawner = this; 
-                yOffset = t.y_offset;
+            int numOfTrees = Random.Range(treesMin, treesMax);
 
-            }
-            else if (tree.GetComponent<bigTree>())
+            Vector3 offset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(spawnRadiusMin, spawnRadiusMax);
+            Vector3 pos = transform.position + offset;
+            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+
+
+            for (int i = 0; i < numOfTrees; i++)
             {
-                bigTree t = tree.GetComponent<bigTree>();
-                t._audioPeer = audioPeer;
-                t.spawner = this;
-                yOffset = t.y_offset;
+                float yOffset = 0;
+                //Select random rock prefab
+                GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
+                if (tree.GetComponent<smallTree>())
+                {
+                    smallTree t = tree.GetComponent<smallTree>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+                else if (tree.GetComponent<medTree>())
+                {
+                    medTree t = tree.GetComponent<medTree>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
 
+                }
+                else if (tree.GetComponent<bigTree>())
+                {
+                    bigTree t = tree.GetComponent<bigTree>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+
+                //Get/Set position
+                Vector3 treePos = GetTreePos();
+                treePos.y += yOffset;
+                GameObject myTree = Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
             }
-
-            //Get/Set position
-            Vector3 pos = GetTreePos();
-            pos.y += yOffset;
-            GameObject myTree = Instantiate(tree, pos, Quaternion.identity, TREE_PARENT);
         }
+
     }
 
     Vector3 GetTreePos()
