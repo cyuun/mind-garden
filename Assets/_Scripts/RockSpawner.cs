@@ -43,22 +43,42 @@ public class RockSpawner : MonoBehaviour
     {
         for(int i = 0; i < numOfRocks; i++)
         {
+            bool hitRock = true;
+            bool hitPond = true;
+
             //Select random rock prefab
             GameObject selectedRock = rockPrefabs[Random.Range(0, rockPrefabs.Length)];
 
             //Get/Set position
-            Vector3 offsetFromOrb;
-            do
+            Vector3 rockPos = transform.position;
+            while (hitRock || hitPond)
             {
-                offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnRadiusMax);
-            } while (offsetFromOrb.magnitude < spawnRadiusMin);
-            Vector3 pos = transform.position + offsetFromOrb;
-            //Level with terrain
-            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
-            GameObject myRock = Instantiate(selectedRock, pos, Random.rotation, ROCK_PARENT);
+                hitRock = false;
+                hitPond = false;
+
+                rockPos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
+                rockPos.y = TerrainScript.S.GetTerrainHeight(rockPos.x, rockPos.z);
+                foreach (Collider c in Physics.OverlapSphere(rockPos, 3f))
+                {
+                    if (c.name.Contains("Sphere"))
+                    {
+                        hitRock = true;
+                        break;
+                    }
+                    else if (c.name.Contains("Pond"))
+                    {
+                        hitPond = true;
+                        break;
+                    }
+                }
+            }
+
+            GameObject myRock = Instantiate(selectedRock, rockPos, Random.rotation, ROCK_PARENT);
             //Resize
             float scale = Random.Range(scaleMin, scaleMax);
             myRock.transform.localScale *= scale;
+
+
         }
     }
 }

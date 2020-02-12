@@ -53,6 +53,9 @@ public class TreeSpawner : MonoBehaviour
             for (int i = 0; i < numOfTrees; i++)
             {
                 float yOffset = 0;
+                bool hitRock = true;
+                bool hitPond = true;
+                bool hitTree = true;
                 //Select random rock prefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
                 if (tree.GetComponent<smallTree>())
@@ -81,6 +84,37 @@ public class TreeSpawner : MonoBehaviour
                 //Get/Set position
                 treePos = GetTreePos(treePos);
                 treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z);
+                while (hitRock || hitPond || hitTree)
+                {
+                    hitRock = false;
+                    hitPond = false;
+                    hitTree = false;
+
+                    treePos = GetTreePos(treePos);
+                    treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z);
+
+                    foreach (Collider c in Physics.OverlapSphere(treePos, treeSeparation))
+                    {
+                        if (c.name.Contains("Sphere"))
+                        {
+                            print(c.transform.parent.name);
+                            hitRock = true;
+                            break;
+                        }
+                        else if (c.name.Contains("Pond"))
+                        {
+                            print("Pondfound");
+                            hitPond = true;
+                            break;
+                        }
+                        else if (c.gameObject.tag == "Trees")
+                        {
+                            print("Treee");
+                            hitTree = true;
+                            break;
+                        }
+                    }
+                }
                 GameObject myTree = Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
             }
         }

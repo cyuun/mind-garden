@@ -20,11 +20,11 @@ public class bigTree : Tree
     {
         if (_audioPeer)
         {
-            piece1.localScale = new Vector3(0.0034f, 0.0034f, 0.0045f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
-            piece2.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
-            piece3.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
-            piece4.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
-            piece5.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._amplitudeBuffer * _amplitudeScale * 0.015f));
+            piece1.localScale = new Vector3(0.0034f, 0.0034f, 0.0045f + (_audioPeer._audioBandBuffer[0] * _amplitudeScale * 0.015f));
+            piece2.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._audioBandBuffer[1] * _amplitudeScale * 0.015f));
+            piece3.localScale = new Vector3(0.0034f, 0.0034f, 0.003f + (_audioPeer._audioBandBuffer[2] * _amplitudeScale * 0.015f));
+            piece4.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._audioBandBuffer[3] * _amplitudeScale * 0.015f));
+            piece5.localScale = new Vector3(0.0034f, 0.0034f, 0.0035f + (_audioPeer._audioBandBuffer[4] * _amplitudeScale * 0.015f));
         }
         else
         {

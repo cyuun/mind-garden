@@ -31,6 +31,7 @@ public class SpleeterProcess : MonoBehaviour
             else
             {
                 inputSongPath = AssetDatabase.GetAssetPath(inputSong);
+                print(inputSongPath);
             }
 
             //Use Regex to parse out illegal characters
