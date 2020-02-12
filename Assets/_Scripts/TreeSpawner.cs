@@ -14,7 +14,7 @@ public class TreeSpawner : MonoBehaviour
     public float spawnRadiusMax;
     [Range(1,20)]
     public int treesMin,treesMax;
-    float treeSeparation;
+    public float treeSeparation;
 
     void Start()
     {
@@ -48,7 +48,7 @@ public class TreeSpawner : MonoBehaviour
             Vector3 offset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(spawnRadiusMin, spawnRadiusMax);
             Vector3 pos = transform.position + offset;
             pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
-
+            Vector3 treePos = pos;
 
             for (int i = 0; i < numOfTrees; i++)
             {
@@ -79,23 +79,18 @@ public class TreeSpawner : MonoBehaviour
                 }
 
                 //Get/Set position
-                Vector3 treePos = GetTreePos();
-                treePos.y += yOffset;
+                treePos = GetTreePos(treePos);
+                treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z);
                 GameObject myTree = Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
             }
         }
 
     }
 
-    Vector3 GetTreePos()
+    public Vector3 GetTreePos(Vector3 startPos)
     {
-        Vector3 offsetFromOrb = Vector3.zero;
-        while (offsetFromOrb.magnitude < spawnRadiusMin)
-        {
-            offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnRadiusMax);
-        }
-        Vector3 pos = transform.position + offsetFromOrb;
-        pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+        Vector3 treeOffset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * treeSeparation;
+        Vector3 pos = startPos + treeOffset;
         return pos;
     }
 

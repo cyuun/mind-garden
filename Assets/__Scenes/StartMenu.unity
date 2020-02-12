@@ -514,6 +514,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fcea28647d5d5c34a94cad87fa36f37c, type: 2}
+    - target: {fileID: 5959359900872473113, guid: 5ac873923bfbe9b439c445c573e16527,
+        type: 3}
+      propertyPath: paintColors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959359900872473113, guid: 5ac873923bfbe9b439c445c573e16527,
+        type: 3}
+      propertyPath: textureResolution
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5959359900872473114, guid: 5ac873923bfbe9b439c445c573e16527,
         type: 3}
       propertyPath: m_Name

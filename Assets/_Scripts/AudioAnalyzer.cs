@@ -45,7 +45,7 @@ public class AudioAnalyzer : MonoBehaviour
 
     void OnBeat(Beat beat)
     {
-        Debug.Log(beat.bpm);
+        //Debug.Log(beat.bpm);
     }
 
     void OnDestroy()
