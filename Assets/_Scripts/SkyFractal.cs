@@ -26,7 +26,7 @@ public class SkyFractal : MonoBehaviour
     public void ChangeOutline()
     {
         if(currentOutline) currentOutline.SetActive(false);
-        if (outline_N >= outlineList.Count) outline_N = outlineList.Count;
+        if (outline_N >= outlineList.Count || outline_N < 0) outline_N = 0;
         currentOutline = outlineList[outline_N];
         currentOutline.SetActive(true);
         outline_N++;

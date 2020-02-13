@@ -141,13 +141,12 @@ public class OrbScript : MonoBehaviour
         {
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
-            SkyFractal.S.outlineIndex++;
-            if (target != other.transform) SkyFractal.S.ChangeOutline(SkyFractal.S.outlineIndex);
+            if (target != other.transform && following) SkyFractal.S.ChangeOutline();
             target = other.transform;
         }
         else if (other.tag == "Player")
         {
-            target = other.transform;
+            if (!following) target = other.transform;
             ToggleParticles();
             ToggleFollow();
         }
