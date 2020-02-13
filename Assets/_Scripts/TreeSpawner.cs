@@ -97,19 +97,16 @@ public class TreeSpawner : MonoBehaviour
                     {
                         if (c.name.Contains("Sphere"))
                         {
-                            print(c.transform.parent.name);
                             hitRock = true;
                             break;
                         }
                         else if (c.name.Contains("Pond"))
                         {
-                            print("Pondfound");
                             hitPond = true;
                             break;
                         }
                         else if (c.gameObject.tag == "Trees")
                         {
-                            print("Treee");
                             hitTree = true;
                             break;
                         }
