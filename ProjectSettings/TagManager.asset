@@ -8,6 +8,7 @@ TagManager:
   - Pond
   - Rocks
   - Trees
+  - Creatures
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Rocks
   - Trees
   - Orbs
-  - 
+  - Creatures
   - 
   - 
   - 

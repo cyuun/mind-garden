@@ -56,6 +56,9 @@ public class TreeSpawner : MonoBehaviour
                 bool hitRock = true;
                 bool hitPond = true;
                 bool hitTree = true;
+                bool onTerrain = false;
+                bool inHead = false;
+
                 //Select random rock prefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
                 if (tree.GetComponent<smallTree>())
@@ -89,6 +92,8 @@ public class TreeSpawner : MonoBehaviour
                     hitRock = false;
                     hitPond = false;
                     hitTree = false;
+                    onTerrain = false;
+                    inHead = false;
 
                     treePos = GetTreePos(treePos);
                     treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z);
@@ -110,9 +115,19 @@ public class TreeSpawner : MonoBehaviour
                             hitTree = true;
                             break;
                         }
+
+                        if (c.name.Contains("Terrain"))
+                        {
+                            onTerrain = true;
+                        }
+                        if (c.name.Contains("Head"))
+                        {
+                            inHead = true;
+                        }
                     }
                 }
-                GameObject myTree = Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
+
+                if(onTerrain && !inHead) Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
             }
         }
 

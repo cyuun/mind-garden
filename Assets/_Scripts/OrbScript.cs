@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
-    PlayerScript player;
     AudioPeer audioPeer;
-    bool fading = false;
     bool following = false;
     bool moving = false;
     bool glowing = false;
@@ -200,33 +198,5 @@ public class OrbScript : MonoBehaviour
         rb.AddForce(new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * 10);
         yield return new WaitForSeconds(1f);
         moving = false;
-    }
-
-
-    //Volume Coroutines
-    IEnumerator FadeIn()
-    {
-        audioTrack.volume = 0f;
-
-        while (audioTrack.volume < 1f)
-        {
-            audioTrack.volume += Time.deltaTime;
-            yield return null;
-        }
-        fading = false;
-    }
-
-    IEnumerator FadeOut()
-    {
-        audioTrack.volume = 1f;
-
-        while (audioTrack.volume > 0f)
-        {
-            audioTrack.volume -= Time.deltaTime;
-            yield return null;
-
-        }
-        fading = false;
-
     }
 }

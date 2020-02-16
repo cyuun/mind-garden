@@ -15,6 +15,8 @@ public class GlobalFlock3 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        transform.position = ResetYPosition(transform.position);
+
         for (int i = 0; i < numBugs; i++)
         {
             Vector3 pos = new Vector3(
@@ -23,7 +25,7 @@ public class GlobalFlock3 : MonoBehaviour
                 Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
             allBugs[i]= (GameObject)Instantiate(
-                bugPrefab, pos, Quaternion.identity);
+                bugPrefab, pos, Quaternion.identity, this.transform);
         }
     }
 
@@ -44,5 +46,13 @@ public class GlobalFlock3 : MonoBehaviour
             );
             goalPrefab.transform.position = goalPos;
         }
+    }
+
+    Vector3 ResetYPosition(Vector3 pos)
+    {
+        Vector3 Ypos = pos;
+        Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
+        pos = Ypos;
+        return pos;
     }
 }

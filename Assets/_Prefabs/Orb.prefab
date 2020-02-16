@@ -194,8 +194,8 @@ MonoBehaviour:
   - {fileID: 155815463140263726, guid: 2cfaa6cbe5b6a424283beb86137068eb, type: 3}
   - {fileID: 264849990880409440, guid: 3e6ffb21e7dd10547aa049d4aa2294ac, type: 3}
   spawnRadiusMin: 10
-  spawnRadiusMax: 70
-  numOfRocks: 20
+  spawnRadiusMax: 45
+  numOfRocks: 15
   scaleMin: 1
   scaleMax: 2
 --- !u!114 &2680342850224791886
@@ -215,11 +215,11 @@ MonoBehaviour:
   - {fileID: 7165674503626625641, guid: 896db407b5fb2254bb3c7c7752768f70, type: 3}
   - {fileID: 3380717346346703054, guid: f5bb678c22e579b49994f0a459a22e02, type: 3}
   - {fileID: 3083904824110930829, guid: edc482bd4e35fc544adf9fba52eb18e0, type: 3}
-  forestCount: 7
-  spawnRadiusMax: 70
+  forestCount: 8
+  spawnRadiusMax: 55
   treesMin: 3
-  treesMax: 13
-  treeSeparation: 7
+  treesMax: 6
+  treeSeparation: 4
 --- !u!1 &2917131535532204839
 GameObject:
   m_ObjectHideFlags: 0

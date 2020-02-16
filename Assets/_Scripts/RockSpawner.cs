@@ -45,6 +45,8 @@ public class RockSpawner : MonoBehaviour
         {
             bool hitRock = true;
             bool hitPond = true;
+            bool onTerrain = false;
+            bool inHead = false;
 
             //Select random rock prefab
             GameObject selectedRock = rockPrefabs[Random.Range(0, rockPrefabs.Length)];
@@ -55,6 +57,8 @@ public class RockSpawner : MonoBehaviour
             {
                 hitRock = false;
                 hitPond = false;
+                onTerrain = false;
+                inHead = false;
 
                 rockPos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
                 rockPos.y = TerrainScript.S.GetTerrainHeight(rockPos.x, rockPos.z);
@@ -70,15 +74,25 @@ public class RockSpawner : MonoBehaviour
                         hitPond = true;
                         break;
                     }
+
+                    if (c.name.Contains("Terrain"))
+                    {
+                        onTerrain = true;
+                    }
+                    if (c.name.Contains("Head"))
+                    {
+                        inHead = true;
+                    }
                 }
             }
 
-            GameObject myRock = Instantiate(selectedRock, rockPos, Random.rotation, ROCK_PARENT);
-            //Resize
-            float scale = Random.Range(scaleMin, scaleMax);
-            myRock.transform.localScale *= scale;
-
-
+            if(onTerrain && !inHead)
+            {
+                GameObject myRock = Instantiate(selectedRock, rockPos, Random.rotation, ROCK_PARENT);
+                //Resize
+                float scale = Random.Range(scaleMin, scaleMax);
+                myRock.transform.localScale *= scale;
+            }
         }
     }
 }

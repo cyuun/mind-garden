@@ -12,9 +12,14 @@ public class GlobalFlock : MonoBehaviour
     public static GameObject[] allBugs = new GameObject[numBugs];
     public static Vector3 goalPos = Vector3.zero;
 
+    bool hitRock = false;
+
     // Use this for initialization
     void Start()
     {
+
+        transform.position = ResetYPosition(transform.position);
+
         for (int i = 0; i < numBugs; i++)
         {
             Vector3 pos = new Vector3(
@@ -23,20 +28,27 @@ public class GlobalFlock : MonoBehaviour
                 Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
             allBugs[i]= (GameObject)Instantiate(
-                bugPrefab, pos, Quaternion.identity);
+                bugPrefab, pos, Quaternion.identity, this.transform);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         HandleGoalPos();
+
+        foreach(GameObject bug in allBugs)
+        {
+            bug.transform.position = ResetYPosition(bug.transform.position);
+        }
     }
 
     void HandleGoalPos()
     {
         if (Random.Range(1, 5000) < 50)
         {
+            hitRock = false;
             goalPos = new Vector3(
                 Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
                 transform.position.y,
@@ -44,5 +56,13 @@ public class GlobalFlock : MonoBehaviour
             );
             goalPrefab.transform.position = goalPos;
         }
+    }
+
+    Vector3 ResetYPosition(Vector3 pos)
+    {
+        Vector3 Ypos = pos;
+        Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
+        pos = Ypos;
+        return pos;
     }
 }
