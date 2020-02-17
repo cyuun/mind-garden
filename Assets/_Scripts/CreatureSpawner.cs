@@ -5,17 +5,21 @@ using UnityEngine;
 public class CreatureSpawner : MonoBehaviour
 {
     public static Transform CREATURE_PARENT;
+    public bool useAsParent = false;
     public GameObject[] prefabs;
 
     const int spawnRadiusMin = 15;
     [Range(16, 100)]
     public float spawnRadiusMax;
-    [Range(1, 20)]
+    [Range(1, 30)]
     public int minSpawn, maxSpawn;
+
+    public bool flying;
     public float yOffset;
 
     void Start()
     {
+        if (useAsParent) CREATURE_PARENT = this.transform;
         if (CREATURE_PARENT == null)
         {
             GameObject go = new GameObject("_CreatureParent");
@@ -40,9 +44,19 @@ public class CreatureSpawner : MonoBehaviour
         for(int i = 0; i < spawnCount; i++)
         {
             GameObject creature = prefabs[Random.Range(0, prefabs.Length)];
-
-            Vector3 pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin,spawnRadiusMax));
-            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z) + yOffset;
+            Vector3 pos;
+            if (flying)
+            {
+                float yValue = Random.insideUnitSphere.y;
+                if (yValue < 0) yValue *= -1;
+                pos = transform.position + (new Vector3(Random.insideUnitSphere.x, yValue, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
+                pos.y += yOffset;
+            }
+            else
+            {
+                pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
+                pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z) + yOffset;
+            }
             creature = Instantiate(creature, pos, Quaternion.identity, CREATURE_PARENT);
         }
     }

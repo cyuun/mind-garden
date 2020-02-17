@@ -107,6 +107,7 @@ public class OrbScript : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Mouse0) && _interactable)
             {
                 target = PlayerScript.S.transform;
+                ChangePlayerColors();
                 ToggleParticles();
                 ToggleFollow();
                 glow.Stop();
@@ -127,16 +128,11 @@ public class OrbScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        string tag = collision.gameObject.tag;
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pond")
+        if (other.tag == "Pond" && following)
         {
+            following = false;
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             if (target != other.transform && following) SkyFractal.S.ChangeOutline();
@@ -145,13 +141,16 @@ public class OrbScript : MonoBehaviour
         else if (other.tag == "Player")
         {
             if (!following) target = other.transform;
+            ChangePlayerColors();
             ToggleParticles();
             ToggleFollow();
+            glow.Stop();
+            glowing = false;
         }
         else if (other.tag == "Rocks")
         {
             Vector3 pos = transform.position;
-            pos.y = other.transform.position.y + y_offset;
+            pos.y = other.transform.position.y + other.GetComponent<Rock>().radius;
             transform.position = pos;
         }
         else if (other.tag == "Tree" && !following)
@@ -191,6 +190,18 @@ public class OrbScript : MonoBehaviour
     void ToggleFollow()
     {
         following = true;
+    }
+
+    public void ChangePlayerColors()
+    {
+        Color[] colors = TerrainScript.S.paintColors;
+        List<Color> colorList = new List<Color>();
+        for(int i = 0; i < colors.Length; i++)
+        {
+            Color c = _colorGrad.Evaluate(Random.Range(0f, 1f));
+            colorList.Add(c);
+        }
+        TerrainScript.S.paintColors = colorList.ToArray();
     }
 
     IEnumerator MoveOrb()

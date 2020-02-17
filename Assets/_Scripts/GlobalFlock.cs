@@ -47,13 +47,24 @@ public class GlobalFlock : MonoBehaviour
     void HandleGoalPos()
     {
         if (Random.Range(1, 5000) < 50)
-        {
-            hitRock = false;
-            goalPos = new Vector3(
-                Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
-                transform.position.y,
-                Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
-            );
+        {/*
+            hitRock = true;
+            while (hitRock)
+            {
+                hitRock = false;*/
+                goalPos = new Vector3(
+                    Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
+                    transform.position.y,
+                    Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
+                );
+                /*foreach (Collider c in Physics.OverlapSphere(goalPos, 1f))
+                {
+                    if (c.name.Contains("Sphere"))
+                    {
+                        hitRock = true;
+                    }
+                }
+            }*/
             goalPrefab.transform.position = goalPos;
         }
     }

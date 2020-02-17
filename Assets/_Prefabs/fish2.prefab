@@ -273,4 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9e68cfae5b4e54586c0de6db726519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicMultiplier: 1
+  audioPeer: {fileID: 0}
+  musicMultiplier: 3
+  maxSpeed: 3

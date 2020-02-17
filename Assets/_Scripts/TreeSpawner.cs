@@ -59,7 +59,7 @@ public class TreeSpawner : MonoBehaviour
                 bool onTerrain = false;
                 bool inHead = false;
 
-                //Select random rock prefab
+                //Select random treefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
                 if (tree.GetComponent<smallTree>())
                 {

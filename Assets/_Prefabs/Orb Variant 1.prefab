@@ -45,12 +45,32 @@ PrefabInstance:
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: _colorGrad.key1.b
-      value: 0.042179585
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: _colorGrad.ctime0
-      value: 6554
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: _colorGrad.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: _colorGrad.key1.g
+      value: 0.9370694
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: _colorGrad.ctime1
+      value: 33924
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: _colorGrad.ctime2
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 6840967919961292512, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}

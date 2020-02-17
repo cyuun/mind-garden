@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7524830474678892871}
   - component: {fileID: 7524830474678892864}
   m_Layer: 0
-  m_Name: waterbox
+  m_Name: PondWater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

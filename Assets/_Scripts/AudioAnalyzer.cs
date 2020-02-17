@@ -45,7 +45,11 @@ public class AudioAnalyzer : MonoBehaviour
         segments.Clear();
         rhythmData.GetFeatures<Beat>(beats, prevTime, time);
         segmenter.GetFeatures(segments, prevTime, time);
-        if (segments.Count > 0) SkyFractal.S.ChangeOutline();
+        if (segments.Count > 0) //Implement Segment change functions here
+        {
+            if (SkyFractal.S) SkyFractal.S.ChangeOutline();
+            if (MainSpawner.S)  MainSpawner.S.ChangeSpawner();
+        }
 
         prevTime = time;
     }
