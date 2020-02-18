@@ -21,6 +21,8 @@ public class HeadScript : MonoBehaviour
         {
             AdjustMaxVerticesHeight(3);
         }
+        
+        ColorController.S.SetActiveHead(this.gameObject);
     }
 
     void Update()
