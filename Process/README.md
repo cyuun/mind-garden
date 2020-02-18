@@ -4,6 +4,12 @@ Mind's Garden is a first person musical exploration game which reads in audio fi
 ---
 ## Week 5
 February 11 - 18
+### Enhanced Randomization
+To add more variability to the world, we began playing around with randomized values for certain things like the shape of the skyfractal and terrain. This involved some trial and error to narrow down what range of values should be used for any given parameter; without these constraints the objects were liable to become too "chaotic" with the randomized parameters. Randomization ensures that every time players enter the game, they'll be presented with a brand new experience built around the song they selected.
+
+### Improved Spawning and Brought in Creatures
+One tricky aspect of procedurally spawning in prefabs is making sure that nothing overlaps and everything ends up where it's supposed to. This means no trees sticking out of rocks or spawning outside the bounds of the head. We worked on improving this spawning algorithm to ensure this doesn't happen. The same goes for the creatures, but depending on the creatures behavior (flocking, flying, or stationary) other methods must be used to guarantee that they don't phase through rocks or the terrain itself.
+
 ### Color Palettes and Underwater Biome
 We decided on set color palettes for the whole game and set them out- 6 palettes with ~75 colors each. We labeled what each color should be for (bug body, grass, rock 1-5, etc.) and are in the process of implementing color switching from palette to palette as well as spawning objects of one palette based on song values. We also got a great start on our second biome- underwater. With three animated plants (both to-music animations and spawn animations), we should be ready to start and finish our other two biomes. 
 ![Underwater](Resources/underwater.gif "Underwater")
