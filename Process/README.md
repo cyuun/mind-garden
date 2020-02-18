@@ -10,10 +10,13 @@ To add more variability to the world, we began playing around with randomized va
 ### Improved Spawning and Brought in Creatures
 One tricky aspect of procedurally spawning in prefabs is making sure that nothing overlaps and everything ends up where it's supposed to. This means no trees sticking out of rocks or spawning outside the bounds of the head. We worked on improving this spawning algorithm to ensure this doesn't happen. The same goes for the creatures, but depending on the creatures behavior (flocking, flying, or stationary) other methods must be used to guarantee that they don't phase through rocks or the terrain itself.
 
-### Color Palettes and Underwater Biome
-We decided on set color palettes for the whole game and set them out- 6 palettes with ~75 colors each. We labeled what each color should be for (bug body, grass, rock 1-5, etc.) and are in the process of implementing color switching from palette to palette as well as spawning objects of one palette based on song values. We also got a great start on our second biome- underwater. With three animated plants (both to-music animations and spawn animations), we should be ready to start and finish our other two biomes. 
+### Underwater Biome
+We also got a great start on our second biome- underwater. With three animated plants (both to-music animations and spawn animations), we should be ready to start and finish our other two biomes. 
 ![Underwater](Resources/underwater.gif "Underwater")
 
+### Color Palettes
+Along with switching assets to give the feeling of a different biome, another way we're trying to make each play throug vastly different from another is by using color palettes that are consistent within each song, but switch palettes from one song to another. With so many asseets and so many colors to change, each palette contains more than 75 colors each, and they're still growing as the game develops further. We had to create a large system to label what each color should be for (bug body, grass, rock 1-5, etc.) and actually connect those colors to those objects in the game. With the new color system, the colors of the objects now respond to the song just like their movements.
+![An short screen recording showing objects' colors responding to the beat](Resources/mindsgarden-colorswitching.gif)
 ---
 ## Mentor Feedback
 February 11
