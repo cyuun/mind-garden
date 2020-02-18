@@ -17,6 +17,7 @@ We also got a great start on our second biome- underwater. With three animated p
 ### Color Palettes
 Along with switching assets to give the feeling of a different biome, another way we're trying to make each play throug vastly different from another is by using color palettes that are consistent within each song, but switch palettes from one song to another. With so many asseets and so many colors to change, each palette contains more than 75 colors each, and they're still growing as the game develops further. We had to create a large system to label what each color should be for (bug body, grass, rock 1-5, etc.) and actually connect those colors to those objects in the game. With the new color system, the colors of the objects now respond to the song just like their movements.
 ![A short screen recording showing objects' colors responding to the beat](Resources/mindsgarden-colorswitching.gif "Color Switching")
+
 ---
 ## Mentor Feedback
 February 11
