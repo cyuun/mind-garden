@@ -21,8 +21,8 @@ public class HeadScript : MonoBehaviour
         {
             AdjustMaxVerticesHeight(3);
         }
-        
-        ColorController.S.SetActiveHead(this.gameObject);
+
+        StartCoroutine("DelayedActivate");
     }
 
     void Update()
@@ -81,5 +81,12 @@ public class HeadScript : MonoBehaviour
     private bool CompareFloats(float f1, float f2, float tolerance)
     {
         return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
+    }
+
+    private IEnumerator DelayedActivate()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        ColorController.S.SetActiveHead(this.gameObject);
     }
 }
