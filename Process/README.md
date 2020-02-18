@@ -2,6 +2,13 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 5
+February 11 - 18
+### Color Palettes and Underwater Biome
+We decided on set color palettes for the whole game and set them out- 6 palettes with ~75 colors each. We labeled what each color should be for (bug body, grass, rock 1-5, etc.) and are in the process of implementing color switching from palette to palette as well as spawning objects of one palette based on song values. We also got a great start on our second biome- underwater. With three animated plants (both to-music animations and spawn animations), we should be ready to start and finish our other two biomes. 
+![Underwater](Resources/underwater.gif "Underwater")
+
+---
 ## Mentor Feedback
 February 11
 
