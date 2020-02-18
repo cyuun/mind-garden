@@ -59,11 +59,6 @@ public class SpleeterProcess : MonoBehaviour
 
             LoadSongTracks();
         }
-        else
-        {
-            //inputSongPath = AssetDatabase.GetAssetPath(inputSong); //Remove in actual build
-
-        }
 
         //Play
         if (playOnAwake)

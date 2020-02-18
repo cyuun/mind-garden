@@ -815,7 +815,7 @@ PrefabInstance:
     - target: {fileID: 6695551261796708264, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6695551261796708264, guid: 3520b67c802abd84d8d12ce9369b3f49,
         type: 3}
@@ -1064,7 +1064,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1836192985 stripped
 MonoBehaviour:
@@ -1095,6 +1095,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 622096008652801013, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c631c612fa66fe946b9411210a21c1de, type: 3}
     - target: {fileID: 731391200842632710, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
@@ -1125,7 +1130,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 4b067f745acebcf44b77428daeab0908, type: 3}
+      objectReference: {fileID: 8300000, guid: a687f5bb575a0cd42805f4e45074a3e0, type: 3}
     - target: {fileID: 1328713567652061592, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1141,11 +1146,21 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1826924838045232967, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a8307c58258b39441a8d5b22cb2db9a9, type: 3}
     - target: {fileID: 2005747188495247120, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2005747188495247120, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a05a66ec330a5c94fbe315cf36e9aac7, type: 3}
     - target: {fileID: 2134540744059496990, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_Name
@@ -1194,7 +1209,7 @@ PrefabInstance:
     - target: {fileID: 2134540744059496991, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2134540744059496991, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
@@ -1215,7 +1230,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inputSong
       value: 
-      objectReference: {fileID: 8300000, guid: 4b067f745acebcf44b77428daeab0908, type: 3}
+      objectReference: {fileID: 8300000, guid: a687f5bb575a0cd42805f4e45074a3e0, type: 3}
     - target: {fileID: 2134540744059497184, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: callSpleeter
@@ -1286,7 +1301,7 @@ PrefabInstance:
     - target: {fileID: 4179542816109028939, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4522710499306575664, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
@@ -1314,6 +1329,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6626090287354774128, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 52c99416d0cccf34a85995b4fd98c09c, type: 3}
     - target: {fileID: 7896321116369311413, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: targets.Array.size
