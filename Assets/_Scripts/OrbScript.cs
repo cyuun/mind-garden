@@ -130,12 +130,11 @@ public class OrbScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pond" && following)
+        if (other.tag == "Pond")
         {
-            following = false;
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
-            if (target != other.transform && following) SkyFractal.S.ChangeOutline();
+            SkyFractal.S.ChangeOutline();
             target = other.transform;
         }
         else if (other.tag == "Player")

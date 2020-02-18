@@ -13,12 +13,14 @@ public class AudioAnalyzer : MonoBehaviour
     private float prevTime;
     private RhythmPlayer songPlayer;
     private List<Beat> beats;
+    private List<Onset> onsets;
     private List<Value> segments;
     private Track<Value> segmenter;
 
     void Awake()
     {
         beats = new List<Beat>();
+        onsets = new List<Onset>();
         segments = new List<Value>();
     }
 
@@ -30,10 +32,10 @@ public class AudioAnalyzer : MonoBehaviour
 
         songPlayer = audioSource.GetComponent<RhythmPlayer>();
         eventProvider.Register<Beat>(OnBeat);
+        eventProvider.Register<Onset>(OnOnset);
         eventProvider.Register<Value>(OnSegment);
         rhythmData = analyzer.Analyze(audioSource.clip);
         songPlayer.rhythmData = rhythmData;
-        Track<Beat> beatTrack = rhythmData.GetTrack<Beat>();
         segmenter = rhythmData.GetTrack<Value>("Segments");
     }
 
@@ -42,6 +44,7 @@ public class AudioAnalyzer : MonoBehaviour
     {
         float time = audioSource.time;
         beats.Clear();
+        onsets.Clear();
         segments.Clear();
         rhythmData.GetFeatures<Beat>(beats, prevTime, time);
         segmenter.GetFeatures(segments, prevTime, time);
@@ -59,6 +62,11 @@ public class AudioAnalyzer : MonoBehaviour
         //Debug.Log(beat.bpm);
     }
 
+    void OnOnset(Onset onset)
+    {
+        smallTree.ShakeAllTrees();
+    }
+
     void OnSegment(Value val)
     {
         //print(val.value);
@@ -67,6 +75,7 @@ public class AudioAnalyzer : MonoBehaviour
     void OnDestroy()
     {
         eventProvider.Unregister<Beat>(OnBeat);
+        eventProvider.Unregister<Onset>(OnOnset);
         eventProvider.Unregister<Value>(OnSegment);
     }
 }

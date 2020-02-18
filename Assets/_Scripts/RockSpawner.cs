@@ -64,7 +64,7 @@ public class RockSpawner : MonoBehaviour
                 rockPos.y = TerrainScript.S.GetTerrainHeight(rockPos.x, rockPos.z);
                 foreach (Collider c in Physics.OverlapSphere(rockPos, 3f))
                 {
-                    if (c.name.Contains("Sphere"))
+                    if (c.name.Contains("Sphere") || c.name.Contains("Orb"))
                     {
                         hitRock = true;
                         break;
