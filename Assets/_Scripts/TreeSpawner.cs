@@ -83,6 +83,27 @@ public class TreeSpawner : MonoBehaviour
                     t.spawner = this;
                     yOffset = t.y_offset;
                 }
+                else if (tree.GetComponent<underwaterPlantBig>())
+                {
+                    underwaterPlantBig t = tree.GetComponent<underwaterPlantBig>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+                else if (tree.GetComponent<underwaterPlantSmall>())
+                {
+                    underwaterPlantSmall t = tree.GetComponent<underwaterPlantSmall>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+                else if (tree.GetComponent<underwaterPlantSpeed>())
+                {
+                    underwaterPlantSpeed t = tree.GetComponent<underwaterPlantSpeed>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
 
                 //Get/Set position
                 treePos = GetTreePos(treePos);

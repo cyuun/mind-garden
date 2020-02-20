@@ -215,6 +215,9 @@ MonoBehaviour:
   - {fileID: 7165674503626625641, guid: 896db407b5fb2254bb3c7c7752768f70, type: 3}
   - {fileID: 3380717346346703054, guid: f5bb678c22e579b49994f0a459a22e02, type: 3}
   - {fileID: 3083904824110930829, guid: edc482bd4e35fc544adf9fba52eb18e0, type: 3}
+  - {fileID: 5340920554388262001, guid: b044b30a12588be4193b7b5a9cb93ed1, type: 3}
+  - {fileID: 2372165338508242987, guid: 4bc2b6f453ebfd44ea1eff7aa366e43f, type: 3}
+  - {fileID: 5995000744484830056, guid: ec2c8b93b8ee299489835e87f339af28, type: 3}
   forestCount: 8
   spawnRadiusMax: 55
   treesMin: 3
