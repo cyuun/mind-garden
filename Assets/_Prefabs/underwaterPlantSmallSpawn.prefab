@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4496112799438494634}
   - component: {fileID: 8872040737866958824}
   - component: {fileID: 8872040738844169073}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: underwaterPlantSmallSpawn
-  m_TagString: Untagged
+  m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b202c18edd063984b83752e63a706f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 0}
+  spawner: {fileID: 0}
+  y_offset: 0
   piece1: {fileID: 7293674651390681387}
   piece2: {fileID: 6710097850996187944}
   piece3: {fileID: 6970153365899941439}
@@ -92,7 +95,7 @@ GameObject:
   - component: {fileID: 1501327957034592510}
   - component: {fileID: 4130445071623798573}
   - component: {fileID: 6584515547486638304}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +174,7 @@ GameObject:
   - component: {fileID: 43875623114795819}
   - component: {fileID: 5542910576256464630}
   - component: {fileID: 1155738553815844297}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +253,7 @@ GameObject:
   - component: {fileID: 5128350403599961338}
   - component: {fileID: 5642558159563193210}
   - component: {fileID: 5885413500878340687}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +332,7 @@ GameObject:
   - component: {fileID: 8233421725368786916}
   - component: {fileID: 2923723829219280351}
   - component: {fileID: 3673542757087488463}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +411,7 @@ GameObject:
   - component: {fileID: 6231301393286189680}
   - component: {fileID: 8509080347451083402}
   - component: {fileID: 7149884410425303652}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +490,7 @@ GameObject:
   - component: {fileID: 4826620600484995396}
   - component: {fileID: 1928938521076012328}
   - component: {fileID: 3075638784789090266}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +569,7 @@ GameObject:
   - component: {fileID: 2763508680225647890}
   - component: {fileID: 2015886231510807259}
   - component: {fileID: 1775312344004477514}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +648,7 @@ GameObject:
   - component: {fileID: 7758945033718882666}
   - component: {fileID: 8454155077013752937}
   - component: {fileID: 975940616985055604}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +727,7 @@ GameObject:
   - component: {fileID: 5088967767244184628}
   - component: {fileID: 3705528274129761879}
   - component: {fileID: 3790480283348060638}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder011
   m_TagString: Untagged
   m_Icon: {fileID: 0}

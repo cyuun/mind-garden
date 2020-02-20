@@ -58,6 +58,7 @@ public class TreeSpawner : MonoBehaviour
                 bool hitTree = true;
                 bool onTerrain = false;
                 bool inHead = false;
+                bool tooSteep = false;
 
                 //Select random treefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
@@ -107,17 +108,23 @@ public class TreeSpawner : MonoBehaviour
 
                 //Get/Set position
                 treePos = GetTreePos(treePos);
-                treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z);
-                while (hitRock || hitPond || hitTree)
+                treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
+                while (hitRock || hitPond || hitTree || inHead || !onTerrain|| tooSteep)
                 {
                     hitRock = false;
                     hitPond = false;
                     hitTree = false;
                     onTerrain = false;
                     inHead = false;
+                    tooSteep = false;
 
                     treePos = GetTreePos(treePos);
-                    treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z);
+                    treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
+                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 8) > 45f)
+                    {
+                        tooSteep = true;
+                        break;
+                    }
 
                     foreach (Collider c in Physics.OverlapSphere(treePos, treeSeparation))
                     {
@@ -137,18 +144,22 @@ public class TreeSpawner : MonoBehaviour
                             break;
                         }
 
-                        if (c.name.Contains("Terrain"))
-                        {
-                            onTerrain = true;
-                        }
                         if (c.name.Contains("Head"))
                         {
                             inHead = true;
                         }
                     }
+
+                    foreach (Collider c in Physics.OverlapSphere(treePos, 1f))
+                    {
+                        if (c.name.Contains("Terrain"))
+                        {
+                            onTerrain = true;
+                        }
+                    }
                 }
 
-                if(onTerrain && !inHead) Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
+                if (onTerrain) Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
             }
         }
 
@@ -156,7 +167,7 @@ public class TreeSpawner : MonoBehaviour
 
     public Vector3 GetTreePos(Vector3 startPos)
     {
-        Vector3 treeOffset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * treeSeparation;
+        Vector3 treeOffset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * treeSeparation;
         Vector3 pos = startPos + treeOffset;
         return pos;
     }
