@@ -59,7 +59,7 @@ public class AudioAnalyzer : MonoBehaviour
 
     void OnBeat(Beat beat)
     {
-        //Debug.Log(beat.bpm);
+        ColorController.S.ChangeColors();
     }
 
     void OnOnset(Onset onset)
