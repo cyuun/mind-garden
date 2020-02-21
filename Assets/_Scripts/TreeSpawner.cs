@@ -15,6 +15,8 @@ public class TreeSpawner : MonoBehaviour
     [Range(1,20)]
     public int treesMin,treesMax;
     public float treeSeparation;
+    [Range(30, 60)]
+    public float maxSlope;
 
     void Start()
     {
@@ -120,7 +122,7 @@ public class TreeSpawner : MonoBehaviour
 
                     treePos = GetTreePos(treePos);
                     treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 8) > 45f)
+                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 8) > maxSlope)
                     {
                         tooSteep = true;
                         break;
@@ -159,7 +161,7 @@ public class TreeSpawner : MonoBehaviour
                     }
                 }
 
-                if (onTerrain) Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
+                if (onTerrain && !inHead) Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
             }
         }
 

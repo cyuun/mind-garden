@@ -78,4 +78,22 @@ public class AudioAnalyzer : MonoBehaviour
         eventProvider.Unregister<Onset>(OnOnset);
         eventProvider.Unregister<Value>(OnSegment);
     }
+
+    public float GetBPM()
+    {
+        float t0 = audioSource.clip.length / 4;
+        float t1 = audioSource.clip.length * 3 / 4;
+        List<Beat> allBeats = new List<Beat>();
+        rhythmData.GetFeatures<Beat>(allBeats, t0, t1);
+        float BPM = 0f;
+        if(allBeats.Count > 0)
+        {
+            foreach (Beat b in allBeats)
+            {
+                BPM += b.bpm;
+            }
+            BPM /= allBeats.Count;
+        }
+        return BPM;
+    }
 }

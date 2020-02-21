@@ -330,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerPrefabs:
   - {fileID: 8556276778082045513, guid: bdedfb8156ac53b4ba2a78589f0b2114, type: 3}
+  - {fileID: 9007867153285621905, guid: f2d9abe54592da9409f1c61681dfcf0c, type: 3}
   selectedSpawner: {fileID: 0}
 --- !u!1001 &237676288
 PrefabInstance:
@@ -1041,7 +1042,7 @@ Transform:
   m_LocalScale: {x: 13, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1086622293 stripped
 GameObject:
@@ -1381,7 +1382,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 4b067f745acebcf44b77428daeab0908, type: 3}
+      objectReference: {fileID: 8300000, guid: 2c555ea3398f0f4499dbe1066de1645f, type: 3}
+    - target: {fileID: 1328713567652061592, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: 1652251743343101451, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: rotationSpeed
@@ -1476,7 +1482,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inputSong
       value: 
-      objectReference: {fileID: 8300000, guid: 2d45a0456006e2945a01d72067623013, type: 3}
+      objectReference: {fileID: 8300000, guid: 2c555ea3398f0f4499dbe1066de1645f, type: 3}
     - target: {fileID: 2134540744059497184, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: callSpleeter

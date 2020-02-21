@@ -117,7 +117,7 @@ public class TerrainScript : MonoBehaviour
             
             int thetaIndex = FindPondIndex(theta, _pond.Length);
 
-            if (thetaIndex != -1)
+            if (thetaIndex != -1 && thetaIndex < 360)
             {
                 if (r <= _pond[thetaIndex])
                 {

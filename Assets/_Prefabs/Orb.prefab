@@ -212,16 +212,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPeer: {fileID: 4547690792564925864}
   treePrefabs:
-  - {fileID: 7165674503626625641, guid: 896db407b5fb2254bb3c7c7752768f70, type: 3}
-  - {fileID: 3380717346346703054, guid: f5bb678c22e579b49994f0a459a22e02, type: 3}
-  - {fileID: 3083904824110930829, guid: edc482bd4e35fc544adf9fba52eb18e0, type: 3}
-  - {fileID: 5340920554388262001, guid: b044b30a12588be4193b7b5a9cb93ed1, type: 3}
-  - {fileID: 5995000744484830056, guid: ec2c8b93b8ee299489835e87f339af28, type: 3}
+  - {fileID: 6342247088227103673, guid: 4a7549e990306554b8f3125b59c8dd80, type: 3}
+  - {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad, type: 3}
+  - {fileID: 6751643581463402893, guid: 6de3ab89ae0c37d47a503b31423b0769, type: 3}
+  - {fileID: 6313177513431197238, guid: 1a1040f6638b8d04ba0d54311abaee0f, type: 3}
+  - {fileID: 7159435191039463455, guid: 901cd09c3a46a914eba326228fd9f4dc, type: 3}
+  - {fileID: 8238497302260076429, guid: 4e0836455ed0bf94b91a396138615ad6, type: 3}
   forestCount: 8
   spawnRadiusMax: 55
   treesMin: 3
   treesMax: 6
   treeSeparation: 4
+  maxSlope: 40
 --- !u!1 &2917131535532204839
 GameObject:
   m_ObjectHideFlags: 0

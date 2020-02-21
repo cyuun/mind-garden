@@ -11,23 +11,22 @@ public class smallTree : Tree
 
     //send signals to turn signalFromMusic to true on beats the tree should shake
     bool signalFromMusic = false;
+    bool _spawnComplete = false;
+    public bool spawnComplete { get { return _spawnComplete; } set { _spawnComplete = value; } }
 
-    private void Start()
+    private void Awake()
     {
         if (allSmallTrees == null) allSmallTrees = new List<GameObject>();
         allSmallTrees.Add(gameObject);
     }
     private void Update()
     {
-        if (_audioPeer.amplitudeSignal)
-        {
-            //shakeGameObject(0.3f, 0.1f, false);
-        }
+        
     }
 
     void shakeGameObject(float shakeDuration, float decreasePoint, bool objectIs2D = false)
     {
-        if (shaking)
+        if (shaking || !_spawnComplete)
         {
             return;
         }
@@ -40,10 +39,13 @@ public class smallTree : Tree
 
     public static void ShakeAllTrees()
     {
-        foreach(GameObject go in allSmallTrees)
+        if(allSmallTrees != null)
         {
-            smallTree tree = go.GetComponent<smallTree>();
-            tree.shakeGameObject(0.3f, 0.1f, false);
+            foreach (GameObject go in allSmallTrees)
+            {
+                smallTree tree = go.GetComponent<smallTree>();
+                tree.shakeGameObject(0.3f, 0.1f, false);
+            }
         }
     }
 

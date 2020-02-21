@@ -30,7 +30,7 @@ public class SpleeterProcess : MonoBehaviour
             }
             else
             {
-                inputSongPath = AssetDatabase.GetAssetPath(inputSong);
+                inputSongPath = AssetDatabase.GetAssetPath(inputSong); //Comment out in actual build
             }
 
             //Use Regex to parse out illegal characters
