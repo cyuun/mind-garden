@@ -22,7 +22,7 @@ public class HeadScript : MonoBehaviour
             AdjustMaxVerticesHeight(3);
         }
 
-        StartCoroutine("DelayedActivate");
+        if(ColorController.S) StartCoroutine("DelayedActivate");
     }
 
     void Update()

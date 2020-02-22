@@ -19,7 +19,7 @@ public class bigTree : Tree
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+
     }
 
     void Update()

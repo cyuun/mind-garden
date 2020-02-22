@@ -129,7 +129,7 @@ public class OrbScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pond")
+        if (other.tag == "Pond" && _interactable)
         {
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
