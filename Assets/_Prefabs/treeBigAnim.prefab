@@ -488,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8331413498881109308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.318344, y: 0.00000047683716, z: 45.300766}
+  m_LocalPosition: {x: -8.85, y: 0, z: 0}
   m_LocalScale: {x: 2.2292697, y: 2.2292697, z: 2.2292697}
   m_Children:
   - {fileID: 8331413498336780298}
@@ -511,7 +511,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: 0
-  _amplitudeScale: 0
+  _amplitudeScale: 0.25
   piece1: {fileID: 8331413498887723717}
   piece2: {fileID: 8331413498408426691}
   piece3: {fileID: 8331413498811259493}
@@ -528,7 +528,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 42d9299c76c533e47bb035e7cf1ad3b8, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

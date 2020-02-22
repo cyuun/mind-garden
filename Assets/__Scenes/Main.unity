@@ -1482,7 +1482,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inputSong
       value: 
-      objectReference: {fileID: 8300000, guid: 2c555ea3398f0f4499dbe1066de1645f, type: 3}
+      objectReference: {fileID: 8300000, guid: d7094908f235df5429560dd54d10856e, type: 3}
     - target: {fileID: 2134540744059497184, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: callSpleeter

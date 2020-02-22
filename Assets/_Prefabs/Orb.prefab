@@ -218,11 +218,13 @@ MonoBehaviour:
   - {fileID: 6313177513431197238, guid: 1a1040f6638b8d04ba0d54311abaee0f, type: 3}
   - {fileID: 7159435191039463455, guid: 901cd09c3a46a914eba326228fd9f4dc, type: 3}
   - {fileID: 8238497302260076429, guid: 4e0836455ed0bf94b91a396138615ad6, type: 3}
+  - {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad, type: 3}
+  - {fileID: 8238497302260076429, guid: 4e0836455ed0bf94b91a396138615ad6, type: 3}
   forestCount: 8
   spawnRadiusMax: 55
-  treesMin: 3
-  treesMax: 6
-  treeSeparation: 4
+  treesMin: 15
+  treesMax: 20
+  treeSeparation: 3
   maxSlope: 40
 --- !u!1 &2917131535532204839
 GameObject:

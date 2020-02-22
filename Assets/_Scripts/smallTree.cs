@@ -11,8 +11,6 @@ public class smallTree : Tree
 
     //send signals to turn signalFromMusic to true on beats the tree should shake
     bool signalFromMusic = false;
-    bool _spawnComplete = false;
-    public bool spawnComplete { get { return _spawnComplete; } set { _spawnComplete = value; } }
 
     private void Awake()
     {

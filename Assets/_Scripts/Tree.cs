@@ -8,6 +8,10 @@ public class Tree : MonoBehaviour
     public TreeSpawner spawner;
     public float y_offset;
 
+    protected bool _spawnComplete = false;
+    public bool spawnComplete { get { return _spawnComplete; } set { _spawnComplete = value; } }
+
+
     private void Awake()
     {
         //Assign audio peer

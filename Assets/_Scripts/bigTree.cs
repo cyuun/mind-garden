@@ -15,6 +15,12 @@ public class bigTree : Tree
 
     //0 is unmoving, 40 is pretty fast/kinda seizure-y
     float mainMusicVariable = 10f;
+    Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
