@@ -17,7 +17,6 @@ public class TerrainScript : MonoBehaviour
 
     //terrain generation variables
     [Header("Terrain Generation")]
-    public bool _randomizeTerrain = false;
     public float noiseScale = 1;
     public float noiseAmplitude = 1;
     public   int noiseOctaves = 1;
@@ -39,7 +38,7 @@ public class TerrainScript : MonoBehaviour
     
     //painting variables
     [Header("Painting")]
-    public int textureResolution = 2048;
+    public int textureResolution = 333;
     public float paintRadius = 5;
     public Color paintColor;
 
@@ -171,14 +170,6 @@ public class TerrainScript : MonoBehaviour
     {
         S = this;
 
-        if (_randomizeTerrain)
-        {
-            noiseScale = Random.Range(20f, 75f);
-            noiseAmplitude = Random.Range(35f, 50f);
-            noisePersistance = Random.Range(.2f, .4f);
-            noiseLacunarity = Random.Range(1f, 5f);
-        }
-        
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
         _meshRenderer = GetComponent<MeshRenderer>();
@@ -482,7 +473,7 @@ public class TerrainScript : MonoBehaviour
                     (pixelPos.y - playerPos.z) * (pixelPos.y - playerPos.z) <
                     paintRadius * paintRadius)
                 {
-                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], paintColor, 0.1f);
+                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], paintColor, 0.5f);
                 }
             }
         }
