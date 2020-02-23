@@ -60,4 +60,13 @@ public class CreatureSpawner : MonoBehaviour
             creature = Instantiate(creature, pos, Quaternion.identity, CREATURE_PARENT);
         }
     }
+
+    public void DestroySpawner()
+    {
+        foreach(Transform t in CREATURE_PARENT)
+        {
+            Destroy(t.gameObject);
+        }
+        Destroy(this.gameObject);
+    }
 }

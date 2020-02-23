@@ -30,6 +30,19 @@ public class ColorController : MonoBehaviour
 
     public void SetActiveHead(GameObject activeHead)
     {
+        _colorIndex = 0;
+        _colorBase = 0;
+
+        _rock1Renderers.Clear();
+        _rock2Renderers.Clear();
+        _rock3Renderers.Clear();
+        _rock4Renderers.Clear();
+        _rock5Renderers.Clear();
+        _trunkRenderers.Clear();
+        _tree1Renderers.Clear();
+        _tree2Renderers.Clear();
+        _tree3Renderers.Clear();
+
         _activeHead = activeHead;
         _terrain = _activeHead.transform.Find("Terrain").gameObject;
 
@@ -102,7 +115,7 @@ public class ColorController : MonoBehaviour
                     {
                         _tree2Renderers.Add(leavesRenderer);
                     }
-                    //_trunkRenderers.Add((MeshRenderer)tree.Find("P3D_DeadTree002").GetComponent<SkinnedMeshRenderer>());
+                    //_trunkRenderers.Add((MeshRenderer)tree.Find("P3D_DeadTree002").GetComponent<MeshRenderer>());
                     break;
                 
                 case "Tree3(Clone)":

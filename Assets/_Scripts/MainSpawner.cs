@@ -6,18 +6,24 @@ public class MainSpawner : MonoBehaviour
 {
     public static MainSpawner S;
 
-    public List<GameObject> spawnerPrefabs;
-    public GameObject selectedSpawner;
-    int spawnIndex;
+    public int spawnIndex;
+    public GameObject activeHead;
+
+    public Biome[] allBiomes;
+    Biome currentBiome;
 
     void Start()
     {
         if (S == null) S = this;
+        if (activeHead == null) activeHead = transform.parent.gameObject; //Keep Main Spawner as child of head
 
-        spawnIndex = Random.Range(0, spawnerPrefabs.Count);
-        selectedSpawner = spawnerPrefabs[spawnIndex];
-        selectedSpawner = Instantiate(selectedSpawner, this.transform);
+        spawnIndex = Random.Range(0, allBiomes.Length);
+        currentBiome = allBiomes[spawnIndex];
 
+        currentBiome.creatureSpawn = currentBiome.creatureSpawners[Random.Range(0, currentBiome.creatureSpawners.Count)];
+        currentBiome.creatureSpawn = Instantiate(currentBiome.creatureSpawn, this.transform);
+        currentBiome.treeSpawn = currentBiome.treeSpawners[Random.Range(0, currentBiome.treeSpawners.Count)];
+        currentBiome.treeSpawn = Instantiate(currentBiome.treeSpawn, this.transform);
     }
 
     // Update is called once per frame
@@ -31,12 +37,15 @@ public class MainSpawner : MonoBehaviour
 
     public void ChangeSpawner()
     {
-        selectedSpawner.SetActive(false);
+        currentBiome.creatureSpawn.GetComponent<CreatureSpawner>().DestroySpawner();
 
         spawnIndex++;
-        if (spawnIndex >= spawnerPrefabs.Count) spawnIndex = 0;
-        selectedSpawner = spawnerPrefabs[spawnIndex];
-        selectedSpawner = Instantiate(selectedSpawner, this.transform);
+        if (spawnIndex >= allBiomes.Length) spawnIndex = 0;
+        currentBiome = allBiomes[spawnIndex];
+
+        currentBiome.creatureSpawn = currentBiome.creatureSpawners[Random.Range(0, currentBiome.creatureSpawners.Count)];
+        currentBiome.creatureSpawn = Instantiate(currentBiome.creatureSpawn, this.transform);
+        //ColorController.S.SetActiveHead(activeHead);
 
     }
 }

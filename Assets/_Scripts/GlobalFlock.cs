@@ -37,43 +37,27 @@ public class GlobalFlock : MonoBehaviour
     {
         
         HandleGoalPos();
-
-        foreach(GameObject bug in allBugs)
-        {
-            bug.transform.position = ResetYPosition(bug.transform.position);
-        }
     }
 
     void HandleGoalPos()
     {
         if (Random.Range(1, 5000) < 50)
-        {/*
-            hitRock = true;
-            while (hitRock)
-            {
-                hitRock = false;*/
-                goalPos = new Vector3(
-                    Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
-                    transform.position.y,
-                    Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
-                );
-                /*foreach (Collider c in Physics.OverlapSphere(goalPos, 1f))
-                {
-                    if (c.name.Contains("Sphere"))
-                    {
-                        hitRock = true;
-                    }
-                }
-            }*/
+        {
+            float xPos = Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize);
+            float zPos = Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize);
+            goalPos = new Vector3(
+                xPos,
+                transform.position.y,
+                zPos
+            );
             goalPrefab.transform.position = goalPos;
         }
     }
 
-    Vector3 ResetYPosition(Vector3 pos)
+    public static Vector3 ResetYPosition(Vector3 pos)
     {
         Vector3 Ypos = pos;
         Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
-        pos = Ypos;
         return pos;
     }
 }

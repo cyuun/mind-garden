@@ -39,10 +39,12 @@ public class GlobalFlock3 : MonoBehaviour
     {
         if (Random.Range(1, 5000) < 50)
         {
+            float xPos = Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize);
+            float zPos = Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize);
             goalPos = new Vector3(
-                Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
-                Random.Range(transform.position.y - boundsSize, transform.position.y + boundsSize),
-                Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
+                xPos,
+                TerrainScript.S.GetTerrainHeight(xPos, zPos) + 2,
+                zPos
             );
             goalPrefab.transform.position = goalPos;
         }
@@ -52,7 +54,6 @@ public class GlobalFlock3 : MonoBehaviour
     {
         Vector3 Ypos = pos;
         Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
-        pos = Ypos;
         return pos;
     }
 }

@@ -33,10 +33,6 @@ public class GlobalFlock2 : MonoBehaviour
     void Update()
     {
         HandleGoalPos();
-        foreach (GameObject bug in allBugs)
-        {
-            bug.transform.position = ResetYPosition(bug.transform.position);
-        }
 
     }
 
@@ -44,10 +40,12 @@ public class GlobalFlock2 : MonoBehaviour
     {
         if (Random.Range(1, 5000) < 50)
         {
+            float xPos = Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize);
+            float zPos = Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize);
             goalPos = new Vector3(
-                Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
-                transform.position.y,
-                Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
+                xPos,
+                TerrainScript.S.GetTerrainHeight(xPos,zPos) + 2,
+                zPos
             );
             goalPrefab.transform.position = goalPos;
         }
@@ -56,7 +54,6 @@ public class GlobalFlock2 : MonoBehaviour
     {
         Vector3 Ypos = pos;
         Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
-        pos = Ypos;
         return pos;
     }
 }

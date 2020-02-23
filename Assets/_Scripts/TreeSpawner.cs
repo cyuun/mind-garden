@@ -6,6 +6,7 @@ public class TreeSpawner : MonoBehaviour
 {
     public static Transform TREE_PARENT;
     public AudioPeer audioPeer;
+    public bool useAsParent = false;
     public GameObject[] treePrefabs;
 
     public int forestCount = 5;
@@ -20,9 +21,7 @@ public class TreeSpawner : MonoBehaviour
 
     void Start()
     {
-        //Choose rocks at random
-        //Cluster some number of unique rocks around different orbs given certain radius
-
+        if (useAsParent) TREE_PARENT = this.transform;
         if (TREE_PARENT == null)
         {
             GameObject go = new GameObject("_TreeParent");
@@ -31,6 +30,7 @@ public class TreeSpawner : MonoBehaviour
             go.transform.SetParent(TerrainScript.S.transform);
             TREE_PARENT = go.transform;
         }
+
 
         GenerateTrees();
     }
@@ -51,6 +51,20 @@ public class TreeSpawner : MonoBehaviour
             Vector3 pos = transform.position + offset;
             pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
             Vector3 treePos = pos;
+
+            //TODO: Reassign audioPeer to be nearest orb
+            AudioSource[] orbs = SpleeterProcess.S.orbs;
+            AudioSource closest = orbs[0];
+            foreach(AudioSource o in orbs)
+            {
+                float min = Vector3.Distance(treePos, closest.transform.position);
+                float dist = Vector3.Distance(treePos, o.transform.position);
+                if (dist < min)
+                {
+                    closest = o;
+                }
+            }
+            audioPeer = closest.GetComponent<AudioPeer>();
 
             for (int i = 0; i < numOfTrees; i++)
             {
@@ -122,7 +136,7 @@ public class TreeSpawner : MonoBehaviour
 
                     treePos = GetTreePos(treePos);
                     treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 8) > maxSlope)
+                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z,16) > maxSlope)
                     {
                         tooSteep = true;
                         break;
@@ -173,5 +187,13 @@ public class TreeSpawner : MonoBehaviour
         Vector3 pos = startPos + treeOffset;
         return pos;
     }
-
+    
+    public void DestroySpawner()
+    {
+        foreach (Transform t in TREE_PARENT)
+        {
+            Destroy(t.gameObject);
+        }
+        Destroy(this.gameObject);
+    }
 }

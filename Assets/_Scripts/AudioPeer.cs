@@ -19,10 +19,10 @@ public class AudioPeer : MonoBehaviour
     float _amplitudeHighest = 0;
     public float _audioProfile;
     float _previousAmp;
-    bool _signalAmplitude;
+    /*bool _signalAmplitude;
     [Range(1,3)]
     public float _signalResistance;
-    public bool amplitudeSignal { get { return _signalAmplitude; } set { _signalAmplitude = value; } }
+    public bool amplitudeSignal { get { return _signalAmplitude; } set { _signalAmplitude = value; } }*/
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class AudioPeer : MonoBehaviour
     void GetAmplitude()
     {
         //Reset signal
-        _signalAmplitude = false;
+        //_signalAmplitude = false;
 
         float currentAmplitude = 0;
         float currentAmplitudeBuff = 0;
@@ -68,11 +68,11 @@ public class AudioPeer : MonoBehaviour
         _amplitude = currentAmplitude / _amplitudeHighest;
         _amplitudeBuffer = currentAmplitudeBuff / _amplitudeHighest;
 
-        float signalThreshold = _previousAmp * ( 1 + _signalResistance / 10);
+        /*float signalThreshold = _previousAmp * ( 1 + _signalResistance / 10);
         if (_amplitudeBuffer > signalThreshold) //Check threshold of amp spike
         {
             _signalAmplitude = true;
-        }
+        }*/
         _previousAmp = _amplitudeBuffer;
     }
 
