@@ -397,6 +397,11 @@ PrefabInstance:
       propertyPath: paintColors.Array.data[2].a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5959359900872473113, guid: 5ac873923bfbe9b439c445c573e16527,
+        type: 3}
+      propertyPath: noiseLacunarity
+      value: 4.85
+      objectReference: {fileID: 0}
     - target: {fileID: 5959359900872473114, guid: 5ac873923bfbe9b439c445c573e16527,
         type: 3}
       propertyPath: m_Name

@@ -173,10 +173,14 @@ public class TerrainScript : MonoBehaviour
 
         if (_randomizeTerrain)
         {
-            noiseScale = Random.Range(20f, 75f);
-            noiseAmplitude = Random.Range(35f, 50f);
-            noisePersistance = Random.Range(.2f, .4f);
-            noiseLacunarity = Random.Range(1f, 5f);
+            noiseScale = Random.Range(20f, 75f); //Density of peaks
+            noiseAmplitude = Random.Range(35f, 50f); //Height of peaks
+            noisePersistance = Random.Range(.2f, .4f); //Sharpness of peaks
+            noiseLacunarity = Random.Range(1f, 5f); //Bumpiness of hills
+        }
+        else
+        {
+            //TODO: Determine parameters based on audio analyzer class
         }
         
         _meshFilter = GetComponent<MeshFilter>();

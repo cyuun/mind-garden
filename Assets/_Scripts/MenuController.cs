@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using SimpleFileBrowser;
 
 public class MenuController : MonoBehaviour
@@ -22,6 +23,8 @@ public class MenuController : MonoBehaviour
     public GameObject head;
     public AudioSource backgroundMusic;
 
+
+
     void Awake()
     {
         S = this;
@@ -35,10 +38,12 @@ public class MenuController : MonoBehaviour
             settings = transform.Find("Settings").GetComponent<Button>();
             errorMessage = transform.Find("Error").GetComponent<Text>();
         }
+
     }
 
     void Start()
     {
+
         // Set filters (optional)
         // It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
         // if all the dialogs will be using the same filters
@@ -66,7 +71,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ExploreFiles()
@@ -127,11 +132,9 @@ public class MenuController : MonoBehaviour
         if (startingRot > 180) startingRot -= 360;
         float endRot = 0f;
         float tempRot = startingRot;
-        print(startingRot + " " + endRot);
         for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
         {
             tempRot = Mathf.SmoothStep(startingRot, endRot, t);
-            print(tempRot);
             Camera.main.transform.rotation = Quaternion.Euler(0, tempRot, 0);
             yield return null;
         }
@@ -159,7 +162,6 @@ public class MenuController : MonoBehaviour
         for (float t = 0; t <= 1; t += (Time.deltaTime/ duration))
         {
             tempRot = Mathf.SmoothStep(startingRot, endRot, t);
-            print(tempRot);
             Camera.main.transform.rotation = Quaternion.Euler(0, tempRot, 0);
             yield return null;
         }
@@ -187,7 +189,6 @@ public class MenuController : MonoBehaviour
         for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
         {
             tempRot = Mathf.SmoothStep(startingRot, endRot, t);
-            print(tempRot);
             Camera.main.transform.rotation = Quaternion.Euler(0, tempRot, 0);
             yield return null;
         }

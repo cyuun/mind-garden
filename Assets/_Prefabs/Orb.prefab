@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPeer: {fileID: 4547690792564925864}
+  useAsParent: 0
   treePrefabs:
   - {fileID: 6342247088227103673, guid: 4a7549e990306554b8f3125b59c8dd80, type: 3}
   - {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad, type: 3}
@@ -5082,7 +5083,8 @@ AudioSource:
   m_GameObject: {fileID: 4281636549330176816}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: b641cd33616fe9e46bf3e35d93a04ce9,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: c9068919923db314a924aaf18f3a39e6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5202,7 +5204,6 @@ MonoBehaviour:
   _amplitude: 0
   _amplitudeBuffer: 0
   _audioProfile: 1.5
-  _signalResistance: 2.5
 --- !u!114 &3649084685503611500
 MonoBehaviour:
   m_ObjectHideFlags: 0
