@@ -30,7 +30,7 @@ public class HeadScript : MonoBehaviour
 
         if (matchTerrainHeight)
         {
-            AdjustMaxVerticesHeight(3);
+            AdjustMaxVerticesHeight(5);
         }
 
         if(ColorController.S) StartCoroutine("DelayedActivate");
@@ -56,7 +56,7 @@ public class HeadScript : MonoBehaviour
             if (CompareFloats(vertices[i].y, maxHeight, tolerance))
             {
                 Vector3 worldSpaceVertex = VectorObjectToWorld(vertices[i]);
-                vertices[i].y = -transform.position.y + 6 + terrainScript.GetTerrainHeight(worldSpaceVertex.x, worldSpaceVertex.z);
+                vertices[i].y = -transform.position.y + 9 + terrainScript.GetTerrainHeight(worldSpaceVertex.x, worldSpaceVertex.z);
             }
         }
 
