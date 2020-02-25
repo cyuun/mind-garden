@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class TerrainScript : MonoBehaviour
 {
     public static TerrainScript S;
-    
+
     //lattice variables
     [Header("Lattice")]
     public float xMax = 100;         //the max x size of the canvas for the outline to be "drawn" upon
@@ -17,7 +17,6 @@ public class TerrainScript : MonoBehaviour
 
     //terrain generation variables
     [Header("Terrain Generation")]
-    public bool _randomizeTerrain = false;
     public float noiseScale = 1;
     public float noiseAmplitude = 1;
     public   int noiseOctaves = 1;
@@ -36,10 +35,10 @@ public class TerrainScript : MonoBehaviour
     [Range(0.00001f, 100)]
     public float pondNoiseScale = 1;
     public float pondNoiseAmplitude = 5;
-    
+
     //painting variables
     [Header("Painting")]
-    public int textureResolution = 2048;
+    public int textureResolution = 333;
     public float paintRadius = 5;
     public Color paintColor;
 
@@ -51,6 +50,8 @@ public class TerrainScript : MonoBehaviour
 
     private System.Random _rng;
     private Vector2[] _offsets;
+
+    private bool _randomizeTerrain = false;
 
     private float _seaLevel;
     private float _minHeight;
@@ -66,12 +67,12 @@ public class TerrainScript : MonoBehaviour
     public void RefreshTerrain()
     {
         ClampVariables();
-        
+
         SetRandom();
         SetSeaLevel(20,360);
         SetMinHeight(40, 360);
         SetPond(360);
-        
+
         GenerateTerrain();
         UpdateTerrainMesh();
     }
@@ -105,7 +106,7 @@ public class TerrainScript : MonoBehaviour
         {
             float r = Mathf.Sqrt(x * x + z * z);
             float theta;
-            
+
             if (z > 0)
             {
                 theta = Mathf.Atan2(z, x);
@@ -114,7 +115,7 @@ public class TerrainScript : MonoBehaviour
             {
                 theta = Mathf.Atan2(-z, x) + Mathf.PI;
             }
-            
+
             int thetaIndex = FindPondIndex(theta, _pond.Length);
 
             if (thetaIndex != -1 && thetaIndex < 360)
@@ -166,7 +167,12 @@ public class TerrainScript : MonoBehaviour
             Debug.Log("Error: unable to set terrain to paintable because the Player game object cannot be found.");
         }
     }
-    
+
+    public Vector3[] GetVertices()
+    {
+        return (Vector3[])_vertices.Clone();
+    }
+
     private void Awake()
     {
         S = this;
@@ -182,14 +188,14 @@ public class TerrainScript : MonoBehaviour
         {
             //TODO: Determine parameters based on audio analyzer class
         }
-        
+
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
         _meshRenderer = GetComponent<MeshRenderer>();
         _mesh = new Mesh();
 
         RefreshTerrain();
-        
+
         _player = GameObject.Find("Player");
         SetPaintable(true);
         _meshRenderer.material.mainTexture = new Texture2D(textureResolution, textureResolution);
@@ -257,7 +263,7 @@ public class TerrainScript : MonoBehaviour
                             tempTriangles.Add(vTotal - 0);              //by listing vertices in clockwise order
                             tempTriangles.Add(vTotal - rowOffsetR + 1);
                             tempTriangles.Add(vTotal - rowOffsetR);
-                            
+
                             if (v > 1)                                       //if more than one vertex has been added this row
                             {                                                //then add the "second" triangle of the vertex
                                 tempTriangles.Add(vTotal - 0);
@@ -286,13 +292,13 @@ public class TerrainScript : MonoBehaviour
 
         _mesh.vertices = _vertices;
         _mesh.triangles = _triangles;
-        
+
         UpdateMeshUV();
-        
+
         _mesh.RecalculateNormals();
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
-        
+
         _meshFilter.mesh = _mesh;
         _meshCollider.sharedMesh = _mesh;
     }
@@ -353,7 +359,7 @@ public class TerrainScript : MonoBehaviour
         float amplitude = noiseAmplitude;
         float frequency = 1;
         float height = 0;
-        
+
         for (int i = 0; i < noiseOctaves; i++)
         {
             float xPerlin = x / noiseScale * frequency + _offsets[i].x;
@@ -367,11 +373,11 @@ public class TerrainScript : MonoBehaviour
 
         return height;
     }
-    
+
     private void SetRandom()
     {
         _rng = new System.Random(seed);
-        
+
         _offsets = new Vector2[noiseOctaves];
         for (int i = 0; i < noiseOctaves; i++)
         {
@@ -444,7 +450,7 @@ public class TerrainScript : MonoBehaviour
         float diff = Single.MaxValue;
         int thetaIndex = Int32.MaxValue;
         int searchIndex = Mathf.RoundToInt(theta / thetaStep);
-        
+
         for (int i = -2; i <= 2; i++)
         {
             if (Mathf.Abs((searchIndex + i) * thetaStep - theta) < diff)
@@ -486,7 +492,7 @@ public class TerrainScript : MonoBehaviour
                     (pixelPos.y - playerPos.z) * (pixelPos.y - playerPos.z) <
                     paintRadius * paintRadius)
                 {
-                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], paintColor, 0.1f);
+                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], paintColor, 0.5f);
                 }
             }
         }

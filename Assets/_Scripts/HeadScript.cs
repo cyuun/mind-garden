@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class HeadScript : MonoBehaviour
 {
-    public bool _matchTerrainHeight = true;
+    public bool matchTerrainHeight = true;
     public float rotationSpeed = 300f;
+    public GameObject terrain;
+    public TerrainScript terrainScript;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private bool _rotating = false;
     public bool isRotating { get { return _rotating; } set { _rotating = value; } }
 
-    void Start()
+    public void Activate()
     {
+        ColorController.S.SetActiveHead(gameObject);
+        // add head to the audio listener too
+    }
+
+    private void Start()
+    {
+        terrain = transform.Find("Terrain").gameObject;
+        terrainScript = terrain.GetComponent<TerrainScript>();
+        
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
 
-        if (_matchTerrainHeight)
+        if (matchTerrainHeight)
         {
-            AdjustMaxVerticesHeight(3);
+            AdjustMaxVerticesHeight(5);
         }
 
         if(ColorController.S) StartCoroutine("DelayedActivate");
@@ -45,7 +56,7 @@ public class HeadScript : MonoBehaviour
             if (CompareFloats(vertices[i].y, maxHeight, tolerance))
             {
                 Vector3 worldSpaceVertex = VectorObjectToWorld(vertices[i]);
-                vertices[i].y = -transform.position.y + 6 + TerrainScript.S.GetTerrainHeight(worldSpaceVertex.x, worldSpaceVertex.z);
+                vertices[i].y = -transform.position.y + 9 + terrainScript.GetTerrainHeight(worldSpaceVertex.x, worldSpaceVertex.z);
             }
         }
 
@@ -87,6 +98,6 @@ public class HeadScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         
-        ColorController.S.SetActiveHead(this.gameObject);
+        Activate();
     }
 }
