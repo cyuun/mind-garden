@@ -88,14 +88,15 @@ public class KochGenerator : MonoBehaviour
         {
             Random.InitState((int)Random.Range(0, 1000));
             initiator = (_initiator)Random.Range(0,6);
+            while (initiator == _initiator.Pentagon || initiator == _initiator.Heptagon) initiator = (_initiator)Random.Range(0, 6);
             _startGen = new StartGen[Random.Range(1, 4)];
             List<StartGen> startGenList = new List<StartGen>();
             for(int i = 0; i < _startGen.Length; i++)
             {
-                startGenList.Add(new StartGen(Random.Range(0, 2) != 0, Random.Range(0f, 5f)));
+                startGenList.Add(new StartGen(Random.Range(0, 2) != 0, Random.Range(0f, 3f)));
             }
             _startGen = startGenList.ToArray();
-            _useBezierCurves = (Random.Range(0, 1) != 0);
+            _useBezierCurves = (Random.Range(0, 2) != 0);
         }
         GetInitiatorPoints();
         _position = new Vector3[_initiatorPointAmount + 1];

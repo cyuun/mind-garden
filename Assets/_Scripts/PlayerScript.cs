@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            Quit();
+            CameraScreenshot.TakeScreenshot_Static(Screen.width, Screen.height);
         }
     }
 

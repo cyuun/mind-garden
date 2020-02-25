@@ -30,7 +30,7 @@ public class SpleeterProcess : MonoBehaviour
             }
             else
             {
-                inputSongPath = AssetDatabase.GetAssetPath(inputSong);
+                inputSongPath = AssetDatabase.GetAssetPath(inputSong); //Comment out in actual build
             }
 
             //Use Regex to parse out illegal characters
@@ -50,7 +50,6 @@ public class SpleeterProcess : MonoBehaviour
             // Configure the process using the StartInfo properties.
             string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
             string outputPath = Application.persistentDataPath + "/Spleets/";
-            print(outputPath);
             process.StartInfo.FileName = filePath + "spleeter.exe";
             process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
             process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
@@ -59,11 +58,6 @@ public class SpleeterProcess : MonoBehaviour
             process.WaitForExit();
 
             LoadSongTracks();
-        }
-        else
-        {
-            //inputSongPath = AssetDatabase.GetAssetPath(inputSong); //Remove in actual build
-
         }
 
         //Play

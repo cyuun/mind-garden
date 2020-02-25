@@ -4,51 +4,48 @@ using UnityEngine;
 
 public class MainSpawner : MonoBehaviour
 {
-    public static Transform SPAWNER_PARENT;
+    public static MainSpawner S;
 
-    float bpm;
-    float songLength;
+    public int spawnIndex;
+    public GameObject activeHead;
 
-    public float spawnerRadius;
-    public int forestCount;
-    [Range(1,20)]
-    public int treesMin,treesMax;
-    public float treeSeparation;
-
-    public GameObject[] treePrefabs;
-
+    public Biome[] allBiomes;
+    Biome currentBiome;
 
     void Start()
     {
-        if (SPAWNER_PARENT == null)
-        {
-            GameObject go = new GameObject("_Spawns");
-            go.transform.SetParent(TerrainScript.S.transform);
-            SPAWNER_PARENT = go.transform;
-        }
+        if (S == null) S = this;
+        if (activeHead == null) activeHead = transform.parent.gameObject; //Keep Main Spawner as child of head
 
-        CreateForests();
+        spawnIndex = Random.Range(0, allBiomes.Length);
+        currentBiome = allBiomes[spawnIndex];
+
+        currentBiome.creatureSpawn = currentBiome.creatureSpawners[Random.Range(0, currentBiome.creatureSpawners.Count)];
+        currentBiome.creatureSpawn = Instantiate(currentBiome.creatureSpawn, this.transform);
+        currentBiome.treeSpawn = currentBiome.treeSpawners[Random.Range(0, currentBiome.treeSpawners.Count)];
+        currentBiome.treeSpawn = Instantiate(currentBiome.treeSpawn, this.transform);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //ChangeSpawner();
+        }
     }
 
-    void CreateForests()
+    public void ChangeSpawner()
     {
-        for(int f = 0; f < forestCount; f++)
-        {
-            int treeCount = Random.Range(treesMin, treesMax);
+        currentBiome.creatureSpawn.GetComponent<CreatureSpawner>().DestroySpawner();
 
-            Vector3 offset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(1, spawnerRadius);
-            Vector3 pos = transform.position + offset;
-            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+        spawnIndex++;
+        if (spawnIndex >= allBiomes.Length) spawnIndex = 0;
+        currentBiome = allBiomes[spawnIndex];
 
+        currentBiome.creatureSpawn = currentBiome.creatureSpawners[Random.Range(0, currentBiome.creatureSpawners.Count)];
+        currentBiome.creatureSpawn = Instantiate(currentBiome.creatureSpawn, this.transform);
+        //ColorController.S.SetActiveHead(activeHead);
 
-            
-
-        }
     }
 }

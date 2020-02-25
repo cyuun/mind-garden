@@ -118,8 +118,8 @@ Material:
     - _UsePhong: 0
     - _UvFadeX: 0.1
     - _UvFadeY: 0.1
-    - _WaterClarity: 0.25
-    - _WaterTransparency: 5.3
+    - _WaterClarity: 0.88
+    - _WaterTransparency: 17.9
     - _WaveAmplitudeFactor: 0.25
     - _WaveSteepness: 0.72
     - _WaveTiling: 0.88

@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
-    PlayerScript player;
     AudioPeer audioPeer;
-    bool fading = false;
     bool following = false;
     bool moving = false;
+    bool glowing = false;
     Transform target;
     Vector3 rotPerSecond;
     Rigidbody rb;
@@ -22,6 +21,7 @@ public class OrbScript : MonoBehaviour
     Image buttonLabel;
     public ParticleSystem particles;
     public ParticleSystem burst;
+    public ParticleSystem glow;
     public float rotationSpeed;
     public float y_offset;
     public float speed = 10f;
@@ -47,7 +47,7 @@ public class OrbScript : MonoBehaviour
         {
             audioTrack.volume = 0;
         }
-        rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f)) * rotationSpeed;
+        rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f));
 
         //Set Orb height to match terrain
         if (_matchTerrainHeight)
@@ -67,7 +67,7 @@ public class OrbScript : MonoBehaviour
     void Update()
     {
         //Spin
-        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
+        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
         //Flash
         if(audioPeer) Flash();
 
@@ -100,11 +100,17 @@ public class OrbScript : MonoBehaviour
     {
         if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
         {
+            if (!glowing && !following)
+            {
+                glow.Play();
+            }
             if (Input.GetKeyUp(KeyCode.Mouse0) && _interactable)
             {
                 target = PlayerScript.S.transform;
                 ToggleParticles();
                 ToggleFollow();
+                glow.Stop();
+                glowing = false;
             }
             //ShowButtonLabel();
         }
@@ -113,27 +119,43 @@ public class OrbScript : MonoBehaviour
     private void OnMouseExit()
     {
         //buttonLabel.gameObject.SetActive(false);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        string tag = collision.gameObject.tag;
-        
+        if (glowing)
+        {
+            glow.Stop();
+            glowing = false;
+            print("noglow");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pond")
+        if (other.tag == "Pond" && _interactable)
         {
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
+            SkyFractal.S.ChangeOutline();
             target = other.transform;
         }
         else if (other.tag == "Player")
         {
-            target = other.transform;
+            if (!following) target = other.transform;
             ToggleParticles();
             ToggleFollow();
+            glow.Stop();
+            glowing = false;
+        }
+        else if (other.tag == "Rocks" && other.GetComponent<Rock>())
+        {
+            Vector3 pos = transform.position;
+            pos.y = other.transform.position.y + other.GetComponent<Rock>().radius;
+            transform.position = pos;
+        }
+        else if (other.tag == "Tree" && !following)
+        {
+            Vector3 pos = transform.position;
+            pos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized;
+            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+            transform.position = pos;
         }
     }
 
@@ -167,38 +189,22 @@ public class OrbScript : MonoBehaviour
         following = true;
     }
 
+    public void ChangePlayerColors()
+    {
+        /*Color[] colors = TerrainScript.S._paint;
+        List<Color> colorList = new List<Color>();
+        for(int i = 0; i < colors.Length; i++)
+        {
+            Color c = _colorGrad.Evaluate(Random.Range(0f, 1f));
+            colorList.Add(c);
+        }
+        TerrainScript.S._paint = colorList.ToArray();*/
+    }
+
     IEnumerator MoveOrb()
     {
-        rb.AddForce(new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * 20);
+        rb.AddForce(new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * 10);
         yield return new WaitForSeconds(1f);
         moving = false;
-    }
-
-
-    //Volume Coroutines
-    IEnumerator FadeIn()
-    {
-        audioTrack.volume = 0f;
-
-        while (audioTrack.volume < 1f)
-        {
-            audioTrack.volume += Time.deltaTime;
-            yield return null;
-        }
-        fading = false;
-    }
-
-    IEnumerator FadeOut()
-    {
-        audioTrack.volume = 1f;
-
-        while (audioTrack.volume > 0f)
-        {
-            audioTrack.volume -= Time.deltaTime;
-            yield return null;
-
-        }
-        fading = false;
-
     }
 }

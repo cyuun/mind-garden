@@ -165,8 +165,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4380520468186172910}
   - component: {fileID: 7390007099934070027}
+  - component: {fileID: -5707607129412937428}
   m_Layer: 9
-  m_Name: rock2
+  m_Name: Rock2
   m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,6 +207,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5707607129412937428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380520468186172897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5155801b2d82e8d45a1ea8673e1fba9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 8
 --- !u!1 &4380520468477784458
 GameObject:
   m_ObjectHideFlags: 0

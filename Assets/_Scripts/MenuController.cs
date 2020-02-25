@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using SimpleFileBrowser;
 
 public class MenuController : MonoBehaviour
@@ -15,11 +16,14 @@ public class MenuController : MonoBehaviour
     public Button fileSelection, play, gallery, settings;
     public Text errorMessage;
     bool _errorFading = false;
+    bool _cameraMoving = false;
     public float moveDuration = 1;
     public float moveDistance = 20;
 
     public GameObject head;
     public AudioSource backgroundMusic;
+
+
 
     void Awake()
     {
@@ -34,10 +38,12 @@ public class MenuController : MonoBehaviour
             settings = transform.Find("Settings").GetComponent<Button>();
             errorMessage = transform.Find("Error").GetComponent<Text>();
         }
+
     }
 
     void Start()
     {
+
         // Set filters (optional)
         // It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
         // if all the dialogs will be using the same filters
@@ -65,7 +71,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ExploreFiles()
@@ -75,9 +81,6 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
-        return;
-
         if (Global.inputSong != null && Global.inputSongPath != null)
         {
             SceneManager.LoadScene(1); //Loads Main Game Scene
@@ -93,18 +96,18 @@ public class MenuController : MonoBehaviour
 
     public void Home()
     {
-        StartCoroutine(ViewHome(moveDuration));
+        if(!_cameraMoving) StartCoroutine(ViewHome(moveDuration));
 
     }
 
     public void Gallery()
     {
-        StartCoroutine(ViewGallery(moveDuration));
+        if (!_cameraMoving) StartCoroutine(ViewGallery(moveDuration));
     }
 
     public void Settings()
     {
-        StartCoroutine(ViewSettings(moveDuration));
+        if (!_cameraMoving) StartCoroutine(ViewSettings(moveDuration));
     }
 
     public void Quit()
@@ -123,7 +126,22 @@ public class MenuController : MonoBehaviour
 
     IEnumerator ViewHome(float duration)
     {
-        float startingPos = transform.position.x;
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startingRot = camTransform.eulerAngles.y;
+        if (startingRot > 180) startingRot -= 360;
+        float endRot = 0f;
+        float tempRot = startingRot;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            tempRot = Mathf.SmoothStep(startingRot, endRot, t);
+            Camera.main.transform.rotation = Quaternion.Euler(0, tempRot, 0);
+            yield return null;
+        }
+        Camera.main.transform.rotation = Quaternion.Euler(0, endRot, 0);
+        _cameraMoving = false;
+
+        /*float startingPos = transform.position.x;
         float endPos = 0;
         Vector3 tempPos = transform.position;
         for (float t = 0; t < 1; t += (.01f / duration))
@@ -131,25 +149,53 @@ public class MenuController : MonoBehaviour
             tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
             transform.position = tempPos;
             yield return new WaitForSeconds(.01f);
-        }
+        }*/
     }
 
     IEnumerator ViewGallery(float duration)
     {
-        float startingPos = transform.position.x;
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startingRot = camTransform.eulerAngles.y;
+        float endRot = 90f;
+        float tempRot = startingRot;
+        for (float t = 0; t <= 1; t += (Time.deltaTime/ duration))
+        {
+            tempRot = Mathf.SmoothStep(startingRot, endRot, t);
+            Camera.main.transform.rotation = Quaternion.Euler(0, tempRot, 0);
+            yield return null;
+        }
+        Camera.main.transform.rotation = Quaternion.Euler(0, endRot, 0);
+        _cameraMoving = false;
+
+        /*float startingPos = transform.position.x;
         float endPos = -moveDistance;
         Vector3 tempPos = transform.position;
-        for(float t = 0; t < 1; t += (.01f / duration))
+        for (float t = 0; t < 1; t += (.01f / duration))
         {
             tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
             transform.position = tempPos;
             yield return new WaitForSeconds(.01f);
-        }
+        }*/
     }
 
     IEnumerator ViewSettings(float duration)
     {
-        float startingPos = transform.position.x;
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startingRot = camTransform.eulerAngles.y;
+        float endRot = -90f;
+        float tempRot = startingRot;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            tempRot = Mathf.SmoothStep(startingRot, endRot, t);
+            Camera.main.transform.rotation = Quaternion.Euler(0, tempRot, 0);
+            yield return null;
+        }
+        Camera.main.transform.rotation = Quaternion.Euler(0, endRot, 0);
+        _cameraMoving = false;
+
+        /*float startingPos = transform.position.x;
         float endPos = moveDistance;
         Vector3 tempPos = transform.position;
         for (float t = 0; t < 1; t += (.01f / duration))
@@ -157,7 +203,7 @@ public class MenuController : MonoBehaviour
             tempPos.x = Mathf.SmoothStep(startingPos, endPos, t); //Negative target value because we're really offseting the entire canvas by that value
             transform.position = tempPos;
             yield return new WaitForSeconds(.01f);
-        }
+        }*/
     }
 
     IEnumerator ShowErrorMessage()

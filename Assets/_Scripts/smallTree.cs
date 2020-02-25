@@ -7,20 +7,24 @@ public class smallTree : Tree
     public List<GameObject> objectToShake = new List<GameObject>();
     bool shaking = false;
     public bool debug = false;
+    public static List<GameObject> allSmallTrees;
 
     //send signals to turn signalFromMusic to true on beats the tree should shake
     bool signalFromMusic = false;
+
+    private void Awake()
+    {
+        if (allSmallTrees == null) allSmallTrees = new List<GameObject>();
+        allSmallTrees.Add(gameObject);
+    }
     private void Update()
     {
-        if (_audioPeer.amplitudeSignal)
-        {
-            shakeGameObject(0.3f, 0.1f, false);
-        }
+        
     }
 
     void shakeGameObject(float shakeDuration, float decreasePoint, bool objectIs2D = false)
     {
-        if (shaking)
+        if (shaking || !_spawnComplete)
         {
             return;
         }
@@ -28,6 +32,18 @@ public class smallTree : Tree
         foreach (GameObject objects in objectToShake)
         {
             StartCoroutine(shakeGameObjectCOR(objects, shakeDuration, decreasePoint, objectIs2D));
+        }
+    }
+
+    public static void ShakeAllTrees()
+    {
+        if(allSmallTrees != null)
+        {
+            foreach (GameObject go in allSmallTrees)
+            {
+                smallTree tree = go.GetComponent<smallTree>();
+                tree.shakeGameObject(0.3f, 0.1f, false);
+            }
         }
     }
 
