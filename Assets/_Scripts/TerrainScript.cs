@@ -165,6 +165,11 @@ public class TerrainScript : MonoBehaviour
             Debug.Log("Error: unable to set terrain to paintable because the Player game object cannot be found.");
         }
     }
+
+    public Vector3[] GetVertices()
+    {
+        return (Vector3[])_vertices.Clone();
+    }
     
     private void Awake()
     {

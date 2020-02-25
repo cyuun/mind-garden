@@ -203,8 +203,8 @@ MonoBehaviour:
   centerFlatteningRadius: 22
   pondNoiseScale: 18.5
   pondNoiseAmplitude: 10
-  textureResolution: 333
-  paintRadius: 5
+  textureResolution: 420
+  paintRadius: 15
   paintColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &1547624034
 MeshCollider:
