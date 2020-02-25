@@ -2,11 +2,16 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
-## Week 66
+## Week 6
 February 18 - 25
 ### Improved Biome Spawning/Swapping
 With the addition of the underwater biome, modifications to the main spawner were made to allow for biome swapping. At every song segment, all the prefabs of the previous biome are replaced with a new biome's prefab set. The inhabiting creatures also get swapped out, with flocking bugs for the forest region and floating fish for the water. More work needs to be done to ensure that all the materials in the new biome get factored into the color swapping algorithm, otherwise the newly spawned prefabs don't change color or simply crash the program.
 ![Biomes](Resources/biomeSwapping.gif "Biomes")
+
+### Head Instancing and Grass Spawning
+Earlier this month we decided on a look for our grass that we really liked, so now we felt it was time we started incorporating it into the game in a meaningful way. We started creating a new procedural generation algorithm to place patches of grass around the terrain similar to the algorithms used to generate the terrain and the pond shapes. This algorithm is almost complete now, but it is still lacking more sophisticated helper methods compared to its terrain algorithm counterpart to be fully functional, so unfortunately screenshots of the grass patches will have to wait till next week.
+
+Prior to now we had been developing everything as separate systems all together in a single scene, but ultimately we want to be able to spawn multiple instances of the heads with all of its contents together inside of it. So this week we worked towards that goal by moving everything into an instantiable prefab object, and refactoring the code to no longer use static script references where we need to. More of said refactoring needs to come in the following week, but pretty soon the head should be instantiated and the game started all just from the click of a menu button.
 
 ---
 ## Week 5
