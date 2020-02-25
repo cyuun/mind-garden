@@ -2,6 +2,13 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 66
+February 18 - 25
+### Improved Biome Spawning/Swapping
+With the addition of the underwater biome, modifications to the main spawner were made to allow for biome swapping. At every song segment, all the prefabs of the previous biome are replaced with a new biome's prefab set. The inhabiting creatures also get swapped out, with flocking bugs for the forest region and floating fish for the water. More work needs to be done to ensure that all the materials in the new biome get factored into the color swapping algorithm, otherwise the newly spawned prefabs don't change color or simply crash the program.
+![Biomes](Resources/biomeSwapping.gif "Biomes")
+
+---
 ## Week 5
 February 11 - 18
 ### Enhanced Randomization
