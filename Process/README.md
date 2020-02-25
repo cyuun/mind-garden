@@ -13,6 +13,9 @@ Earlier this month we decided on a look for our grass that we really liked, so n
 
 Prior to now we had been developing everything as separate systems all together in a single scene, but ultimately we want to be able to spawn multiple instances of the heads with all of its contents together inside of it. So this week we worked towards that goal by moving everything into an instantiable prefab object, and refactoring the code to no longer use static script references where we need to. More of said refactoring needs to come in the following week, but pretty soon the head should be instantiated and the game started all just from the click of a menu button.
 
+### The Rest of the Biomes
+Two biomes wouldn't be nearly as fun as four biomes, so we created assets for the other two biomes this week- desert and jungle. The jungle is short one plant compared to other biomes, since the third plant will be part of a new type of feature to be discussed. We also fixed some problems with asset spawning in general and made the interaction between spawning assets and their "to music" animations more fluid and easier to work with. 
+
 ---
 ## Week 5
 February 11 - 18
