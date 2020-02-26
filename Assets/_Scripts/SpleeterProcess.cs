@@ -117,12 +117,7 @@ public class SpleeterProcess : MonoBehaviour
                     break;
             }
 
-            var bytes = File.ReadAllBytes(url);
-            WAV wav = new WAV(bytes); //Use WAV class to convert audio file
-            AudioClip audioClip = AudioClip.Create(track, wav.SampleCount, 1, wav.Frequency, false);
-            audioClip.SetData(wav.LeftChannel, 0);
-
-            audioSources[i].clip = audioClip;
+            
         }
         return song;
 
