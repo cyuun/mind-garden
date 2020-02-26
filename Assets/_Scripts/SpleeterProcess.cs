@@ -16,6 +16,8 @@ public class SpleeterProcess : MonoBehaviour
     public bool callSpleeter;
     public bool playOnAwake;
 
+    private Process theProcess;
+
     void Awake()
     {
         S = this;
@@ -38,9 +40,13 @@ public class SpleeterProcess : MonoBehaviour
         }*/
     }
 
-    void Start()
+    private void Update()
     {
-        //GetComponent<AudioSource>().clip = inputSong;
+        if (theProcess != null && theProcess.HasExited)
+        {
+            StartCoroutine(ExitSpleeter());
+            theProcess = null;
+        }
     }
 
     public void CallSpleeter()
@@ -76,11 +82,19 @@ public class SpleeterProcess : MonoBehaviour
         process.StartInfo.FileName = filePath + "spleeter.exe";
         process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
-
+        process.EnableRaisingEvents = true; //Needed for detecting exited event
+        //process.Exited += Process_Exited;
+        MenuController.S.loadScreen.SetActive(true);
+        theProcess = process;
         process.Start();
-        process.WaitForExit();
+        //process.WaitForExit();
 
-        Global.currentSongInfo = LoadSongTracks(inputSongPath, inputSong);
+    }
+
+    private void Process_Exited(object sender, System.EventArgs e)
+    {
+        MenuController.S.loadScreen.SetActive(false);
+        throw new System.NotImplementedException();
     }
 
     SongInfo LoadSongTracks(string songPath, AudioClip inputSong)
@@ -121,6 +135,18 @@ public class SpleeterProcess : MonoBehaviour
         }
         return song;
 
+    }
+
+    IEnumerator ExitSpleeter()
+    {
+        print("Exited");
+        MenuController.S.loadScreen.SetActive(false);
+        print("Exited");
+        Global.currentSongInfo = LoadSongTracks(inputSongPath, inputSong);
+        print("Exited");
+        MenuController.S.AddSong(Global.currentSongInfo);
+        print("Exited");
+        yield return null;
     }
 
 }

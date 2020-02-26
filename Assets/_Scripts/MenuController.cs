@@ -12,17 +12,18 @@ using SimpleFileBrowser;
 public class MenuController : MonoBehaviour
 {
     public static MenuController S;
-    float firstScreenPos, secondScreenPos, thirdScreenPos;
     public Button fileSelection, play, gallery, settings;
     public Text errorMessage;
     bool _errorFading = false;
     bool _cameraMoving = false;
     public float moveDuration = 1;
     public float moveDistance = 20;
-
+    public GameObject songList;
+    public GameObject songItemPrefab;
     public GameObject head;
+    public GameObject loadScreen;
     public AudioSource backgroundMusic;
-
+    private bool callSpleeter = true;
 
 
     void Awake()
@@ -68,15 +69,25 @@ public class MenuController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddSong(SongInfo info)
     {
+        int totalSongs = songList.transform.childCount;
+        Transform lastSong = songList.transform.GetChild(totalSongs - 1);
+        GameObject newSong = Instantiate(songItemPrefab, lastSong.position, Quaternion.identity, songList.transform);
 
+        Vector3 pos = newSong.transform.localPosition;
+        pos.y -= newSong.GetComponent<RectTransform>().rect.height;
+        newSong.transform.localPosition = pos;
+
+        newSong.GetComponent<Text>().text = info.songName;
+        SongListItem song = newSong.GetComponent<SongListItem>();
+        song.songInfo = info;
     }
 
     public void ExploreFiles()
     {
         StartCoroutine(ShowLoadDialogCoroutine());
+        
     }
 
     public void StartGame()
@@ -256,9 +267,12 @@ public class MenuController : MonoBehaviour
             }
             backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             Global.inputSong = backgroundMusic.clip;
-            SpleeterProcess.S.CallSpleeter();
+            if (Global.inputSongPath != null && Global.inputSong != null && callSpleeter)
+            {
+                SpleeterProcess.S.CallSpleeter();
+                backgroundMusic.Play();
 
-            backgroundMusic.Play();
+            }
         }
 
     }
