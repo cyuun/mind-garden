@@ -53,7 +53,7 @@ public class TreeSpawner : MonoBehaviour
             Vector3 treePos = pos;
 
             //TODO: Reassign audioPeer to be nearest orb
-            AudioSource[] orbs = SpleeterProcess.S.orbs;
+            AudioSource[] orbs = AudioPeerRoot.S.audioPeers;
             AudioSource closest = orbs[0];
             foreach(AudioSource o in orbs)
             {

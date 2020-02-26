@@ -27,7 +27,8 @@ public class AudioAnalyzer : MonoBehaviour
     void Start()
     {
         //Get song from spleeter
-        audioSource.clip = SpleeterProcess.S.inputSong;
+        if (SpleeterProcess.S) audioSource.clip = SpleeterProcess.S.inputSong;
+        else audioSource.clip = AudioPeerRoot.S.defaultSong;
         audioSource.Play();
 
         songPlayer = audioSource.GetComponent<RhythmPlayer>();

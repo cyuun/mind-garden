@@ -17,7 +17,7 @@ public class Tree : MonoBehaviour
         //Assign audio peer
         if(_audioPeer == null)
         {
-            AudioSource[] audioSources = SpleeterProcess.S.orbs;
+            AudioSource[] audioSources = AudioPeerRoot.S.audioPeers;
             _audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
         }
         

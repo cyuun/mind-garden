@@ -256,6 +256,8 @@ public class MenuController : MonoBehaviour
             }
             backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             Global.inputSong = backgroundMusic.clip;
+            SpleeterProcess.S.CallSpleeter();
+
             backgroundMusic.Play();
         }
 

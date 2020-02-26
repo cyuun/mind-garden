@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2134540744059496991}
   - component: {fileID: 2134540744059497184}
+  - component: {fileID: 447073058179546732}
   - component: {fileID: 1251357554282022746}
   - component: {fileID: 5087459503694861482}
   - component: {fileID: 4179542816109028939}
@@ -53,12 +54,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSong: {fileID: 8300000, guid: 2d45a0456006e2945a01d72067623013, type: 3}
-  orbs:
-  - {fileID: 622096008652801013}
-  - {fileID: 2005747188495247120}
-  - {fileID: 6626090287354774128}
-  - {fileID: 1826924838045232967}
+  audioSources: []
   callSpleeter: 0
+  playOnAwake: 0
+--- !u!114 &447073058179546732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134540744059496990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc2bbabb951d0448af2fb89a39c9f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPeers:
+  - {fileID: 1826924838045232967}
+  - {fileID: 622096008652801013}
+  - {fileID: 6626090287354774128}
+  - {fileID: 2005747188495247120}
 --- !u!82 &1251357554282022746
 AudioSource:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class fishSpeed : MonoBehaviour
         if (fishes == null) fishes = new List<fishSpeed>();
         if (audioPeer == null)
         {
-            AudioSource[] audioSources = SpleeterProcess.S.orbs;
+            AudioSource[] audioSources = AudioPeerRoot.S.audioPeers;
             audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
         }
         anim = GetComponent<Animator>();

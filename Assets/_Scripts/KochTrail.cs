@@ -40,7 +40,7 @@ public class KochTrail : KochGenerator
     {
         if (_audioPeer == null)
         {
-            AudioSource[] sources = SpleeterProcess.S.orbs;
+            AudioSource[] sources = AudioPeerRoot.S.audioPeers;
             _audioPeer = sources[Random.Range(0, sources.Length)].GetComponent<AudioPeer>();
         }
 
