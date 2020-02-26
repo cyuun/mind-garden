@@ -9,7 +9,7 @@ public class RockSpawner : MonoBehaviour
     public GameObject[] rockPrefabs;
     [Range(1,10)]
     public float spawnRadiusMin;
-    [Range(11, 100)]
+    [Range(11, 200)]
     public float spawnRadiusMax;
     public int numOfRocks;
     public float scaleMin = 1;

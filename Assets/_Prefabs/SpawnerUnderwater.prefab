@@ -51,8 +51,8 @@ MonoBehaviour:
   - {fileID: 7159435191039463455, guid: 901cd09c3a46a914eba326228fd9f4dc, type: 3}
   - {fileID: 8238497302260076429, guid: 4e0836455ed0bf94b91a396138615ad6, type: 3}
   forestCount: 25
-  spawnRadiusMax: 70
+  spawnRadiusMax: 200
   treesMin: 15
   treesMax: 20
-  treeSeparation: 3
-  maxSlope: 45
+  treeSeparation: 4
+  maxSlope: 50

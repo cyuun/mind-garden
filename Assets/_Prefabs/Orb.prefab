@@ -195,8 +195,8 @@ MonoBehaviour:
   - {fileID: 155815463140263726, guid: 2cfaa6cbe5b6a424283beb86137068eb, type: 3}
   - {fileID: 264849990880409440, guid: 3e6ffb21e7dd10547aa049d4aa2294ac, type: 3}
   spawnRadiusMin: 10
-  spawnRadiusMax: 45
-  numOfRocks: 15
+  spawnRadiusMax: 200
+  numOfRocks: 20
   scaleMin: 1
   scaleMax: 2
 --- !u!114 &2680342850224791886

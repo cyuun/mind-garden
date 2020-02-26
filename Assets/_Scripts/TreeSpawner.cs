@@ -11,7 +11,7 @@ public class TreeSpawner : MonoBehaviour
 
     public int forestCount = 5;
     const int spawnRadiusMin = 15;
-    [Range(16, 100)]
+    [Range(16, 200)]
     public float spawnRadiusMax;
     [Range(1,20)]
     public int treesMin,treesMax;
@@ -136,7 +136,7 @@ public class TreeSpawner : MonoBehaviour
 
                     treePos = GetTreePos(treePos);
                     treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z,16) > maxSlope)
+                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 50) > maxSlope)
                     {
                         tooSteep = true;
                         break;
