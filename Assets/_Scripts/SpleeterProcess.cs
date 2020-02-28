@@ -17,7 +17,6 @@ public class SpleeterProcess : MonoBehaviour
     public bool playOnAwake;
 
     private Process theProcess;
-    bool processing;
 
     void Awake()
     {
@@ -69,19 +68,18 @@ public class SpleeterProcess : MonoBehaviour
         string oldName = inputSong.name;
         inputSong.name = r.Replace(inputSong.name, "");
         inputSong.name = inputSong.name.Replace(" ", string.Empty);
-        if (inputSong.name != oldName)
+        if (inputSong.name != oldName && !File.Exists(Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath))))
         {
             File.Move(inputSongPath, Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath))); //Renames song without illegal characters
         }
         inputSongPath = Path.Combine(Path.GetDirectoryName(inputSongPath), inputSong.name + Path.GetExtension(inputSongPath));
 
-
         Process process = new Process();
         // Configure the process using the StartInfo properties.
         string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
-        //string outputPath = Application.persistentDataPath + "/Spleets/";
-        string outputPath = Application.dataPath + "/Resources/Spleets/";
-        process.StartInfo.FileName = filePath + "spleeter.exe";
+        string outputPath = Application.persistentDataPath + "/Spleets/"; //Use this output for actual song imports
+        //string outputPath = Application.dataPath + "/Resources/Spleets/"; //Use this output when importing song resources
+        process.StartInfo.FileName = filePath + "spleeter.exe"; 
         process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
         process.EnableRaisingEvents = true; //Needed for detecting exited event
@@ -107,31 +105,24 @@ public class SpleeterProcess : MonoBehaviour
             song.inputSongPath = songPath;
             song.inputSong = inputSong;
             song.songName = inputSong.name;
-            string track = "";
-            string url = "";
+            string filePath = "";
+            if (MenuController.S.songNames.Contains(song.songName)) filePath = "Assets/Resources";
+            else filePath = Application.persistentDataPath;
             for (int i = 0; i < audioSources.Length; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/other.wav";
-                        song.melody = url;
-                        track = "Melody";
+                        song.melody = filePath + "/Spleets/" + inputSong.name + "/other.wav";
                         break;
                     case 1:
-                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/bass.wav";
-                        song.bass = url;
-                        track = "Bass";
+                        song.bass = filePath + "/Spleets/" + inputSong.name + "/bass.wav";
                         break;
                     case 2:
-                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/vocals.wav";
-                        song.vocals = url;
-                        track = "Vocals";
+                        song.vocals = filePath + "/Spleets/" + inputSong.name + "/vocals.wav";
                         break;
                     case 3:
-                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/drums.wav";
-                        song.drums = url;
-                        track = "Drums";
+                        song.drums = filePath + "/Spleets/" + inputSong.name + "/drums.wav";
                         break;
                 }
 
@@ -149,6 +140,16 @@ public class SpleeterProcess : MonoBehaviour
 
     IEnumerator ExitSpleeter()
     {
+        //Copy file for resource access
+        if (Directory.Exists("Assets/Resources/Spleets/" + inputSong.name) && !File.Exists(Path.Combine("Assets/Resources/Spleets/" + inputSong.name, inputSong.name + Path.GetExtension(inputSongPath))))
+        {
+            File.Copy(inputSongPath, Path.Combine("Assets/Resources/Spleets/" + inputSong.name, inputSong.name + Path.GetExtension(inputSongPath)));
+        }
+        if (Directory.Exists(Application.persistentDataPath + "/Spleets/" + inputSong.name) && !File.Exists(Path.Combine(Application.persistentDataPath + "/Spleets/" + inputSong.name, inputSong.name + Path.GetExtension(inputSongPath))))
+        {
+            File.Copy(inputSongPath, Path.Combine(Application.persistentDataPath + "/Spleets/" + inputSong.name, inputSong.name + Path.GetExtension(inputSongPath)));
+        }
+
         MenuController.S.loadScreen.SetActive(false);
         Global.currentSongInfo = LoadSongTracks(inputSongPath, inputSong);
         MenuController.S.AddSong(Global.currentSongInfo);

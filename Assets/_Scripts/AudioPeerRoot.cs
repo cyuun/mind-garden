@@ -10,6 +10,8 @@ public class AudioPeerRoot : MonoBehaviour
     public AudioClip defaultSong;
     public AudioSource[] audioPeers; //Orb audio peer gameobjects
 
+    bool songPlaying = false;
+
     private void Awake()
     {
         if(S==null) S = this;
@@ -40,6 +42,8 @@ public class AudioPeerRoot : MonoBehaviour
         {
             orb.Play();
         }
+        songPlaying = true;
+
     }
 
     // Update is called once per frame
@@ -80,5 +84,27 @@ public class AudioPeerRoot : MonoBehaviour
         audioClip.SetData(wav.LeftChannel, 0);
 
         return audioClip;
+    }
+
+    public void ToggleSong()
+    {
+        if (songPlaying)
+        {
+            foreach (AudioSource source in audioPeers)
+            {
+                source.Pause();
+            }
+            GetComponent<AudioSource>().Pause();
+            songPlaying = false;
+        }
+        else
+        {
+            foreach (AudioSource source in audioPeers)
+            {
+                source.Play();
+            }
+            GetComponent<AudioSource>().Play();
+            songPlaying = true;
+        }
     }
 }

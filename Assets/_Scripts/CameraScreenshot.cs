@@ -9,7 +9,7 @@ public class CameraScreenshot : MonoBehaviour
     private Camera myCamera;
     private bool takeScreenshot;
 
-    void Start()
+    void Awake()
     {
         S = this;
         myCamera = gameObject.GetComponent<Camera>();

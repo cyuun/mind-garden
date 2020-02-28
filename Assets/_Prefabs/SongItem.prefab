@@ -167,3 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d807d2986ac3e704182cc79a471e386a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  songInfo:
+    songName: 
+    inputSongPath: 
+    inputSong: {fileID: 0}
+    melody: 
+    bass: 
+    vocals: 
+    drums: 
