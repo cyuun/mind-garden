@@ -10,6 +10,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer mainMixer;
     public Slider volumeSlider;
     public Text volumeLabel;
+    public Toggle spleeterToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,15 @@ public class SettingsMenu : MonoBehaviour
 
     }
 
+    public void UpdateCallSpleeter(bool value)
+    {
+        Global.callSpleeter = spleeterToggle.isOn;
+
+    }
+
     void UpdateSettings()
     {
         UpdateVolume(volumeSlider.value);
+        UpdateCallSpleeter(spleeterToggle.isOn);
     }
 }

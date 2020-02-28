@@ -17,6 +17,7 @@ public class SpleeterProcess : MonoBehaviour
     public bool playOnAwake;
 
     private Process theProcess;
+    bool processing;
 
     void Awake()
     {
@@ -27,7 +28,7 @@ public class SpleeterProcess : MonoBehaviour
             CallSpleeter();
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         //Play
         /*if (playOnAwake)
@@ -59,7 +60,7 @@ public class SpleeterProcess : MonoBehaviour
         }
         else
         {
-            inputSongPath = AssetDatabase.GetAssetPath(inputSong); //Comment out in actual build
+            //inputSongPath = AssetDatabase.GetAssetPath(inputSong); //Comment out in actual build
         }
 
         //Use Regex to parse out illegal characters
@@ -78,7 +79,8 @@ public class SpleeterProcess : MonoBehaviour
         Process process = new Process();
         // Configure the process using the StartInfo properties.
         string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
-        string outputPath = Application.persistentDataPath + "/Spleets/";
+        //string outputPath = Application.persistentDataPath + "/Spleets/";
+        string outputPath = Application.dataPath + "/Resources/Spleets/";
         process.StartInfo.FileName = filePath + "spleeter.exe";
         process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
@@ -97,55 +99,59 @@ public class SpleeterProcess : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
-    SongInfo LoadSongTracks(string songPath, AudioClip inputSong)
+    public SongInfo LoadSongTracks(string songPath, AudioClip inputSong)
     {
-        SongInfo song = new SongInfo();
-        song.inputSongPath = songPath;
-        song.inputSong = inputSong;
-        song.songName = inputSong.name;
-        string track = "";
-        string url = "";
-        for (int i = 0; i < audioSources.Length; i++)
+        if(songPath != null && inputSong)
         {
-            switch (i)
+            SongInfo song = new SongInfo();
+            song.inputSongPath = songPath;
+            song.inputSong = inputSong;
+            song.songName = inputSong.name;
+            string track = "";
+            string url = "";
+            for (int i = 0; i < audioSources.Length; i++)
             {
-                case 0:
-                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/other.wav";
-                    song.melody = url;
-                    track = "Melody";
-                    break;
-                case 1:
-                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/bass.wav";
-                    song.bass = url;
-                    track = "Bass";
-                    break;
-                case 2:
-                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/vocals.wav";
-                    song.vocals = url;
-                    track = "Vocals";
-                    break;
-                case 3:
-                    url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/drums.wav";
-                    song.drums = url;
-                    track = "Drums";
-                    break;
-            }
+                switch (i)
+                {
+                    case 0:
+                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/other.wav";
+                        song.melody = url;
+                        track = "Melody";
+                        break;
+                    case 1:
+                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/bass.wav";
+                        song.bass = url;
+                        track = "Bass";
+                        break;
+                    case 2:
+                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/vocals.wav";
+                        song.vocals = url;
+                        track = "Vocals";
+                        break;
+                    case 3:
+                        url = Application.persistentDataPath + "/Spleets/" + inputSong.name + "/drums.wav";
+                        song.drums = url;
+                        track = "Drums";
+                        break;
+                }
 
-            
+
+            }
+            return song;
+
         }
-        return song;
+        else
+        {
+            return new SongInfo();
+        }
 
     }
 
     IEnumerator ExitSpleeter()
     {
-        print("Exited");
         MenuController.S.loadScreen.SetActive(false);
-        print("Exited");
         Global.currentSongInfo = LoadSongTracks(inputSongPath, inputSong);
-        print("Exited");
         MenuController.S.AddSong(Global.currentSongInfo);
-        print("Exited");
         yield return null;
     }
 

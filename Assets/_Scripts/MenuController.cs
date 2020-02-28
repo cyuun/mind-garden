@@ -19,11 +19,14 @@ public class MenuController : MonoBehaviour
     public float moveDuration = 1;
     public float moveDistance = 20;
     public GameObject songList;
+    [Header("Resource Folders to Import")]
+    [SerializeField]
+    public List<string> songNames = new List<string>();
     public GameObject songItemPrefab;
     public GameObject head;
     public GameObject loadScreen;
+    public GameObject startButton;
     public AudioSource backgroundMusic;
-    private bool callSpleeter = true;
 
 
     void Awake()
@@ -67,21 +70,31 @@ public class MenuController : MonoBehaviour
         // Icon: default (folder icon)
         FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
+        LoadSongLibrary();
+
     }
 
     public void AddSong(SongInfo info)
     {
         int totalSongs = songList.transform.childCount;
-        Transform lastSong = songList.transform.GetChild(totalSongs - 1);
-        GameObject newSong = Instantiate(songItemPrefab, lastSong.position, Quaternion.identity, songList.transform);
+        Vector3 firstSong = songList.transform.GetChild(0).position;
+        foreach (Transform t in songList.transform)
+        {
+            Vector3 pos = t.localPosition;
+            pos.y -= t.GetComponent<RectTransform>().rect.height;
+            t.localPosition = pos;
+        }
+        GameObject newSong = Instantiate(songItemPrefab, firstSong, Quaternion.identity, songList.transform);
 
-        Vector3 pos = newSong.transform.localPosition;
+        
+        /*Vector3 pos = newSong.transform.localPosition;
         pos.y -= newSong.GetComponent<RectTransform>().rect.height;
-        newSong.transform.localPosition = pos;
+        newSong.transform.localPosition = pos;*/
+
+        print(info.inputSongPath);
 
         newSong.GetComponent<Text>().text = info.songName;
-        SongListItem song = newSong.GetComponent<SongListItem>();
-        song.songInfo = info;
+        newSong.GetComponent<SongListItem>().songInfo = info;
     }
 
     public void ExploreFiles()
@@ -90,11 +103,12 @@ public class MenuController : MonoBehaviour
         
     }
 
-    public void StartGame()
+    public void Play()
     {
-        if (Global.inputSong != null && Global.inputSongPath != null)
+        if (Global.currentSongInfo != null && !_cameraMoving)
         {
-            SceneManager.LoadScene(1); //Loads Main Game Scene
+            StartCoroutine(ZoomCamera(moveDuration));
+            StartCoroutine(ShowStartButton());
         }
         else
         {
@@ -102,6 +116,23 @@ public class MenuController : MonoBehaviour
             {
                 StartCoroutine(ShowErrorMessage());
             }
+        }
+    }
+
+    public void StartGame()
+    {
+        if(Global.currentSongInfo != null)
+        {
+            SceneManager.LoadScene(1);
+        }
+    }
+
+    public void GoBack()
+    {
+        if (!_cameraMoving)
+        {
+            StartCoroutine(BackUpCamera(moveDuration));
+            StartCoroutine(HideStartButton());
         }
     }
 
@@ -163,6 +194,40 @@ public class MenuController : MonoBehaviour
         }*/
     }
 
+    IEnumerator ZoomCamera(float duration)
+    {
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startPos = camTransform.position.z;
+        float endPos = startPos + moveDistance;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, tempPos);
+            yield return null;
+        }
+        Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, endPos);
+        _cameraMoving = false;
+    }
+
+    IEnumerator BackUpCamera(float duration)
+    {
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startPos = camTransform.position.z;
+        float endPos = startPos - moveDistance;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, tempPos);
+            yield return null;
+        }
+        Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, endPos);
+        _cameraMoving = false;
+    }
+
     IEnumerator ViewGallery(float duration)
     {
         _cameraMoving = true;
@@ -217,6 +282,40 @@ public class MenuController : MonoBehaviour
         }*/
     }
 
+    IEnumerator ShowStartButton()
+    {
+        Transform tr = startButton.transform;
+        float startPos = tr.position.y;
+        float endPos = startPos + 6;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / 1))
+        {
+            print(startButton.transform.position);
+
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            startButton.transform.position = new Vector3(tr.position.x, tempPos, tr.position.z);
+            yield return null;
+        }
+        startButton.transform.position = new Vector3(tr.position.x, endPos, tr.position.z);
+    }
+
+    IEnumerator HideStartButton()
+    {
+        Transform tr = startButton.transform;
+        float startPos = tr.position.y;
+        float endPos = startPos - 6;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / 1))
+        {
+            print(startButton.transform.position);
+
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            startButton.transform.position = new Vector3(tr.position.x, tempPos, tr.position.z);
+            yield return null;
+        }
+        startButton.transform.position = new Vector3(tr.position.x, endPos, tr.position.z);
+    }
+
     IEnumerator ShowErrorMessage()
     {
         _errorFading = true;
@@ -267,14 +366,48 @@ public class MenuController : MonoBehaviour
             }
             backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             Global.inputSong = backgroundMusic.clip;
-            if (Global.inputSongPath != null && Global.inputSong != null && callSpleeter)
+            if (Global.inputSongPath != null && Global.inputSong != null && Global.callSpleeter)
             {
                 SpleeterProcess.S.CallSpleeter();
                 backgroundMusic.Play();
 
             }
+            else
+            {
+                print("Spleeter Disabled: Game will be played in normal mode");
+            }
         }
 
+    }
+
+    void LoadSongLibrary()
+    {
+        string resourcePath = "Spleets/";
+        int songIndex = 0;
+        bool destroy = false;
+        foreach(Transform songChild in songList.transform)
+        {
+            if (destroy)
+            {
+                Destroy(songChild.gameObject);
+                continue;
+            }
+
+            SongListItem songItem = songChild.GetComponent<SongListItem>();
+            string path = Path.Combine(resourcePath, songNames[songIndex]);
+            songItem.songInfo.inputSongPath = Path.Combine(path, songNames[songIndex]);
+            songItem.songInfo.inputSong = Resources.Load<AudioClip>(songItem.songInfo.inputSongPath);
+            songItem.songInfo.songName = songNames[songIndex];
+            songItem.songInfo.melody = Path.Combine(resourcePath, songNames[songIndex]) + "/other.wav";
+            songItem.songInfo.bass = Path.Combine(resourcePath, songNames[songIndex]) + "/bass.wav";
+            songItem.songInfo.vocals = Path.Combine(resourcePath, songNames[songIndex]) + "/vocals.wav";
+            songItem.songInfo.drums = Path.Combine(resourcePath, songNames[songIndex]) + "/drums.wav";
+
+            songChild.GetComponent<Text>().text = songItem.songInfo.songName;
+
+            if (songIndex < songNames.Count - 1) songIndex++;
+            else destroy = true;
+        }
     }
 
 }

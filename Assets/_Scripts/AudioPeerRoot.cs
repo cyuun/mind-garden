@@ -19,9 +19,21 @@ public class AudioPeerRoot : MonoBehaviour
     {
         if (Global.currentSongInfo != null)
         {
-            for (int i = 0; i < audioPeers.Length; i++)
+            GetComponent<AudioSource>().clip = Global.currentSongInfo.inputSong;
+            if (Global.callSpleeter)
             {
-                audioPeers[i].clip = LoadAudioClip(i);
+                for (int i = 0; i < audioPeers.Length; i++)
+                {
+                    audioPeers[i].clip = LoadAudioClip(i);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < audioPeers.Length; i++)
+                {
+                    //TOTO: Load in song to every orb and drop song output to 0%
+                    //      Every orb picked up raises the volume by 25%
+                }
             }
         }
         foreach(var orb in audioPeers)

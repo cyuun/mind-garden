@@ -22,14 +22,15 @@ public class AudioAnalyzer : MonoBehaviour
         beats = new List<Beat>();
         onsets = new List<Onset>();
         segments = new List<Value>();
+        //Get song from spleeter
+        if (Global.currentSongInfo != null) audioSource.clip = Global.currentSongInfo.inputSong;
+        else audioSource.clip = AudioPeerRoot.S.defaultSong;
+        audioSource.Play();
+
     }
 
     void Start()
     {
-        //Get song from spleeter
-        if (SpleeterProcess.S) audioSource.clip = SpleeterProcess.S.inputSong;
-        else audioSource.clip = AudioPeerRoot.S.defaultSong;
-        audioSource.Play();
 
         songPlayer = audioSource.GetComponent<RhythmPlayer>();
         eventProvider.Register<Beat>(OnBeat);
