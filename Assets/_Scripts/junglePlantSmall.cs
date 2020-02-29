@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class junglePlantSmall : MonoBehaviour
+public class junglePlantSmall : Plant
 {
     public GameObject piece1;
     public GameObject piece2;

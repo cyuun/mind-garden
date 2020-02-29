@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tree : MonoBehaviour
+public class Plant : MonoBehaviour
 {
     public AudioPeer _audioPeer;
     public TreeSpawner spawner;

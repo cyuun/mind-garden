@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class underwaterPlantSpeed : Tree
+public class underwaterPlantSpeed : Plant
 {
     public float musicMultiplier = 1.0f;
     float musicTemp;

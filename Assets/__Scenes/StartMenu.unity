@@ -4794,7 +4794,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Text
-      value: 'areWeStillYoung
+      value: 'Song0
 
 '
       objectReference: {fileID: 0}
@@ -4907,21 +4907,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Song0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSong
-      value: 
-      objectReference: {fileID: 8300000, guid: a687f5bb575a0cd42805f4e45074a3e0, type: 3}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSongPath
-      value: C:\Users\Jared\Documents\UnityGames\mind-garden\Assets\Songs\areWeStillYoung.mp3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.songName
-      value: areWeStillYoung
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}

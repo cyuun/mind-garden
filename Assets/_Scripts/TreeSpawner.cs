@@ -54,18 +54,7 @@ public class TreeSpawner : MonoBehaviour
 
             //TODO: Reassign audioPeer to be nearest orb
             AudioSource[] orbs = AudioPeerRoot.S.audioPeers;
-            AudioSource closest = orbs[0];
-            foreach(AudioSource o in orbs)
-            {
-                float min = Vector3.Distance(treePos, closest.transform.position);
-                float dist = Vector3.Distance(treePos, o.transform.position);
-                if (dist < min)
-                {
-                    closest = o;
-                }
-            }
-            audioPeer = closest.GetComponent<AudioPeer>();
-
+            
             for (int i = 0; i < numOfTrees; i++)
             {
                 float yOffset = 0;
@@ -75,6 +64,18 @@ public class TreeSpawner : MonoBehaviour
                 bool onTerrain = false;
                 bool inHead = false;
                 bool tooSteep = false;
+
+                AudioSource closest = orbs[0];
+                foreach (AudioSource o in orbs)
+                {
+                    float min = Vector3.Distance(treePos, closest.transform.position);
+                    float dist = Vector3.Distance(treePos, o.transform.position);
+                    if (dist < min)
+                    {
+                        closest = o;
+                    }
+                }
+                audioPeer = closest.GetComponent<AudioPeer>();
 
                 //Select random treefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
@@ -117,6 +118,20 @@ public class TreeSpawner : MonoBehaviour
                 else if (tree.GetComponent<underwaterPlantSpeed>())
                 {
                     underwaterPlantSpeed t = tree.GetComponent<underwaterPlantSpeed>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+                else if (tree.GetComponent<junglePlantBig>())
+                {
+                    junglePlantBig t = tree.GetComponent<junglePlantBig>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+                else if (tree.GetComponent<junglePlantSmall>())
+                {
+                    junglePlantSmall t = tree.GetComponent<junglePlantSmall>();
                     t._audioPeer = audioPeer;
                     t.spawner = this;
                     yOffset = t.y_offset;

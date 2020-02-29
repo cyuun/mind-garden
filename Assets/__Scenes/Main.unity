@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086781100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c10451fadf931042bc96883f7c819dc, type: 3}
   m_Name: 
@@ -3130,6 +3130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 254491315735285034, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -125
+      objectReference: {fileID: 0}
     - target: {fileID: 447073058179546732, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: defaultSong
@@ -3163,7 +3168,12 @@ PrefabInstance:
     - target: {fileID: 1224939473886636495, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224939473886636495, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1251357554282022746, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
@@ -3348,6 +3358,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 829e50ba82852b64a96fc0352f1627ed,
         type: 2}
+    - target: {fileID: 3966738667413462636, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_Name
+      value: Vocals
+      objectReference: {fileID: 0}
     - target: {fileID: 4067934102700126852, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_Enabled
@@ -3379,6 +3394,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5827263761157721263, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827263761157721263, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 6626090287354774128, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -3389,6 +3414,11 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 52c99416d0cccf34a85995b4fd98c09c, type: 3}
+    - target: {fileID: 7231115008363372521, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
+        type: 3}
+      propertyPath: m_Name
+      value: Bass
+      objectReference: {fileID: 0}
     - target: {fileID: 7896321116369311413, guid: 5a94a5c373e7e6f4bbf777a71d201fe6,
         type: 3}
       propertyPath: targets.Array.size

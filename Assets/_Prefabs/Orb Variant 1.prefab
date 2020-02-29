@@ -72,6 +72,35 @@ PrefabInstance:
       propertyPath: _colorGrad.ctime2
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 2344852137124020063, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: treePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6342247088227103673, guid: 4a7549e990306554b8f3125b59c8dd80,
+        type: 3}
+    - target: {fileID: 2344852137124020063, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: treePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad,
+        type: 3}
+    - target: {fileID: 2344852137124020063, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: treePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad,
+        type: 3}
+    - target: {fileID: 2344852137124020063, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: treePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6751643581463402893, guid: 6de3ab89ae0c37d47a503b31423b0769,
+        type: 3}
+    - target: {fileID: 2344852137124020063, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: audioPeer
+      value: 
+      objectReference: {fileID: 3913112320944016492}
     - target: {fileID: 6840967919961292512, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -574,3 +603,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ddf5f825d5b7ce41a52362eaee11ff1, type: 3}
+--- !u!114 &3913112320944016492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4547690792564925864, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 671755709611190724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d4fb4538de4824390dc40168b70463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

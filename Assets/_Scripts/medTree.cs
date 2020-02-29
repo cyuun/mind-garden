@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class medTree : Tree
+public class medTree : Plant
 {
     public GameObject piece1;
     public GameObject piece2;
