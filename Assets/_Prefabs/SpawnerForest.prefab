@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1483756606247016888}
   - component: {fileID: 7127389882151016665}
+  - component: {fileID: 6688515277789686127}
+  - component: {fileID: 2332086164498011841}
   m_Layer: 11
   m_Name: SpawnerForest
   m_TagString: Untagged
@@ -51,8 +53,53 @@ MonoBehaviour:
   - {fileID: 6751643581463402893, guid: 6de3ab89ae0c37d47a503b31423b0769, type: 3}
   - {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad, type: 3}
   forestCount: 25
-  spawnRadiusMax: 200
+  spawnRadiusMax: 133.3
   treesMin: 15
   treesMax: 20
   treeSeparation: 4
   maxSlope: 50
+--- !u!114 &6688515277789686127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946184587849143891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f252abb1ef063a48a830786d9201a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockPrefabs:
+  - {fileID: 4803499848723704304, guid: d50843b1ee9a8a14195d6e84b945bb56, type: 3}
+  - {fileID: 4380520468186172897, guid: 9266ad87d5b3a094e905e2571833e07e, type: 3}
+  - {fileID: 1212972099473142268, guid: e9dbe03907ab54542a2f67e6ca883d8d, type: 3}
+  - {fileID: 155815463140263726, guid: 2cfaa6cbe5b6a424283beb86137068eb, type: 3}
+  - {fileID: 264849990880409440, guid: 3e6ffb21e7dd10547aa049d4aa2294ac, type: 3}
+  spawnRadiusMin: 10
+  spawnRadiusMax: 90
+  numOfRocks: 25
+  scaleMin: 1
+  scaleMax: 2
+--- !u!114 &2332086164498011841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946184587849143891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8850c91939df1746be3a2a16380d43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAsParent: 0
+  prefabs:
+  - {fileID: 3001518382363872306, guid: 303dd5ac64750e94d84fef33bf4c2da1, type: 3}
+  - {fileID: 4457160537146530126, guid: bcf85d83a5b5caf4bb776609b122885e, type: 3}
+  - {fileID: 4116993532342046855, guid: 2e4ae7474ce8dae4982b52ea27f9b86b, type: 3}
+  spawnRadiusMax: 80.3
+  minSpawn: 15
+  maxSpawn: 20
+  flying: 0
+  yOffset: 3
