@@ -2,6 +2,28 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 7
+February 25 - March 3
+### Menu Libraries for Songs and Screenshots
+The main menu now comes equipped with a build in song library that loads in songs from both the Assets/Resources folder and the persistent data path (in which all the imported songs are stored). Using the Assets/Resources folder means we can include a list of prepared songs for the user to experience without having to import any songs of their own, and in addition they will be able to play the game using the Spleeter mode even if they don't have it installed on their computer. All other imported songs are put at the top of the list above the included songs. The screenshot gallery has also been implemented, which loads in all the screenshots that have been saved to the persistent data path. The gallery itself also scales to the amount of screenshots there are, extending the number of panels or deleting them according to how many pictures exist in the directory.
+![Songs](Resources/songLibrary.png "SongLib")
+![Gallery](Resources/gallery1.png "Gallery")
+
+### Simple Pause Menu
+The game can now be paused by hitting Escape (Return in the Unity editor). This frees the cursor from the first person controller and sets the timescale to zero so the player can adjust options such as volume and tutorials. The pause menu also allows the player to return to the main menu by hitting exit.
+![Pause](Resources/pause.png "PauseMenu")
+
+### Bouncy Enemies
+We now have enemies of a sort for the desert, underwater and jungle biome. Newly modeled ones include a bone fish for underwater and a carnivorous plant for the jungle. They push the player back and emit colored particles when in contact with the player. 
+![enemies](Resources/enemies.JPG "enemies")
+
+### Grass Spawning Disasters
+Continuing our work from last week on these subjects, we tried finishing the grass spawning algorithm. Despite the algorithm seeming almost finished for a week now, we've been fighting a stupid bug preventing it from all coming together this entire time. This bug has even prompted a complete rewrite of the algorithm that still resulted in the same unknown problem. At this time this issue has sucked up too much time,and we have to move it to the backburner until we finish more important things such as head instatcing and finishing implementing the rest of the color palettes.
+
+### Head Instancing and Color Palettes
+This week we worked on finishing the work done last week on removing static script references to objects we want to be instatiable, like the heads. We've removed all static script references that we need to throughout the entire project, and replaced them with direct object references. But since the bugs with the grass stole so much time, we haven't gotten around to setting up/connecting every single direct object reference yet. We also intended to have the remaining color palettes imvorted into the game by this week, but for the same time related reasons that has been pushed back to next week as well. In the meantime, we've identified 9 more colors that we've added to each palette.
+
+---
 ## Week 6
 February 18 - 25
 ### Improved Biome Spawning/Swapping
