@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Main1-JunglePlant2
+  m_Name: Wing1-Bug2
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
-  m_ShaderKeywords: DR_CEL_EXTRA_ON _CELPRIMARYMODE_NONE _FLAT_SHADOWS_ENABLED _FLAT_SPECULAR_ENABLED
-    _UNITYSHADOWMODE_NONE
+  m_ShaderKeywords: DR_CEL_EXTRA_ON DR_SPECULAR_ON _CELPRIMARYMODE_NONE _FLAT_SHADOWS_ENABLED
+    _FLAT_SPECULAR_ENABLED _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -85,7 +85,7 @@ Material:
     - _FlatSpecularSize: 0
     - _FlatSpecularSmoothness: 0.5
     - _Flatness: 0.301
-    - _FlatnessExtra: 0.06
+    - _FlatnessExtra: 0.046
     - _FlatnessSecondary: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -108,13 +108,13 @@ Material:
     - _SecondaryColor: 1
     - _SecondaryColorEnabled: 1
     - _SelfShadingSize: 0
-    - _SelfShadingSizeExtra: 0.47
+    - _SelfShadingSizeExtra: 0.38
     - _ShadowEdgeSize: 0
-    - _ShadowEdgeSizeExtra: 0.202
+    - _ShadowEdgeSizeExtra: 0.114
     - _ShadowEdgeSmoothness: 0.071
     - _ShadowFalloff: 0.01
     - _SmoothnessTextureChannel: 0
-    - _SpecularEnabled: 0
+    - _SpecularEnabled: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TextureBlendingMode: 0
@@ -126,11 +126,11 @@ Material:
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.78709614, g: 0.8679245, b: 0.68778926, a: 1}
+    - _Color: {r: 0, g: 0.45822096, b: 0.49056602, a: 0.3019608}
     - _ColorCelShadow: {r: 0.49056602, g: 0.34478462, b: 0.4476891, a: 1}
     - _ColorDim: {r: 0.5660378, g: 0.53950477, b: 0.42452833, a: 0.85}
     - _ColorDimCurve: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
-    - _ColorDimExtra: {r: 0.4733734, g: 0.509434, b: 0.11534355, a: 1}
+    - _ColorDimExtra: {r: 1, g: 0.7264151, b: 0.8731417, a: 0.25882354}
     - _ColorDimSteps: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
     - _ColorGradient: {r: 0.20568848, g: 0.19090424, b: 0.6226415, a: 1}
     - _ColorSecondary: {r: 1, g: 0.55879205, b: 0, a: 1}
@@ -138,5 +138,5 @@ Material:
     - _ColorShadows: {r: 0.5471698, g: 0.37346402, b: 0.26584196, a: 1}
     - _EmissionColor: {r: 4.9245777, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
-    - _FlatSpecularColor: {r: 0.5377358, g: 0.37497774, b: 0.25872195, a: 1}
+    - _FlatSpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnityShadowColor: {r: 0.65, g: 0.65, b: 0.65, a: 1}
