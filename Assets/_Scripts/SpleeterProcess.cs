@@ -20,7 +20,6 @@ public class SpleeterProcess : MonoBehaviour
 
     void Awake()
     {
-        S = this;
 
         if (callSpleeter) 
         {
@@ -38,6 +37,12 @@ public class SpleeterProcess : MonoBehaviour
             }
 
         }*/
+    }
+
+    void Start()
+    {
+        S = this;
+
     }
 
     private void Update()

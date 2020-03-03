@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
     public Button fileSelection, play, gallery, settings;
     public Text errorMessage;
     bool _errorFading = false;
-    bool _cameraMoving = false;
+    public bool _cameraMoving = false;
     public float moveDuration = 1;
     public float moveDistance = 20;
     public GameObject songList;
@@ -411,10 +411,6 @@ public class MenuController : MonoBehaviour
 
     void LoadSongLibrary()
     {
-        string resourcePath = "Spleets/";
-        int songIndex = 0;
-        bool destroy = false;
-
         //Load Resources (songs prepared with spleeter)
         string dir = "Assets/Resources/Spleets/";
         if (Directory.Exists(dir))
