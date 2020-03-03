@@ -14,7 +14,7 @@ The game can now be paused by hitting Escape (Return in the Unity editor). This 
 ![Pause](Resources/pause.png "PauseMenu")
 ### Bouncy Enemies
 We now have enemies of a sort for the desert, underwater and jungle biome. Newly modeled ones include a bone fish for underwater and a carnivorous plant for the jungle. They push the player back and emit colored particles when in contact with the player. 
-![enemies](Resources/enemies.jpg "enemies")
+![enemies](Resources/enemies.JPG "enemies")
 
 ---
 ## Week 6
