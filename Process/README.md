@@ -12,6 +12,9 @@ The main menu now comes equipped with a build in song library that loads in song
 ### Simple Pause Menu
 The game can now be paused by hitting Escape (Return in the Unity editor). This frees the cursor from the first person controller and sets the timescale to zero so the player can adjust options such as volume and tutorials. The pause menu also allows the player to return to the main menu by hitting exit.
 ![Pause](Resources/pause.png "PauseMenu")
+### Bouncy Enemies
+We now have enemies of a sort for the desert, underwater and jungle biome. Newly modeled ones include a bone fish for underwater and a carnivorous plant for the jungle. They push the player back and emit colored particles when in contact with the player. 
+![enemies](Resources/enemies.jpg "enemies")
 
 ---
 ## Week 6
