@@ -2,6 +2,18 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 7
+February 25 - March 3
+### Menu Libraries for Songs and Screenshots
+The main menu now comes equipped with a build in song library that loads in songs from both the Assets/Resources folder and the persistent data path (in which all the imported songs are stored). Using the Assets/Resources folder means we can include a list of prepared songs for the user to experience without having to import any songs of their own, and in addition they will be able to play the game using the Spleeter mode even if they don't have it installed on their computer. All other imported songs are put at the top of the list above the included songs. The screenshot gallery has also been implemented, which loads in all the screenshots that have been saved to the persistent data path. The gallery itself also scales to the amount of screenshots there are, extending the number of panels or deleting them according to how many pictures exist in the directory.
+![Songs](Resources/songLibrary.png "SongLib")
+![Gallery](Resources/gallery1.png "Gallery")
+
+### Simple Pause Menu
+The game can now be paused by hitting Escape (Return in the Unity editor). This frees the cursor from the first person controller and sets the timescale to zero so the player can adjust options such as volume and tutorials. The pause menu also allows the player to return to the main menu by hitting exit.
+![Pause](Resources/pause.png "PauseMenu")
+
+---
 ## Week 6
 February 18 - 25
 ### Improved Biome Spawning/Swapping
