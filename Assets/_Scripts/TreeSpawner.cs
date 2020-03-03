@@ -11,7 +11,7 @@ public class TreeSpawner : MonoBehaviour
 
     public int forestCount = 5;
     const int spawnRadiusMin = 15;
-    [Range(16, 100)]
+    [Range(16, 200)]
     public float spawnRadiusMax;
     [Range(1,20)]
     public int treesMin,treesMax;
@@ -53,19 +53,8 @@ public class TreeSpawner : MonoBehaviour
             Vector3 treePos = pos;
 
             //TODO: Reassign audioPeer to be nearest orb
-            AudioSource[] orbs = SpleeterProcess.S.orbs;
-            AudioSource closest = orbs[0];
-            foreach(AudioSource o in orbs)
-            {
-                float min = Vector3.Distance(treePos, closest.transform.position);
-                float dist = Vector3.Distance(treePos, o.transform.position);
-                if (dist < min)
-                {
-                    closest = o;
-                }
-            }
-            audioPeer = closest.GetComponent<AudioPeer>();
-
+            AudioSource[] orbs = AudioPeerRoot.S.audioPeers;
+            
             for (int i = 0; i < numOfTrees; i++)
             {
                 float yOffset = 0;
@@ -75,6 +64,18 @@ public class TreeSpawner : MonoBehaviour
                 bool onTerrain = false;
                 bool inHead = false;
                 bool tooSteep = false;
+
+                AudioSource closest = orbs[0];
+                foreach (AudioSource o in orbs)
+                {
+                    float min = Vector3.Distance(treePos, closest.transform.position);
+                    float dist = Vector3.Distance(treePos, o.transform.position);
+                    if (dist < min)
+                    {
+                        closest = o;
+                    }
+                }
+                audioPeer = closest.GetComponent<AudioPeer>();
 
                 //Select random treefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
@@ -121,6 +122,20 @@ public class TreeSpawner : MonoBehaviour
                     t.spawner = this;
                     yOffset = t.y_offset;
                 }
+                else if (tree.GetComponent<junglePlantBig>())
+                {
+                    junglePlantBig t = tree.GetComponent<junglePlantBig>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
+                else if (tree.GetComponent<junglePlantSmall>())
+                {
+                    junglePlantSmall t = tree.GetComponent<junglePlantSmall>();
+                    t._audioPeer = audioPeer;
+                    t.spawner = this;
+                    yOffset = t.y_offset;
+                }
 
                 //Get/Set position
                 treePos = GetTreePos(treePos);
@@ -136,7 +151,7 @@ public class TreeSpawner : MonoBehaviour
 
                     treePos = GetTreePos(treePos);
                     treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z,16) > maxSlope)
+                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 50) > maxSlope)
                     {
                         tooSteep = true;
                         break;

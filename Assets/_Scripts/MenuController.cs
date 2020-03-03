@@ -12,22 +12,27 @@ using SimpleFileBrowser;
 public class MenuController : MonoBehaviour
 {
     public static MenuController S;
-    float firstScreenPos, secondScreenPos, thirdScreenPos;
     public Button fileSelection, play, gallery, settings;
     public Text errorMessage;
     bool _errorFading = false;
-    bool _cameraMoving = false;
+    public bool _cameraMoving = false;
     public float moveDuration = 1;
     public float moveDistance = 20;
-
+    public GameObject songList;
+    [Header("Resource Folders to Import")]
+    [SerializeField]
+    public List<string> songNames = new List<string>();
+    public GameObject songItemPrefab;
     public GameObject head;
+    public GameObject loadScreen;
+    public GameObject startButton;
     public AudioSource backgroundMusic;
-
 
 
     void Awake()
     {
         S = this;
+        Global.playingGame = false;
 
         if(!fileSelection || !play || !gallery || !settings || !errorMessage)
         {
@@ -66,24 +71,43 @@ public class MenuController : MonoBehaviour
         // Icon: default (folder icon)
         FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
+        LoadSongLibrary();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddSong(SongInfo info)
     {
+        int totalSongs = songList.transform.childCount;
+        Vector3 firstSong = songList.transform.GetChild(totalSongs - 1).position;
+        foreach (Transform t in songList.transform)
+        {
+            if(t.name == "Song0")
+            {
+                Destroy(t.gameObject);
+            }
+            Vector3 pos = t.localPosition;
+            pos.y -= t.GetComponent<RectTransform>().rect.height;
+            t.localPosition = pos;
+        }
+        GameObject newSong = Instantiate(songItemPrefab, firstSong, Quaternion.identity, songList.transform);
 
+        newSong.GetComponent<Text>().text = info.songName;
+        newSong.GetComponent<SongListItem>().songInfo = info;
     }
 
     public void ExploreFiles()
     {
         StartCoroutine(ShowLoadDialogCoroutine());
+        
     }
 
-    public void StartGame()
+    public void Play()
     {
-        if (Global.inputSong != null && Global.inputSongPath != null)
+        if (Global.currentSongInfo != null && !_cameraMoving)
         {
-            SceneManager.LoadScene(1); //Loads Main Game Scene
+            StartCoroutine(ZoomCamera(moveDuration));
+            StartCoroutine(ShowStartButton());
+            StartCoroutine(ZoomHead(moveDuration));
         }
         else
         {
@@ -91,6 +115,25 @@ public class MenuController : MonoBehaviour
             {
                 StartCoroutine(ShowErrorMessage());
             }
+        }
+    }
+
+    public void StartGame()
+    {
+        if(Global.currentSongInfo != null)
+        {
+            Global.playingGame = true;
+            SceneManager.LoadScene(1);
+        }
+    }
+
+    public void GoBack()
+    {
+        if (!_cameraMoving)
+        {
+            StartCoroutine(BackUpCamera(moveDuration));
+            StartCoroutine(HideStartButton());
+            StartCoroutine(BackUpHead(moveDuration));
         }
     }
 
@@ -152,6 +195,70 @@ public class MenuController : MonoBehaviour
         }*/
     }
 
+    IEnumerator ZoomCamera(float duration)
+    {
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startPos = camTransform.position.z;
+        float endPos = startPos + moveDistance;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, tempPos);
+            yield return null;
+        }
+        Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, endPos);
+        _cameraMoving = false;
+    }
+
+    IEnumerator ZoomHead(float duration)
+    {
+        Transform headT = head.transform;
+        float start = headT.position.z;
+        float end = start - 300;
+        float temp = start;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            temp = Mathf.SmoothStep(start, end, t);
+            head.transform.position = new Vector3(headT.position.x, headT.position.y, temp);
+            yield return null;
+        }
+        head.transform.position = new Vector3(headT.position.x, headT.position.y, end);
+    }
+
+    IEnumerator BackUpCamera(float duration)
+    {
+        _cameraMoving = true;
+        Transform camTransform = Camera.main.transform;
+        float startPos = camTransform.position.z;
+        float endPos = startPos - moveDistance;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, tempPos);
+            yield return null;
+        }
+        Camera.main.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, endPos);
+        _cameraMoving = false;
+    }
+
+    IEnumerator BackUpHead(float duration)
+    {
+        Transform headT = head.transform;
+        float start = headT.position.z;
+        float end = start + 300;
+        float temp = start;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
+        {
+            temp = Mathf.SmoothStep(start, end, t);
+            head.transform.position = new Vector3(headT.position.x, headT.position.y, temp);
+            yield return null;
+        }
+        head.transform.position = new Vector3(headT.position.x, headT.position.y, end);
+    }
+
     IEnumerator ViewGallery(float duration)
     {
         _cameraMoving = true;
@@ -206,6 +313,38 @@ public class MenuController : MonoBehaviour
         }*/
     }
 
+    IEnumerator ShowStartButton()
+    {
+        Transform tr = startButton.transform;
+        float startPos = tr.position.y;
+        float endPos = startPos + 6;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / 1))
+        {
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            startButton.transform.position = new Vector3(tr.position.x, tempPos, tr.position.z);
+            yield return null;
+        }
+        startButton.transform.position = new Vector3(tr.position.x, endPos, tr.position.z);
+    }
+
+    IEnumerator HideStartButton()
+    {
+        Transform tr = startButton.transform;
+        float startPos = tr.position.y;
+        float endPos = startPos - 6;
+        float tempPos = startPos;
+        for (float t = 0; t <= 1; t += (Time.deltaTime / 1))
+        {
+            print(startButton.transform.position);
+
+            tempPos = Mathf.SmoothStep(startPos, endPos, t);
+            startButton.transform.position = new Vector3(tr.position.x, tempPos, tr.position.z);
+            yield return null;
+        }
+        startButton.transform.position = new Vector3(tr.position.x, endPos, tr.position.z);
+    }
+
     IEnumerator ShowErrorMessage()
     {
         _errorFading = true;
@@ -256,7 +395,109 @@ public class MenuController : MonoBehaviour
             }
             backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             Global.inputSong = backgroundMusic.clip;
-            backgroundMusic.Play();
+            if (Global.inputSongPath != null && Global.inputSong != null && Global.callSpleeter)
+            {
+                SpleeterProcess.S.CallSpleeter();
+                backgroundMusic.Play();
+
+            }
+            else
+            {
+                print("Spleeter Disabled: Game will be played in normal mode");
+            }
+        }
+
+    }
+
+    void LoadSongLibrary()
+    {
+        //Load Resources (songs prepared with spleeter)
+        string dir = "Assets/Resources/Spleets/";
+        if (Directory.Exists(dir))
+        {
+            foreach (string file in Directory.EnumerateDirectories(dir))
+            {
+                string songName = "";
+                foreach (string f in Directory.GetFiles(file))
+                {
+                    if (file.Substring(dir.Length) == Path.GetFileNameWithoutExtension(f))
+                    {
+                        songName = Path.GetFileName(f);
+                    }
+                }
+                SongInfo info = new SongInfo();
+                info.inputSongPath = Path.Combine(file, songName);
+                if (Path.GetExtension(info.inputSongPath) == ".mp3")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
+                    info.inputSong = audioClip;
+                }
+                else if (Path.GetExtension(info.inputSongPath) == ".wav")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    WAV wav = new WAV(bytes);
+
+                    AudioClip audioClip;
+                    audioClip = AudioClip.Create(songName, wav.SampleCount, 1, wav.Frequency, false);
+                    audioClip.SetData(wav.LeftChannel, 0);
+                    info.inputSong = audioClip;
+                }
+
+                info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
+                info.songName = info.inputSong.name;
+                info.melody = Path.Combine(dir, songName) + "/other.wav";
+                info.bass = Path.Combine(dir, songName) + "/bass.wav";
+                info.vocals = Path.Combine(dir, songName) + "/vocals.wav";
+                info.drums = Path.Combine(dir, songName) + "/drums.wav";
+                AddSong(info);
+            }
+
+        }
+
+        //Load Imports from Persistent Data Path
+        dir = Application.persistentDataPath + "/Spleets/";
+        if (Directory.Exists(dir))
+        {
+            foreach (string file in Directory.EnumerateDirectories(dir))
+            {
+                string songName = "";
+                foreach (string f in Directory.GetFiles(file))
+                {
+                    if (file.Substring(dir.Length) == Path.GetFileNameWithoutExtension(f))
+                    {
+                        songName = f;
+                    }
+                }
+                SongInfo info = new SongInfo();
+                info.inputSongPath = Path.Combine(file, songName);
+
+                if (Path.GetExtension(info.inputSongPath) == ".mp3")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
+                    info.inputSong = audioClip;
+                }
+                else if (Path.GetExtension(info.inputSongPath) == ".wav")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    WAV wav = new WAV(bytes);
+
+                    AudioClip audioClip;
+                    audioClip = AudioClip.Create(songName, wav.SampleCount, 1, wav.Frequency, false);
+                    audioClip.SetData(wav.LeftChannel, 0);
+                    info.inputSong = audioClip;
+                }
+
+                info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
+                info.songName = info.inputSong.name;
+                info.melody = Path.Combine(dir, songName) + "/other.wav";
+                info.bass = Path.Combine(dir, songName) + "/bass.wav";
+                info.vocals = Path.Combine(dir, songName) + "/vocals.wav";
+                info.drums = Path.Combine(dir, songName) + "/drums.wav";
+                AddSong(info);
+            }
+
         }
 
     }

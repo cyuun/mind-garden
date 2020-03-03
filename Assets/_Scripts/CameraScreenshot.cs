@@ -8,11 +8,17 @@ public class CameraScreenshot : MonoBehaviour
     private static CameraScreenshot S;
     private Camera myCamera;
     private bool takeScreenshot;
+    private int screenshotNum;
 
-    void Start()
+    void Awake()
     {
         S = this;
         myCamera = gameObject.GetComponent<Camera>();
+    }
+
+    void Start()
+    {
+        screenshotNum = (Directory.GetFiles(Application.persistentDataPath + "/Screenshots/")).Length;
     }
 
     private void OnPostRender()
@@ -26,8 +32,13 @@ public class CameraScreenshot : MonoBehaviour
             Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
             renderResult.ReadPixels(rect, 0, 0);
 
+            if(!Directory.Exists(Application.persistentDataPath + "/Screenshots/"))
+            { 
+                Directory.CreateDirectory(Application.persistentDataPath + "/Screenshots/");
+            }
             byte[] bytes = renderResult.EncodeToPNG();
-            File.WriteAllBytes(Application.persistentDataPath + "/Screenshot" + Random.Range(0, 100) + ".png", bytes);
+            File.WriteAllBytes(Application.persistentDataPath + "/Screenshots/Screenshot" + screenshotNum + ".png", bytes);
+            screenshotNum++;
             Debug.Log("Captured Screenshot");
 
             RenderTexture.ReleaseTemporary(renderTexture);

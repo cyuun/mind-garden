@@ -5,6 +5,17 @@ using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
+    public static BiomeSpawner biomeSpawner;
+    public static bool biomeChosen = false;
+
+    public enum BiomeSpawner
+    {
+        desert,
+        forest,
+        jungle,
+        underwater
+    };
+
     AudioPeer audioPeer;
     bool following = false;
     bool moving = false;
@@ -36,6 +47,10 @@ public class OrbScript : MonoBehaviour
     private Vector3 _scale;
     private Renderer rend;
 
+    //Biome Spawners
+    public GameObject[] biomeSpawners;
+    public bool spawnBiome;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +76,17 @@ public class OrbScript : MonoBehaviour
         _endColor = new Color(0, 0, 0, 1);
         _scale = transform.localScale;
         rend = GetComponent<Renderer>();
+
+        if (spawnBiome)
+        {
+            if (!biomeChosen)
+            {
+                Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
+                biomeSpawner = (BiomeSpawner)Random.Range(0, 4);
+                biomeChosen = true;
+            }
+            Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, this.transform);
+        }
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class underwaterPlantSmall : Tree
+public class underwaterPlantSmall : Plant
 {
     public GameObject piece1;
     public GameObject piece2;
