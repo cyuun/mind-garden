@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class desertPlantBig : MonoBehaviour
+public class desertPlantBig : Plant
 {
     public GameObject piece1;
     public GameObject piece2;
@@ -33,13 +33,17 @@ public class desertPlantBig : MonoBehaviour
         
         else if (start || !isSpawningPrefab)
         {
-            Vector3 vec1 = new Vector3(0.0034f, 0.0034f, 0.004f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.01f)) * 0.0004f));
-            Vector3 vec2 = new Vector3(0.0034f, 0.0034f, 0.0025f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.04f)) * 0.0008f));
+            float v1 = Mathf.Lerp(0, 0.005f, _audioPeer._amplitudeBuffer);
+            float v2 = Mathf.Lerp(0, 0.004f, _audioPeer._amplitudeBuffer);
+
+            Vector3 vec1 = new Vector3(0.0034f, 0.0034f, v1);
+            Vector3 vec2 = new Vector3(0.0034f, 0.0034f, v2);
 
             piece1.transform.localScale = vec1;
             piece2.transform.localScale = vec2;
+
         }
-            
+
     }
 
     // void Update()

@@ -11,14 +11,14 @@ public class junglePlantSmall : Plant
     {
         
     }
-    float mainMusicVariable = 10f;
+    float mainMusicVariable = 20f;
     public float rotateSpeed1 = 10f;
     public float rotateSpeed2 = -8f;
 
     void Update()
     {
         // rotate around y-axis
-        piece1.transform.Rotate(0, mainMusicVariable * rotateSpeed1 * Time.deltaTime, 0);
-        piece2.transform.Rotate(0, mainMusicVariable * rotateSpeed2 * Time.deltaTime, 0);
+        piece1.transform.Rotate(0, mainMusicVariable * _audioPeer._amplitudeBuffer * rotateSpeed1 * Time.deltaTime, 0);
+        piece2.transform.Rotate(0, mainMusicVariable * _audioPeer._amplitudeBuffer * rotateSpeed2 * Time.deltaTime, 0);
     }
 }

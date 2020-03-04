@@ -176,9 +176,6 @@ MonoBehaviour:
   _targetScale: {x: 3, y: 3, z: 3}
   biomeSpawners:
   - {fileID: 2524186486030292164, guid: b71499ae055efcc48975a2e15120ee67, type: 3}
-  - {fileID: 6946184587849143891, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}
-  - {fileID: 3347921623798585857, guid: 47312ba22d83b21439fe9a48d6ab299e, type: 3}
-  - {fileID: 3973915543326292861, guid: 6590ddd20f1dc7046b1e231bba3c4f0b, type: 3}
   spawnBiome: 1
 --- !u!114 &1037232182304913055
 MonoBehaviour:
@@ -203,6 +200,7 @@ MonoBehaviour:
   numOfRocks: 25
   scaleMin: 1
   scaleMax: 2
+  randomRotate: 0
 --- !u!1 &2917131535532204839
 GameObject:
   m_ObjectHideFlags: 0

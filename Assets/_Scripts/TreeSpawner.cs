@@ -49,12 +49,8 @@ public class TreeSpawner : MonoBehaviour
 
             Vector3 offset = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * Random.Range(spawnRadiusMin, spawnRadiusMax);
             Vector3 pos = transform.position + offset;
-            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
             Vector3 treePos = pos;
 
-            //TODO: Reassign audioPeer to be nearest orb
-            AudioSource[] orbs = AudioPeerRoot.S.audioPeers;
-            
             for (int i = 0; i < numOfTrees; i++)
             {
                 float yOffset = 0;
@@ -65,78 +61,9 @@ public class TreeSpawner : MonoBehaviour
                 bool inHead = false;
                 bool tooSteep = false;
 
-                AudioSource closest = orbs[0];
-                foreach (AudioSource o in orbs)
-                {
-                    float min = Vector3.Distance(treePos, closest.transform.position);
-                    float dist = Vector3.Distance(treePos, o.transform.position);
-                    if (dist < min)
-                    {
-                        closest = o;
-                    }
-                }
-                audioPeer = closest.GetComponent<AudioPeer>();
-
                 //Select random treefab
                 GameObject tree = treePrefabs[Random.Range(0, treePrefabs.Length)];
-                if (tree.GetComponent<smallTree>())
-                {
-                    smallTree t = tree.GetComponent<smallTree>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-                else if (tree.GetComponent<medTree>())
-                {
-                    medTree t = tree.GetComponent<medTree>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-
-                }
-                else if (tree.GetComponent<bigTree>())
-                {
-                    bigTree t = tree.GetComponent<bigTree>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-                else if (tree.GetComponent<underwaterPlantBig>())
-                {
-                    underwaterPlantBig t = tree.GetComponent<underwaterPlantBig>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-                else if (tree.GetComponent<underwaterPlantSmall>())
-                {
-                    underwaterPlantSmall t = tree.GetComponent<underwaterPlantSmall>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-                else if (tree.GetComponent<underwaterPlantSpeed>())
-                {
-                    underwaterPlantSpeed t = tree.GetComponent<underwaterPlantSpeed>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-                else if (tree.GetComponent<junglePlantBig>())
-                {
-                    junglePlantBig t = tree.GetComponent<junglePlantBig>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-                else if (tree.GetComponent<junglePlantSmall>())
-                {
-                    junglePlantSmall t = tree.GetComponent<junglePlantSmall>();
-                    t._audioPeer = audioPeer;
-                    t.spawner = this;
-                    yOffset = t.y_offset;
-                }
-
+                
                 //Get/Set position
                 treePos = GetTreePos(treePos);
                 treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
@@ -190,7 +117,105 @@ public class TreeSpawner : MonoBehaviour
                     }
                 }
 
-                if (onTerrain && !inHead) Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
+                //Instantiate and assign script info
+                if (onTerrain && !inHead)
+                {
+                    float yRot = Random.Range(0, 360);
+                    GameObject tre = Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
+                    tre.transform.rotation = Quaternion.Euler(new Vector3(0, yRot, 0));
+
+                    AudioSource closest = AudioPeerRoot.S.audioPeers[0];
+                    foreach (AudioSource o in AudioPeerRoot.S.audioPeers)
+                    {
+                        float min = Vector3.Distance(treePos, closest.transform.position);
+                        float dist = Vector3.Distance(treePos, o.transform.position);
+                        if (dist < min)
+                        {
+                            min = dist;
+                            closest = o;
+                        }
+                    }
+                    audioPeer = closest.GetComponent<AudioPeer>();
+                    tre = tre.transform.GetChild(0).gameObject;
+                    if (tre.GetComponent<smallTree>())
+                    {
+                        smallTree t = tre.GetComponent<smallTree>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<medTree>())
+                    {
+                        medTree t = tre.GetComponent<medTree>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+
+                    }
+                    else if (tre.GetComponent<bigTree>())
+                    {
+                        bigTree t = tre.GetComponent<bigTree>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<underwaterPlantBig>())
+                    {
+                        underwaterPlantBig t = tre.GetComponent<underwaterPlantBig>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<underwaterPlantSmall>())
+                    {
+                        underwaterPlantSmall t = tre.GetComponent<underwaterPlantSmall>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<underwaterPlantSpeed>())
+                    {
+                        underwaterPlantSpeed t = tre.GetComponent<underwaterPlantSpeed>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<junglePlantBig>())
+                    {
+                        junglePlantBig t = tre.GetComponent<junglePlantBig>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<junglePlantSmall>())
+                    {
+                        junglePlantSmall t = tre.GetComponent<junglePlantSmall>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<desertPlantBig>())
+                    {
+                        desertPlantBig t = tre.GetComponent<desertPlantBig>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<desertPlantMedium>())
+                    {
+                        desertPlantMedium t = tre.GetComponent<desertPlantMedium>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                    else if (tre.GetComponent<desertPlantSmall>())
+                    {
+                        desertPlantSmall t = tre.GetComponent<desertPlantSmall>();
+                        t._audioPeer = audioPeer;
+                        t.spawner = this;
+                        yOffset = t.y_offset;
+                    }
+                }
             }
         }
 

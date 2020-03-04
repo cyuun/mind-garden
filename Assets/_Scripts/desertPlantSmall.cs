@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class desertPlantSmall : MonoBehaviour
+public class desertPlantSmall : Plant
 {
     public List<GameObject> objectToShake = new List<GameObject>();
     bool shaking = false;
@@ -32,7 +32,7 @@ public class desertPlantSmall : MonoBehaviour
 
         else if ((start || !isSpawningPrefab) && signalFromMusic)
         {
-            shakeGameObject(0.8f, 0.5f, false);
+            shakeGameObject(0.3f, 0.1f, false);
         }
 
     }

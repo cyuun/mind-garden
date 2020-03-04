@@ -82,7 +82,7 @@ public class OrbScript : MonoBehaviour
             if (!biomeChosen)
             {
                 Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-                biomeSpawner = (BiomeSpawner)Random.Range(0, 4);
+                biomeSpawner = (BiomeSpawner)Random.Range(0, biomeSpawners.Length);
                 biomeChosen = true;
             }
             Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, this.transform);
