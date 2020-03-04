@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/_Materials/Fish.meta
 guid: 907fd576e63f8c342a6b05dfef719c82
 folderAsset: yes
+=======
+guid: f86179b337096e947a358a7dabef9200
+>>>>>>> menu-libraries:Assets/RhythmTool/Examples/AudioImporter Visualizer.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class desertPlantMedium : MonoBehaviour
+public class desertPlantMedium : Plant
 {
     public GameObject piece1;
     // Start is called before the first frame update
@@ -16,6 +16,6 @@ public class desertPlantMedium : MonoBehaviour
     void Update()
     {
         // rotate around y-axis
-        piece1.transform.Rotate(0, mainMusicVariable * rotateSpeed1 * Time.deltaTime, 0);
+        piece1.transform.Rotate(0, _audioPeer._amplitudeBuffer * rotateSpeed1, 0);
     }
 }

@@ -36,15 +36,20 @@ public class junglePlantBig: Plant
 
         else if (start || !isSpawningPrefab)
         {
-            Vector3 vec1 = new Vector3(0.00428168f, 0.00428168f, 0.0264475f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.01f)) * 0.0035f));
-            Vector3 vec2 = new Vector3(0.00428168f, 0.00428168f, 0.01418361f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.08f)) * 0.008f));
-            Vector3 vec3 = new Vector3(0.00428168f, 0.00428168f, 0.01715916f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.04f)) * 0.004f));
-            Vector3 vec4 = new Vector3(0.00428168f, 0.00428168f, 0.02068897f + (Mathf.Sin(Time.time * (mainMusicVariable + 0.012f)) * 0.006f));
+            float v1 = Mathf.Lerp(0.015f, 0.035f, _audioPeer._audioBandBuffer[1] + 0.15f);
+            float v2 = Mathf.Lerp(0.013f, 0.035f, _audioPeer._audioBandBuffer[2] + 0.15f);
+            float v3 = Mathf.Lerp(0.01f, 0.035f, _audioPeer._audioBandBuffer[3] + 0.15f);
+            float v4 = Mathf.Lerp(0.011f, 0.035f, _audioPeer._audioBandBuffer[2] + 0.15f);
 
-            piece1.transform.localScale = vec1;
-            piece2.transform.localScale = vec2;
-            piece3.transform.localScale = vec3;
-            piece4.transform.localScale = vec4;
+            /*Vector3 vec1 = new Vector3(0.00428168f, 0.00428168f, 0.0264475f + (mainMusicVariable * _audioPeer._amplitudeBuffer) * 0.004f);
+            Vector3 vec2 = new Vector3(0.00428168f, 0.00428168f, 0.01418361f + (mainMusicVariable * _audioPeer._amplitudeBuffer) * 0.005f);
+            Vector3 vec3 = new Vector3(0.00428168f, 0.00428168f, 0.01715916f + (mainMusicVariable * _audioPeer._amplitudeBuffer) * 0.004f);
+            Vector3 vec4 = new Vector3(0.00428168f, 0.00428168f, 0.02068897f + (mainMusicVariable * _audioPeer._amplitudeBuffer) * 0.006f);*/
+
+            piece1.transform.localScale = new Vector3(0.00428168f, 0.00428168f, v1);
+            piece2.transform.localScale = new Vector3(0.00428168f, 0.00428168f, v2);
+            piece3.transform.localScale = new Vector3(0.00428168f, 0.00428168f, v3);
+            piece4.transform.localScale = new Vector3(0.00428168f, 0.00428168f, v4);
         }
     }
 

@@ -14,6 +14,7 @@ public class RockSpawner : MonoBehaviour
     public int numOfRocks;
     public float scaleMin = 1;
     public float scaleMax = 2;
+    public bool randomRotate = false;
 
     void Start()
     {
@@ -88,7 +89,9 @@ public class RockSpawner : MonoBehaviour
 
             if(onTerrain && !inHead)
             {
-                GameObject myRock = Instantiate(selectedRock, rockPos, Random.rotation, ROCK_PARENT);
+                GameObject myRock;
+                if(randomRotate) myRock = Instantiate(selectedRock, rockPos, Random.rotation, ROCK_PARENT);
+                else myRock = Instantiate(selectedRock, rockPos, Quaternion.identity, ROCK_PARENT);
                 //Resize
                 float scale = Random.Range(scaleMin, scaleMax);
                 myRock.transform.localScale *= scale;

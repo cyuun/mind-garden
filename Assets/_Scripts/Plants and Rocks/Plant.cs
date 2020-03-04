@@ -18,7 +18,7 @@ public class Plant : MonoBehaviour
         if(_audioPeer == null)
         {
             AudioSource[] audioSources = AudioPeerRoot.S.audioPeers;
-            _audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
+            //_audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
         }
         
 
