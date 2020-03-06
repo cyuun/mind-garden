@@ -66,6 +66,7 @@ public class SettingsMenu : MonoBehaviour
         Time.timeScale = 1;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         Global.playingGame = false;
+        //TODO: Reinitialize certain static variables for next game
 
         SceneManager.LoadScene(0);
     }

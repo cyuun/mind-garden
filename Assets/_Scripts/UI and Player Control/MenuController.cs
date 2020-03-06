@@ -81,10 +81,6 @@ public class MenuController : MonoBehaviour
         Vector3 firstSong = songList.transform.GetChild(totalSongs - 1).position;
         foreach (Transform t in songList.transform)
         {
-            if(t.name == "Song0")
-            {
-                Destroy(t.gameObject);
-            }
             Vector3 pos = t.localPosition;
             pos.y -= t.GetComponent<RectTransform>().rect.height;
             t.localPosition = pos;
@@ -413,7 +409,7 @@ public class MenuController : MonoBehaviour
     {
         //Load Resources (songs prepared with spleeter)
         string dir = "Assets/Resources/Spleets/";
-        if (Directory.Exists(dir))
+        /*if (Directory.Exists(dir))
         {
             foreach (string file in Directory.EnumerateDirectories(dir))
             {
@@ -453,7 +449,7 @@ public class MenuController : MonoBehaviour
                 AddSong(info);
             }
 
-        }
+        }*/
 
         //Load Imports from Persistent Data Path
         dir = Application.persistentDataPath + "/Spleets/";

@@ -10,10 +10,14 @@ public class GalleryPanel : MonoBehaviour
     public Image[] images;
     public Image[] backgrounds;
     public GameObject nextButton;
+    public static Transform viewport;
+    GameObject gallery;
 
     void Start()
     {
-        
+        gallery = transform.parent.gameObject;
+        if(viewport == null) viewport = gallery.transform.parent.Find("Viewport");
+        viewport.gameObject.SetActive(false);
     }
 
     public void nextScreen()
@@ -28,11 +32,39 @@ public class GalleryPanel : MonoBehaviour
 
     IEnumerator MoveLeft()
     {
-        yield return null;
+        RectTransform tr = gallery.GetComponent<RectTransform>();
+        float startPos = tr.localPosition.x;
+        float endPos = startPos - tr.rect.width;
+        float temp;
+        for(float t = 0; t <= 1; t += Time.deltaTime)
+        {
+            temp = Mathf.SmoothStep(startPos, endPos, t);
+            gallery.GetComponent<RectTransform>().transform.localPosition = new Vector3(temp, tr.localPosition.y, tr.localPosition.z);
+            yield return null;
+        }
+        gallery.GetComponent<RectTransform>().transform.localPosition = new Vector3(endPos, tr.localPosition.y, tr.localPosition.z);
     }
 
     IEnumerator MoveRight()
     {
-        yield return null;
+        RectTransform tr = gallery.GetComponent<RectTransform>();
+        float startPos = tr.localPosition.x;
+        float endPos = startPos + tr.rect.width;
+        float temp;
+        for (float t = 0; t <= 1; t += Time.deltaTime)
+        {
+            temp = Mathf.SmoothStep(startPos, endPos, t);
+            gallery.GetComponent<RectTransform>().transform.localPosition = new Vector3(temp, tr.localPosition.y, tr.localPosition.z);
+            yield return null;
+        }
+        gallery.GetComponent<RectTransform>().transform.localPosition = new Vector3(endPos, tr.localPosition.y, tr.localPosition.z);
     }
+
+    public void DisplayImage(Image myImage)
+    {
+        viewport.gameObject.SetActive(true);
+        Transform image = viewport.Find("Image");
+        image.GetComponent<Image>().sprite = myImage.sprite;
+    }
+
 }

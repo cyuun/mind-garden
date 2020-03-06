@@ -8,16 +8,17 @@ public class GalleryController : MonoBehaviour
 {
     public static string screenshotsPath;
     public GameObject galleryPrefab;
-    public List<string> allScreenshotPaths;
+    public GameObject viewport;
+    List<string> allScreenshotPaths;
 
     void Start()
     {
         allScreenshotPaths = new List<string>();
         screenshotsPath = Path.Combine(Application.persistentDataPath, "Screenshots");
-        LoadScreenshots();
+        StartCoroutine(LoadScreenshots());
     }
 
-    void LoadScreenshots()
+    IEnumerator LoadScreenshots()
     {
         if (Directory.Exists(screenshotsPath))
         {
@@ -34,7 +35,7 @@ public class GalleryController : MonoBehaviour
         int galleryIndex = 0;
         if(screenshotCount > 0)
         {
-            foreach (Transform galPanel in transform)
+            foreach (Transform galPanel in transform.GetChild(0))
             {
                 GalleryPanel panel = galPanel.GetComponent<GalleryPanel>();
                 foreach (Image image in panel.images)
@@ -54,7 +55,7 @@ public class GalleryController : MonoBehaviour
                         panel.backgrounds[imageIndex].enabled = false;
                         imageIndex++;
                     }
-
+                    yield return new WaitForSeconds(Time.deltaTime);
 
                 }
 
@@ -70,7 +71,7 @@ public class GalleryController : MonoBehaviour
             {
                 Vector3 newPanelPos = transform.GetChild(0).GetComponent<RectTransform>().localPosition;
                 newPanelPos.x += 1080 * galleryIndex;
-                GameObject galPanel = Instantiate(galleryPrefab, this.transform);
+                GameObject galPanel = Instantiate(galleryPrefab, this.transform.GetChild(0));
                 galPanel.GetComponent<RectTransform>().localPosition = newPanelPos;
 
                 GalleryPanel panel = galPanel.GetComponent<GalleryPanel>();
@@ -91,6 +92,7 @@ public class GalleryController : MonoBehaviour
                         panel.backgrounds[imageIndex % 8].enabled = false;
                         imageIndex++;
                     }
+                    yield return new WaitForSeconds(Time.deltaTime);
 
 
                 }
@@ -102,5 +104,10 @@ public class GalleryController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void CloseViewport()
+    {
+        viewport.SetActive(false);
     }
 }

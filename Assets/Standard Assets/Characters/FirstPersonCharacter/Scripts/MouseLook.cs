@@ -20,7 +20,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
-        private bool gamePaused = false;
         private bool escaped = false;
 
         public void Init(Transform character, Transform camera)
@@ -32,7 +31,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
-            if (m_cursorIsLocked)
+            if(m_cursorIsLocked)
             {
                 float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
                 float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
@@ -55,8 +54,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     character.localRotation = m_CharacterTargetRot;
                     camera.localRotation = m_CameraTargetRot;
                 }
-            }
 
+
+            }
             UpdateCursorLock();
         }
 
@@ -81,38 +81,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_cursorIsLocked = (Cursor.lockState == CursorLockMode.Locked);
 #if UNITY_EDITOR
-           if (Input.GetKeyUp(KeyCode.Escape))
+            if (Input.GetKeyUp(KeyCode.Escape))
             {
-                m_cursorIsLocked = false;
-                escaped = true;
+                {
+                    m_cursorIsLocked = false; m_cursorIsLocked = false;
+                    escaped = true;
+                }
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0) && escaped)
             {
-                m_cursorIsLocked = true;
-                escaped = false;
+                {
+                    m_cursorIsLocked = true; m_cursorIsLocked = true;
+                    escaped = false;
+                }
             }
 #else
-            if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            gamePaused = !gamePaused;
+            if (gamePaused)
             {
-                gamePaused = !gamePaused;
-                if (gamePaused)
-                {
-                    m_cursorIsLocked = false;
-                }
-                else
-                {
-                    m_cursorIsLocked = true;
-                }
+                m_cursorIsLocked = false;
             }
+            else
+            {
+                m_cursorIsLocked = true;
+            }
+        }
 #endif
-            /*            if (Input.GetKeyUp(KeyCode.Escape))
-                        {
-                            m_cursorIsLocked = false;
-                        }
-                        else if(Input.GetMouseButtonUp(0))
-                        {
-                            m_cursorIsLocked = true;
-                        }*/
+
 
             if (m_cursorIsLocked)
             {
