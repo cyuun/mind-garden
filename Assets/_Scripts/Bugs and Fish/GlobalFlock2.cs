@@ -11,7 +11,9 @@ public class GlobalFlock2 : MonoBehaviour
     static int numBugs = 2;
     public static GameObject[] allBugs = new GameObject[numBugs];
     public static Vector3 goalPos = Vector3.zero;
-
+    
+    public TerrainScript terrainScript;
+    
     // Use this for initialization
     void Start()
     {
@@ -44,7 +46,7 @@ public class GlobalFlock2 : MonoBehaviour
             float zPos = Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize);
             goalPos = new Vector3(
                 xPos,
-                TerrainScript.S.GetTerrainHeight(xPos,zPos) + 2,
+                terrainScript.GetTerrainHeight(xPos,zPos) + 2,
                 zPos
             );
             goalPrefab.transform.position = goalPos;
@@ -53,7 +55,7 @@ public class GlobalFlock2 : MonoBehaviour
     Vector3 ResetYPosition(Vector3 pos)
     {
         Vector3 Ypos = pos;
-        Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
+        Ypos.y = terrainScript.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
         return pos;
     }
 }

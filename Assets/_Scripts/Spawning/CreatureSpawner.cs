@@ -16,8 +16,10 @@ public class CreatureSpawner : MonoBehaviour
 
     public bool flying;
     public float yOffset;
+    
+    public TerrainScript terrainScript;
 
-    void Start()
+    public void SetParent()
     {
         if (useAsParent) CREATURE_PARENT = this.transform;
         if (CREATURE_PARENT == null)
@@ -25,20 +27,12 @@ public class CreatureSpawner : MonoBehaviour
             GameObject go = new GameObject("_CreatureParent");
             go.layer = LayerMask.NameToLayer("Creatures");
             go.tag = "Creatures";
-            go.transform.SetParent(TerrainScript.S.transform);
+            go.transform.SetParent(terrainScript.transform);
             CREATURE_PARENT = go.transform;
         }
-
-        SpawnCreatures();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void SpawnCreatures()
+    public void SpawnCreatures()
     {
         int spawnCount = Random.Range(minSpawn, maxSpawn);
         for(int i = 0; i < spawnCount; i++)
@@ -55,7 +49,7 @@ public class CreatureSpawner : MonoBehaviour
             else
             {
                 pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
-                pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z) + yOffset;
+                pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + yOffset;
             }
             creature = Instantiate(creature, pos, Quaternion.identity, CREATURE_PARENT);
         }

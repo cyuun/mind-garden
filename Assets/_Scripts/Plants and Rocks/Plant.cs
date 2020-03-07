@@ -10,7 +10,8 @@ public class Plant : MonoBehaviour
 
     protected bool _spawnComplete = false;
     public bool spawnComplete { get { return _spawnComplete; } set { _spawnComplete = value; } }
-
+    
+    public TerrainScript terrainScript;
 
     private void Awake()
     {
@@ -20,9 +21,6 @@ public class Plant : MonoBehaviour
             AudioSource[] audioSources = AudioPeerRoot.S.audioPeers;
             //_audioPeer = audioSources[Random.Range(0, audioSources.Length)].GetComponent<AudioPeer>(); ;
         }
-        
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,7 +34,7 @@ public class Plant : MonoBehaviour
                 Transform rock = other.transform.parent;
                 offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * rock.GetComponent<Rock>().radius * rock.localScale.x;
                 Vector3 pos = other.transform.position + offsetFromOrb;
-                pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+                pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z);
                 transform.position = pos;
                 break;
             case "Pond":

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GlobalFlock : MonoBehaviour
 {
+    public static GlobalFlock S;
 
     public GameObject bugPrefab;
     public GameObject goalPrefab;
@@ -13,10 +14,13 @@ public class GlobalFlock : MonoBehaviour
     public static Vector3 goalPos = Vector3.zero;
 
     bool hitRock = false;
+    
+    public TerrainScript terrainScript;
 
     // Use this for initialization
     void Start()
     {
+        S = this;
 
         transform.position = ResetYPosition(transform.position);
 
@@ -54,10 +58,10 @@ public class GlobalFlock : MonoBehaviour
         }
     }
 
-    public static Vector3 ResetYPosition(Vector3 pos)
+    public Vector3 ResetYPosition(Vector3 pos)
     {
         Vector3 Ypos = pos;
-        Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
+        Ypos.y = terrainScript.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
         return pos;
     }
 }

@@ -16,8 +16,8 @@ public class HeadScript : MonoBehaviour
 
     public void Activate()
     {
+        AudioPeerRoot.S.SetActiveHead(gameObject);
         ColorController.S.SetActiveHead(gameObject);
-        // add head to the audio listener too
     }
 
     private void Start()

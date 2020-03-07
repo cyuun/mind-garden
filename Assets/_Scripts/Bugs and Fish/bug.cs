@@ -39,7 +39,7 @@ public class bug : MonoBehaviour
         }
 
         transform.Translate(0, 0, Time.deltaTime * speed*musicMultipier);
-        transform.position = GlobalFlock.ResetYPosition(transform.position);
+        transform.position = GlobalFlock.S.ResetYPosition(transform.position);
     }
 
     void ApplyBoundary()

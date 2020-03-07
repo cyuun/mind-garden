@@ -15,8 +15,10 @@ public class RockSpawner : MonoBehaviour
     public float scaleMin = 1;
     public float scaleMax = 2;
     public bool randomRotate = false;
+    
+    public TerrainScript terrainScript;
 
-    void Start()
+    public void SetParent()
     {
         //Choose rocks at random
         //Cluster some number of unique rocks around different orbs given certain radius
@@ -27,20 +29,12 @@ public class RockSpawner : MonoBehaviour
             //go.layer = LayerMask.NameToLayer("Rocks");
             go.layer = LayerMask.NameToLayer("Rocks");
             go.tag = "Rocks";
-            go.transform.SetParent(TerrainScript.S.transform);
+            go.transform.SetParent(terrainScript.transform);
             ROCK_PARENT = go.transform;
         }
-
-        GenerateRocks();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void GenerateRocks()
+    public void GenerateRocks()
     {
         for(int i = 0; i < numOfRocks; i++)
         {
@@ -62,7 +56,7 @@ public class RockSpawner : MonoBehaviour
                 inHead = false;
 
                 rockPos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
-                rockPos.y = TerrainScript.S.GetTerrainHeight(rockPos.x, rockPos.z);
+                rockPos.y = terrainScript.GetTerrainHeight(rockPos.x, rockPos.z);
                 foreach (Collider c in Physics.OverlapSphere(rockPos, 3f))
                 {
                     if (c.name.Contains("Sphere") || c.name.Contains("Orb"))

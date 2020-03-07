@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class TerrainScript : MonoBehaviour
 {
-    public static TerrainScript S;
-
     //lattice variables
     [Header("Lattice")]
     public float xMax = 100;         //the max x size of the canvas for the outline to be "drawn" upon
@@ -175,8 +173,6 @@ public class TerrainScript : MonoBehaviour
 
     private void Awake()
     {
-        S = this;
-
         if (_randomizeTerrain)
         {
             noiseScale = Random.Range(20f, 75f); //Density of peaks
