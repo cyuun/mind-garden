@@ -21,4 +21,5 @@ public class ColorPalette
     public Color[] bugBodies = new Color[6];
     public Color[] fish1 = new Color[6];
     public Color[] fish2 = new Color[6];
+    public Color[] head = new Color[3];
 }
