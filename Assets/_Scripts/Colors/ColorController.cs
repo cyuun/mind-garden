@@ -171,23 +171,23 @@ public class ColorController : MonoBehaviour
         }
         foreach (var trunkRenderer in _trunkRenderers)
         {
-            trunkRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].treeTrunks[_colorIndex]);
-            trunkRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].treeTrunks[(_colorIndex + 1) % 2]);
+            trunkRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plantBase[_colorIndex]);
+            trunkRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plantBase[(_colorIndex + 1) % 2]);
         }
         foreach (var treeRenderer in _tree1Renderers)
         {
-            treeRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].tree1[_colorBase + _colorIndex]);
-            treeRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].tree1[_colorBase + (_colorIndex + 1) % 2]);
+            treeRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant1[_colorBase + _colorIndex]);
+            treeRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant1[_colorBase + (_colorIndex + 1) % 2]);
         }
         foreach (var treeRenderer in _tree2Renderers)
         {
-            treeRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].tree2[_colorBase + _colorIndex]);
-            treeRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].tree2[_colorBase + (_colorIndex + 1) % 2]);
+            treeRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant2[_colorBase + _colorIndex]);
+            treeRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant2[_colorBase + (_colorIndex + 1) % 2]);
         }
         foreach (var treeRenderer in _tree3Renderers)
         {
-            treeRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].tree3[_colorBase + _colorIndex]);
-            treeRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].tree3[_colorBase + (_colorIndex + 1) % 2]);
+            treeRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
+            treeRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
         }
         
         _colorIndex = (_colorIndex + 1) % 2;
