@@ -60,6 +60,7 @@ public class OrbScript : MonoBehaviour
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
             biomeSpawner = (BiomeSpawner)Random.Range(0, biomeSpawners.Length);
+            ColorController.S.biome = (int)biomeSpawner;
             biomeChosen = true;
         }
         GameObject spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);

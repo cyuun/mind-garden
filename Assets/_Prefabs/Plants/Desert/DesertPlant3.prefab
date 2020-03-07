@@ -910,7 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3254063635831115033}
   m_Layer: 10
-  m_Name: gems
+  m_Name: Gems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2779,6 +2779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3db615a3c536cb4ea57d567d367ee56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 0}
+  spawner: {fileID: 0}
+  y_offset: 0
+  terrainScript: {fileID: 0}
   objectToShake:
   - {fileID: 6198590679090549877}
   - {fileID: 4412416804317165857}
@@ -2839,7 +2843,7 @@ GameObject:
   - component: {fileID: 4350205252454275789}
   - component: {fileID: 6068618567102259404}
   m_Layer: 10
-  m_Name: gwIvy006
+  m_Name: Branches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
