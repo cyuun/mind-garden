@@ -10,11 +10,12 @@ public class ColorController : MonoBehaviour
     public ColorPalette[] colorPalettes;
 
     private int _paletteIndex = 0;
-    private int _colorBase = 0;
-    private int _colorIndex = 0;
+    private int _colorBase;
+    private int _colorIndex;
 
     private GameObject _activeHead;
     private GameObject _terrain;
+    private TerrainScript _terrainScript;
     private List<MeshRenderer> _rock1Renderers;
     private List<MeshRenderer> _rock2Renderers;
     private List<MeshRenderer> _rock3Renderers;
@@ -25,9 +26,11 @@ public class ColorController : MonoBehaviour
     private List<MeshRenderer> _tree2Renderers;
     private List<MeshRenderer> _tree3Renderers;
 
-    private int _mainColorID;
-    private int _celColorID;
-
+    public void ChangeBase()
+    {
+        _colorBase = (_colorBase + 2) % 6;
+    }
+    
     public void SetActiveHead(GameObject activeHead)
     {
         _colorIndex = 0;
@@ -45,6 +48,8 @@ public class ColorController : MonoBehaviour
 
         _activeHead = activeHead;
         _terrain = _activeHead.transform.Find("Terrain").gameObject;
+        _terrainScript = _terrain.GetComponent<TerrainScript>();
+        _terrainScript.SetBasePaint(colorPalettes[_paletteIndex].terrain[6]);
 
         foreach (Transform rock in _terrain.transform.Find("_RockParent"))
         {
@@ -137,7 +142,7 @@ public class ColorController : MonoBehaviour
             return;
         }
         
-        _terrain.GetComponent<TerrainScript>().paintColor =
+        _terrainScript.paintColor =
             colorPalettes[_paletteIndex].terrain[_colorBase + _colorIndex];
         foreach (var rockRenderer in _rock1Renderers)
         {
@@ -190,9 +195,9 @@ public class ColorController : MonoBehaviour
 
     private void Start()
     {
-        _mainColorID = Shader.GetGlobalInt("_Color");
-        _celColorID = Shader.GetGlobalInt("_ColorDim");
-
+        _colorBase = 0;
+        _colorIndex = 0;
+        
         _rock1Renderers = new List<MeshRenderer>();
         _rock2Renderers = new List<MeshRenderer>();
         _rock3Renderers = new List<MeshRenderer>();

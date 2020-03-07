@@ -177,6 +177,7 @@ public class OrbScript : MonoBehaviour
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
+            ColorController.S.ChangeBase();
             target = other.transform;
         }
         else if (other.tag == "Player")

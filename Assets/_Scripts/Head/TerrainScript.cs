@@ -171,6 +171,14 @@ public class TerrainScript : MonoBehaviour
         return (Vector3[])_vertices.Clone();
     }
 
+    public void SetBasePaint(Color color)
+    {
+        for (int i = 0; i < textureResolution * textureResolution; i++)
+        {
+            _paint[i] = color;
+        }
+    }
+
     private void Awake()
     {
         if (_randomizeTerrain)
@@ -197,10 +205,6 @@ public class TerrainScript : MonoBehaviour
         _meshRenderer.material.mainTexture = new Texture2D(textureResolution, textureResolution);
         _texture = (Texture2D)_meshRenderer.material.mainTexture;
         _paint = new Color[textureResolution * textureResolution];
-        for (int i = 0; i < textureResolution * textureResolution; i++)
-        {
-            _paint[i] = Color.white;
-        }
     }
 
     private void Update()
