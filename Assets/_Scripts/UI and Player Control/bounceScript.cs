@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class bounceScript : MonoBehaviour
 {
     Rigidbody rb;
+    public FirstPersonController controller;
     // Start is called before the first frame update
     void Start()
     {
+        controller = GameObject.FindObjectOfType<FirstPersonController>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -39,10 +42,11 @@ public class bounceScript : MonoBehaviour
 
         if (other.tag == "enemy")
         {
+            controller.canMove = false;
             ParticleSystem ps=other.gameObject.GetComponentInChildren<ParticleSystem>();
             ps.Play();
             //transform.position -= transform.forward * Time.deltaTime * force;
-            Vector3 direction = transform.position - other.transform.position;
+            Vector3 direction = transform.position - other.transform.parent.position;
             direction.Normalize();
             StartCoroutine(push(direction, force));
             //rb.AddForce(direction*force);
@@ -61,5 +65,6 @@ public class bounceScript : MonoBehaviour
 
             yield return null;
         }
+        controller.canMove = true;
     }
 }

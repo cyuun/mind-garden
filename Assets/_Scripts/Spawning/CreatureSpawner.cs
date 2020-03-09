@@ -57,7 +57,7 @@ public class CreatureSpawner : MonoBehaviour
                 pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
                 pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z) + yOffset;
             }
-            creature = Instantiate(creature, pos, Quaternion.identity, CREATURE_PARENT);
+            creature = Instantiate(creature, pos, Quaternion.Euler(new Vector3(0,Random.Range(0f,360f),0)), CREATURE_PARENT);
         }
     }
 

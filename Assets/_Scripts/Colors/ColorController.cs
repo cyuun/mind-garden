@@ -98,7 +98,7 @@ public class ColorController : MonoBehaviour
             MeshRenderer[] leavesRenderers;
             switch (tree.name)
             {
-                case "Tree1(Clone)":
+                case "ForestPlant1(Clone)":
                     Transform t = tree.GetChild(0);
                     leavesRenderers = t.Find("Capsules").GetComponentsInChildren<MeshRenderer>();
                     foreach (var leavesRenderer in leavesRenderers)
@@ -108,7 +108,7 @@ public class ColorController : MonoBehaviour
                     _trunkRenderers.Add(t.Find("DeadTree21.fbx").GetComponentInChildren<MeshRenderer>());
                     break;
                 
-                case "Tree2(Clone)":
+                case "ForestPlant2(Clone)":
                     t = tree.GetChild(0);
                     leavesRenderers = t.Find("Pieces").GetComponentsInChildren<MeshRenderer>();
                     foreach (var leavesRenderer in leavesRenderers)
@@ -118,7 +118,7 @@ public class ColorController : MonoBehaviour
                     //_trunkRenderers.Add((MeshRenderer)tree.Find("P3D_DeadTree002").GetComponent<MeshRenderer>());
                     break;
                 
-                case "Tree3(Clone)":
+                case "ForestPlant3(Clone)":
                     t = tree.GetChild(0);
                     leavesRenderers = t.Find("crstalbois").GetComponentsInChildren<MeshRenderer>();
                     foreach (var leavesRenderer in leavesRenderers)

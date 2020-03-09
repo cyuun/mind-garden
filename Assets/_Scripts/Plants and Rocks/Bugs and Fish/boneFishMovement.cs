@@ -5,17 +5,16 @@ using UnityEngine;
 public class boneFishMovement : MonoBehaviour
 {
     Animator anim;
-    //Collider col;
     int move = 1;
     float rotSpeed = 50f;
     float collSpeed = 80f;
     float speed = 0.5f;
+    bool adjust = false;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        //col = GetComponent<Collider>();
         InvokeRepeating("movement", 0, 3.0f);
 
     }
@@ -47,19 +46,21 @@ public class boneFishMovement : MonoBehaviour
         }
         else if (move == 6)
         {
-            transform.Translate(-transform.right * speed * Time.deltaTime, Space.World);
+            transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
             transform.Translate(-transform.forward * speed * Time.deltaTime, Space.Self);
             transform.Rotate(transform.up, -collSpeed * Time.deltaTime, Space.Self);
             anim.SetBool("goRight", false);
             anim.SetBool("goLeft", true);
+            adjust = true;
         }
         else if (move == 7)
         {
-            transform.Translate(-transform.right * speed * Time.deltaTime, Space.World);
+            transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
             transform.Translate(transform.forward * speed * Time.deltaTime, Space.Self);
             transform.Rotate(transform.up, collSpeed * Time.deltaTime, Space.Self);
             anim.SetBool("goRight", true);
             anim.SetBool("goLeft", false);
+            adjust = true;
         }
         else
         {
@@ -70,11 +71,19 @@ public class boneFishMovement : MonoBehaviour
     }
     void movement()
     {
-        move=Random.Range(1, 6);
+        if (!adjust)
+        {
+            move = Random.Range(1, 6);
+        }
+        else
+        {
+            move = 1;
+        }
+        
     }
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collde");
+        //Debug.Log("collde");
         if(collision.gameObject.tag!= "Player")
         {
             move = Random.Range(6, 8);

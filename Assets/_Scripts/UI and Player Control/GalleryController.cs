@@ -26,8 +26,23 @@ public class GalleryController : MonoBehaviour
             {
                 allScreenshotPaths.Add(f);
             }
+        }
+        if (!Directory.Exists(screenshotsPath) || allScreenshotPaths.Count == 0)
+        {
+            foreach (Transform galPanel in transform.GetChild(0))
+            {
+                int index = 0;
+                GalleryPanel panel = galPanel.GetComponent<GalleryPanel>();
+                foreach (Image image in panel.images)
+                {
+                    image.enabled = false;
+                    panel.backgrounds[index].enabled = false;
+                    index++;
 
-
+                }
+                panel.nextButton.SetActive(false);
+            }
+            yield break;
         }
 
         int screenshotCount = allScreenshotPaths.Count;
@@ -103,6 +118,7 @@ public class GalleryController : MonoBehaviour
                     panel.nextButton.SetActive(false);
                 }
             }
+            allScreenshotPaths.Clear();
         }
     }
 

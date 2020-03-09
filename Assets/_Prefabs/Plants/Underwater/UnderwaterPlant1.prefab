@@ -390,10 +390,11 @@ MonoBehaviour:
   piece11: {fileID: 3206908634027998026}
   piece12: {fileID: 197675784239381226}
   piece13: {fileID: 1706455376722496857}
-  rotateSpeed1: 10
-  rotateSpeed2: -8
-  rotateSpeed3: 4
-  rotateSpeed4: -12
+  scaleFactor: 1.7
+  rotateSpeed1: 300
+  rotateSpeed2: -200
+  rotateSpeed3: 100
+  rotateSpeed4: 200
 --- !u!95 &8955771220380468334
 Animator:
   serializedVersion: 3

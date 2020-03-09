@@ -67,6 +67,11 @@ public class SettingsMenu : MonoBehaviour
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         Global.playingGame = false;
         //TODO: Reinitialize certain static variables for next game
+        Global.currentSongInfo = null;
+        Global.inputSong = null;
+        Global.inputSongPath = null;
+        smallTree.allSmallTrees.Clear();
+        //TODO: Fade to black coroutine
 
         SceneManager.LoadScene(0);
     }

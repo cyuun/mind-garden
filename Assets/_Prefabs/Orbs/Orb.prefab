@@ -175,7 +175,7 @@ MonoBehaviour:
   _colorMultiplier: 4
   _targetScale: {x: 3, y: 3, z: 3}
   biomeSpawners:
-  - {fileID: 6946184587849143891, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}
+  - {fileID: 3347921623798585857, guid: 47312ba22d83b21439fe9a48d6ab299e, type: 3}
   spawnBiome: 1
 --- !u!114 &1037232182304913055
 MonoBehaviour:
@@ -5176,7 +5176,7 @@ MonoBehaviour:
   - 0
   _amplitude: 0
   _amplitudeBuffer: 0
-  _audioProfile: 1.5
+  _audioProfile: 3
 --- !u!114 &3649084685503611500
 MonoBehaviour:
   m_ObjectHideFlags: 0
