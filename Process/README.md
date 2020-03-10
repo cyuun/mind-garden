@@ -6,6 +6,9 @@ March 3 - 10
 ### Bug fixes and weather
 We've fixed problems with bug swarms moving below the terrain as well as with the look of the water material. The bonefish, unlike the other "enemy" objects, pushed the player below the map even with a push upwards. The push was modified to be almost completely vertical, but will need some aditional testing to make sure this works. We now have weather for cloud accumulation, rain, snow, and "sparkle" storms, but will need to decide what activates these conditions.  
 
+### All Biomes Synced Up
+All biomes are officially integrated and behave as instantiable spawners which are attached to each audio orb at start time. Each spawner prefab is simply an empty game object with scripts to spawn different variations of trees, rocks, grass, creatures, etc. Every plant within these biomes also responds to the music in some fashion, but the values and behaviors are still being optimized to facilitate the best visual-audio experience. Additional changes were made so that plants get automatically paired up with the nearest audio orb, so the environments look more closely linked to the orbs themselves.
+
 ---
 ## Week 7
 February 25 - March 3
