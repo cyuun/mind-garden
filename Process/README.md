@@ -10,6 +10,12 @@ We've fixed problems with bug swarms moving below the terrain as well as with th
 ### All Biomes Synced Up
 All biomes are officially integrated and behave as instantiable spawners which are attached to each audio orb at start time. Each spawner prefab is simply an empty game object with scripts to spawn different variations of trees, rocks, grass, creatures, etc. Every plant within these biomes also responds to the music in some fashion, but the values and behaviors are still being optimized to facilitate the best visual-audio experience. Additional changes were made so that plants get automatically paired up with the nearest audio orb, so the environments look more closely linked to the orbs themselves.
 
+### File Organization and Succesful Head Spawning
+When your're creating something this big in scope in just 12 weeks time, you have to move super fast. Part of moving fast and working as a team means that the file structures and naming schemes become inconsistent and messy. This is something that we were able to deal with for quite a long time, and so we prioritized getting new feaures added before properly organizing the old features. But eventually the disorganization caught up with us and started slowing our work down way too much. So we took some time this week to reorganize our files. We didn't get it 100% completely organized, but we certainly got it cleaned up enough to make our final couple of weeks working on this project go smoothly. We also put the finishing touches on the head instancing done the week before, and now we have fully spawnable heads that we can then create mathematical variations based on the input song.
+
+### Updates to the color system
+This week we also finished up adding all 6 of the color palettes designed earlier to the game. After adding the color palletes to the game, we also had to recode how our universal color controller worked because there's been several changes made on how the biomes themselves work overall. So far, only the desert biome works but one of the many goals for next week is to add the ability to control the other three biomes from our color system.
+
 ---
 ## Week 7
 February 25 - March 3
