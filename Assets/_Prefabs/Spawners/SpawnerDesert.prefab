@@ -73,6 +73,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5259462445171334784, guid: f73e7236c85ae2347a86ee7a3edea8d7,
         type: 3}
+    - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: maxSpawn
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: minSpawn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6688515277789686127, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: scaleMax

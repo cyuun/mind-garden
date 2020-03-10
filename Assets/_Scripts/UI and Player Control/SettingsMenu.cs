@@ -71,6 +71,7 @@ public class SettingsMenu : MonoBehaviour
         Global.inputSong = null;
         Global.inputSongPath = null;
         smallTree.allSmallTrees.Clear();
+        desertPlantSmall.allSmallTrees.Clear();
         //TODO: Fade to black coroutine
 
         SceneManager.LoadScene(0);

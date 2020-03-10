@@ -123,5 +123,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7159435191039463455, guid: 901cd09c3a46a914eba326228fd9f4dc,
         type: 3}
+    - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: treeSeparation
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}

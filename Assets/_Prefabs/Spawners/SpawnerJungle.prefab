@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: yOffset
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6946184587849143891, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: m_Name
@@ -86,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: treePrefabs.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
@@ -104,12 +109,23 @@ PrefabInstance:
         type: 3}
       propertyPath: treePrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 6875748387540348560, guid: 6dce10fe6d81d6f429eddfb2b155aecc,
+      objectReference: {fileID: 6297424736968719425, guid: 8902757b621684446a376d27d1776371,
         type: 3}
     - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: treesMin
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: treePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 437642893921503403, guid: ff83e0496e396cc47a307c48d9ba48fe,
+        type: 3}
+    - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: treeSeparation
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}

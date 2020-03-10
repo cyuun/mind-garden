@@ -169,9 +169,10 @@ GameObject:
   - component: {fileID: 3561019415176935354}
   - component: {fileID: 8363743629567374166}
   - component: {fileID: 517933278334092714}
+  - component: {fileID: 5232689067053946960}
   m_Layer: 10
   m_Name: Anim
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,6 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356b1eecd4e43024aaaa1b79f99ed2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 0}
+  spawner: {fileID: 0}
+  y_offset: 0
   piece1: {fileID: 2205046228122026573}
   piece2: {fileID: 8277190058286467480}
   isSpawningPrefab: 1
@@ -245,6 +249,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &5232689067053946960
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517933278334092713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 3.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &701455928973797571
 GameObject:
   m_ObjectHideFlags: 0

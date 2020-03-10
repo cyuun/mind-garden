@@ -53,10 +53,10 @@ MonoBehaviour:
   - {fileID: 6751643581463402893, guid: 6de3ab89ae0c37d47a503b31423b0769, type: 3}
   - {fileID: 8564197228356404789, guid: ffe47bfaf49f1b84d9267ab3837b5aad, type: 3}
   forestCount: 25
-  spawnRadiusMax: 133.3
+  spawnRadiusMax: 150
   treesMin: 15
   treesMax: 20
-  treeSeparation: 4
+  treeSeparation: 5
   maxSlope: 50
 --- !u!114 &6688515277789686127
 MonoBehaviour:
@@ -81,6 +81,7 @@ MonoBehaviour:
   numOfRocks: 25
   scaleMin: 1
   scaleMax: 2
+  randomRotate: 0
 --- !u!114 &2332086164498011841
 MonoBehaviour:
   m_ObjectHideFlags: 0

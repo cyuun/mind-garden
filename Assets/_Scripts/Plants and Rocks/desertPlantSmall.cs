@@ -8,8 +8,16 @@ public class desertPlantSmall : Plant
     bool shaking = false;
     Animator anim;
     bool start = false;
-    public bool isSpawningPrefab;
+    public bool isSpawningPrefab = true;
+    public static List<GameObject> allSmallTrees;
+
     //send signals to turn signalFromMusic to true on beats the tree should shake
+
+    private void Awake()
+    {
+        if (allSmallTrees == null) allSmallTrees = new List<GameObject>();
+        allSmallTrees.Add(gameObject);
+    }
 
     private void Start()
     {
@@ -32,14 +40,14 @@ public class desertPlantSmall : Plant
 
         else if ((start || !isSpawningPrefab) && signalFromMusic)
         {
-            shakeGameObject(0.3f, 0.1f, false);
+            //shakeGameObject(0.3f, 0.1f, false);
         }
 
     }
 
     void shakeGameObject(float shakeDuration, float decreasePoint, bool objectIs2D = false)
     {
-        if (shaking)
+        if (shaking || isSpawningPrefab)
         {
             return;
         }
@@ -49,6 +57,19 @@ public class desertPlantSmall : Plant
             StartCoroutine(shakeGameObjectCOR(objects, shakeDuration, decreasePoint, objectIs2D));
         }
     }
+
+    public static void ShakeAllTrees()
+    {
+        if (allSmallTrees != null)
+        {
+            foreach (GameObject go in allSmallTrees)
+            {
+                desertPlantSmall tree = go.GetComponent<desertPlantSmall>();
+                tree.shakeGameObject(0.3f, 0.1f, false);
+            }
+        }
+    }
+
 
     IEnumerator shakeGameObjectCOR(GameObject objectToShake, float totalShakeDuration, float decreasePoint, bool objectIs2D = false)
     {

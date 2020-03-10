@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using RhythmTool;
 
 public class AudioAnalyzer : MonoBehaviour
 {
+    public static float BPM = 0f;
+
     public RhythmData rhythmData;
     public RhythmAnalyzer analyzer;
     public AudioSource audioSource;
@@ -55,18 +58,24 @@ public class AudioAnalyzer : MonoBehaviour
             if (SkyFractal.S) SkyFractal.S.ChangeOutline();
             if (MainSpawner.S)  MainSpawner.S.ChangeSpawner();
         }
-
         prevTime = time;
+
+        if (time == audioSource.clip.length)
+        {
+            EndGame();
+        }
     }
 
     void OnBeat(Beat beat)
     {
         ColorController.S.ChangeColors();
+        BPM = beat.bpm;
     }
 
     void OnOnset(Onset onset)
     {
         smallTree.ShakeAllTrees();
+        desertPlantSmall.ShakeAllTrees();
     }
 
     void OnSegment(Value val)
@@ -97,5 +106,10 @@ public class AudioAnalyzer : MonoBehaviour
             BPM /= allBeats.Count;
         }
         return BPM;
+    }
+
+    void EndGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

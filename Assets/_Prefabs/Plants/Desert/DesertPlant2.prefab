@@ -654,9 +654,10 @@ GameObject:
   - component: {fileID: 30756337810389969}
   - component: {fileID: 3906342029278398915}
   - component: {fileID: 7871977313732567196}
+  - component: {fileID: 6915107308690314999}
   m_Layer: 10
   m_Name: Anim
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,7 +671,7 @@ Transform:
   m_GameObject: {fileID: 3906342029278398914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.80699, y: 0.80699, z: 0.80699}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4477239319559242181}
   - {fileID: 2988195122490635912}
@@ -706,6 +707,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155a4cc90361ed140adf4fb6423d74e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 0}
+  spawner: {fileID: 0}
+  y_offset: 0
   piece1: {fileID: 1024145303364201543}
   rotateSpeed1: 13
 --- !u!95 &7871977313732567196
@@ -727,6 +731,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &6915107308690314999
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906342029278398914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0.62, z: 0}
 --- !u!1 &4555567699856844416
 GameObject:
   m_ObjectHideFlags: 0

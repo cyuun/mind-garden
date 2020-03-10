@@ -44,7 +44,7 @@ public class bounceScript : MonoBehaviour
         {
             controller.canMove = false;
             ParticleSystem ps=other.gameObject.GetComponentInChildren<ParticleSystem>();
-            ps.Play();
+            if(ps) ps.Play();
             //transform.position -= transform.forward * Time.deltaTime * force;
             Vector3 direction = transform.position - other.transform.parent.position;
             direction.Normalize();

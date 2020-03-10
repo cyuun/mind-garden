@@ -17,5 +17,8 @@ public class desertPlantMedium : Plant
     {
         // rotate around y-axis
         piece1.transform.Rotate(0, _audioPeer._amplitudeBuffer * rotateSpeed1, 0);
+
+        float v1 = Mathf.LerpUnclamped(0.5f, 0.95f, _audioPeer._amplitudeBuffer + 1);
+        transform.localScale = new Vector3(v1, 0.80699f, v1);
     }
 }

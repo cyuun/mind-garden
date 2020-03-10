@@ -116,7 +116,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148383323363022962}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -140,7 +140,7 @@ MonoBehaviour:
   particles: {fileID: 6335238476530716227}
   burst: {fileID: 1071362216182468901}
   glow: {fileID: 1709403114492131304}
-  rotationSpeed: 45
+  rotationSpeed: 50
   y_offset: 4
   speed: 1
   _colorGrad:
@@ -175,7 +175,7 @@ MonoBehaviour:
   _colorMultiplier: 4
   _targetScale: {x: 3, y: 3, z: 3}
   biomeSpawners:
-  - {fileID: 3347921623798585857, guid: 47312ba22d83b21439fe9a48d6ab299e, type: 3}
+  - {fileID: 2524186486030292164, guid: b71499ae055efcc48975a2e15120ee67, type: 3}
   spawnBiome: 1
 --- !u!114 &1037232182304913055
 MonoBehaviour:

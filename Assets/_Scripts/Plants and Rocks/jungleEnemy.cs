@@ -19,10 +19,11 @@ public class jungleEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        musicTemp = AudioAnalyzer.BPM;
         if (musicTemp != musicMultiplier && secondAnim)
         {
-            anim.speed = musicTemp;
-            musicTemp=musicMultiplier;
+            anim.speed = musicTemp / 60;
+            //musicTemp=musicMultiplier;
         }
 
         
