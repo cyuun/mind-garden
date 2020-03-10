@@ -76,12 +76,17 @@ PrefabInstance:
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: maxSpawn
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: minSpawn
-      value: 20
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: spawnRadiusMax
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6688515277789686127, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
@@ -97,6 +102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnerDesert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: treePrefabs.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7127389882151016665, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}

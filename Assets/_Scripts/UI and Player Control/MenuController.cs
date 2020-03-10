@@ -391,6 +391,7 @@ public class MenuController : MonoBehaviour
             }
             backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             Global.inputSong = backgroundMusic.clip;
+
             if (Global.inputSongPath != null && Global.inputSong != null && Global.callSpleeter)
             {
                 SpleeterProcess.S.CallSpleeter();
@@ -400,6 +401,8 @@ public class MenuController : MonoBehaviour
             else
             {
                 print("Spleeter Disabled: Game will be played in normal mode");
+                backgroundMusic.Play();
+
             }
         }
 

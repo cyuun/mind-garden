@@ -178,6 +178,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Head
       objectReference: {fileID: 0}
+    - target: {fileID: 8861611206362321817, guid: 0de2b5b20f676bd4bbdb5517655b4d21,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861611206362321817, guid: 0de2b5b20f676bd4bbdb5517655b4d21,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 130
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de2b5b20f676bd4bbdb5517655b4d21, type: 3}
 --- !u!4 &145673780 stripped
@@ -186,6 +196,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 145673779}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &520841056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6780916304835451776, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6780916305616852793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!45 &520841062
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520841056}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: bf1bf92a3ce592e40b898be6c21cc2fa, type: 2}
 --- !u!1 &604283649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1400,25 @@ MonoBehaviour:
     - {fileID: 978896027696249159, guid: 6590ddd20f1dc7046b1e231bba3c4f0b, type: 3}
     creatureSpawn: {fileID: 0}
     treeSpawn: {fileID: 0}
+--- !u!1 &2112973544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6780916304835451778, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6780916305616852793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2112973545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112973544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1004c7487ad49d498666b9d36048445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
 --- !u!114 &631822906582201828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3172,6 +3216,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6780916304830068962, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6780916304830068962, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6780916304833419682, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6780916304833419682, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6780916304835020706, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3232,7 +3296,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7402064806204130881, guid: 016d78fac6f0e2c4db9edec4ac103d4a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 016d78fac6f0e2c4db9edec4ac103d4a, type: 3}
 --- !u!1 &8078178054764938791
 GameObject:

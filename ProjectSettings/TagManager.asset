@@ -9,6 +9,8 @@ TagManager:
   - Rocks
   - Trees
   - Creatures
+  - enemy
+  - enemyFish
   layers:
   - Default
   - TransparentFX

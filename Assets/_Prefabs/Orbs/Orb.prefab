@@ -175,7 +175,7 @@ MonoBehaviour:
   _colorMultiplier: 4
   _targetScale: {x: 3, y: 3, z: 3}
   biomeSpawners:
-  - {fileID: 2524186486030292164, guid: b71499ae055efcc48975a2e15120ee67, type: 3}
+  - {fileID: 6946184587849143891, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}
   spawnBiome: 1
 --- !u!114 &1037232182304913055
 MonoBehaviour:

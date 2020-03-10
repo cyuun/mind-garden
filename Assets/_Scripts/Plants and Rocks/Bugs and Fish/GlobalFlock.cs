@@ -10,16 +10,12 @@ public class GlobalFlock : MonoBehaviour
 
     static int numBugs = 15;
     public static GameObject[] allBugs = new GameObject[numBugs];
+    
     public static Vector3 goalPos = Vector3.zero;
-
-    bool hitRock = false;
 
     // Use this for initialization
     void Start()
     {
-
-        transform.position = ResetYPosition(transform.position);
-
         for (int i = 0; i < numBugs; i++)
         {
             Vector3 pos = new Vector3(
@@ -28,14 +24,13 @@ public class GlobalFlock : MonoBehaviour
                 Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
             allBugs[i]= (GameObject)Instantiate(
-                bugPrefab, pos, Quaternion.identity, this.transform);
+                bugPrefab, pos, Quaternion.identity);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         HandleGoalPos();
     }
 
@@ -43,21 +38,36 @@ public class GlobalFlock : MonoBehaviour
     {
         if (Random.Range(1, 5000) < 50)
         {
-            float xPos = Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize);
-            float zPos = Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize);
-            goalPos = new Vector3(
-                xPos,
-                transform.position.y,
-                zPos
+            RaycastHit hit;
+            float heightAboveGround = 0f;
+            if (Physics.Raycast(goalPrefab.transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+            {
+                heightAboveGround = hit.distance;
+            }
+            if (heightAboveGround<1.5f)
+            {
+                goalPos = new Vector3(
+                Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
+                Random.Range(transform.position.y, transform.position.y + boundsSize),
+                Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
+            }
+            else
+            {
+                goalPos = new Vector3(
+                Random.Range(transform.position.x - boundsSize, transform.position.x + boundsSize),
+                Random.Range(transform.position.y-boundsSize, transform.position.y + boundsSize),
+                Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
+            );
+            }
+            
             goalPrefab.transform.position = goalPos;
         }
     }
 
     public static Vector3 ResetYPosition(Vector3 pos)
     {
-        Vector3 Ypos = pos;
-        Ypos.y = TerrainScript.S.GetTerrainHeight(Ypos.x, Ypos.z) + 2;
+        pos.y = TerrainScript.S.GetTerrainHeight(pos.x,pos.z);
         return pos;
     }
 }
