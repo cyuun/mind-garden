@@ -1,5 +1,10 @@
 ![Mind's Garden Process Blog](Resources/mindsgarden-logo-rev2x-processblog.png "Mind's Garden Logo")
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
+---
+## Week 8
+March 3 - 10
+### Bug fixes and weather
+We've fixed problems with bug swarms moving below the terrain as well as with the look of the water material. The bonefish, unlike the other "enemy" objects, pushed the player below the map even with a push upwards. The push was modified to be almost completely vertical, but will need some aditional testing to make sure this works. We now have weather for cloud accumulation, rain, snow, and "sparkle" storms, but will need to decide what activates these conditions.  
 
 ---
 ## Week 7
