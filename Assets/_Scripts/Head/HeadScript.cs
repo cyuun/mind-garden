@@ -16,8 +16,8 @@ public class HeadScript : MonoBehaviour
 
     public void Activate()
     {
+        AudioPeerRoot.S.SetActiveHead(gameObject);
         ColorController.S.SetActiveHead(gameObject);
-        // add head to the audio listener too
     }
 
     private void Start()
@@ -96,7 +96,7 @@ public class HeadScript : MonoBehaviour
 
     private IEnumerator DelayedActivate()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(.1f);
         
         Activate();
     }

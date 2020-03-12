@@ -67,7 +67,7 @@ public class GlobalFlock : MonoBehaviour
 
     public static Vector3 ResetYPosition(Vector3 pos)
     {
-        pos.y = TerrainScript.S.GetTerrainHeight(pos.x,pos.z);
+        pos.y = AudioPeerRoot.S.terrainScript.GetTerrainHeight(pos.x,pos.z);
         return pos;
     }
 }

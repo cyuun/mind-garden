@@ -10,7 +10,37 @@ public class AudioPeerRoot : MonoBehaviour
     public AudioClip defaultSong;
     public AudioSource[] audioPeers; //Orb audio peer gameobjects
 
+    public TerrainScript terrainScript;
+    
     bool songPlaying = false;
+    
+    private GameObject _activeHead;
+    private GameObject _terrain;
+    
+    public void SetActiveHead(GameObject activeHead)
+    {
+        _activeHead = activeHead;
+        _terrain = _activeHead.transform.Find("Terrain").gameObject;
+        terrainScript = _terrain.GetComponent<TerrainScript>();
+
+        OrbScript orb1 = transform.Find("Orb").GetComponent<OrbScript>();
+        OrbScript orb2 = transform.Find("Orb Variant").GetComponent<OrbScript>();
+        OrbScript orb3 = transform.Find("Orb Variant 1").GetComponent<OrbScript>();
+        OrbScript orb4 = transform.Find("Orb Variant 2").GetComponent<OrbScript>();
+
+        orb1.terrainScript = terrainScript;
+        orb1.SpawnBiome();
+        orb1.active = true;
+        orb2.terrainScript = terrainScript;
+        orb2.SpawnBiome();
+        orb2.active = true;
+        orb3.terrainScript = terrainScript;
+        orb3.SpawnBiome();
+        orb3.active = true;
+        orb4.terrainScript = terrainScript;
+        orb4.SpawnBiome();
+        orb4.active = true;
+    }
 
     private void Awake()
     {

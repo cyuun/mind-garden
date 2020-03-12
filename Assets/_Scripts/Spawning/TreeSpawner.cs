@@ -18,8 +18,10 @@ public class TreeSpawner : MonoBehaviour
     public float treeSeparation;
     [Range(30, 60)]
     public float maxSlope;
+    
+    public TerrainScript terrainScript;
 
-    void Start()
+    public void SetParent()
     {
         if (useAsParent) TREE_PARENT = this.transform;
         if (TREE_PARENT == null)
@@ -27,21 +29,12 @@ public class TreeSpawner : MonoBehaviour
             GameObject go = new GameObject("_TreeParent");
             go.layer = LayerMask.NameToLayer("Trees");
             go.tag = "Trees";
-            go.transform.SetParent(TerrainScript.S.transform);
+            go.transform.SetParent(terrainScript.transform);
             TREE_PARENT = go.transform;
         }
-
-
-        GenerateTrees();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void GenerateTrees()
+    public void GenerateTrees()
     {
         for (int f = 0; f < forestCount; f++)
         {
@@ -66,7 +59,7 @@ public class TreeSpawner : MonoBehaviour
                 
                 //Get/Set position
                 treePos = GetTreePos(treePos);
-                treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
+                treePos.y = terrainScript.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
                 while (hitRock || hitPond || hitTree || inHead || !onTerrain|| tooSteep)
                 {
                     hitRock = false;
@@ -77,8 +70,8 @@ public class TreeSpawner : MonoBehaviour
                     tooSteep = false;
 
                     treePos = GetTreePos(treePos);
-                    treePos.y = TerrainScript.S.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-                    if (TerrainScript.S.GetSteepestSlope(treePos.x, treePos.z, 50) > maxSlope)
+                    treePos.y = terrainScript.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
+                    if (terrainScript.GetSteepestSlope(treePos.x, treePos.z, 50) > maxSlope)
                     {
                         tooSteep = true;
                         break;

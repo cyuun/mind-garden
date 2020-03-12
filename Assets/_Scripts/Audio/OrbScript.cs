@@ -50,9 +50,38 @@ public class OrbScript : MonoBehaviour
     //Biome Spawners
     public GameObject[] biomeSpawners;
     public bool spawnBiome;
+    
+    public TerrainScript terrainScript;
+    public bool active = false;
 
-
-    // Start is called before the first frame update
+    public void SpawnBiome()
+    {
+        if (!biomeChosen)
+        {
+            Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
+            biomeSpawner = (BiomeSpawner)Random.Range(0, biomeSpawners.Length);
+            ColorController.S.biome = (int)biomeSpawner;
+            biomeChosen = true;
+        }
+        GameObject spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
+        TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
+        RockSpawner rockSpawner = spawner.GetComponent<RockSpawner>();
+        CreatureSpawner creatureSpawner = spawner.GetComponent<CreatureSpawner>();
+        
+        treeSpawner.terrainScript = terrainScript;
+        treeSpawner.SetParent();
+        treeSpawner.GenerateTrees();
+        rockSpawner.terrainScript = terrainScript;
+        rockSpawner.SetParent();
+        rockSpawner.GenerateRocks();
+        if (creatureSpawner != null)
+        {
+            creatureSpawner.terrainScript = terrainScript;
+            creatureSpawner.SetParent();
+            creatureSpawner.SpawnCreatures();
+        }
+    }
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,9 +94,9 @@ public class OrbScript : MonoBehaviour
         rotPerSecond = new Vector3(Random.Range(.5f, 2f), Random.Range(.5f, 2f), Random.Range(.5f, 2f));
 
         //Set Orb height to match terrain
-        if (_matchTerrainHeight)
+        if (_matchTerrainHeight && active)
         {
-            float y_pos = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.y);
+            float y_pos = terrainScript.GetTerrainHeight(transform.position.x, transform.position.y);
             transform.position = new Vector3(transform.position.x, y_pos, transform.position.z);
         }
 
@@ -76,17 +105,6 @@ public class OrbScript : MonoBehaviour
         _endColor = new Color(0, 0, 0, 1);
         _scale = transform.localScale;
         rend = GetComponent<Renderer>();
-
-        if (spawnBiome)
-        {
-            if (!biomeChosen)
-            {
-                Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-                biomeSpawner = (BiomeSpawner)Random.Range(0, biomeSpawners.Length);
-                biomeChosen = true;
-            }
-            Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, this.transform);
-        }
     }
 
     // Update is called once per frame
@@ -113,9 +131,9 @@ public class OrbScript : MonoBehaviour
             }
         }
 
-        if (_matchTerrainHeight)
+        if (_matchTerrainHeight && active)
         {
-            float y = TerrainScript.S.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
+            float y = terrainScript.GetTerrainHeight(transform.position.x, transform.position.z) + y_offset;
             if (transform.position.y < y)
             {
                 transform.position = new Vector3(transform.position.x, y, transform.position.z);
@@ -161,6 +179,7 @@ public class OrbScript : MonoBehaviour
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
+            ColorController.S.ChangeBase();
             target = other.transform;
         }
         else if (other.tag == "Player")
@@ -181,7 +200,7 @@ public class OrbScript : MonoBehaviour
         {
             Vector3 pos = transform.position;
             pos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized;
-            pos.y = TerrainScript.S.GetTerrainHeight(pos.x, pos.z);
+            if (active) pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z);
             transform.position = pos;
         }
     }

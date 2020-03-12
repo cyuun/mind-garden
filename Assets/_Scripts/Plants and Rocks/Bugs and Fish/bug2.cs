@@ -32,7 +32,7 @@ public class bug2 : MonoBehaviour
     private void OnTriggerExit(Collider other )
     {
         if(other.isTrigger)
-        turning = false;
+            turning = false;
     }
 
     // Update is called once per frame
@@ -55,7 +55,6 @@ public class bug2 : MonoBehaviour
         }
 
         transform.Translate(0, 0, Time.deltaTime * speed*musicMultipier);
-        //transform.position = GlobalFlock.ResetYPosition(transform.position);
     }
 
     void ApplyBoundary()
