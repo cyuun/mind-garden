@@ -27,6 +27,13 @@ public class GalleryController : MonoBehaviour
                 allScreenshotPaths.Add(f);
             }
         }
+
+        allScreenshotPaths.Reverse();
+        foreach(string s in allScreenshotPaths)
+        {
+            print(s);
+        }
+
         if (!Directory.Exists(screenshotsPath) || allScreenshotPaths.Count == 0)
         {
             foreach (Transform galPanel in transform.GetChild(0))

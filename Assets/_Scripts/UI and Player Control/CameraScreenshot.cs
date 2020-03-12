@@ -37,9 +37,10 @@ public class CameraScreenshot : MonoBehaviour
                 Directory.CreateDirectory(Application.persistentDataPath + "/Screenshots/");
             }
             byte[] bytes = renderResult.EncodeToPNG();
-            File.WriteAllBytes(Application.persistentDataPath + "/Screenshots/Screenshot000" + screenshotNum + ".png", bytes);
+            string output = Application.persistentDataPath + "/Screenshots/" + System.DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".png";
+            File.WriteAllBytes(output, bytes);
             screenshotNum++;
-            Debug.Log("Captured Screenshot");
+            Debug.Log(output);
 
             RenderTexture.ReleaseTemporary(renderTexture);
             myCamera.targetTexture = null;

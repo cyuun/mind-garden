@@ -95,10 +95,11 @@ public class OrbScript : MonoBehaviour
         //Spin
         transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
         //Flash
-        if(audioPeer) Flash();
 
         if (following)
         {
+            if (audioPeer) Flash();
+
             float distance = Vector3.Distance(transform.position, target.position);
             if(distance > 3)
             {

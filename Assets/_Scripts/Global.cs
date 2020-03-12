@@ -13,7 +13,7 @@ public static class Global
 
     private static float _masterVolume = 1;
     public static float masterVolume { get { return _masterVolume; } set { _masterVolume = value; } }
-    private static bool _callSpleeter = true;
+    private static bool _callSpleeter = false;
     public static bool callSpleeter { get { return _callSpleeter; } set { _callSpleeter = value; } }
     private static bool _playingGame = true;
     public static bool playingGame { get { return _playingGame; } set { _playingGame = value; } }
