@@ -9,7 +9,13 @@ public static class Global
 
     public static SongInfo currentSongInfo;
     
-
+    public enum BiomeType
+    {
+        desert,
+        forest,
+        jungle,
+        underwater
+    };
 
     private static float _masterVolume = 1;
     public static float masterVolume { get { return _masterVolume; } set { _masterVolume = value; } }

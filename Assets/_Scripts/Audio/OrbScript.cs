@@ -5,16 +5,8 @@ using UnityEngine.UI;
 
 public class OrbScript : MonoBehaviour
 {
-    public static BiomeSpawner biomeSpawner;
+    public static Global.BiomeType biomeSpawner;
     public static bool biomeChosen = false;
-
-    public enum BiomeSpawner
-    {
-        desert,
-        forest,
-        jungle,
-        underwater
-    };
 
     AudioPeer audioPeer;
     bool following = false;
@@ -59,10 +51,10 @@ public class OrbScript : MonoBehaviour
         if (!biomeChosen)
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = (BiomeSpawner)Random.Range(0, biomeSpawners.Length);
-            ColorController.S.biome = (int)biomeSpawner;
+            biomeSpawner = Global.BiomeType.forest;//(Global.BiomeType)Random.Range(0, biomeSpawners.Length);
             biomeChosen = true;
         }
+        ColorController.S.biomeType = biomeSpawner;
         GameObject spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
         TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
         RockSpawner rockSpawner = spawner.GetComponent<RockSpawner>();

@@ -1480,7 +1480,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 760f61d6c5db62d5682aad03191e2e60, type: 2}
+  - {fileID: 2100000, guid: 8f9abc0ac6911b8b6b840af4e2a203e7, type: 2}
   - {fileID: 2100000, guid: 6bab0deb8a0b11e478a3ecd112ebefdf, type: 2}
   - {fileID: 2100000, guid: f41d55e21c910ec3b9262c18186916de, type: 2}
   m_StaticBatchInfo:
@@ -2303,7 +2303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5362856005501858829}
   m_Layer: 10
-  m_Name: crstalbois
+  m_Name: Gems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2651,6 +2651,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: -0.5
+  terrainScript: {fileID: 0}
   objectToShake:
   - {fileID: 4902583146559219303}
   - {fileID: 5368449198912646517}
@@ -3402,7 +3403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5009385815066046011}
   m_Layer: 10
-  m_Name: DeadTree11.fbx
+  m_Name: Branches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

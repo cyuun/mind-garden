@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3130943262698921995}
   m_Layer: 0
-  m_Name: Capsules
+  m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: -0.5
+  terrainScript: {fileID: 0}
   _amplitudeScale: 0.25
   piece1: {fileID: 3883497477342740345}
   piece2: {fileID: 3883497477637945727}
@@ -514,7 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3883497477834884534}
   m_Layer: 10
-  m_Name: DeadTree21.fbx
+  m_Name: Branches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,7 +626,7 @@ GameObject:
   - component: {fileID: 6614473260715199522}
   - component: {fileID: 1221192225386826760}
   m_Layer: 10
-  m_Name: Tree1
+  m_Name: ForestPlant1
   m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

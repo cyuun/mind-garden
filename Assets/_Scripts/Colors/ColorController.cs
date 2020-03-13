@@ -8,6 +8,7 @@ public class ColorController : MonoBehaviour
     public static ColorController S;
     
     public ColorPalette[] colorPalettes;
+    public Global.BiomeType biomeType;
 
     private int _paletteIndex;
     private int _colorBase;
@@ -16,31 +17,19 @@ public class ColorController : MonoBehaviour
     private GameObject _activeHead;
     private GameObject _terrain;
     private TerrainScript _terrainScript;
-    private List<MeshRenderer> _rock1Renderers;
-    private List<MeshRenderer> _rock2Renderers;
-    private List<MeshRenderer> _rock3Renderers;
-    private List<MeshRenderer> _rock4Renderers;
-    private List<MeshRenderer> _rock5Renderers;
-    private List<MeshRenderer> _plantBaseRenderers;
+    private Material _rock1Material;
+    private Material _rock2Material;
+    private Material _rock3Material;
+    private Material _rock4Material;
+    private Material _rock5Material;
+    private Material _plantBaseMaterial;
+    private Material _plant1Material;
+    private Material _plant2Material;
+    private Material _plant3Material;
+    /*private List<MeshRenderer> _plantBaseRenderers;
     private List<MeshRenderer> _plant1Renderers;
     private List<MeshRenderer> _plant2Renderers;
-    private List<MeshRenderer> _plant3Renderers;
-    
-    public enum Biome
-    {
-        desert,
-        forest,
-        jungle,
-        underwater
-    };
-
-    private Biome _biome;
-
-    public int biome
-    {
-        get { return (int)_biome; }
-        set { _biome = (Biome)value; }
-    }
+    private List<MeshRenderer> _plant3Renderers;*/
 
     public void ChangeBase()
     {
@@ -52,71 +41,55 @@ public class ColorController : MonoBehaviour
         _colorIndex = 0;
         _colorBase = 0;
 
-        _rock1Renderers.Clear();
-        _rock2Renderers.Clear();
-        _rock3Renderers.Clear();
-        _rock4Renderers.Clear();
-        _rock5Renderers.Clear();
-        _plantBaseRenderers.Clear();
+        /*_plantBaseRenderers.Clear();
         _plant1Renderers.Clear();
         _plant2Renderers.Clear();
-        _plant3Renderers.Clear();
+        _plant3Renderers.Clear();*/
 
         _activeHead = activeHead;
         _terrain = _activeHead.transform.Find("Terrain").gameObject;
         _terrainScript = _terrain.GetComponent<TerrainScript>();
         _terrainScript.SetBasePaint(colorPalettes[_paletteIndex].terrain[6]);
 
+        
+        bool rock1Attached = false;
+        bool rock2Attached = false;
+        bool rock3Attached = false;
+        bool rock4Attached = false;
+        bool rock5Attached = false;
+        
         foreach (Transform rock in _terrain.transform.Find("_RockParent"))
         {
-            MeshRenderer[] rockRenderers;
-            switch (rock.name)
+            if (!rock1Attached && rock.name.Contains("Rock1"))
             {
-                case "Rock1(Clone)":
-                    rockRenderers = rock.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var rockRenderer in rockRenderers)
-                    {
-                        _rock1Renderers.Add(rockRenderer);
-                    }
-                    break;
-                
-                case "Rock2(Clone)":
-                    rockRenderers = rock.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var rockRenderer in rockRenderers)
-                    {
-                        _rock2Renderers.Add(rockRenderer);
-                    }
-                    break;
-                
-                case "Rock3(Clone)":
-                    rockRenderers = rock.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var rockRenderer in rockRenderers)
-                    {
-                        _rock3Renderers.Add(rockRenderer);
-                    }
-                    break;
-                
-                case "Rock4(Clone)":
-                    rockRenderers = rock.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var rockRenderer in rockRenderers)
-                    {
-                        _rock4Renderers.Add(rockRenderer);
-                    }
-                    break;
-                
-                case "Rock5(Clone)":
-                    rockRenderers = rock.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var rockRenderer in rockRenderers)
-                    {
-                        _rock5Renderers.Add(rockRenderer);
-                    }
-                    break;
+                _rock1Material = rock.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                rock1Attached = true;
+            }
+            else if (!rock2Attached && rock.name.Contains("Rock2"))
+            {
+                _rock2Material = rock.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                rock2Attached = true;
+            }
+            else if (!rock3Attached && rock.name.Contains("Rock3"))
+            {
+                _rock3Material = rock.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                rock3Attached = true;
+            }
+            else if (!rock4Attached && rock.name.Contains("Rock4"))
+            {
+                _rock4Material = rock.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                rock4Attached = true;
+            }
+            else if (!rock5Attached && rock.name.Contains("Rock5"))
+            {
+                _rock5Material = rock.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                rock5Attached = true;
             }
         }
         
-        switch (_biome)
+        switch (biomeType)
         {
-            case Biome.desert:
+            /*case Global.BiomeType.desert:
                 foreach (Transform plant in _terrain.transform.Find("_TreeParent"))
                 {
                     if (plant.name.Contains("Plant1"))
@@ -127,7 +100,7 @@ public class ColorController : MonoBehaviour
                             _plant1Renderers.Add(capsule.GetComponent<MeshRenderer>());
                             foreach (Transform cone in capsule)
                             {
-                                _plantBaseRenderers.Add(cone.GetComponent<MeshRenderer>()); //removing this might increase performance
+                                //_plantBaseRenderers.Add(cone.GetComponent<MeshRenderer>()); //removing this might increase performance
                             }
                         }
                     }
@@ -143,7 +116,7 @@ public class ColorController : MonoBehaviour
                             }
                             else if (child.name.Contains("Cone"))
                             {
-                                _plantBaseRenderers.Add(child.GetComponent<MeshRenderer>()); //removing this might increase performance
+                                //_plantBaseRenderers.Add(child.GetComponent<MeshRenderer>()); //removing this might increase performance
                             }
                         }
                     }
@@ -156,12 +129,47 @@ public class ColorController : MonoBehaviour
                         {
                             _plant3Renderers.Add(renderer);
                         }
+                        mainRenderers = animLayer.Find("MoreGems").GetComponentsInChildren<MeshRenderer>();
+                        foreach (MeshRenderer renderer in mainRenderers)
+                        {
+                            _plant3Renderers.Add(renderer);
+                        }
                         _plantBaseRenderers.Add(animLayer.Find("Branches").GetComponent<MeshRenderer>());
                     }
                 }
                 break;
-            
-            case Biome.forest:
+            */
+            case Global.BiomeType.forest:
+                bool plant1Attached = false;
+                bool plant2Attached = false;
+                bool plant3Attached = false;
+                bool plantBaseAttached = false;
+                
+                foreach (Transform plant in _terrain.transform.Find("_TreeParent"))
+                {
+                    Transform animLayer = plant.Find("Anim");
+
+                    if (!plant1Attached && plant.name.Contains("Plant1"))
+                    {
+                        _plant1Material = animLayer.Find("Leaves").GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                        plant1Attached = true;
+                    }
+                    else if (!plant2Attached && plant.name.Contains("Plant2"))
+                    {
+                        _plant2Material = animLayer.Find("Leaves").GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                        plant2Attached = true;
+                    }
+                    else if (!plant3Attached && plant.name.Contains("Plant3"))
+                    {
+                        _plant3Material = animLayer.Find("Gems").GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                        plant3Attached = true;
+                    }
+                    if (!plantBaseAttached && !plant.name.Contains("Plant2"))
+                    {
+                        _plantBaseMaterial = animLayer.Find("Branches").GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                        plantBaseAttached = true;
+                    }
+                }
                 break;
         }
     }
@@ -175,32 +183,32 @@ public class ColorController : MonoBehaviour
         
         _terrainScript.paintColor =
             colorPalettes[_paletteIndex].terrain[_colorBase + _colorIndex];
-        foreach (var rockRenderer in _rock1Renderers)
-        {
-            rockRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].rock1[_colorBase + _colorIndex]);
-            rockRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock1[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var rockRenderer in _rock2Renderers)
-        {
-            rockRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].rock2[_colorBase + _colorIndex]);
-            rockRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock2[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var rockRenderer in _rock3Renderers)
-        {
-            rockRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].rock3[_colorBase + _colorIndex]);
-            rockRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock3[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var rockRenderer in _rock4Renderers)
-        {
-            rockRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].rock4[_colorBase + _colorIndex]);
-            rockRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock4[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var rockRenderer in _rock5Renderers)
-        {
-            rockRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].rock5[_colorBase + _colorIndex]);
-            rockRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock5[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var plantBaseRenderer in _plantBaseRenderers)
+        
+        _rock1Material.SetColor("_Color", colorPalettes[_paletteIndex].rock1[_colorBase + _colorIndex]);
+        _rock1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock1[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _rock2Material.SetColor("_Color", colorPalettes[_paletteIndex].rock2[_colorBase + _colorIndex]);
+        _rock2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock2[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _rock3Material.SetColor("_Color", colorPalettes[_paletteIndex].rock3[_colorBase + _colorIndex]);
+        _rock3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock3[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _rock4Material.SetColor("_Color", colorPalettes[_paletteIndex].rock4[_colorBase + _colorIndex]);
+        _rock4Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock4[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _rock5Material.SetColor("_Color", colorPalettes[_paletteIndex].rock5[_colorBase + _colorIndex]);
+        _rock5Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock5[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _plant1Material.SetColor("_Color", colorPalettes[_paletteIndex].plant1[_colorBase + _colorIndex]);
+        _plant1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant1[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _plant2Material.SetColor("_Color", colorPalettes[_paletteIndex].plant2[_colorBase + _colorIndex]);
+        _plant2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant2[_colorBase + (_colorIndex + 1) % 2]);
+        
+        _plant3Material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
+        _plant3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
+
+        /*foreach (var plantBaseRenderer in _plantBaseRenderers)
         {
             plantBaseRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plantBase[_colorIndex]);
             plantBaseRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plantBase[(_colorIndex + 1) % 2]);
@@ -219,7 +227,7 @@ public class ColorController : MonoBehaviour
         {
             plantRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
             plantRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
-        }
+        }*/
         
         _colorIndex = (_colorIndex + 1) % 2;
     }
@@ -230,15 +238,10 @@ public class ColorController : MonoBehaviour
         _colorBase = 0;
         _colorIndex = 0;
         
-        _rock1Renderers = new List<MeshRenderer>();
-        _rock2Renderers = new List<MeshRenderer>();
-        _rock3Renderers = new List<MeshRenderer>();
-        _rock4Renderers = new List<MeshRenderer>();
-        _rock5Renderers = new List<MeshRenderer>();
-        _plantBaseRenderers = new List<MeshRenderer>();
+        /*_plantBaseRenderers = new List<MeshRenderer>();
         _plant1Renderers = new List<MeshRenderer>();
         _plant2Renderers = new List<MeshRenderer>();
-        _plant3Renderers = new List<MeshRenderer>();
+        _plant3Renderers = new List<MeshRenderer>();*/
 
         S = this;
     }

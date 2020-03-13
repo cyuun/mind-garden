@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7110074716456781557}
   m_Layer: 0
-  m_Name: Pieces
+  m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: 0
+  terrainScript: {fileID: 0}
   piece1: {fileID: 9215506947732548849}
   piece2: {fileID: 3439868082931733491}
   piece3: {fileID: 6026031420633865668}
@@ -387,7 +388,7 @@ GameObject:
   - component: {fileID: 4458979135330033903}
   - component: {fileID: 6565153672977193996}
   m_Layer: 10
-  m_Name: P3D_DeadTree002
+  m_Name: Branches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,7 +426,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eccf4896dea760c239bc043be0a4c872, type: 2}
+  - {fileID: 2100000, guid: 8f9abc0ac6911b8b6b840af4e2a203e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1083,7 +1084,7 @@ GameObject:
   - component: {fileID: 7599297211065183371}
   - component: {fileID: 1986191623998388962}
   m_Layer: 10
-  m_Name: Tree2
+  m_Name: ForestPlant2
   m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
