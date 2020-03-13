@@ -23,6 +23,7 @@ public class ColorController : MonoBehaviour
     private Material _rock4Material;
     private Material _rock5Material;
     private Material _plantBaseMaterial;
+    [SerializeField]
     private Material _plant1Material;
     private Material _plant2Material;
     private Material _plant3Material;
@@ -78,72 +79,65 @@ public class ColorController : MonoBehaviour
             }
         }
         
+        
+        bool plant1Attached = false;
+        bool plant2Attached = false;
+        bool plant3Attached = false;
+        bool plantBaseAttached = false;
+        
         switch (biomeType)
         {
-            /*case Global.BiomeType.desert:
+            case Global.BiomeType.desert:
                 foreach (Transform plant in _terrain.transform.Find("_TreeParent"))
                 {
-                    if (plant.name.Contains("Plant1"))
+                    Transform animLayer = plant.Find("Anim");
+                    
+                    if (!(plant1Attached && plantBaseAttached) && plant.name.Contains("Plant1"))
                     {
-                        Transform animLayer = plant.Find("Anim");
-                        foreach (Transform capsule in animLayer)
+                        foreach (Transform plantPart in animLayer)
                         {
-                            _plant1Renderers.Add(capsule.GetComponent<MeshRenderer>());
-                            foreach (Transform cone in capsule)
+                            if (!plantBaseAttached && plantPart.name.Contains("Cone"))
                             {
-                                //_plantBaseRenderers.Add(cone.GetComponent<MeshRenderer>()); //removing this might increase performance
+                                _plantBaseMaterial = plantPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                plantBaseAttached = true;
+                            }
+                            else if (!plant1Attached && plantPart.name.Contains("Capsule"))
+                            {
+                                _plant1Material = plantPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                plant1Attached = true;
                             }
                         }
                     }
-
-                    if (plant.name.Contains("Plant2"))
+                    else if (!plant2Attached && plant.name.Contains("Plant2"))
                     {
-                        Transform animLayer = plant.Find("Anim");
-                        foreach (Transform child in animLayer)
+                        foreach (Transform plantPart in animLayer)
                         {
-                            if (child.name.Contains("Capsule"))
+                            if (!plant2Attached && plantPart.name.Contains("Capsule"))
                             {
-                                _plant2Renderers.Add(child.GetComponent<MeshRenderer>());
-                            }
-                            else if (child.name.Contains("Cone"))
-                            {
-                                //_plantBaseRenderers.Add(child.GetComponent<MeshRenderer>()); //removing this might increase performance
+                                _plant2Material = plantPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                plant2Attached = true;
                             }
                         }
                     }
-
-                    if (plant.name.Contains("Plant3"))
+                    else if (!plant3Attached && plant.name.Contains("Plant3"))
                     {
-                        Transform animLayer = plant.Find("Anim");
-                        MeshRenderer[] mainRenderers = animLayer.Find("Gems").GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer renderer in mainRenderers)
-                        {
-                            _plant3Renderers.Add(renderer);
-                        }
-                        mainRenderers = animLayer.Find("MoreGems").GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer renderer in mainRenderers)
-                        {
-                            _plant3Renderers.Add(renderer);
-                        }
-                        _plantBaseRenderers.Add(animLayer.Find("Branches").GetComponent<MeshRenderer>());
+                        _plant3Material = animLayer.Find("Gems").GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                        plant3Attached = true;
                     }
                 }
                 break;
-            */
+            
             case Global.BiomeType.forest:
-                bool plant1Attached = false;
-                bool plant2Attached = false;
-                bool plant3Attached = false;
-                bool plantBaseAttached = false;
-                
                 foreach (Transform plant in _terrain.transform.Find("_TreeParent"))
                 {
                     Transform animLayer = plant.Find("Anim");
 
-                    if (!plant1Attached && plant.name.Contains("Plant1"))
+                    if (!(plant1Attached && plantBaseAttached) && plant.name.Contains("Plant1"))
                     {
+                        _plantBaseMaterial = animLayer.Find("Branches").GetComponentInChildren<MeshRenderer>().sharedMaterial;
                         _plant1Material = animLayer.Find("Leaves").GetComponentInChildren<MeshRenderer>().sharedMaterial;
                         plant1Attached = true;
+                        plantBaseAttached = true;
                     }
                     else if (!plant2Attached && plant.name.Contains("Plant2"))
                     {
@@ -154,11 +148,6 @@ public class ColorController : MonoBehaviour
                     {
                         _plant3Material = animLayer.Find("Gems").GetComponentInChildren<MeshRenderer>().sharedMaterial;
                         plant3Attached = true;
-                    }
-                    if (!plantBaseAttached && !plant.name.Contains("Plant2"))
-                    {
-                        _plantBaseMaterial = animLayer.Find("Branches").GetComponentInChildren<MeshRenderer>().sharedMaterial;
-                        plantBaseAttached = true;
                     }
                 }
                 break;
@@ -190,6 +179,9 @@ public class ColorController : MonoBehaviour
         _rock5Material.SetColor("_Color", colorPalettes[_paletteIndex].rock5[_colorBase + _colorIndex]);
         _rock5Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock5[_colorBase + (_colorIndex + 1) % 2]);
         
+        _plantBaseMaterial.SetColor("_Color", colorPalettes[_paletteIndex].plantBase[_colorIndex]);
+        _plantBaseMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].plantBase[(_colorIndex + 1) % 2]);
+
         _plant1Material.SetColor("_Color", colorPalettes[_paletteIndex].plant1[_colorBase + _colorIndex]);
         _plant1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant1[_colorBase + (_colorIndex + 1) % 2]);
         
@@ -198,7 +190,7 @@ public class ColorController : MonoBehaviour
         
         _plant3Material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
         _plant3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
-        
+
         _colorIndex = (_colorIndex + 1) % 2;
     }
 

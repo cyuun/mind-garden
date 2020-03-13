@@ -115,6 +115,7 @@ public class TreeSpawner : MonoBehaviour
                 {
                     float yRot = Random.Range(0, 360);
                     GameObject tre = Instantiate(tree, treePos, Quaternion.identity, TREE_PARENT);
+                    tre.transform.Find("Anim").GetComponent<Plant>().terrainScript = terrainScript;
                     tre.transform.rotation = Quaternion.Euler(new Vector3(0, yRot, 0));
 
                     AudioSource closest = AudioPeerRoot.S.audioPeers[0];
