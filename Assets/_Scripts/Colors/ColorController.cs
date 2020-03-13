@@ -26,10 +26,6 @@ public class ColorController : MonoBehaviour
     private Material _plant1Material;
     private Material _plant2Material;
     private Material _plant3Material;
-    /*private List<MeshRenderer> _plantBaseRenderers;
-    private List<MeshRenderer> _plant1Renderers;
-    private List<MeshRenderer> _plant2Renderers;
-    private List<MeshRenderer> _plant3Renderers;*/
 
     public void ChangeBase()
     {
@@ -40,11 +36,6 @@ public class ColorController : MonoBehaviour
     {
         _colorIndex = 0;
         _colorBase = 0;
-
-        /*_plantBaseRenderers.Clear();
-        _plant1Renderers.Clear();
-        _plant2Renderers.Clear();
-        _plant3Renderers.Clear();*/
 
         _activeHead = activeHead;
         _terrain = _activeHead.transform.Find("Terrain").gameObject;
@@ -207,27 +198,6 @@ public class ColorController : MonoBehaviour
         
         _plant3Material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
         _plant3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
-
-        /*foreach (var plantBaseRenderer in _plantBaseRenderers)
-        {
-            plantBaseRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plantBase[_colorIndex]);
-            plantBaseRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plantBase[(_colorIndex + 1) % 2]);
-        }
-        foreach (var plantRenderer in _plant1Renderers)
-        {
-            plantRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant1[_colorBase + _colorIndex]);
-            plantRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant1[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var plantRenderer in _plant2Renderers)
-        {
-            plantRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant2[_colorBase + _colorIndex]);
-            plantRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant2[_colorBase + (_colorIndex + 1) % 2]);
-        }
-        foreach (var plantRenderer in _plant3Renderers)
-        {
-            plantRenderer.material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
-            plantRenderer.material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
-        }*/
         
         _colorIndex = (_colorIndex + 1) % 2;
     }
@@ -237,11 +207,6 @@ public class ColorController : MonoBehaviour
         _paletteIndex = 1;
         _colorBase = 0;
         _colorIndex = 0;
-        
-        /*_plantBaseRenderers = new List<MeshRenderer>();
-        _plant1Renderers = new List<MeshRenderer>();
-        _plant2Renderers = new List<MeshRenderer>();
-        _plant3Renderers = new List<MeshRenderer>();*/
 
         S = this;
     }
