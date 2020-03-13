@@ -1794,7 +1794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8955180393449774897}
   m_Layer: 10
-  m_Name: treepieces
+  m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2044,6 +2044,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: -1
+  terrainScript: {fileID: 0}
   piece1: {fileID: 6968015528385215998}
   piece2: {fileID: 8669044157717615992}
   piece3: {fileID: 26530354016148590}

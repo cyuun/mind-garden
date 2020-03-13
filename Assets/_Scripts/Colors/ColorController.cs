@@ -151,6 +151,46 @@ public class ColorController : MonoBehaviour
                     }
                 }
                 break;
+            
+            case Global.BiomeType.jungle:
+                foreach (Transform plant in _terrain.transform.Find("_TreeParent"))
+                {
+                    Transform animLayer = plant.Find("Anim");
+                    
+                    if (!(plant1Attached && plantBaseAttached) && plant.name.Contains("Plant1"))
+                    {
+                        foreach (Transform plantPart in animLayer)
+                        {
+                            if (!plantBaseAttached && plantPart.name.Contains("Cone"))
+                            {
+                                _plantBaseMaterial = plantPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                plantBaseAttached = true;
+                            }
+                            else if (!plant1Attached && plantPart.name.Contains("Leaves"))
+                            {
+                                _plant1Material = plantPart.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                                plant1Attached = true;
+                            }
+                        }
+                    }
+                    else if (!plant2Attached && plant.name.Contains("Plant2"))
+                    {
+                        foreach (Transform plantPart in animLayer)
+                        {
+                            if (!plant2Attached && plantPart.name.Contains("Main"))
+                            {
+                                _plant2Material = plantPart.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                                plant2Attached = true;
+                            }
+                        }
+                    }
+                    else if (!plant3Attached && plant.name.Contains("Plant3"))
+                    {
+                        _plant3Material = animLayer.Find("Plant").GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                        plant3Attached = true;
+                    }
+                }
+                break;
         }
     }
 

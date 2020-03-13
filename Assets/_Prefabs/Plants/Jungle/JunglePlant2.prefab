@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90fd75cdda372426e848781238fdb2ea, type: 2}
+  - {fileID: 2100000, guid: 31cb79d6dd46179758e405731c00d06b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2180730967310992439}
   m_Layer: 10
-  m_Name: GameObject28
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2180730968232176607}
   m_Layer: 10
-  m_Name: GameObject
+  m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: 0
+  terrainScript: {fileID: 0}
   piece1: {fileID: 2180730968232176606}
   piece2: {fileID: 2180730967310992438}
   rotateSpeed1: 10
