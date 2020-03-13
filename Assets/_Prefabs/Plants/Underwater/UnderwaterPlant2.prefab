@@ -359,7 +359,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8194432e2f578488a9f4419a544346d7, type: 2}
+  - {fileID: 2100000, guid: 59a2ddd357b491e8289e40b6435502f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -499,7 +499,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8194432e2f578488a9f4419a544346d7, type: 2}
+  - {fileID: 2100000, guid: 59a2ddd357b491e8289e40b6435502f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 8238497302260076434}
   - component: {fileID: 8921683221950189260}
   m_Layer: 10
-  m_Name: underwaterPlantMediumSpawn2
+  m_Name: UnderwaterPlant2
   m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,6 +609,7 @@ MonoBehaviour:
   _audioPeer: {fileID: 0}
   spawner: {fileID: 0}
   y_offset: 0
+  terrainScript: {fileID: 0}
   musicMultiplier: 5
 --- !u!136 &8921683221950189260
 CapsuleCollider:
@@ -837,7 +838,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8194432e2f578488a9f4419a544346d7, type: 2}
+  - {fileID: 2100000, guid: 59a2ddd357b491e8289e40b6435502f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1692,7 +1693,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8194432e2f578488a9f4419a544346d7, type: 2}
+  - {fileID: 2100000, guid: 59a2ddd357b491e8289e40b6435502f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

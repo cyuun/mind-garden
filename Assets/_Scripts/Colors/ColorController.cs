@@ -23,7 +23,6 @@ public class ColorController : MonoBehaviour
     private Material _rock4Material;
     private Material _rock5Material;
     private Material _plantBaseMaterial;
-    [SerializeField]
     private Material _plant1Material;
     private Material _plant2Material;
     private Material _plant3Material;
@@ -187,6 +186,46 @@ public class ColorController : MonoBehaviour
                     else if (!plant3Attached && plant.name.Contains("Plant3"))
                     {
                         _plant3Material = animLayer.Find("Plant").GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                        plant3Attached = true;
+                    }
+                }
+                break;
+            
+            case Global.BiomeType.underwater:
+                foreach (Transform plant in _terrain.transform.Find("_TreeParent"))
+                {
+                    Transform animLayer = plant.Find("Anim");
+                    
+                    if (!(plant1Attached && plantBaseAttached) && plant.name.Contains("Plant1"))
+                    {
+                        foreach (Transform plantPart in animLayer)
+                        {
+                            if (!plantBaseAttached && plantPart.name.Contains("Sphere"))
+                            {
+                                _plantBaseMaterial = plantPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                plantBaseAttached = true;
+                            }
+                            else if (!plant1Attached && plantPart.name.Contains("Cylinder"))
+                            {
+                                _plant1Material = plantPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                plant1Attached = true;
+                            }
+                        }
+                    }
+                    else if (!plant2Attached && plant.name.Contains("Plant2"))
+                    {
+                        foreach (Transform plantPart in plant)
+                        {
+                            if (!plant2Attached && plantPart.name.Contains("Box"))
+                            {
+                                _plant2Material = plantPart.GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                                plant2Attached = true;
+                            }
+                        }
+                    }
+                    else if (!plant3Attached && plant.name.Contains("Plant3"))
+                    {
+                        _plant3Material = animLayer.GetComponentInChildren<MeshRenderer>().sharedMaterial;
                         plant3Attached = true;
                     }
                 }

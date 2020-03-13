@@ -34,6 +34,8 @@ public class Plant : MonoBehaviour
                 Transform rock = other.transform.parent;
                 offsetFromOrb = new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z) * rock.GetComponent<Rock>().radius * rock.localScale.x;
                 Vector3 pos = other.transform.position + offsetFromOrb;
+                if (terrainScript == null)
+                    terrainScript = AudioPeerRoot.S.terrainScript;
                 pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z);
                 transform.position = pos;
                 break;
