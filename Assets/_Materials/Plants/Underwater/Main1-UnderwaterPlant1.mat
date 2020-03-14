@@ -10,7 +10,7 @@ Material:
   m_Name: Main1-UnderwaterPlant1
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ShaderKeywords: _CELPRIMARYMODE_SINGLE _FLAT_SHADOWS_ENABLED _FLAT_SPECULAR_ENABLED
-    _UNITYSHADOWMODE_NONE
+    _UNITYSHADOWMODE_MULTIPLY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -120,15 +120,15 @@ Material:
     - _TextureBlendingMode: 0
     - _TextureImpact: 1
     - _UVSec: 0
-    - _UnityShadowMode: 0
-    - _UnityShadowPower: 0
+    - _UnityShadowMode: 1
+    - _UnityShadowPower: 0.103
     - _UnityShadowSharpness: 1
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.9804532, g: 0.84318304, b: 1, a: 1}
+    - _Color: {r: 0.9140154, g: 0.3331655, b: 0.48215458, a: 1}
     - _ColorCelShadow: {r: 0.49056602, g: 0.34478462, b: 0.4476891, a: 1}
-    - _ColorDim: {r: 0.85099566, g: 0.65510035, b: 0.9062028, a: 1}
+    - _ColorDim: {r: 1, g: 0.36443123, b: 0.85099566, a: 1}
     - _ColorDimCurve: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
     - _ColorDimExtra: {r: 0.5660378, g: 0.21893916, b: 0.2605534, a: 0.85}
     - _ColorDimSteps: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
