@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868251686}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2636871, y: -2463, z: -1.9497223}
+  m_LocalPosition: {x: 1.2636871, y: 183.9, z: -1.9497223}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 6608192365148886475}
@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95196577b8ab61277b1d81aacec2dd35, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   xMax: 336
   zMax: 488
   resolution: 0.51
@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7aeab3cbd5815b291b30bf42a2e53723, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   matchTerrainHeight: 1
   rotationSpeed: 300
   terrain: {fileID: 0}
@@ -523,7 +523,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 3feb252682f69244c8311df4cde68e4a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 2100000, guid: c30b5fda41bad539c9776c6065bfd6c0, type: 2}
     - target: {fileID: -927199367670048503, guid: 3feb252682f69244c8311df4cde68e4a,
         type: 3}

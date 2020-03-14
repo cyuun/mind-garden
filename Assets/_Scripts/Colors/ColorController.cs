@@ -17,6 +17,7 @@ public class ColorController : MonoBehaviour
     private GameObject _activeHead;
     private GameObject _terrain;
     private TerrainScript _terrainScript;
+    private Material _headMaterial;
     private Material _rock1Material;
     private Material _rock2Material;
     private Material _rock3Material;
@@ -42,6 +43,7 @@ public class ColorController : MonoBehaviour
         _terrainScript = _terrain.GetComponent<TerrainScript>();
         _terrainScript.SetBasePaint(colorPalettes[_paletteIndex].terrain[6]);
 
+        _headMaterial = _activeHead.GetComponent<MeshRenderer>().material;
         
         bool rock1Attached = false;
         bool rock2Attached = false;
@@ -240,6 +242,9 @@ public class ColorController : MonoBehaviour
             return;
         }
         
+        _headMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].head[1 + _colorIndex]);
+        _headMaterial.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].head[1 + (_colorIndex + 1) % 2]);
+        
         _terrainScript.paintColor =
             colorPalettes[_paletteIndex].terrain[_colorBase + _colorIndex];
         
@@ -275,7 +280,7 @@ public class ColorController : MonoBehaviour
 
     private void Start()
     {
-        _paletteIndex = 1;
+        _paletteIndex = 0;
         _colorBase = 0;
         _colorIndex = 0;
 
