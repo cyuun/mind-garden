@@ -38,6 +38,8 @@ public class TerrainScript : MonoBehaviour
     [Header("Painting")]
     public int textureResolution = 333;
     public float paintRadius = 5;
+    [Range(0, 1)]
+    public float brushHardness = 0.5f;
     public Color paintColor;
 
     private MeshFilter _meshFilter;
@@ -492,7 +494,17 @@ public class TerrainScript : MonoBehaviour
                     (pixelPos.y - playerPos.z) * (pixelPos.y - playerPos.z) <
                     paintRadius * paintRadius)
                 {
-                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], paintColor, 0.5f);
+                    float tLerp;
+                    if (brushHardness == 1)
+                    {
+                        tLerp = 0.5f;
+                    }
+                    else
+                    {
+                        tLerp = 0.5f * ((paintRadius - Mathf.Sqrt((pixelPos.x - playerPos.x) * (pixelPos.x - playerPos.x) +
+                                                        (pixelPos.y - playerPos.z) * (pixelPos.y - playerPos.z))) / (paintRadius - brushHardness * paintRadius));
+                    }
+                    _paint[i + textureResolution * j] = Color.Lerp(_paint[i + textureResolution * j], paintColor, tLerp);
                 }
             }
         }
