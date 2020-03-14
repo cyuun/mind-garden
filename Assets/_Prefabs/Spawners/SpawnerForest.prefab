@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7127389882151016665}
   - component: {fileID: 6688515277789686127}
   - component: {fileID: 2332086164498011841}
+  - component: {fileID: 7894147243008138209}
   m_Layer: 11
   m_Name: SpawnerForest
   m_TagString: Untagged
@@ -56,8 +57,9 @@ MonoBehaviour:
   spawnRadiusMax: 150
   treesMin: 15
   treesMax: 20
-  treeSeparation: 5
+  treeSeparation: 6
   maxSlope: 50
+  terrainScript: {fileID: 0}
 --- !u!114 &6688515277789686127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +84,7 @@ MonoBehaviour:
   scaleMin: 1
   scaleMax: 2
   randomRotate: 0
+  terrainScript: {fileID: 0}
 --- !u!114 &2332086164498011841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,3 +107,13 @@ MonoBehaviour:
   maxSpawn: 20
   flying: 0
   yOffset: 3
+  terrainScript: {fileID: 0}
+--- !u!45 &7894147243008138209
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946184587849143891}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: adbbeeb62e7db09448388c61aa1f5712, type: 2}

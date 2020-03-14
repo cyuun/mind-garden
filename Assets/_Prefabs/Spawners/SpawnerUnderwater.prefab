@@ -128,5 +128,10 @@ PrefabInstance:
       propertyPath: treeSeparation
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7894147243008138209, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: m_CustomSkybox
+      value: 
+      objectReference: {fileID: 2100000, guid: bc068a57a9a498c4f8e80c70f13c516a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}

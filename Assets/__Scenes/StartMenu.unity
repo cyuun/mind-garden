@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: bc068a57a9a498c4f8e80c70f13c516a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -199,7 +199,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1175163421}
     m_Modifications:
     - target: {fileID: 343930581138773673, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -234,12 +234,12 @@ PrefabInstance:
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 75
+      value: 202.5
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -249,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.97629607
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -259,12 +259,12 @@ PrefabInstance:
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.2164397
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -284,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 30.00002
+      value: 30.000023
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -294,7 +294,7 @@ PrefabInstance:
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 30.00002
+      value: 30.000023
       objectReference: {fileID: 0}
     - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
@@ -331,6 +331,11 @@ PrefabInstance:
       propertyPath: spawnBiome
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1912402806797996887, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: flashOn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3611745623144575792, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_IsActive
@@ -339,6 +344,26 @@ PrefabInstance:
     - target: {fileID: 6335238476530716227, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840967919961292514, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840967921618818270, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840967921956417620, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840967921979046788, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -1595,7 +1620,7 @@ Transform:
   - {fileID: 1925094833}
   - {fileID: 826641967}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &403526029
 GameObject:
@@ -1739,7 +1764,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Text
-      value: Say My Name
+      value: '[S]Say My Name - ODESZA'
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -1885,6 +1910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: songInfo.drums
       value: Assets/Resources/Spleets/ODESZA-SayMyName(feat.Zyra)-LyricVideo.mp3/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
@@ -2068,7 +2098,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Text
-      value: Where The End Begins
+      value: '[S]Where The End Begins - Blue Foundation'
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -2214,6 +2244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: songInfo.drums
       value: Assets/Resources/Spleets/BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
@@ -4044,6 +4079,7 @@ GameObject:
   - component: {fileID: 1136803561}
   - component: {fileID: 1136803560}
   - component: {fileID: 1136803563}
+  - component: {fileID: 1136803564}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4068,7 +4104,7 @@ Camera:
   m_GameObject: {fileID: 1136803559}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.4269313, g: 0.5335815, b: 0.735849, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -4212,9 +4248,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!45 &1136803564
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136803559}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 14497830682194498bb140b4a1bcda95, type: 2}
 --- !u!1 &1175163416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7921367927464601560, guid: 0de2b5b20f676bd4bbdb5517655b4d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 103726457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1175163421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6608192365148886475, guid: 0de2b5b20f676bd4bbdb5517655b4d21,
     type: 3}
   m_PrefabInstance: {fileID: 103726457}
   m_PrefabAsset: {fileID: 0}
@@ -4497,7 +4548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -457, y: -79.29996}
+  m_AnchoredPosition: {x: -457, y: -103}
   m_SizeDelta: {x: 509.2, y: 260.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1282647804
@@ -5060,7 +5111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.051000003, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00001335144, y: 0}
+  m_AnchoredPosition: {x: 0.000011444092, y: 0}
   m_SizeDelta: {x: 0, y: 1000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1387942279
@@ -5127,7 +5178,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420178172
 GameObject:
@@ -6181,7 +6232,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Text
-      value: Get Your Wish
+      value: '[S]Get Your Wish - Porter Robinson'
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -6327,6 +6378,11 @@ PrefabInstance:
         type: 3}
       propertyPath: songInfo.drums
       value: Assets/Resources/Spleets/PorterRobinson-GetyourWish(OfficialMusicVideo).mp3/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
@@ -6934,8 +6990,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 804802032}
   m_HandleRect: {fileID: 804802031}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.25
+  m_Value: 1
+  m_Size: 0.2339
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7259,8 +7315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: -66}
-  m_SizeDelta: {x: 350, y: 250}
+  m_AnchoredPosition: {x: 329, y: -84.7}
+  m_SizeDelta: {x: 350, y: 233.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113880534
 MonoBehaviour:
@@ -7739,7 +7795,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Text
-      value: Drive It Like You Stole It
+      value: '[S]Drive It Like You Stole It - The Glitch Mob'
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -7885,6 +7941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: songInfo.drums
       value: Assets/Resources/Spleets/TheGlitchMob-DriveItLikeYouStoleIt.mp3/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}

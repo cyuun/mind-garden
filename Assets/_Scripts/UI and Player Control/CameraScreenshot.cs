@@ -40,7 +40,6 @@ public class CameraScreenshot : MonoBehaviour
             string output = Application.persistentDataPath + "/Screenshots/" + System.DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".png";
             File.WriteAllBytes(output, bytes);
             screenshotNum++;
-            Debug.Log(output);
 
             RenderTexture.ReleaseTemporary(renderTexture);
             myCamera.targetTexture = null;

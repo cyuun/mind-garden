@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
+    public static SettingsMenu S;
+
     //SETTINGS
     public AudioMixer mainMixer;
     public Slider volumeSlider;
@@ -23,6 +25,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        S = this;
         player = PlayerScript.S;
         UpdateSettings();
         this.fixedDeltaTime = Time.fixedDeltaTime;
@@ -63,6 +66,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void Exit()
     {
+        gameIsPaused = false;
         Time.timeScale = 1;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         Global.playingGame = false;
@@ -73,8 +77,7 @@ public class SettingsMenu : MonoBehaviour
         if(smallTree.allSmallTrees != null) smallTree.allSmallTrees.Clear();
         if (desertPlantSmall.allSmallTrees != null) desertPlantSmall.allSmallTrees.Clear();
         //TODO: Fade to black coroutine
-
-        SceneManager.LoadScene(0);
+        GameHUD.S.Exit();
     }
 
     public void Resume()

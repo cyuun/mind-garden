@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using SimpleFileBrowser;
+using System.Text.RegularExpressions;
 
 public class MenuController : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class MenuController : MonoBehaviour
 
     }
 
-    public void AddSong(SongInfo info)
+    public void AddSong(SongInfo info, bool spleeter)
     {
         int totalSongs = songList.transform.childCount;
         Vector3 firstSong = songList.transform.GetChild(totalSongs - 1).position;
@@ -87,7 +88,13 @@ public class MenuController : MonoBehaviour
         }
         GameObject newSong = Instantiate(songItemPrefab, firstSong, Quaternion.identity, songList.transform);
 
-        newSong.GetComponent<Text>().text = info.songName;
+        string spleeterIcon = "";
+        if (spleeter)
+        {
+            spleeterIcon = "[S]";
+            newSong.GetComponent<SongListItem>().spleeterOn = true;
+        }
+        newSong.GetComponent<Text>().text = spleeterIcon + info.songName;
         newSong.GetComponent<SongListItem>().songInfo = info;
     }
 
@@ -398,9 +405,37 @@ public class MenuController : MonoBehaviour
                 backgroundMusic.Play();
 
             }
-            else
+            else if (Global.inputSongPath != null && Global.inputSong != null)
             {
                 print("Spleeter Disabled: Game will be played in normal mode");
+                AudioClip inputSong = Global.inputSong;
+                string songPath = Global.inputSongPath;
+                inputSong.name = Path.GetFileNameWithoutExtension(songPath);
+                //Use Regex to parse out illegal characters
+                string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                string oldName = inputSong.name;
+                inputSong.name = r.Replace(inputSong.name, "");
+                inputSong.name = inputSong.name.Replace(" ", string.Empty);
+                if (inputSong.name != oldName && !File.Exists(Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath))))
+                {
+                    File.Move(songPath, Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath))); //Renames song without illegal characters
+                }
+                songPath = Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath));
+
+                string outputPath = Application.persistentDataPath + "/Songs/";
+                if (Directory.Exists(outputPath) && !File.Exists(Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath))))
+                {
+                    File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
+                }
+                else
+                {
+                    Directory.CreateDirectory(outputPath);
+                    File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
+                    print("Directory or file not found");
+                }
+
+                Global.currentSongInfo = SpleeterProcess.S.LoadSong(songPath, inputSong);
                 backgroundMusic.Play();
 
             }
@@ -494,7 +529,47 @@ public class MenuController : MonoBehaviour
                 info.bass = Path.Combine(dir, songName) + "/bass.wav";
                 info.vocals = Path.Combine(dir, songName) + "/vocals.wav";
                 info.drums = Path.Combine(dir, songName) + "/drums.wav";
-                AddSong(info);
+                AddSong(info, true);
+            }
+
+        }
+
+        dir = Application.persistentDataPath + "/Songs/";
+        if (Directory.Exists(dir))
+        {
+            foreach (string file in Directory.GetFiles(dir))
+            {
+                /*string songName = "";
+                foreach (string f in Directory.GetFiles(file))
+                {
+                    if (file.Substring(dir.Length) == Path.GetFileNameWithoutExtension(f))
+                    {
+                        songName = f;
+                    }
+                }*/
+                SongInfo info = new SongInfo();
+                info.inputSongPath = file;
+                string songName = Path.GetFileNameWithoutExtension(file);
+                if (Path.GetExtension(info.inputSongPath) == ".mp3")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
+                    info.inputSong = audioClip;
+                }
+                else if (Path.GetExtension(info.inputSongPath) == ".wav")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    WAV wav = new WAV(bytes);
+
+                    AudioClip audioClip;
+                    audioClip = AudioClip.Create(songName, wav.SampleCount, 1, wav.Frequency, false);
+                    audioClip.SetData(wav.LeftChannel, 0);
+                    info.inputSong = audioClip;
+                }
+
+                info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
+                info.songName = info.inputSong.name;
+                AddSong(info, false);
             }
 
         }
