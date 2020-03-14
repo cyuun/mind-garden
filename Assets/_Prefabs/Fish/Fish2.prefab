@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8296041757854739688}
   - component: {fileID: 6237378713897388127}
   m_Layer: 0
-  m_Name: fish
+  m_Name: Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 299859243916639278}
   - component: {fileID: 3630783753256780011}
   m_Layer: 0
-  m_Name: fish2
+  m_Name: Fish2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

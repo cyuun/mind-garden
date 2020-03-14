@@ -30,6 +30,8 @@ public class ColorController : MonoBehaviour
     private Material _wings1Material;
     private Material _wings2Material;
     private Material _bugMaterial;
+    private Material _fish1Material;
+    private Material _fish2Material;
 
     public void ChangeBase()
     {
@@ -240,6 +242,8 @@ public class ColorController : MonoBehaviour
         bool wings1Attached = false;
         bool wings2Attached = false;
         bool bugBodyAttached = false;
+        bool fish1Attached = false;
+        bool fish2Attached = false;
 
         foreach (Transform creature in _terrain.transform.Find("_CreatureParent"))
         {
@@ -275,6 +279,16 @@ public class ColorController : MonoBehaviour
                     }
                 }
             }
+            else if (!fish1Attached && creature.name.Contains("Fish1"))
+            {
+                _fish1Material = creature.Find("Fish").GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                fish1Attached = true;
+            }
+            else if (!fish2Attached && creature.name.Contains("Fish2"))
+            {
+                _fish2Material = creature.Find("Fish").GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                fish2Attached = true;
+            }
         }
 
         if (!wings1Attached)
@@ -288,6 +302,14 @@ public class ColorController : MonoBehaviour
         if (!bugBodyAttached)
         {
             _bugMaterial = null;
+        }
+        if (!fish1Attached)
+        {
+            _fish1Material = null;
+        }
+        if (!fish2Attached)
+        {
+            _fish2Material = null;
         }
     }
 
@@ -350,6 +372,20 @@ public class ColorController : MonoBehaviour
             _bugMaterial.SetColor("_Color", colorPalettes[_paletteIndex].bugBodies[_colorBase + _colorIndex]);
             _bugMaterial.SetColor("_ColorDim",
                 colorPalettes[_paletteIndex].bugBodies[_colorBase + (_colorIndex + 1) % 2]);
+        }
+        
+        if (_fish1Material != null)
+        {
+            _fish1Material.SetColor("_Color", colorPalettes[_paletteIndex].fish1[_colorBase + _colorIndex]);
+            _fish1Material.SetColor("_ColorDim",
+                colorPalettes[_paletteIndex].fish1[_colorBase + (_colorIndex + 1) % 2]);
+        }
+        
+        if (_fish2Material != null)
+        {
+            _fish2Material.SetColor("_Color", colorPalettes[_paletteIndex].fish2[_colorBase + _colorIndex]);
+            _fish2Material.SetColor("_ColorDim",
+                colorPalettes[_paletteIndex].fish2[_colorBase + (_colorIndex + 1) % 2]);
         }
 
         _colorIndex = (_colorIndex + 1) % 2;

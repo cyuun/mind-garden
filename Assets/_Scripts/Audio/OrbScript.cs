@@ -51,7 +51,7 @@ public class OrbScript : MonoBehaviour
         if (!biomeChosen)
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = Global.BiomeType.forest;//(Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            biomeSpawner = Global.BiomeType.underwater;//(Global.BiomeType)Random.Range(0, biomeSpawners.Length);
             biomeChosen = true;
         }
         ColorController.S.biomeType = biomeSpawner;
