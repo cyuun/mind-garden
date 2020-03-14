@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5351662349989319712}
   - component: {fileID: 140114517809200792}
   m_Layer: 0
-  m_Name: Sphere1863
+  m_Name: Back Wing 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 7471529659323493176}
   - component: {fileID: 7283981614711400597}
   m_Layer: 0
-  m_Name: Sphere1864
+  m_Name: Front Wing 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4544f7cd0f5aa454c96e7bbee4c477b2, type: 2}
+  - {fileID: 2100000, guid: 90c0143d6f4946b43b43a706be13c545, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 280304162068213285}
   - component: {fileID: 5023546557433909849}
   m_Layer: 0
-  m_Name: Sphere1858
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d9a8b50243b4c060867c4637762783b, type: 2}
+  - {fileID: 2100000, guid: 69c73c22cfe6fc043ab3b04a8bb5c036, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 4030142623798088587}
   - component: {fileID: 6598851194772572023}
   m_Layer: 0
-  m_Name: Sphere1862
+  m_Name: Front Wing 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4544f7cd0f5aa454c96e7bbee4c477b2, type: 2}
+  - {fileID: 2100000, guid: 90c0143d6f4946b43b43a706be13c545, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 6699301856979200585}
   - component: {fileID: 8113144805169894350}
   m_Layer: 0
-  m_Name: Sphere1860
+  m_Name: Back Wing 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

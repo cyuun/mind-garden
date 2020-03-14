@@ -13,7 +13,7 @@ public class GlobalFlock2 : MonoBehaviour
     public static Vector3 goalPos = Vector3.zero;
 
     // Use this for initialization
-    void Start()
+    public void SpawnBugs()
     {
         for (int i = 0; i < numBugs; i++)
         {
@@ -22,8 +22,7 @@ public class GlobalFlock2 : MonoBehaviour
                 transform.position.y,
                 Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
-            allBugs[i]= (GameObject)Instantiate(
-                bugPrefab, pos, Quaternion.identity);
+            allBugs[i]= Instantiate(bugPrefab, pos, Quaternion.identity, transform);
         }
     }
 

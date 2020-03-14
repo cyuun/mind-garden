@@ -52,6 +52,18 @@ public class CreatureSpawner : MonoBehaviour
                 pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + yOffset;
             }
             creature = Instantiate(creature, pos, Quaternion.Euler(new Vector3(0,Random.Range(0f,360f),0)), CREATURE_PARENT);
+            if (creature.GetComponent<GlobalFlock>())
+            {
+                creature.GetComponent<GlobalFlock>().SpawnBugs();
+            }
+            else if (creature.GetComponent<GlobalFlock2>())
+            {
+                creature.GetComponent<GlobalFlock2>().SpawnBugs();
+            }
+            else if (creature.GetComponent<GlobalFlock3>())
+            {
+                creature.GetComponent<GlobalFlock3>().SpawnBugs();
+            }
         }
     }
 

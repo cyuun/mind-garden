@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6366606253586772145}
   - component: {fileID: 4533267903885591116}
   m_Layer: 0
-  m_Name: Sphere1868
+  m_Name: Back Wing 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26673b1fafaed3a3a93e5e399ef786e6, type: 2}
+  - {fileID: 2100000, guid: 4544f7cd0f5aa454c96e7bbee4c477b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1135201920362279902}
   - component: {fileID: 4141625480647055823}
   m_Layer: 0
-  m_Name: Sphere1866
+  m_Name: Back Wing 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26673b1fafaed3a3a93e5e399ef786e6, type: 2}
+  - {fileID: 2100000, guid: 4544f7cd0f5aa454c96e7bbee4c477b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 3714916622124420329}
   - component: {fileID: 8982342995260227068}
   m_Layer: 0
-  m_Name: Sphere1865
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53b275dc872ed303b89da6eedaed2237, type: 2}
+  - {fileID: 2100000, guid: 69c73c22cfe6fc043ab3b04a8bb5c036, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 8265222096656093811}
   - component: {fileID: 1034510929171495829}
   m_Layer: 0
-  m_Name: Sphere1869
+  m_Name: Front Wing 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26673b1fafaed3a3a93e5e399ef786e6, type: 2}
+  - {fileID: 2100000, guid: 90c0143d6f4946b43b43a706be13c545, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 3424556031190837150}
   - component: {fileID: 8278321601412668653}
   m_Layer: 0
-  m_Name: Sphere1867
+  m_Name: Front Wing 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +374,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26673b1fafaed3a3a93e5e399ef786e6, type: 2}
+  - {fileID: 2100000, guid: 90c0143d6f4946b43b43a706be13c545, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

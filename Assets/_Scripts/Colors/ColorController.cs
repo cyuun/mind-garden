@@ -27,6 +27,9 @@ public class ColorController : MonoBehaviour
     private Material _plant1Material;
     private Material _plant2Material;
     private Material _plant3Material;
+    private Material _wings1Material;
+    private Material _wings2Material;
+    private Material _bugMaterial;
 
     public void ChangeBase()
     {
@@ -233,6 +236,59 @@ public class ColorController : MonoBehaviour
                 }
                 break;
         }
+
+        bool wings1Attached = false;
+        bool wings2Attached = false;
+        bool bugBodyAttached = false;
+
+        foreach (Transform creature in _terrain.transform.Find("_CreatureParent"))
+        {
+            if (!(wings1Attached && bugBodyAttached) && creature.name.Contains("BugFlock1"))
+            {
+                foreach (Transform child in creature)
+                {
+                    if (!(wings1Attached && bugBodyAttached) && child.name.Contains("Bug"))
+                    {
+                        _wings1Material = child.GetChild(0).GetComponent<MeshRenderer>()
+                            .sharedMaterial;
+                        wings1Attached = true;
+                        _bugMaterial = child.GetComponent<MeshRenderer>()
+                            .sharedMaterial;
+                        bugBodyAttached = true; 
+                    }
+                }
+            }
+            else if (!wings2Attached && creature.name.Contains("BugFlock2"))
+            {
+                foreach (Transform child in creature)
+                {
+                    if (!wings2Attached && child.name.Contains("Bug"))
+                    {
+                        foreach (Transform bodyPart in child)
+                        {
+                            if (!wings2Attached && bodyPart.name.Contains("Back"))
+                            {
+                                _wings2Material = bodyPart.GetComponent<MeshRenderer>().sharedMaterial;
+                                wings2Attached = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!wings1Attached)
+        {
+            _wings1Material = null;
+        }
+        if (!wings2Attached)
+        {
+            _wings2Material = null;
+        }
+        if (!bugBodyAttached)
+        {
+            _bugMaterial = null;
+        }
     }
 
     public void ChangeColors()
@@ -274,6 +330,27 @@ public class ColorController : MonoBehaviour
         
         _plant3Material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase + _colorIndex]);
         _plant3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase + (_colorIndex + 1) % 2]);
+
+        if (_wings1Material != null)
+        {
+            _wings1Material.SetColor("_Color", colorPalettes[_paletteIndex].wings1[_colorBase + _colorIndex]);
+            _wings1Material.SetColor("_ColorDim",
+                colorPalettes[_paletteIndex].wings1[_colorBase + (_colorIndex + 1) % 2]);
+        }
+
+        if (_wings2Material != null)
+        {
+            _wings2Material.SetColor("_Color", colorPalettes[_paletteIndex].wings2[_colorBase + _colorIndex]);
+            _wings2Material.SetColor("_ColorDim",
+                colorPalettes[_paletteIndex].wings2[_colorBase + (_colorIndex + 1) % 2]);
+        }
+
+        if (_bugMaterial != null)
+        {
+            _bugMaterial.SetColor("_Color", colorPalettes[_paletteIndex].bugBodies[_colorBase + _colorIndex]);
+            _bugMaterial.SetColor("_ColorDim",
+                colorPalettes[_paletteIndex].bugBodies[_colorBase + (_colorIndex + 1) % 2]);
+        }
 
         _colorIndex = (_colorIndex + 1) % 2;
     }
