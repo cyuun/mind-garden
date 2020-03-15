@@ -181,6 +181,16 @@ public class TerrainScript : MonoBehaviour
         }
     }
 
+    public float GetXStep()
+    {
+        return skew / resolution;
+    }
+
+    public float GetZStep()
+    {
+        return Mathf.Sqrt(3) / (2 * resolution * skew);
+    }
+
     private void Awake()
     {
         if (_randomizeTerrain)
@@ -230,8 +240,8 @@ public class TerrainScript : MonoBehaviour
         List<Vector3> tempVertices = new List<Vector3>();             //list to temporarily store vertices in because we don't know actual total count
         List<int> tempTriangles = new List<int>();                    // "    "     "         "   triangles...
 
-        float xStep = skew / resolution;                              //the horizontal distance from one grid point to another within the same row
-        float zStep = Mathf.Sqrt(3) / (2 * resolution * skew);     //vertical      "       "   "    "    "    "   "       "     "    "  column
+        float xStep = GetXStep();                                     //the horizontal distance from one grid point to another within the same row
+        float zStep = GetZStep();                                     //vertical      "       "   "    "    "    "   "       "     "    "  column
 
         int v = 0, vPrevious = 0, c = 0;                              //v = number of vertices in the current row being filled
         for (float z = -zMax/2; z <= zMax/2; z += zStep)              //vPrevious = num  "      "  "  previous...
@@ -318,7 +328,7 @@ public class TerrainScript : MonoBehaviour
             {
                 float xCheck = vertices[index - tempOffset].x;
 
-                if (CompareFloats(xCheck, x - xStep / 2, xStep / 4))
+                if (Global.CompareFloats(xCheck, x - xStep / 2, xStep / 4))
                 {
                     returnOffset = tempOffset;
                 }
@@ -341,7 +351,7 @@ public class TerrainScript : MonoBehaviour
             {
                 float xCheck = vertices[index - tempOffset + 1].x;
 
-                if (CompareFloats(xCheck, x + xStep / 2, xStep / 4))
+                if (Global.CompareFloats(xCheck, x + xStep / 2, xStep / 4))
                 {
                     returnOffset = tempOffset;
                 }
@@ -349,11 +359,6 @@ public class TerrainScript : MonoBehaviour
         }
 
         return returnOffset;
-    }
-
-    private bool CompareFloats(float f1, float f2, float tolerance)
-    {
-        return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
     }
 
     private float GetPerlinHeight(float x, float z)
