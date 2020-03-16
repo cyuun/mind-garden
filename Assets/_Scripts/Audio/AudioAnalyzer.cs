@@ -59,7 +59,7 @@ public class AudioAnalyzer : MonoBehaviour
             if (MainSpawner.S)  MainSpawner.S.ChangeSpawner();
         }
         prevTime = time;
-        if (time == audioSource.clip.length)
+        if (time >= audioSource.clip.length)
         {
             EndGame();
         }

@@ -46,6 +46,9 @@ public class AudioPeerRoot : MonoBehaviour
         orb2.SpawnBiome();
         orb3.SpawnBiome();
         orb4.SpawnBiome();
+
+        //Show game after head loaded
+
     }
 
     private void Awake()

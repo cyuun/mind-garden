@@ -34,6 +34,7 @@ public class MenuController : MonoBehaviour
     {
         S = this;
         Global.playingGame = false;
+        Cursor.lockState = CursorLockMode.None;
 
         if(!fileSelection || !play || !gallery || !settings || !errorMessage)
         {
@@ -72,7 +73,7 @@ public class MenuController : MonoBehaviour
         // Icon: default (folder icon)
         FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
-        LoadSongLibrary();
+        StartCoroutine(LoadSongLibrary());
 
     }
 
@@ -125,9 +126,17 @@ public class MenuController : MonoBehaviour
     {
         if(Global.currentSongInfo != null)
         {
-            Global.playingGame = true;
-            SceneManager.LoadScene(1);
+            startButton.SetActive(false);
+            loadScreen.SetActive(true);
+            StartCoroutine(LoadBar());
         }
+    }
+
+    IEnumerator LoadBar()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadingBar.S.Show(SceneManager.LoadSceneAsync(1));
+
     }
 
     public void GoBack()
@@ -424,16 +433,22 @@ public class MenuController : MonoBehaviour
                 songPath = Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath));
 
                 string outputPath = Application.persistentDataPath + "/Songs/";
-                if (Directory.Exists(outputPath) && !File.Exists(Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath))))
+                if (Directory.Exists(outputPath))
                 {
-                    File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
+                    if (!File.Exists(Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath))))
+                    {
+                        File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
+
+                    }
                 }
-                else
+                else 
                 {
+                    print("Directory not found");
                     Directory.CreateDirectory(outputPath);
                     File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
-                    print("Directory or file not found");
+
                 }
+                AddSong(Global.currentSongInfo, false);
 
                 Global.currentSongInfo = SpleeterProcess.S.LoadSong(songPath, inputSong);
                 backgroundMusic.Play();
@@ -443,7 +458,7 @@ public class MenuController : MonoBehaviour
 
     }
 
-    void LoadSongLibrary()
+    IEnumerator LoadSongLibrary()
     {
         //Load Resources (songs prepared with spleeter)
         string dir = "Assets/Resources/Spleets/";
@@ -530,8 +545,9 @@ public class MenuController : MonoBehaviour
                 info.vocals = Path.Combine(dir, songName) + "/vocals.wav";
                 info.drums = Path.Combine(dir, songName) + "/drums.wav";
                 AddSong(info, true);
-            }
+                yield return null;
 
+            }
         }
 
         dir = Application.persistentDataPath + "/Songs/";
@@ -539,14 +555,6 @@ public class MenuController : MonoBehaviour
         {
             foreach (string file in Directory.GetFiles(dir))
             {
-                /*string songName = "";
-                foreach (string f in Directory.GetFiles(file))
-                {
-                    if (file.Substring(dir.Length) == Path.GetFileNameWithoutExtension(f))
-                    {
-                        songName = f;
-                    }
-                }*/
                 SongInfo info = new SongInfo();
                 info.inputSongPath = file;
                 string songName = Path.GetFileNameWithoutExtension(file);
@@ -570,6 +578,8 @@ public class MenuController : MonoBehaviour
                 info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
                 info.songName = info.inputSong.name;
                 AddSong(info, false);
+                yield return null;
+
             }
 
         }

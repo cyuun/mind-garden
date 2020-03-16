@@ -150,7 +150,7 @@ public class OrbScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
+        if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 15f)
         {
             if (!glowing && !following)
             {

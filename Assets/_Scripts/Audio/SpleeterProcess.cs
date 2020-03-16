@@ -86,7 +86,7 @@ public class SpleeterProcess : MonoBehaviour
         outputPath = Application.persistentDataPath + "/Spleets/"; //Use this output for actual song imports
         //outputPath = Application.dataPath + "/Resources/Spleets/"; //Use this output when importing song resources
         process.StartInfo.FileName = filePath + "spleeter.exe"; 
-        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+        process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
         process.EnableRaisingEvents = true; //Needed for detecting exited event
         //process.Exited += Process_Exited;
@@ -200,5 +200,17 @@ public class SpleeterProcess : MonoBehaviour
         yield return null;
     }
 
+    public void CancelSpleeter()
+    {
+        if(theProcess != null)
+        {
+            theProcess.Kill();
+            MenuController.S.loadScreen.SetActive(false);
+            MenuController.S.backgroundMusic.Stop();
+            MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(false); //Hides orb
+            Global.currentSongInfo = null;
+            theProcess = null;
+        }
+    }
 }
 

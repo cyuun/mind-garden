@@ -11,6 +11,11 @@ public class PlayerScript : MonoBehaviour
         S = this;
     }
 
+    private void Start()
+    {
+        Global.playingGame = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
