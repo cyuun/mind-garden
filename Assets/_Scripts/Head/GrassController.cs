@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,6 +14,8 @@ public class GrassController : MonoBehaviour
     
     private System.Random _rng;
     private Vector2 _offsets;
+
+    private int _maxSearch = 10;
 
     public void GenerateGrass()
     {
@@ -60,10 +63,35 @@ public class GrassController : MonoBehaviour
         
         for (int i = 0; i < vertices.Length; i++)
         {
-            int neighborVertexIndex = SearchVerticesXZ(vertices, vertices[i].x, vertices[i].z, searchRadius);
-            if (neighborVertexIndex >= 0 && neighborVertexIndex < patchNumbers.Count)
+            List<int> searchedIndices = new List<int>();
+            int neighborVertexIndex = SearchVerticesXZ(vertices, vertices[i].x, vertices[i].z, searchRadius, searchedIndices);
+            searchedIndices.Add(neighborVertexIndex);
+            if (neighborVertexIndex >= 0)
             {
-                patchNumbers.Add(patchNumbers[neighborVertexIndex]);
+                if (neighborVertexIndex >= patchNumbers.Count)
+                {
+                    bool patchFound = false;
+                    for (int j = 0; j < _maxSearch; j++)
+                    {
+                        neighborVertexIndex = SearchVerticesXZ(vertices, vertices[neighborVertexIndex].x,
+                            vertices[neighborVertexIndex].z, searchRadius, searchedIndices);
+                        searchedIndices.Add(neighborVertexIndex);
+                        if (neighborVertexIndex < patchNumbers.Count)
+                        {
+                            patchNumbers.Add(patchNumbers[neighborVertexIndex]);
+                            patchFound = true;
+                        }
+                    }
+                    if (!patchFound)
+                    {
+                        patchNumbers.Add(nextPatchIndex);
+                        nextPatchIndex++;
+                    }
+                }
+                else
+                {
+                    patchNumbers.Add(patchNumbers[neighborVertexIndex]);
+                }
             }
             else
             {
@@ -75,14 +103,25 @@ public class GrassController : MonoBehaviour
         return patchNumbers.ToArray();
     }
 
-    private int SearchVerticesXZ(Vector3[] vertices, float x, float z, float radius)
+    private int SearchVerticesXZ(Vector3[] vertices, float x, float z, float radius, List<int> searchedIndices)
     {
         for (int i = 0; i < vertices.Length; i++)
         {
             if (Mathf.Sqrt((vertices[i].x - x) * (vertices[i].x - x) + (vertices[i].z - z) * (vertices[i].z - z)) <
                 radius)
             {
-                return i;
+                bool skip = false;
+                for (int j = 0; j < searchedIndices.Count; j++)
+                {
+                    if (i == searchedIndices[j])
+                    {
+                        skip = true;
+                    }
+                }
+                if (!skip)
+                {
+                    return i;
+                }
             }
         }
 
