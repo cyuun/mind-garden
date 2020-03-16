@@ -76,6 +76,10 @@ public class GrassController : MonoBehaviour
                         neighborVertexIndex = SearchVerticesXZ(vertices, vertices[neighborVertexIndex].x,
                             vertices[neighborVertexIndex].z, searchRadius, searchedIndices);
                         searchedIndices.Add(neighborVertexIndex);
+                        if (neighborVertexIndex < 0)
+                        {
+                            break;
+                        }
                         if (neighborVertexIndex < patchNumbers.Count)
                         {
                             patchNumbers.Add(patchNumbers[neighborVertexIndex]);
