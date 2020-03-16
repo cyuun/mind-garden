@@ -42,7 +42,7 @@ public class GrassController : MonoBehaviour
             float xPerlin = vertices[i].x / grassNoiseScale + _offsets.x;
             float zPerlin = vertices[i].z / grassNoiseScale + _offsets.y;
 
-            if (grassPatchSize < Mathf.PerlinNoise(xPerlin, zPerlin))
+            if (grassPatchSize > Mathf.PerlinNoise(xPerlin, zPerlin) && Mathf.Sqrt(vertices[i].x * vertices[i].x + vertices[i].z * vertices[i].z) > terrainScript.paintRadius)
             {
                 newVertices.Add(new Vector3(vertices[i].x, terrainScript.GetTerrainHeight(vertices[i].x, vertices[i].z), vertices[i].z));
             }
@@ -158,8 +158,8 @@ public class GrassController : MonoBehaviour
     {
         for (int i = 0; i < vertices.Count; i++)
         {
-            if (Global.CompareFloats(vertices[i].x, vertices[index].x - xStep, xStep / 10) && 
-                Global.CompareFloats(vertices[i].z, vertices[index].z, zStep / 10))
+            if (Global.CompareFloats(vertices[i].x, vertices[index].x - xStep, xStep / 4) && 
+                Global.CompareFloats(vertices[i].z, vertices[index].z, zStep / 4))
             {
                 return i;
             }
@@ -172,8 +172,8 @@ public class GrassController : MonoBehaviour
     {
         for (int i = 0; i < vertices.Count; i++)
         {
-            if (Global.CompareFloats(vertices[i].x, vertices[index].x - xStep / 2, xStep / 10) && 
-                Global.CompareFloats(vertices[i].z, vertices[index].z - zStep, zStep / 10))
+            if (Global.CompareFloats(vertices[i].x, vertices[index].x - xStep / 2, xStep / 4) && 
+                Global.CompareFloats(vertices[i].z, vertices[index].z - zStep, zStep / 4))
             {
                 return i;
             }
@@ -186,8 +186,8 @@ public class GrassController : MonoBehaviour
     {
         for (int i = 0; i < vertices.Count; i++)
         {
-            if (Global.CompareFloats(vertices[i].x, vertices[index].x + xStep / 2, xStep / 10) && 
-                Global.CompareFloats(vertices[i].z, vertices[index].z - zStep, zStep / 10))
+            if (Global.CompareFloats(vertices[i].x, vertices[index].x + xStep / 2, xStep / 4) && 
+                Global.CompareFloats(vertices[i].z, vertices[index].z - zStep, zStep / 4))
             {
                 return i;
             }
