@@ -91,6 +91,8 @@ public class SpleeterProcess : MonoBehaviour
         process.EnableRaisingEvents = true; //Needed for detecting exited event
         //process.Exited += Process_Exited;
         MenuController.S.loadScreen.SetActive(true);
+        MenuController.S.loadScreen.transform.Find("Cancel").gameObject.SetActive(true);
+
         theProcess = process;
         process.Start();
         //process.WaitForExit();

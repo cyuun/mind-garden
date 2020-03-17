@@ -28,6 +28,7 @@ public class SongListItem : MonoBehaviour
 
     public void LoadThisSong()
     {
+        print(songInfo.inputSongPath);
         if(spleeterOn) Global.currentSongInfo = SpleeterProcess.S.LoadSongTracks(songInfo.inputSongPath, songInfo.inputSong);
         else Global.currentSongInfo = SpleeterProcess.S.LoadSong(songInfo.inputSongPath, songInfo.inputSong);
         MenuController.S.backgroundMusic.clip = songInfo.inputSong;

@@ -17,8 +17,8 @@ public class SettingsMenu : MonoBehaviour
     public Toggle hintToggle;
     public GameObject pauseMenu;
 
-    private float fixedDeltaTime;
-    private static bool gameIsPaused = false;
+    public float fixedDeltaTime;
+    public static bool gameIsPaused = false;
 
     private PlayerScript player;
 
@@ -66,16 +66,6 @@ public class SettingsMenu : MonoBehaviour
 
     public void Exit()
     {
-        gameIsPaused = false;
-        Time.timeScale = 1;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
-        Global.playingGame = false;
-        //TODO: Reinitialize certain static variables for next game
-        Global.currentSongInfo = null;
-        Global.inputSong = null;
-        Global.inputSongPath = null;
-        if(smallTree.allSmallTrees != null) smallTree.allSmallTrees.Clear();
-        if (desertPlantSmall.allSmallTrees != null) desertPlantSmall.allSmallTrees.Clear();
         //TODO: Fade to black coroutine
         GameHUD.S.Exit();
     }

@@ -106,7 +106,6 @@ public class underwaterPlantBig : Plant
         piece2Min = piece2Scale.x;
         piece9Min = piece9Scale.x;
         piece10Min = piece10Scale.x;
-        print(piece1Scale);
 
     }
 }

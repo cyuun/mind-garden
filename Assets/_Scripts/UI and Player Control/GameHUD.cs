@@ -29,6 +29,19 @@ public class GameHUD : MonoBehaviour
 
     public void Exit()
     {
+        Cursor.lockState = CursorLockMode.None;
+        SettingsMenu.gameIsPaused = false;
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = SettingsMenu.S.fixedDeltaTime * Time.timeScale;
+        Global.playingGame = false;
+        //TODO: Reinitialize certain static variables for next game
+        OrbScript.biomeChosen = false;
+        Global.currentSongInfo = null;
+        Global.inputSong = null;
+        Global.inputSongPath = null;
+        if (smallTree.allSmallTrees != null) smallTree.allSmallTrees.Clear();
+        if (desertPlantSmall.allSmallTrees != null) desertPlantSmall.allSmallTrees.Clear();
+
         StartCoroutine(FadeExit());
     }
 

@@ -55,12 +55,13 @@ public class OrbScript : MonoBehaviour
     {
         if (!biomeChosen)
         {
+            print(System.DateTime.Now.Ticks);
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = Global.BiomeType.jungle;//(Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            biomeSpawner = (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            print(biomeSpawner);
             Global.currentBiome = biomeSpawner;
             biomeChosen = true;
         }
-
         spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
         RockSpawner rockSpawner = spawner.GetComponent<RockSpawner>();
         rockSpawner.terrainScript = terrainScript;

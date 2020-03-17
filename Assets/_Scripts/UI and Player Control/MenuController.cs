@@ -460,6 +460,8 @@ public class MenuController : MonoBehaviour
 
     IEnumerator LoadSongLibrary()
     {
+        loadScreen.SetActive(true);
+        loadScreen.transform.Find("Cancel").gameObject.SetActive(false);
         //Load Resources (songs prepared with spleeter)
         string dir = "Assets/Resources/Spleets/";
         /*if (Directory.Exists(dir))
@@ -583,6 +585,8 @@ public class MenuController : MonoBehaviour
             }
 
         }
+        loadScreen.transform.Find("Cancel").gameObject.SetActive(true);
+        loadScreen.SetActive(false);
 
     }
 
