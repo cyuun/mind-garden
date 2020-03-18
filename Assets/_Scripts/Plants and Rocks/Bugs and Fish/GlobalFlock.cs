@@ -6,12 +6,12 @@ public class GlobalFlock : MonoBehaviour
 
     public GameObject bugPrefab;
     public GameObject goalPrefab;
-    public static int boundsSize = 1;
+    public int boundsSize = 1;
 
     static int numBugs = 15;
-    public static GameObject[] allBugs = new GameObject[numBugs];
+    public GameObject[] allBugs = new GameObject[numBugs];
     
-    public static Vector3 goalPos = Vector3.zero;
+    public Vector3 goalPos = Vector3.zero;
 
     // Use this for initialization
     void Start()
@@ -24,7 +24,8 @@ public class GlobalFlock : MonoBehaviour
                 Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
             allBugs[i]= (GameObject)Instantiate(
-                bugPrefab, pos, Quaternion.identity);
+                bugPrefab, pos, Quaternion.identity, this.transform);
+            allBugs[i].GetComponent<bug>()._flock = this;
         }
     }
 
@@ -63,11 +64,5 @@ public class GlobalFlock : MonoBehaviour
             
             goalPrefab.transform.position = goalPos;
         }
-    }
-
-    public static Vector3 ResetYPosition(Vector3 pos)
-    {
-        pos.y = AudioPeerRoot.S.terrainScript.GetTerrainHeight(pos.x,pos.z);
-        return pos;
     }
 }

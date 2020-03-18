@@ -10,7 +10,7 @@ public class weatherControls : MonoBehaviour
     [Range(0, 1)]
     public float fogProbability = 1f;
     [Range(0, 1)]
-    public float rainProbability = 1f;
+    public float rainProbability = .5f;
     [Range(0, 1)]
     public float snowProbability = 1f;
 
@@ -28,26 +28,20 @@ public class weatherControls : MonoBehaviour
         //Desert
         if (Global.currentBiome == Global.BiomeType.desert)
         {
-            if (Random.Range(0f, 1f) <= fogProbability)
-            {
-                //clouds.gameObject.SetActive(true);
+            clouds.gameObject.SetActive(true);
 
-                RenderSettings.fogColor = new Color(0.8f, 0.5f, 0.2f, 0.3f);
-                RenderSettings.fogDensity = 0.03f;
-                RenderSettings.fog = true;
-            }
+            RenderSettings.fogColor = new Color(0.8f, 0.5f, 0.2f, 0.3f);
+            RenderSettings.fogDensity = 0.03f;
+            RenderSettings.fog = true;
         }
         //Underwater
         if (Global.currentBiome == Global.BiomeType.underwater)
         {
-            if (Random.Range(0f, 1f) <= fogProbability)
-            {
-                //clouds.gameObject.SetActive(true);
+            clouds.gameObject.SetActive(true);
 
-                RenderSettings.fogColor = new Color(0.1f, 0.4f, 1f, 0.6f);
-                RenderSettings.fogDensity = 0.03f;
-                RenderSettings.fog = true;
-            }
+            RenderSettings.fogColor = new Color(0.1f, 0.4f, 1f, 0.6f);
+            RenderSettings.fogDensity = 0.03f;
+            RenderSettings.fog = true;
         }
         //Rain
         if (Global.currentBiome != Global.BiomeType.underwater)

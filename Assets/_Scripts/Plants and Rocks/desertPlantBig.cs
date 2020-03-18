@@ -36,17 +36,13 @@ public class desertPlantBig : Plant
         {
             bandBuffers = _audioPeer._audioBandBuffer;
 
-            float v1 = Mathf.LerpUnclamped(0.001f, 0.0044f, bandBuffers[1] + bandBuffers[3] + bandBuffers[5]);
-            float v2 = Mathf.LerpUnclamped(0.001f, 0.0044f, bandBuffers[0] + bandBuffers[2] + bandBuffers[4]);
-            float v3 = Mathf.LerpUnclamped(.9f, 1.5f, bandBuffers[0] + bandBuffers[3] + bandBuffers[6]);
+            float v1 = Mathf.Lerp(0.001f, 0.0044f, bandBuffers[1] + bandBuffers[3]);
+            float v2 = Mathf.Lerp(0.001f, 0.0044f, bandBuffers[0] + bandBuffers[2]);
+            float v3 = Mathf.Lerp(.9f, 1.5f, bandBuffers[0] + bandBuffers[3]);
 
-            Vector3 vec1 = new Vector3(0.0034f, 0.0034f, v1);
-            Vector3 vec2 = new Vector3(0.0034f, 0.0034f, v2);
-            Vector3 vec3 = new Vector3(1, v3, 1);
-
-            piece1.transform.localScale = vec1;
-            piece2.transform.localScale = vec2;
-            transform.localScale = vec3;
+            piece1.transform.localScale = new Vector3(0.0034f, 0.0034f, v1);
+            piece2.transform.localScale = new Vector3(0.0034f, 0.0034f, v2);
+            transform.localScale = new Vector3(1, v3, 1);
 
         }
 

@@ -14,6 +14,8 @@ public class bug2 : MonoBehaviour
     float neighborDistance = 3.0f;
     public Vector3 newGoalPos;
 
+    public GlobalFlock2 _flock;
+
     bool turning = false;
 
     // Use this for initialization
@@ -42,7 +44,7 @@ public class bug2 : MonoBehaviour
 
         if (turning)
         {
-            Vector3 direction = GlobalFlock2.goalPos - transform.position;
+            Vector3 direction = _flock.goalPos - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction),
                 rotationSpeed * Time.deltaTime);
@@ -59,7 +61,7 @@ public class bug2 : MonoBehaviour
 
     void ApplyBoundary()
     {
-        if (Vector3.Distance(transform.position, GlobalFlock2.goalPos) >= GlobalFlock2.boundsSize)
+        if (Vector3.Distance(transform.position, _flock.goalPos) >= _flock.boundsSize)
         {
             turning = true;
         }
@@ -72,13 +74,13 @@ public class bug2 : MonoBehaviour
     void ApplyRules()
     {
         GameObject[] gos;
-        gos = GlobalFlock2.allBugs;
+        gos = _flock.allBugs;
 
         Vector3 vCenter = Vector3.zero;
         Vector3 vAvoid = Vector3.zero;
         float gSpeed = 0.1f;
 
-        Vector3 goalPos = GlobalFlock2.goalPos;
+        Vector3 goalPos = _flock.goalPos;
 
         float dist;
         int groupSize = 0;

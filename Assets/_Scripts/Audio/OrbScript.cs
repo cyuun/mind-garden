@@ -55,10 +55,8 @@ public class OrbScript : MonoBehaviour
     {
         if (!biomeChosen)
         {
-            print(System.DateTime.Now.Ticks);
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
-            print(biomeSpawner);
+            biomeSpawner = Global.BiomeType.forest;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
             Global.currentBiome = biomeSpawner;
             biomeChosen = true;
         }
@@ -119,7 +117,7 @@ public class OrbScript : MonoBehaviour
     void Update()
     {
         //Spin
-        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
+        //transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
         //Flash
         if (audioPeer && (following || flashOn)) Flash();
 
