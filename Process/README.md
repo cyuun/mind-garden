@@ -17,7 +17,17 @@ After we made these changes we got to really see our color system doing its work
 ### Grass!
 The grass may have been able to defeat us weeks ago, but this week we strapped up our armor again to once more fight the dragon. And we were succsessful, we've slain the dragon and have patches of grass in the game! This took yet another complete rethink and rewrite of the algorithm that randomly generates grass. But this time with a fresh mindset and a completely new idea about how to structure things, we were able to get beautiful randomly generated patches of grass. There might be some small changes in the future to make the patches of grass more patchy and less like they snake around the map, but for now it's a huge inprovement to the look and feel of the game already.
 
-![Can someone add a picture of the grass patches here, the shader is still broken on my computer even though the patches work](Resources/putGrassFilenameHere.png "Grass Patches")
+![GrassPatches](Resources/grass1.png "Grass Patches")
+
+### Loading Screens and UI Improvements
+This week was focused on improving user feedback in various ways. Orbs now only light up once grabbed, and a subtle flash feature will later be incorporated as well. A simple loading bar was created, which can be passed an asyncronous process (such as loading between scenes) and visually convey its progress. A different loading icon is displayed for more drawn out tasks, like spleeter imports and loading the song library, and simultaneously serves to prevent players from clicking on menu buttons during this time.
+
+![LoadingIcon](Resources/loading.png "LoadingIcon")
+
+In addition to these interface adjustments, the gallery is now programmed to sort files by automatically assigning today's date as the filename (3/3/2020 12:34 PM --> "30320201234PM.png"). While this works for now, the gallery will likely require additional subdirectories to divide up the months and years. These subdirectories would make it more organized in the file browser and also make it easier to load images chronologically.
+
+### Non-Spleeter Mode
+Knowing that most people won't want to download an external program to play a game, we've opted to include a number of songs already prepared with spleeter and the default option to import songs without it. The "[S]" symbol next to the songname indicates that is will be played with spleeter on. Otherwise, imported songs will have a different playmode in which each orb possesses the full song audio, but simply raises the volume slightly with each find. Currently this mode is still under development, but it will allow us to cater to a larger audience of people who do not have time to download spleeter.
 
 ---
 ## Week 8
