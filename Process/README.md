@@ -2,6 +2,14 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 9
+March 10 - 17
+### Magic sparks, adjustments and bug fixes
+At this point in the project, we have everything in one branch or another- it's time to adjust settings (like our paint radius for painting the terrain) and fix bugs. That being said, we did add magic sparks in the sky this week, a new feature, that pulse with a song's beat.
+
+Features now in our master branch include grass patches (finally), more menu settings and weather/fog coloring from last week. Bugs fixed include insets not flapping/spawning correctly, orbs spawning in trees, fixing some spleeter settings, and continuing to make the player not fall through the ground with the "bouncy" objects in the game. Improvements/adjustments include adding an extra cell layer to all objects in the color palettes, smoothing/shortening the radius of the terrain painting, implementing a working loading bar when the game starts up, screenshoting an event with multiple clicks, editing skyboxes, having the player exit the game on song end, improving the screenshot gallery order, adding biome options for the player when they choose a song, and adjusting skyboxes for all biomes to work with the fractals in the sky. 
+
+---
 ## Week 8
 March 3 - 10
 ### Bug fixes and weather
