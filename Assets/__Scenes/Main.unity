@@ -1508,6 +1508,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMessage: {fileID: 2114948698}
   curtain: {fileID: 1327363894}
+  greenFlash: {r: 0.0040939935, g: 0.8679245, b: 0.23989068, a: 1}
+  redFlash: {r: 0.8679245, g: 0.061409745, b: 0.061409745, a: 1}
+  whiteFlash: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1327363894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3288,6 +3291,7 @@ MonoBehaviour:
   spleeterToggle: {fileID: 631822908137542426}
   hintToggle: {fileID: 631822907104022324}
   pauseMenu: {fileID: 8078178054764938791}
+  fixedDeltaTime: 0
 --- !u!1 &631822906954704262
 GameObject:
   m_ObjectHideFlags: 0

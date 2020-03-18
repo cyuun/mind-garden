@@ -43,6 +43,7 @@ public class newBounceScript : MonoBehaviour
 
             startPos = transform;
             endPos = target.transform;
+            GameHUD.S.FlashColor("Red");
             StartCoroutine(push(direction, force));
 
         }
@@ -55,7 +56,7 @@ public class newBounceScript : MonoBehaviour
             direction.Normalize();
             startPos = transform;
             endPos = target.transform;
-
+            GameHUD.S.FlashColor("Red");
             StartCoroutine(push(direction, force));
         }
     }

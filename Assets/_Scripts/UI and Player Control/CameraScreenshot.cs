@@ -43,6 +43,7 @@ public class CameraScreenshot : MonoBehaviour
 
             RenderTexture.ReleaseTemporary(renderTexture);
             myCamera.targetTexture = null;
+            GameHUD.S.FlashColor("White");
         }
     }
 

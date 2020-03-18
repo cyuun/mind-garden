@@ -9,6 +9,12 @@ public class GameHUD : MonoBehaviour
     public static GameHUD S;
     public GameObject startMessage;
     public GameObject curtain;
+    public Color greenFlash;
+    public Color redFlash;
+    public Color whiteFlash;
+
+    [SerializeField]
+    public Dictionary<string, Color> curtainPalette;
 
     void Start()
     {
@@ -19,6 +25,11 @@ public class GameHUD : MonoBehaviour
         {
             startMessage.SetActive(true);
         }
+        curtainPalette = new Dictionary<string, Color>() {
+            { "Green", greenFlash },
+            { "Red", redFlash },
+            { "White", whiteFlash },
+        };
     }
 
     // Update is called once per frame
@@ -43,6 +54,15 @@ public class GameHUD : MonoBehaviour
         if (desertPlantSmall.allSmallTrees != null) desertPlantSmall.allSmallTrees.Clear();
 
         StartCoroutine(FadeExit());
+    }
+
+    public void FlashColor(string color)
+    {
+        if (curtainPalette.ContainsKey(color))
+        {
+            StartCoroutine(Flash(curtainPalette[color], .2f, .4f));
+
+        }
     }
 
     IEnumerator FadeStartMessage(float wait)
@@ -89,5 +109,34 @@ public class GameHUD : MonoBehaviour
             yield return null;
         }
         StartCoroutine(FadeStartMessage(2f));
+    }
+
+    IEnumerator Flash(Color color, float attack, float decay)
+    {
+        float _time = 0;
+        float limit = .5f;
+        color.a = 0;
+        curtain.GetComponentInChildren<Image>().color = color;
+        curtain.SetActive(true);
+        while(_time < attack)
+        {
+            float alpha = Mathf.Lerp(0f, limit, _time / attack);
+            color.a = alpha;
+            curtain.GetComponentInChildren<Image>().color = color;
+            _time += Time.deltaTime;
+            yield return null;
+        }
+
+        _time = 0;
+        while (_time < decay)
+        {
+            float alpha = Mathf.Lerp(limit, 0f, _time / decay);
+            color.a = alpha;
+            curtain.GetComponentInChildren<Image>().color = color;
+            _time += Time.deltaTime;
+            yield return null;
+        }
+
+        curtain.SetActive(false);
     }
 }

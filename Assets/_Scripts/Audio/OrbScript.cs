@@ -56,7 +56,7 @@ public class OrbScript : MonoBehaviour
         if (!biomeChosen)
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = Global.BiomeType.forest;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            biomeSpawner = Global.BiomeType.jungle;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
             Global.currentBiome = biomeSpawner;
             biomeChosen = true;
         }
@@ -245,6 +245,7 @@ public class OrbScript : MonoBehaviour
 
     void ToggleFollow()
     {
+        GameHUD.S.FlashColor("Green");
         following = true;
     }
 
