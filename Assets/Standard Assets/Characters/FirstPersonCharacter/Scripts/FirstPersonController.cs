@@ -43,6 +43,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         public bool canMove = true;
+        public bool moving = false;
 
         // Use this for initialization
         private void Start()
@@ -101,6 +102,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+            moving = false;
             if (!canMove)
             {
                 return;
@@ -159,6 +161,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
                              Time.fixedDeltaTime;
+                moving = true;
             }
 
             if (!(m_StepCycle > m_NextStep))

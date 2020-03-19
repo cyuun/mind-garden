@@ -33,7 +33,6 @@ public class MenuController : MonoBehaviour
     void Awake()
     {
         S = this;
-        Global.playingGame = false;
         Cursor.lockState = CursorLockMode.None;
 
         if(!fileSelection || !play || !gallery || !settings || !errorMessage)
@@ -74,7 +73,12 @@ public class MenuController : MonoBehaviour
         FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
         StartCoroutine(LoadSongLibrary());
-
+        
+        if(Global.playingGame == true)
+        {
+            SettingsMenu.S.UpdateSettings();
+            Global.playingGame = false;
+        }
     }
 
     public void AddSong(SongInfo info, bool spleeter)
@@ -523,6 +527,8 @@ public class MenuController : MonoBehaviour
                 SongInfo info = new SongInfo();
                 info.inputSongPath = Path.Combine(file, songName);
 
+                yield return null;
+
                 if (Path.GetExtension(info.inputSongPath) == ".mp3")
                 {
                     byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
@@ -539,6 +545,8 @@ public class MenuController : MonoBehaviour
                     audioClip.SetData(wav.LeftChannel, 0);
                     info.inputSong = audioClip;
                 }
+
+                yield return null;
 
                 info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
                 info.songName = info.inputSong.name;
@@ -560,6 +568,9 @@ public class MenuController : MonoBehaviour
                 SongInfo info = new SongInfo();
                 info.inputSongPath = file;
                 string songName = Path.GetFileNameWithoutExtension(file);
+
+                yield return null;
+
                 if (Path.GetExtension(info.inputSongPath) == ".mp3")
                 {
                     byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
@@ -576,6 +587,8 @@ public class MenuController : MonoBehaviour
                     audioClip.SetData(wav.LeftChannel, 0);
                     info.inputSong = audioClip;
                 }
+
+                yield return null;
 
                 info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
                 info.songName = info.inputSong.name;

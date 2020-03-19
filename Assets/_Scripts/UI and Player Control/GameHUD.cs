@@ -41,10 +41,8 @@ public class GameHUD : MonoBehaviour
     public void Exit()
     {
         Cursor.lockState = CursorLockMode.None;
-        SettingsMenu.gameIsPaused = false;
         Time.timeScale = 1;
         Time.fixedDeltaTime = SettingsMenu.S.fixedDeltaTime * Time.timeScale;
-        Global.playingGame = false;
         //TODO: Reinitialize certain static variables for next game
         OrbScript.biomeChosen = false;
         Global.currentSongInfo = null;
@@ -94,6 +92,7 @@ public class GameHUD : MonoBehaviour
             yield return null;
         }
         bg.color = new Color(0, 0, 0, 1);
+        SettingsMenu.S.gameIsPaused = false;
         LoadingBar.S.Show(SceneManager.LoadSceneAsync(0));
     }
 

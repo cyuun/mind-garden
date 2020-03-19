@@ -28,6 +28,8 @@ public class AudioPeerRoot : MonoBehaviour
         OrbScript orb3 = transform.Find("Orb Variant 1").GetComponent<OrbScript>();
         OrbScript orb4 = transform.Find("Orb Variant 2").GetComponent<OrbScript>();
 
+        //TODO: Randomize Orb Locations Here
+
         orb1.terrainScript = terrainScript;
         orb1.SpawnRocks();
         orb1.active = true;

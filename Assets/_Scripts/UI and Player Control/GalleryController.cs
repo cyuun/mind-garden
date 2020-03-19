@@ -129,4 +129,9 @@ public class GalleryController : MonoBehaviour
     {
         viewport.SetActive(false);
     }
+
+    public void OpenFileExplorer()
+    {
+        Application.OpenURL(Application.persistentDataPath + "/Screenshots/");
+    }
 }

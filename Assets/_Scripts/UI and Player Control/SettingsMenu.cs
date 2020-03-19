@@ -18,16 +18,13 @@ public class SettingsMenu : MonoBehaviour
     public GameObject pauseMenu;
 
     public float fixedDeltaTime;
-    public static bool gameIsPaused = false;
-
-    private PlayerScript player;
+    public bool gameIsPaused = false;
 
     // Start is called before the first frame update
     void Start()
     {
         S = this;
-        player = PlayerScript.S;
-        UpdateSettings();
+        UpdateGlobalSettings();
         this.fixedDeltaTime = Time.fixedDeltaTime;
     }
 
@@ -115,8 +112,18 @@ public class SettingsMenu : MonoBehaviour
         Global.showHints = value;
     }
 
-    void UpdateSettings()
+    public void UpdateGlobalSettings()
     {
+        UpdateVolume(volumeSlider.value);
+        UpdateCallSpleeter(spleeterToggle.isOn);
+        UpdateHints(hintToggle.isOn);
+    }
+
+    public void UpdateSettings()
+    {
+        volumeSlider.value = (Global.masterVolume + 80) / 100;
+        spleeterToggle.isOn = Global.callSpleeter;
+        hintToggle.isOn = Global.showHints;
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);

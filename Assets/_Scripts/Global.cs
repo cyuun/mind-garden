@@ -25,7 +25,7 @@ public static class Global
     public static bool callSpleeter { get { return _callSpleeter; } set { _callSpleeter = value; } }
     private static bool _spleeterMode = false;
     public static bool spleeterMode { get { return _spleeterMode; } set { _spleeterMode = value; } }
-    private static bool _playingGame = true;
+    private static bool _playingGame = false;
     public static bool playingGame { get { return _playingGame; } set { _playingGame = value; } }
     private static bool _showHints = true;
     public static bool showHints { get { return _showHints; } set { _showHints = value; } }
