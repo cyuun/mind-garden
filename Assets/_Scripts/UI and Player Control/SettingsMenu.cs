@@ -24,7 +24,14 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         S = this;
-        UpdateGlobalSettings();
+        if (Global.playingGame == true)
+        {
+            UpdateSettings();
+        }
+        else
+        {
+            UpdateGlobalSettings();
+        }
         this.fixedDeltaTime = Time.fixedDeltaTime;
     }
 

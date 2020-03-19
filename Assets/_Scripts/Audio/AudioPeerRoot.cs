@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioPeerRoot : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AudioPeerRoot : MonoBehaviour
     public AudioSource[] audioPeers; //Orb audio peer gameobjects
 
     public TerrainScript terrainScript;
+    public AudioMixer mixer;
     
     bool songPlaying = false;
     
@@ -49,8 +51,7 @@ public class AudioPeerRoot : MonoBehaviour
         orb3.SpawnBiome();
         orb4.SpawnBiome();
 
-        //Show game after head loaded
-
+        
     }
 
     private void Awake()
@@ -72,12 +73,15 @@ public class AudioPeerRoot : MonoBehaviour
             }
             else
             {
+                print("no spleeter");
                 for (int i = 0; i < audioPeers.Length; i++)
                 {
                     //TOTO: Load in song to every orb and drop song output to 0%
                     //      Every orb picked up raises the volume by 25%
                     audioPeers[i].clip = Global.currentSongInfo.inputSong;
+                    audioPeers[i].volume = .5f;
                 }
+                mixer.SetFloat("songVol", -60f);
             }
         }
         foreach(var orb in audioPeers)

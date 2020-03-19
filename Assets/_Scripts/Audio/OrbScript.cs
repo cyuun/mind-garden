@@ -49,7 +49,7 @@ public class OrbScript : MonoBehaviour
     public bool flashOn = false;
 
     private GameObject spawner;
-    private AudioMixer mixer;
+    public AudioMixer mixer;
 
     public void SpawnRocks()
     {
@@ -155,7 +155,7 @@ public class OrbScript : MonoBehaviour
             {
                 glow.Play();
             }
-            if (Input.GetKeyUp(KeyCode.Mouse0) && _interactable)
+            if (_interactable)
             {
                 target = PlayerScript.S.transform;
                 ToggleParticles();
@@ -188,7 +188,7 @@ public class OrbScript : MonoBehaviour
             ColorController.S.ChangeBase();
             target = other.transform;
 
-            if (!Global.callSpleeter)
+            if (!Global.spleeterMode)
             {
                 print("Test:" + Global.callSpleeter);
                 StartCoroutine(LowerVolume());

@@ -79,6 +79,10 @@ public class MenuController : MonoBehaviour
             SettingsMenu.S.UpdateSettings();
             Global.playingGame = false;
         }
+        else
+        {
+            SettingsMenu.S.UpdateGlobalSettings();
+        }
     }
 
     public void AddSong(SongInfo info, bool spleeter)
