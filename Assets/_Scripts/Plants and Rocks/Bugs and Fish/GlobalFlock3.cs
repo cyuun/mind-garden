@@ -13,7 +13,7 @@ public class GlobalFlock3 : MonoBehaviour
     public Vector3 goalPos = Vector3.zero;
 
     // Use this for initialization
-    void Start()
+    public void SpawnBugs()
     {
         for (int i = 0; i < numBugs; i++)
         {
