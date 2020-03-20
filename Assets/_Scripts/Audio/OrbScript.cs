@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class OrbScript : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class OrbScript : MonoBehaviour
     Rigidbody rb;
     Vector3 velocity;
 
+    bool found = false;
     public bool _interactable = true;
     public bool _matchTerrainHeight = true;
     public bool soundOn;
@@ -45,33 +47,46 @@ public class OrbScript : MonoBehaviour
     
     public TerrainScript terrainScript;
     public bool active = false;
+    public bool flashOn = false;
 
-    public void SpawnBiome()
+    private GameObject spawner;
+    public AudioMixer mixer;
+
+    public void SpawnRocks()
     {
         if (!biomeChosen)
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = Global.BiomeType.forest;//(Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            biomeSpawner = Global.BiomeType.forest;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            Global.currentBiome = biomeSpawner;
             biomeChosen = true;
         }
-        ColorController.S.biomeType = biomeSpawner;
-        GameObject spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
-        TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
+        spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
         RockSpawner rockSpawner = spawner.GetComponent<RockSpawner>();
-        CreatureSpawner creatureSpawner = spawner.GetComponent<CreatureSpawner>();
-        
-        treeSpawner.terrainScript = terrainScript;
-        treeSpawner.SetParent();
-        treeSpawner.GenerateTrees();
         rockSpawner.terrainScript = terrainScript;
         rockSpawner.SetParent();
         rockSpawner.GenerateRocks();
+
+    }
+
+    public void SpawnBiome()
+    {
+        if (spawner == null) SpawnRocks();
+        ColorController.S.biomeType = biomeSpawner;
+        TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
+        CreatureSpawner creatureSpawner = spawner.GetComponent<CreatureSpawner>();
+        Skybox skybox = spawner.GetComponent<Skybox>();
+
+        treeSpawner.terrainScript = terrainScript;
+        treeSpawner.SetParent();
+        treeSpawner.GenerateTrees();
         if (creatureSpawner != null)
         {
             creatureSpawner.terrainScript = terrainScript;
             creatureSpawner.SetParent();
             creatureSpawner.SpawnCreatures();
         }
+        Camera.main.GetComponent<Skybox>().material = skybox.material;
     }
     
     void Start()
@@ -103,12 +118,12 @@ public class OrbScript : MonoBehaviour
     void Update()
     {
         //Spin
-        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
+        //transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
         //Flash
+        if (audioPeer && (following || flashOn)) Flash();
 
         if (following)
         {
-            if (audioPeer) Flash();
 
             float distance = Vector3.Distance(transform.position, target.position);
             if(distance > 3)
@@ -135,19 +150,11 @@ public class OrbScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 10f)
+        if(Vector3.Distance(this.transform.position, Camera.main.transform.position) < 15f)
         {
             if (!glowing && !following)
             {
                 glow.Play();
-            }
-            if (Input.GetKeyUp(KeyCode.Mouse0) && _interactable)
-            {
-                target = PlayerScript.S.transform;
-                ToggleParticles();
-                ToggleFollow();
-                glow.Stop();
-                glowing = false;
             }
             //ShowButtonLabel();
         }
@@ -168,15 +175,24 @@ public class OrbScript : MonoBehaviour
     {
         if (other.tag == "Pond" && _interactable)
         {
+            found = true;
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
             ColorController.S.ChangeBase();
             target = other.transform;
+
+            if (!Global.spleeterMode)
+            {
+                print("Spleeter:" + Global.callSpleeter);
+                StartCoroutine(LowerVolume());
+                //StartCoroutine(RaiseVolume(20f));
+            }
         }
-        else if (other.tag == "Player")
+        else if (other.tag == "Player" && !found)
         {
             if (!following) target = other.transform;
+            found = true;
             ToggleParticles();
             ToggleFollow();
             glow.Stop();
@@ -224,6 +240,7 @@ public class OrbScript : MonoBehaviour
 
     void ToggleFollow()
     {
+        GameHUD.S.FlashColor("Green");
         following = true;
     }
 
@@ -244,5 +261,32 @@ public class OrbScript : MonoBehaviour
         rb.AddForce(new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * 10);
         yield return new WaitForSeconds(1f);
         moving = false;
+    }
+
+    IEnumerator LowerVolume()
+    {
+        while (audioTrack.volume > .2f)
+        {
+            audioTrack.volume -= Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
+    IEnumerator RaiseVolume(float dB)
+    {
+        float targetVolume;
+        mixer.GetFloat("songVol", out targetVolume);
+        float currentVolume = targetVolume;
+        targetVolume += dB;
+
+        while (currentVolume < targetVolume)
+        {
+            mixer.SetFloat("songVol", currentVolume);
+            mixer.GetFloat("songVol", out currentVolume);
+            currentVolume += Time.deltaTime;
+            yield return null;
+        }
+        mixer.SetFloat("songVol", targetVolume);
     }
 }

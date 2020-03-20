@@ -58,6 +58,8 @@ MonoBehaviour:
   - {fileID: 6626090287354774128}
   - {fileID: 622096008652801013}
   - {fileID: 2005747188495247120}
+  terrainScript: {fileID: 0}
+  mixer: {fileID: 24100000, guid: b641cd33616fe9e46bf3e35d93a04ce9, type: 2}
 --- !u!82 &1251357554282022746
 AudioSource:
   m_ObjectHideFlags: 0

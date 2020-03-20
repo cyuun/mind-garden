@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using SimpleFileBrowser;
+using System.Text.RegularExpressions;
 
 public class MenuController : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class MenuController : MonoBehaviour
     void Awake()
     {
         S = this;
-        Global.playingGame = false;
+        Cursor.lockState = CursorLockMode.None;
 
         if(!fileSelection || !play || !gallery || !settings || !errorMessage)
         {
@@ -71,11 +72,20 @@ public class MenuController : MonoBehaviour
         // Icon: default (folder icon)
         FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
-        LoadSongLibrary();
-
+        StartCoroutine(LoadSongLibrary());
+        
+        if(Global.playingGame == true)
+        {
+            SettingsMenu.S.UpdateSettings();
+            Global.playingGame = false;
+        }
+        else
+        {
+            SettingsMenu.S.UpdateGlobalSettings();
+        }
     }
 
-    public void AddSong(SongInfo info)
+    public void AddSong(SongInfo info, bool spleeter)
     {
         int totalSongs = songList.transform.childCount;
         Vector3 firstSong = songList.transform.GetChild(totalSongs - 1).position;
@@ -87,7 +97,13 @@ public class MenuController : MonoBehaviour
         }
         GameObject newSong = Instantiate(songItemPrefab, firstSong, Quaternion.identity, songList.transform);
 
-        newSong.GetComponent<Text>().text = info.songName;
+        string spleeterIcon = "";
+        if (spleeter)
+        {
+            spleeterIcon = "[S]";
+            newSong.GetComponent<SongListItem>().spleeterOn = true;
+        }
+        newSong.GetComponent<Text>().text = spleeterIcon + info.songName;
         newSong.GetComponent<SongListItem>().songInfo = info;
     }
 
@@ -119,8 +135,17 @@ public class MenuController : MonoBehaviour
         if(Global.currentSongInfo != null)
         {
             Global.playingGame = true;
-            SceneManager.LoadScene(1);
+            startButton.SetActive(false);
+            loadScreen.SetActive(true);
+            StartCoroutine(LoadBar());
         }
+    }
+
+    IEnumerator LoadBar()
+    {
+        yield return new WaitForSeconds(.1f);
+        LoadingBar.S.Show(SceneManager.LoadSceneAsync(1));
+
     }
 
     public void GoBack()
@@ -398,9 +423,43 @@ public class MenuController : MonoBehaviour
                 backgroundMusic.Play();
 
             }
-            else
+            else if (Global.inputSongPath != null && Global.inputSong != null)
             {
                 print("Spleeter Disabled: Game will be played in normal mode");
+                AudioClip inputSong = Global.inputSong;
+                string songPath = Global.inputSongPath;
+                inputSong.name = Path.GetFileNameWithoutExtension(songPath);
+                //Use Regex to parse out illegal characters
+                string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                string oldName = inputSong.name;
+                inputSong.name = r.Replace(inputSong.name, "");
+                inputSong.name = inputSong.name.Replace(" ", string.Empty);
+                if (inputSong.name != oldName && !File.Exists(Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath))))
+                {
+                    File.Move(songPath, Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath))); //Renames song without illegal characters
+                }
+                songPath = Path.Combine(Path.GetDirectoryName(songPath), inputSong.name + Path.GetExtension(songPath));
+
+                string outputPath = Application.persistentDataPath + "/Songs/";
+                if (Directory.Exists(outputPath))
+                {
+                    if (!File.Exists(Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath))))
+                    {
+                        File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
+
+                    }
+                }
+                else 
+                {
+                    print("Directory not found");
+                    Directory.CreateDirectory(outputPath);
+                    File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
+
+                }
+                AddSong(Global.currentSongInfo, false);
+
+                Global.currentSongInfo = SpleeterProcess.S.LoadSong(songPath, inputSong);
                 backgroundMusic.Play();
 
             }
@@ -408,8 +467,10 @@ public class MenuController : MonoBehaviour
 
     }
 
-    void LoadSongLibrary()
+    IEnumerator LoadSongLibrary()
     {
+        loadScreen.SetActive(true);
+        loadScreen.transform.Find("Cancel").gameObject.SetActive(false);
         //Load Resources (songs prepared with spleeter)
         string dir = "Assets/Resources/Spleets/";
         /*if (Directory.Exists(dir))
@@ -471,6 +532,8 @@ public class MenuController : MonoBehaviour
                 SongInfo info = new SongInfo();
                 info.inputSongPath = Path.Combine(file, songName);
 
+                yield return null;
+
                 if (Path.GetExtension(info.inputSongPath) == ".mp3")
                 {
                     byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
@@ -488,16 +551,60 @@ public class MenuController : MonoBehaviour
                     info.inputSong = audioClip;
                 }
 
+                yield return null;
+
                 info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
                 info.songName = info.inputSong.name;
                 info.melody = Path.Combine(dir, songName) + "/other.wav";
                 info.bass = Path.Combine(dir, songName) + "/bass.wav";
                 info.vocals = Path.Combine(dir, songName) + "/vocals.wav";
                 info.drums = Path.Combine(dir, songName) + "/drums.wav";
-                AddSong(info);
+                AddSong(info, true);
+                yield return null;
+
+            }
+        }
+
+        dir = Application.persistentDataPath + "/Songs/";
+        if (Directory.Exists(dir))
+        {
+            foreach (string file in Directory.GetFiles(dir))
+            {
+                SongInfo info = new SongInfo();
+                info.inputSongPath = file;
+                string songName = Path.GetFileNameWithoutExtension(file);
+
+                yield return null;
+
+                if (Path.GetExtension(info.inputSongPath) == ".mp3")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
+                    info.inputSong = audioClip;
+                }
+                else if (Path.GetExtension(info.inputSongPath) == ".wav")
+                {
+                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
+                    WAV wav = new WAV(bytes);
+
+                    AudioClip audioClip;
+                    audioClip = AudioClip.Create(songName, wav.SampleCount, 1, wav.Frequency, false);
+                    audioClip.SetData(wav.LeftChannel, 0);
+                    info.inputSong = audioClip;
+                }
+
+                yield return null;
+
+                info.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(info.inputSongPath));
+                info.songName = info.inputSong.name;
+                AddSong(info, false);
+                yield return null;
+
             }
 
         }
+        loadScreen.transform.Find("Cancel").gameObject.SetActive(true);
+        loadScreen.SetActive(false);
 
     }
 

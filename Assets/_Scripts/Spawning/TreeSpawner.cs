@@ -140,6 +140,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<medTree>())
                     {
@@ -147,7 +148,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
-
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<bigTree>())
                     {
@@ -155,6 +156,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<underwaterPlantBig>())
                     {
@@ -162,6 +164,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<underwaterPlantSmall>())
                     {
@@ -169,6 +172,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<underwaterPlantSpeed>())
                     {
@@ -176,6 +180,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<junglePlantBig>())
                     {
@@ -183,6 +188,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<junglePlantSmall>())
                     {
@@ -190,6 +196,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<desertPlantBig>())
                     {
@@ -197,6 +204,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<desertPlantMedium>())
                     {
@@ -204,6 +212,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                     else if (tre.GetComponent<desertPlantSmall>())
                     {
@@ -211,6 +220,7 @@ public class TreeSpawner : MonoBehaviour
                         t._audioPeer = audioPeer;
                         t.spawner = this;
                         yOffset = t.y_offset;
+                        t.terrainScript = terrainScript;
                     }
                 }
             }

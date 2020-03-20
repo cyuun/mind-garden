@@ -99,8 +99,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #else
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            gamePaused = !gamePaused;
-            if (gamePaused)
+            if (m_cursorIsLocked)
             {
                 m_cursorIsLocked = false;
             }

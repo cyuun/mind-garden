@@ -56,8 +56,8 @@ public class RockSpawner : MonoBehaviour
                 inHead = false;
 
                 rockPos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
-                rockPos.y = terrainScript.GetTerrainHeight(rockPos.x, rockPos.z);
-                foreach (Collider c in Physics.OverlapSphere(rockPos, 3f))
+                rockPos.y = terrainScript.GetTerrainHeight(rockPos.x, rockPos.z)-1;
+                foreach (Collider c in Physics.OverlapSphere(rockPos, selectedRock.GetComponent<Rock>().radius))
                 {
                     if (c.name.Contains("Sphere") || c.name.Contains("Orb"))
                     {

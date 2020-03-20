@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
+    public static SettingsMenu S;
+
     //SETTINGS
     public AudioMixer mainMixer;
     public Slider volumeSlider;
@@ -15,16 +17,22 @@ public class SettingsMenu : MonoBehaviour
     public Toggle hintToggle;
     public GameObject pauseMenu;
 
-    private float fixedDeltaTime;
-    private static bool gameIsPaused = false;
-
-    private PlayerScript player;
+    public float fixedDeltaTime;
+    public bool gameIsPaused = false;
+    public bool resumed = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = PlayerScript.S;
-        UpdateSettings();
+        S = this;
+        if (Global.playingGame == true)
+        {
+            StartCoroutine(DelayedUpdate(.1f));
+        }
+        else
+        {
+            StartCoroutine(DelayedGlobalUpdate(.1f));
+        }
         this.fixedDeltaTime = Time.fixedDeltaTime;
     }
 
@@ -63,18 +71,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void Exit()
     {
-        Time.timeScale = 1;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
-        Global.playingGame = false;
-        //TODO: Reinitialize certain static variables for next game
-        Global.currentSongInfo = null;
-        Global.inputSong = null;
-        Global.inputSongPath = null;
-        if(smallTree.allSmallTrees != null) smallTree.allSmallTrees.Clear();
-        if (desertPlantSmall.allSmallTrees != null) desertPlantSmall.allSmallTrees.Clear();
         //TODO: Fade to black coroutine
-
-        SceneManager.LoadScene(0);
+        GameHUD.S.Exit();
     }
 
     public void Resume()
@@ -85,7 +83,7 @@ public class SettingsMenu : MonoBehaviour
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        resumed = true;
         gameIsPaused = false;
     }
 
@@ -104,10 +102,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void UpdateVolume(float value)
     {
-        float dB = value * 100;
+        float dB = (value * 80);
         Global.masterVolume = -80 + dB;
         mainMixer.SetFloat("masterVol", Global.masterVolume);
-        volumeLabel.text = (Mathf.Floor(dB)).ToString();
+        volumeLabel.text = (Mathf.Floor(value * 100)).ToString();
 
     }
 
@@ -122,10 +120,33 @@ public class SettingsMenu : MonoBehaviour
         Global.showHints = value;
     }
 
-    void UpdateSettings()
+    public void UpdateGlobalSettings()
     {
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
     }
+
+    public void UpdateSettings()
+    {
+        volumeSlider.value = (Global.masterVolume + 80) / 80;
+        spleeterToggle.isOn = Global.callSpleeter;
+        hintToggle.isOn = Global.showHints;
+        UpdateVolume(volumeSlider.value);
+        UpdateCallSpleeter(spleeterToggle.isOn);
+        UpdateHints(hintToggle.isOn);
+    }
+
+    IEnumerator DelayedGlobalUpdate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UpdateGlobalSettings();
+    }
+
+    IEnumerator DelayedUpdate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UpdateSettings();
+    }
+
 }

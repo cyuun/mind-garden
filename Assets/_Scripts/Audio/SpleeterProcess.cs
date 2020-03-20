@@ -83,14 +83,16 @@ public class SpleeterProcess : MonoBehaviour
         Process process = new Process();
         // Configure the process using the StartInfo properties.
         string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
-        //string outputPath = Application.persistentDataPath + "/Spleets/"; //Use this output for actual song imports
-        outputPath = Application.dataPath + "/Resources/Spleets/"; //Use this output when importing song resources
+        outputPath = Application.persistentDataPath + "/Spleets/"; //Use this output for actual song imports
+        //outputPath = Application.dataPath + "/Resources/Spleets/"; //Use this output when importing song resources
         process.StartInfo.FileName = filePath + "spleeter.exe"; 
-        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+        process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
         process.EnableRaisingEvents = true; //Needed for detecting exited event
         //process.Exited += Process_Exited;
         MenuController.S.loadScreen.SetActive(true);
+        MenuController.S.loadScreen.transform.Find("Cancel").gameObject.SetActive(true);
+
         theProcess = process;
         process.Start();
         //process.WaitForExit();
@@ -133,6 +135,46 @@ public class SpleeterProcess : MonoBehaviour
 
 
             }
+            Global.spleeterMode = true;
+            return song;
+
+        }
+        else
+        {
+            return new SongInfo();
+        }
+
+    }
+
+    public SongInfo LoadSong(string songPath, AudioClip inputSong)
+    {
+        if (songPath != null && inputSong)
+        {
+            SongInfo song = new SongInfo();
+            song.inputSongPath = songPath;
+            song.inputSong = inputSong;
+            song.songName = inputSong.name;
+            /*for (int i = 0; i < audioSources.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        song.melody = Path.GetDirectoryName(song.inputSongPath) + "/other.wav";
+                        break;
+                    case 1:
+                        song.bass = Path.GetDirectoryName(song.inputSongPath) + "/bass.wav";
+                        break;
+                    case 2:
+                        song.vocals = Path.GetDirectoryName(song.inputSongPath) + "/vocals.wav";
+                        break;
+                    case 3:
+                        song.drums = Path.GetDirectoryName(song.inputSongPath) + "/drums.wav";
+                        break;
+                }
+
+
+            }*/
+            Global.spleeterMode = false;
             return song;
 
         }
@@ -156,9 +198,21 @@ public class SpleeterProcess : MonoBehaviour
 
         MenuController.S.loadScreen.SetActive(false);
         Global.currentSongInfo = LoadSongTracks(inputSongPath, inputSong);
-        MenuController.S.AddSong(Global.currentSongInfo);
+        MenuController.S.AddSong(Global.currentSongInfo, true);
         yield return null;
     }
 
+    public void CancelSpleeter()
+    {
+        if(theProcess != null)
+        {
+            theProcess.Kill();
+            MenuController.S.loadScreen.SetActive(false);
+            MenuController.S.backgroundMusic.Stop();
+            MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(false); //Hides orb
+            Global.currentSongInfo = null;
+            theProcess = null;
+        }
+    }
 }
 

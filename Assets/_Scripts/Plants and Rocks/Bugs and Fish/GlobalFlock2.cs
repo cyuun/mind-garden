@@ -6,14 +6,14 @@ public class GlobalFlock2 : MonoBehaviour
 
     public GameObject bugPrefab;
     public GameObject goalPrefab;
-    public static int boundsSize = 3;
+    public int boundsSize = 3;
 
     static int numBugs = 2;
-    public static GameObject[] allBugs = new GameObject[numBugs];
-    public static Vector3 goalPos = Vector3.zero;
+    public GameObject[] allBugs = new GameObject[numBugs];
+    public Vector3 goalPos = Vector3.zero;
 
     // Use this for initialization
-    public void SpawnBugs()
+    void Start()
     {
         for (int i = 0; i < numBugs; i++)
         {
@@ -22,7 +22,10 @@ public class GlobalFlock2 : MonoBehaviour
                 transform.position.y,
                 Random.Range(transform.position.z - boundsSize, transform.position.z + boundsSize)
             );
-            allBugs[i]= Instantiate(bugPrefab, pos, Quaternion.identity, transform);
+            allBugs[i]= (GameObject)Instantiate(
+                bugPrefab, pos, Quaternion.identity, this.transform);
+            allBugs[i].GetComponent<bug2>()._flock = this;
+
         }
     }
 

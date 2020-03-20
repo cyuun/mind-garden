@@ -29,10 +29,6 @@ public class GalleryController : MonoBehaviour
         }
 
         allScreenshotPaths.Reverse();
-        foreach(string s in allScreenshotPaths)
-        {
-            print(s);
-        }
 
         if (!Directory.Exists(screenshotsPath) || allScreenshotPaths.Count == 0)
         {
@@ -132,5 +128,10 @@ public class GalleryController : MonoBehaviour
     public void CloseViewport()
     {
         viewport.SetActive(false);
+    }
+
+    public void OpenFileExplorer()
+    {
+        Application.OpenURL(Application.persistentDataPath + "/Screenshots/");
     }
 }

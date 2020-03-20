@@ -42,24 +42,18 @@ public class bounceScript : MonoBehaviour
 
         if (other.tag == "enemy")
         {
-            controller.canMove = false;
-            ParticleSystem ps=other.gameObject.GetComponentInChildren<ParticleSystem>();
-            ps.Play();
-            //transform.position -= transform.forward * Time.deltaTime * force;
-            Vector3 direction = transform.position - other.transform.position;
-            direction.Normalize();
-            StartCoroutine(push(direction, force));
-            //rb.AddForce(direction*force);
-        }
-        else if (other.tag == "enemyFish")
-        {
-            controller.canMove = false;
-            ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
-            ps.Play();
-            Vector3 direction = transform.up - transform.forward;
-            direction.Normalize();
-            print(direction);
-            StartCoroutine(pushFish(direction, force));
+            if (controller)
+            {
+                controller.canMove = false;
+                ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
+                ps.Play();
+                //transform.position -= transform.forward * Time.deltaTime * force;
+                Vector3 direction = transform.position - other.transform.position;
+                direction.Normalize();
+                StartCoroutine(push(direction, force));
+                //rb.AddForce(direction*force);
+
+            }
         }
     }
     IEnumerator push(Vector3 direction, float force)
@@ -69,22 +63,8 @@ public class bounceScript : MonoBehaviour
         float timePassed = 0;
         while (timePassed < 0.7)
         {
+            // Code to go left here
             transform.Translate(direction * force * Time.deltaTime, Space.World);
-            timePassed += Time.deltaTime;
-
-            yield return null;
-        }
-        controller.canMove = true;
-    }
-
-    IEnumerator pushFish(Vector3 direction, float force)
-    {
-
-
-        float timePassed = 0;
-        while (timePassed < 0.7)
-        {
-            transform.Translate(direction * force * Time.deltaTime, Space.Self);
             timePassed += Time.deltaTime;
 
             yield return null;
