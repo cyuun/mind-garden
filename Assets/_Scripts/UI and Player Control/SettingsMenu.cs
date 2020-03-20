@@ -19,6 +19,7 @@ public class SettingsMenu : MonoBehaviour
 
     public float fixedDeltaTime;
     public bool gameIsPaused = false;
+    public bool resumed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +27,11 @@ public class SettingsMenu : MonoBehaviour
         S = this;
         if (Global.playingGame == true)
         {
-            UpdateSettings();
+            StartCoroutine(DelayedUpdate(.1f));
         }
         else
         {
-            UpdateGlobalSettings();
+            StartCoroutine(DelayedGlobalUpdate(.1f));
         }
         this.fixedDeltaTime = Time.fixedDeltaTime;
     }
@@ -82,7 +83,7 @@ public class SettingsMenu : MonoBehaviour
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        resumed = true;
         gameIsPaused = false;
     }
 
@@ -101,10 +102,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void UpdateVolume(float value)
     {
-        float dB = value * 100;
+        float dB = (value * 80);
         Global.masterVolume = -80 + dB;
         mainMixer.SetFloat("masterVol", Global.masterVolume);
-        volumeLabel.text = (Mathf.Floor(dB)).ToString();
+        volumeLabel.text = (Mathf.Floor(value * 100)).ToString();
 
     }
 
@@ -128,11 +129,24 @@ public class SettingsMenu : MonoBehaviour
 
     public void UpdateSettings()
     {
-        volumeSlider.value = (Global.masterVolume + 80) / 100;
+        volumeSlider.value = (Global.masterVolume + 80) / 80;
         spleeterToggle.isOn = Global.callSpleeter;
         hintToggle.isOn = Global.showHints;
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
     }
+
+    IEnumerator DelayedGlobalUpdate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UpdateGlobalSettings();
+    }
+
+    IEnumerator DelayedUpdate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UpdateSettings();
+    }
+
 }

@@ -79,9 +79,10 @@ public class AudioPeerRoot : MonoBehaviour
                     //TOTO: Load in song to every orb and drop song output to 0%
                     //      Every orb picked up raises the volume by 25%
                     audioPeers[i].clip = Global.currentSongInfo.inputSong;
-                    audioPeers[i].volume = .5f;
+                    audioPeers[i].volume = .8f;
+                    audioPeers[i].outputAudioMixerGroup = mixer.FindMatchingGroups("Master/FullSong")[0];
                 }
-                mixer.SetFloat("songVol", -60f);
+                GetComponent<AudioSource>().Stop();
             }
         }
         foreach(var orb in audioPeers)

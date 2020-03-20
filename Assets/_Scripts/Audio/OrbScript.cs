@@ -18,6 +18,7 @@ public class OrbScript : MonoBehaviour
     Rigidbody rb;
     Vector3 velocity;
 
+    bool found = false;
     public bool _interactable = true;
     public bool _matchTerrainHeight = true;
     public bool soundOn;
@@ -155,14 +156,6 @@ public class OrbScript : MonoBehaviour
             {
                 glow.Play();
             }
-            if (_interactable)
-            {
-                target = PlayerScript.S.transform;
-                ToggleParticles();
-                ToggleFollow();
-                glow.Stop();
-                glowing = false;
-            }
             //ShowButtonLabel();
         }
     }
@@ -182,6 +175,7 @@ public class OrbScript : MonoBehaviour
     {
         if (other.tag == "Pond" && _interactable)
         {
+            found = true;
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
@@ -190,14 +184,15 @@ public class OrbScript : MonoBehaviour
 
             if (!Global.spleeterMode)
             {
-                print("Test:" + Global.callSpleeter);
+                print("Spleeter:" + Global.callSpleeter);
                 StartCoroutine(LowerVolume());
-                StartCoroutine(RaiseVolume(20f));
+                //StartCoroutine(RaiseVolume(20f));
             }
         }
-        else if (other.tag == "Player")
+        else if (other.tag == "Player" && !found)
         {
             if (!following) target = other.transform;
+            found = true;
             ToggleParticles();
             ToggleFollow();
             glow.Stop();
@@ -270,27 +265,28 @@ public class OrbScript : MonoBehaviour
 
     IEnumerator LowerVolume()
     {
-        while(audioTrack.volume > 0)
+        while (audioTrack.volume > .2f)
         {
             audioTrack.volume -= Time.deltaTime;
             yield return null;
         }
+
     }
 
     IEnumerator RaiseVolume(float dB)
     {
         float targetVolume;
-        mixer.GetFloat("masterVol", out targetVolume);
+        mixer.GetFloat("songVol", out targetVolume);
         float currentVolume = targetVolume;
         targetVolume += dB;
 
         while (currentVolume < targetVolume)
         {
-            mixer.SetFloat("masterVol", currentVolume);
-            mixer.GetFloat("masterVol", out currentVolume);
+            mixer.SetFloat("songVol", currentVolume);
+            mixer.GetFloat("songVol", out currentVolume);
             currentVolume += Time.deltaTime;
             yield return null;
         }
-        mixer.SetFloat("masterVol", targetVolume);
+        mixer.SetFloat("songVol", targetVolume);
     }
 }

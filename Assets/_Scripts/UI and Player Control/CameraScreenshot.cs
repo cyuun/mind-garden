@@ -43,8 +43,17 @@ public class CameraScreenshot : MonoBehaviour
 
             RenderTexture.ReleaseTemporary(renderTexture);
             myCamera.targetTexture = null;
-            GameHUD.S.FlashColor("White");
-        }
+/*            if (!SettingsMenu.S.resumed)
+            {
+                GameHUD.S.FlashColor("White");
+                SettingsMenu.S.resumed = false;
+
+            }
+            else
+            {
+                SettingsMenu.S.resumed = false;
+            }
+*/        }
     }
 
     private void TakeScreenshot(int width, int height)

@@ -134,6 +134,7 @@ public class MenuController : MonoBehaviour
     {
         if(Global.currentSongInfo != null)
         {
+            Global.playingGame = true;
             startButton.SetActive(false);
             loadScreen.SetActive(true);
             StartCoroutine(LoadBar());

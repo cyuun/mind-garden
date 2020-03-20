@@ -19,7 +19,6 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-        Global.playingGame = true;
         controller = GetComponent<FirstPersonController>();
         StartCoroutine(DelayedSettingsUpdate());
     }

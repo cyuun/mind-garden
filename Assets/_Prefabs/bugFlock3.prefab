@@ -40,7 +40,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4116993532342046855}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.4090967
@@ -60,3 +60,8 @@ MonoBehaviour:
   bugPrefab: {fileID: 6575631878417390687, guid: 3240a4215cccdad498f0c2d61e3cdd7c,
     type: 3}
   goalPrefab: {fileID: 0}
+  boundsSize: 3
+  allBugs:
+  - {fileID: 0}
+  - {fileID: 0}
+  goalPos: {x: 0, y: 0, z: 0}
