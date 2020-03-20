@@ -25,4 +25,9 @@ public static class Global
     public static bool playingGame { get { return _playingGame; } set { _playingGame = value; } }
     private static bool _showHints = true;
     public static bool showHints { get { return _showHints; } set { _showHints = value; } }
+    
+    public static bool CompareFloats(float f1, float f2, float tolerance)
+    {
+        return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
+    }
 }

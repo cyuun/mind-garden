@@ -8,6 +8,7 @@ public class HeadScript : MonoBehaviour
     public float rotationSpeed = 300f;
     public GameObject terrain;
     public TerrainScript terrainScript;
+    public GrassController grassController;
 
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
@@ -24,7 +25,10 @@ public class HeadScript : MonoBehaviour
     {
         terrain = transform.Find("Terrain").gameObject;
         terrainScript = terrain.GetComponent<TerrainScript>();
-        
+        grassController = transform.Find("GrassController").GetComponent<GrassController>();
+        grassController.terrainScript = terrainScript;
+        grassController.GenerateGrass();
+            
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
 
