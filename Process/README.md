@@ -2,6 +2,34 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 9
+March 10 - 17
+### Magic sparks, adjustments and bug fixes
+At this point in the project, we have everything in one branch or another- it's time to adjust settings (like our paint radius for painting the terrain) and fix bugs. That being said, we did add magic sparks in the sky this week, a new feature, that pulse with a song's beat.
+
+Features now in our master branch include grass patches (finally), more menu settings and weather/fog coloring from last week. Bugs fixed include insets not flapping/spawning correctly, orbs spawning in trees, fixing some spleeter settings, and continuing to make the player not fall through the ground with the "bouncy" objects in the game. Improvements/adjustments include adding an extra cell layer to all objects in the color palettes, smoothing/shortening the radius of the terrain painting, implementing a working loading bar when the game starts up, screenshoting an event with multiple clicks, editing skyboxes, having the player exit the game on song end, improving the screenshot gallery order, adding biome options for the player when they choose a song, and adjusting skyboxes for all biomes to work with the fractals in the sky. 
+
+### Massive Color Palette Expansion
+When we first implemented the color palettes several weeks ago, we included colors for everything we could think of being in the game, including things like the bugs and fish, but we hadn't implemented the routines yet that would allow us to have control over these assets to change the colors on the beat. So one of the first things we did this past week was finish implementing every routine needed to control these objects, including the rest of the biomes, before this week we also only had one out of the four biomes "connected" to the ability to change color. In this process ce also figured out how to make the color changing process multiple orders of magnitude more efficient which was actually a project saver. We started needing so many objects to change thear color all at once every beat of the song, and it was slowing the game down to absolutely unplayable framerates. We almost needed to remove the color changing from the lame completely in order to finish it properly, but now with the improvements made and the spare computational resources we now have, the door is open for us to explore even more advanced color changing techniques like smooth color transitions instead of the abrupt transitions that currently happen.
+
+After we made these changes we got to really see our color system doing its work in full force and it was amazing, but still left something to be desired. We came to the conclusion that if we added an extra cel shader color onto each of our materials, it'd greatly improve the visuals of our project in two ways. First it would add more depth and variation to each object, things were looking a little not interesting enough with only two colors per material. And second, having three colors we can apply per material gives us hundreds of different patterns we could chose from for swapping the colors through the material instead of the one single pattern of swapping back and forth that you can do with just two colors. Of course moving from two colors per material to three colors also means expanding every single color palette to pretty much 150% their original size, and they weren't small color palettes to begin with. Adding this many colors and making them look right is a lot of of work, so we haven't finished that yet, but we'll be able to show all that off as well as our fancy new three color patterns next week in our very final process log before completion.
+
+### Grass!
+The grass may have been able to defeat us weeks ago, but this week we strapped up our armor again to once more fight the dragon. And we were succsessful, we've slain the dragon and have patches of grass in the game! This took yet another complete rethink and rewrite of the algorithm that randomly generates grass. But this time with a fresh mindset and a completely new idea about how to structure things, we were able to get beautiful randomly generated patches of grass. There might be some small changes in the future to make the patches of grass more patchy and less like they snake around the map, but for now it's a huge inprovement to the look and feel of the game already.
+
+![GrassPatches](Resources/grass1.png "Grass Patches")
+
+### Loading Screens and UI Improvements
+This week was focused on improving user feedback in various ways. Orbs now only light up once grabbed, and a subtle flash feature will later be incorporated as well. A simple loading bar was created, which can be passed an asyncronous process (such as loading between scenes) and visually convey its progress. A different loading icon is displayed for more drawn out tasks, like spleeter imports and loading the song library, and simultaneously serves to prevent players from clicking on menu buttons during this time.
+
+![LoadingIcon](Resources/loading.png "LoadingIcon")
+
+In addition to these interface adjustments, the gallery is now programmed to sort files by automatically assigning today's date as the filename (3/3/2020 12:34 PM --> "30320201234PM.png"). While this works for now, the gallery will likely require additional subdirectories to divide up the months and years. These subdirectories would make it more organized in the file browser and also make it easier to load images chronologically.
+
+### Non-Spleeter Mode
+Knowing that most people won't want to download an external program to play a game, we've opted to include a number of songs already prepared with spleeter and the default option to import songs without it. The "[S]" symbol next to the songname indicates that is will be played with spleeter on. Otherwise, imported songs will have a different playmode in which each orb possesses the full song audio, but simply raises the volume slightly with each find. Currently this mode is still under development, but it will allow us to cater to a larger audience of people who do not have time to download spleeter.
+
+---
 ## Week 8
 March 3 - 10
 ### Bug fixes and weather
