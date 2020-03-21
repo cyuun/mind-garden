@@ -51,7 +51,6 @@ public class AudioPeerRoot : MonoBehaviour
         orb3.SpawnBiome();
         orb4.SpawnBiome();
 
-        
     }
 
     private void Awake()
@@ -61,6 +60,7 @@ public class AudioPeerRoot : MonoBehaviour
 
     void Start()
     {
+        RandomizePosition();
         if (Global.currentSongInfo != null)
         {
             GetComponent<AudioSource>().clip = Global.currentSongInfo.inputSong;
@@ -153,5 +153,10 @@ public class AudioPeerRoot : MonoBehaviour
             GetComponent<AudioSource>().Play();
             songPlaying = true;
         }
+    }
+
+    public void RandomizePosition()
+    {
+
     }
 }

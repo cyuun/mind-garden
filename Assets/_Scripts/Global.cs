@@ -23,10 +23,12 @@ public static class Global
     public static float masterVolume { get { return _masterVolume; } set { _masterVolume = value; } }
     private static bool _callSpleeter = false;
     public static bool callSpleeter { get { return _callSpleeter; } set { _callSpleeter = value; } }
-    private static bool _spleeterMode = false;
+    private static bool _spleeterMode = true;
     public static bool spleeterMode { get { return _spleeterMode; } set { _spleeterMode = value; } }
     private static bool _playingGame = false;
     public static bool playingGame { get { return _playingGame; } set { _playingGame = value; } }
     private static bool _showHints = true;
     public static bool showHints { get { return _showHints; } set { _showHints = value; } }
+    private static float _pitch = 1;
+    public static float pitch { get { return _pitch; } set { _pitch = value; } }
 }

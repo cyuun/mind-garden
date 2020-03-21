@@ -8,6 +8,7 @@ public class OrbScript : MonoBehaviour
 {
     public static Global.BiomeType biomeSpawner;
     public static bool biomeChosen = false;
+    public static GameObject magic;
 
     AudioPeer audioPeer;
     bool following = false;
@@ -57,11 +58,12 @@ public class OrbScript : MonoBehaviour
         if (!biomeChosen)
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = Global.BiomeType.forest;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            biomeSpawner = Global.BiomeType.underwater;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
             Global.currentBiome = biomeSpawner;
             biomeChosen = true;
         }
         spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
+        if(magic == null) magic = Instantiate(spawner.GetComponent<MagicSpawner>().magicPrefab, AudioPeerRoot.S.transform);
         RockSpawner rockSpawner = spawner.GetComponent<RockSpawner>();
         rockSpawner.terrainScript = terrainScript;
         rockSpawner.SetParent();
@@ -118,7 +120,7 @@ public class OrbScript : MonoBehaviour
     void Update()
     {
         //Spin
-        //transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
+        transform.rotation = Quaternion.Euler(rotPerSecond * Time.time * rotationSpeed);
         //Flash
         if (audioPeer && (following || flashOn)) Flash();
 
@@ -186,8 +188,8 @@ public class OrbScript : MonoBehaviour
             {
                 print("Spleeter:" + Global.callSpleeter);
                 StartCoroutine(LowerVolume());
-                //StartCoroutine(RaiseVolume(20f));
             }
+            
         }
         else if (other.tag == "Player" && !found)
         {

@@ -15,25 +15,45 @@ public class SettingsMenu : MonoBehaviour
     public Text volumeLabel;
     public Toggle spleeterToggle;
     public Toggle hintToggle;
+    public Slider pitchSlider;
+    public Text pitchLabel;
     public GameObject pauseMenu;
 
     public float fixedDeltaTime;
     public bool gameIsPaused = false;
     public bool resumed = false;
 
+    private void Awake()
+    {
+        S = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        S = this;
         if (Global.playingGame == true)
         {
-            StartCoroutine(DelayedUpdate(.1f));
+            //StartCoroutine(DelayedUpdate(.1f));
+            UpdateSettings();
         }
         else
         {
-            StartCoroutine(DelayedGlobalUpdate(.1f));
+            //StartCoroutine(DelayedGlobalUpdate(.1f));
+            UpdateGlobalSettings();
         }
         this.fixedDeltaTime = Time.fixedDeltaTime;
+
+        if (mainMixer)
+        {
+            if (Global.spleeterMode)
+            {
+                mainMixer.SetFloat("songVol", -80);
+            }
+            else
+            {
+                mainMixer.SetFloat("songVol", 0);
+            }
+        }
     }
 
     private void Update()
@@ -120,11 +140,20 @@ public class SettingsMenu : MonoBehaviour
         Global.showHints = value;
     }
 
+    public void UpdatePitch(float value)
+    {
+        float pitch = 75 + (value * 50);
+        Global.pitch = pitch/100;
+        mainMixer.SetFloat("masterPitch", Global.pitch);
+        pitchLabel.text = (Mathf.Floor(pitch)).ToString();
+    }
+
     public void UpdateGlobalSettings()
     {
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
+        UpdatePitch(pitchSlider.value);
     }
 
     public void UpdateSettings()
@@ -132,9 +161,11 @@ public class SettingsMenu : MonoBehaviour
         volumeSlider.value = (Global.masterVolume + 80) / 80;
         spleeterToggle.isOn = Global.callSpleeter;
         hintToggle.isOn = Global.showHints;
+        pitchSlider.value = ((Global.pitch * 100) - 75) / 50;
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
+        UpdatePitch(pitchSlider.value);
     }
 
     IEnumerator DelayedGlobalUpdate(float delay)
