@@ -99,8 +99,10 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioPeerRoot.S.ToggleSong();
         pauseMenu.SetActive(false);
+        //StartCoroutine(ResumeTime());
         Time.timeScale = 1;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         resumed = true;
@@ -111,8 +113,10 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioPeerRoot.S.ToggleSong();
         pauseMenu.SetActive(true);
+        //StartCoroutine(PauseTime());
         Time.timeScale = 0;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -178,6 +182,30 @@ public class SettingsMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         UpdateSettings();
+    }
+
+    IEnumerator PauseTime()
+    {
+        while(Time.timeScale > 0)
+        {
+            Time.timeScale -= Time.deltaTime;
+            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            yield return null;
+        }
+        Time.timeScale = 0;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+    }
+
+    IEnumerator ResumeTime()
+    {
+        while (Time.timeScale < 0)
+        {
+            Time.timeScale -= Time.deltaTime;
+            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            yield return null;
+        }
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
     }
 
 }

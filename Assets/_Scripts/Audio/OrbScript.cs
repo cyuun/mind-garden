@@ -58,7 +58,7 @@ public class OrbScript : MonoBehaviour
         if (!biomeChosen)
         {
             Random.InitState((int)System.DateTime.Now.Ticks); //Ensures randomness
-            biomeSpawner = Global.BiomeType.underwater;// (Global.BiomeType)Random.Range(0, biomeSpawners.Length);
+            biomeSpawner =  (Global.BiomeType)Random.Range(0, biomeSpawners.Length);// Global.BiomeType.underwater;//
             Global.currentBiome = biomeSpawner;
             biomeChosen = true;
         }
@@ -90,9 +90,30 @@ public class OrbScript : MonoBehaviour
         }
         Camera.main.GetComponent<Skybox>().material = skybox.material;
     }
-    
+
+    public void RandomizePosition()
+    {
+        float minDistance = 50f;
+        Vector3 offset = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized;
+        offset *= Random.Range(75f, 100f);
+        Vector3 pos = AudioPeerRoot.S.transform.position + offset;
+
+        foreach (AudioSource orb in AudioPeerRoot.S.audioPeers)
+        {
+            if (Vector3.Distance(orb.transform.position, pos) < minDistance)
+            {
+                RandomizePosition();
+                return;
+            }
+        }
+
+        transform.position = pos;
+    }
+
     void Start()
     {
+        if(_interactable) RandomizePosition();
+
         rb = GetComponent<Rigidbody>();
         velocity = Vector3.one * speed;
         audioPeer = audioTrack.GetComponent<AudioPeer>();
