@@ -146,7 +146,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void UpdatePitch(float value)
     {
-        float pitch = 75 + (value * 50);
+        float pitch = 80 + (value * 40);
         Global.pitch = pitch/100;
         mainMixer.SetFloat("masterPitch", Global.pitch);
         pitchLabel.text = (Mathf.Floor(pitch)).ToString();
@@ -165,7 +165,7 @@ public class SettingsMenu : MonoBehaviour
         volumeSlider.value = (Global.masterVolume + 80) / 80;
         spleeterToggle.isOn = Global.callSpleeter;
         hintToggle.isOn = Global.showHints;
-        pitchSlider.value = ((Global.pitch * 100) - 75) / 50;
+        pitchSlider.value = ((Global.pitch * 100) - 80) / 40;
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);

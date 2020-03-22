@@ -117,6 +117,7 @@ public class MenuController : MonoBehaviour
     {
         if (Global.currentSongInfo != null && !_cameraMoving)
         {
+            LevelSelect.S.Fade();
             StartCoroutine(ZoomCamera(moveDuration));
             StartCoroutine(ShowStartButton());
             StartCoroutine(ZoomHead(moveDuration));
@@ -152,6 +153,7 @@ public class MenuController : MonoBehaviour
     {
         if (!_cameraMoving)
         {
+            LevelSelect.S.Fade();
             StartCoroutine(BackUpCamera(moveDuration));
             StartCoroutine(HideStartButton());
             StartCoroutine(BackUpHead(moveDuration));
@@ -357,7 +359,6 @@ public class MenuController : MonoBehaviour
         float tempPos = startPos;
         for (float t = 0; t <= 1; t += (Time.deltaTime / 1))
         {
-            print(startButton.transform.position);
 
             tempPos = Mathf.SmoothStep(startPos, endPos, t);
             startButton.transform.position = new Vector3(tr.position.x, tempPos, tr.position.z);

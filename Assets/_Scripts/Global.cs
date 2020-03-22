@@ -31,4 +31,6 @@ public static class Global
     public static bool showHints { get { return _showHints; } set { _showHints = value; } }
     private static float _pitch = 1;
     public static float pitch { get { return _pitch; } set { _pitch = value; } }
+    private static bool _biomeChosen = false;
+    public static bool biomeChosen { get { return _biomeChosen; } set { _biomeChosen = value; } }
 }
