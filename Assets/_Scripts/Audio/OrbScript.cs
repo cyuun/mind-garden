@@ -179,7 +179,7 @@ public class OrbScript : MonoBehaviour
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
-            ColorController.S.ChangeBase();
+            ColorController.S.ChangePattern();
             target = other.transform;
 
             if (!Global.spleeterMode)

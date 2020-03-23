@@ -10,6 +10,8 @@ public class ColorController : MonoBehaviour
     public ColorPalette[] colorPalettes;
     public Global.BiomeType biomeType;
 
+    public int pattern;
+
     private int _paletteIndex;
     private int _colorBase2;
     private int _colorBase3;
@@ -39,6 +41,11 @@ public class ColorController : MonoBehaviour
     {
         _colorBase3 = (_colorBase3 + 3) % 9;
         _colorBase2 = (_colorBase2 + 2) % 6;
+    }
+
+    public void ChangePattern()
+    {
+        pattern++;
     }
     
     public void SetActiveHead(GameObject activeHead)
@@ -419,13 +426,39 @@ public class ColorController : MonoBehaviour
     {
         _colorIndices2[0] = (_colorIndices2[0] + 1) % 2;
         _colorIndices2[1] = (_colorIndices2[1] + 1) % 2;
-        
-        _colorIndices3[1] = _colorIndices3[1] % 2 + 1;
-        _colorIndices3[2] = _colorIndices3[2] % 2 + 1;
+        switch (pattern)
+        {
+            default:
+                _colorIndices3[1] = _colorIndices3[1] % 2 + 1;
+                _colorIndices3[2] = _colorIndices3[2] % 2 + 1;
+                
+                break;
+            
+            case 1:
+                _colorIndices3[0] = (_colorIndices3[0] + 1) % 3;
+                _colorIndices3[1] = (_colorIndices3[1] + 1) % 3;
+                _colorIndices3[2] = (_colorIndices3[2] + 1) % 3;
+
+                break;
+            
+            case 2:
+                
+                break;
+            
+            case 3:
+                
+                break;
+            
+            case 4:
+                
+                break;
+        }
     }
 
     private void Start()
     {
+        pattern = 0;
+        
         _colorIndices2 = new int[2];
         _colorIndices3 = new int[3];
 
