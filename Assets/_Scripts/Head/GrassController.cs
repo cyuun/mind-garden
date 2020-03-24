@@ -13,7 +13,7 @@ public class GrassController : MonoBehaviour
     public GameObject grassPrefab;
     
     private System.Random _rng;
-    private Vector2 _offsets;
+    private Vector2[] _offsets;
 
     private int _maxSearch = 10;
 
@@ -42,10 +42,22 @@ public class GrassController : MonoBehaviour
         
         for (int i = 0; i < vertices.Length; i++)
         {
-            float xPerlin = vertices[i].x / grassNoiseScale + _offsets.x;
-            float zPerlin = vertices[i].z / grassNoiseScale + _offsets.y;
+            float xPerlin0 = vertices[i].x / grassNoiseScale + _offsets[0].x;
+            float zPerlin0 = vertices[i].z / grassNoiseScale + _offsets[0].y;
+            
+            float xPerlin1 = 2 * vertices[i].x / grassNoiseScale + _offsets[1].x;
+            float zPerlin1 = 2 * vertices[i].z / grassNoiseScale + _offsets[1].y;
+            
+            float xPerlin2 = 0.5f * vertices[i].x / grassNoiseScale + _offsets[2].x;
+            float zPerlin2 = 0.5f * vertices[i].z / grassNoiseScale + _offsets[2].y;
+            
+            float xPerlin3 = 1.5f * vertices[i].x / grassNoiseScale + _offsets[3].x;
+            float zPerlin3 = 1.5f * vertices[i].z / grassNoiseScale + _offsets[3].y;
 
-            if (grassPatchSize > Mathf.PerlinNoise(xPerlin, zPerlin) && Mathf.Sqrt(vertices[i].x * vertices[i].x + vertices[i].z * vertices[i].z) > terrainScript.paintRadius)
+            float perlinValue = Mathf.PerlinNoise(xPerlin0, zPerlin0) * Mathf.PerlinNoise(zPerlin1, xPerlin1) *
+                                Mathf.PerlinNoise(xPerlin2, zPerlin2) * Mathf.PerlinNoise(zPerlin3, xPerlin3);
+
+            if (Mathf.Pow(grassPatchSize, 4) > perlinValue && Mathf.Sqrt(vertices[i].x * vertices[i].x + vertices[i].z * vertices[i].z) > terrainScript.paintRadius)
             {
                 newVertices.Add(new Vector3(vertices[i].x, terrainScript.GetTerrainHeight(vertices[i].x, vertices[i].z), vertices[i].z));
             }
@@ -246,6 +258,10 @@ public class GrassController : MonoBehaviour
 
     private void SetOffsets()
     {
-        _offsets = new Vector2(_rng.Next(Mathf.CeilToInt(terrainScript.xMax) / 2, 10000), _rng.Next(Mathf.CeilToInt(terrainScript.zMax) / 2, 10000));
+        _offsets = new Vector2[4];
+        _offsets[0] = new Vector2(_rng.Next(Mathf.CeilToInt(terrainScript.xMax) / 2, 10000), _rng.Next(Mathf.CeilToInt(terrainScript.zMax) / 2, 10000));
+        _offsets[1] = new Vector2(_rng.Next(Mathf.CeilToInt(terrainScript.xMax) / 2, 10000), _rng.Next(Mathf.CeilToInt(terrainScript.zMax) / 2, 10000));
+        _offsets[2] = new Vector2(_rng.Next(Mathf.CeilToInt(terrainScript.xMax) / 2, 10000), _rng.Next(Mathf.CeilToInt(terrainScript.zMax) / 2, 10000));
+        _offsets[3] = new Vector2(_rng.Next(Mathf.CeilToInt(terrainScript.xMax) / 2, 10000), _rng.Next(Mathf.CeilToInt(terrainScript.zMax) / 2, 10000));
     }
 }

@@ -418,8 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38971bfe673e8cc88923a8c22f2eea78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassPatchSize: 0.545
-  grassNoiseScale: 13
+  grassPatchSize: 0.37
+  grassNoiseScale: 17.2
   terrainScript: {fileID: 0}
   grassPrefab: {fileID: 2346473743331901792, guid: 43f8ee865758a1908af6f672bd28decc,
     type: 3}
