@@ -378,12 +378,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de2b5b20f676bd4bbdb5517655b4d21, type: 3}
---- !u!4 &145673780 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6608192365148886475, guid: 0de2b5b20f676bd4bbdb5517655b4d21,
-    type: 3}
-  m_PrefabInstance: {fileID: 145673779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &201249575
 GameObject:
   m_ObjectHideFlags: 0
@@ -3393,64 +3387,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &2086781100
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2086781101}
-  - component: {fileID: 2086781102}
-  m_Layer: 0
-  m_Name: Main Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2086781101
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086781100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 145673780}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2086781102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086781100}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c10451fadf931042bc96883f7c819dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnIndex: 0
-  activeHead: {fileID: 0}
-  allBiomes:
-  - creatureSpawners:
-    - {fileID: 8556276778082045513, guid: bdedfb8156ac53b4ba2a78589f0b2114, type: 3}
-    treeSpawners:
-    - {fileID: 6946184587849143891, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}
-    creatureSpawn: {fileID: 0}
-    treeSpawn: {fileID: 0}
-  - creatureSpawners:
-    - {fileID: 9007867153285621905, guid: f2d9abe54592da9409f1c61681dfcf0c, type: 3}
-    treeSpawners:
-    - {fileID: 978896027696249159, guid: 6590ddd20f1dc7046b1e231bba3c4f0b, type: 3}
-    creatureSpawn: {fileID: 0}
-    treeSpawn: {fileID: 0}
 --- !u!1 &2114948698
 GameObject:
   m_ObjectHideFlags: 0
@@ -5349,6 +5285,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 6291478}
+    - target: {fileID: 4384994719299715114, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1448448561}
+    - target: {fileID: 4384994719299715114, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: endPos
+      value: 
+      objectReference: {fileID: 6291479}
+    - target: {fileID: 4384994719299715114, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 6291478}
     - target: {fileID: 6780916304830068962, guid: 016d78fac6f0e2c4db9edec4ac103d4a,
         type: 3}
       propertyPath: m_UseGravity
@@ -5441,6 +5392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7402064806204130881, guid: 016d78fac6f0e2c4db9edec4ac103d4a, type: 3}
+    - {fileID: 8144197527586609767, guid: 016d78fac6f0e2c4db9edec4ac103d4a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 016d78fac6f0e2c4db9edec4ac103d4a, type: 3}
 --- !u!1 &8078178054764938791
 GameObject:

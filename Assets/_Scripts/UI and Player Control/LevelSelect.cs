@@ -8,6 +8,8 @@ public class LevelSelect : MonoBehaviour
     public static LevelSelect S;
 
     public CanvasGroup biomeOptions;
+    public CanvasGroup startBackButtons;
+    public CanvasGroup mainCanvas;
 
     bool showing;
     Button activeLevelButton;
@@ -21,14 +23,16 @@ public class LevelSelect : MonoBehaviour
 
     void Start()
     {
-        biomeOptions.alpha = 0;
+        mainCanvas = GetComponent<CanvasGroup>();
+        mainCanvas.alpha = 0;
+        /*biomeOptions.alpha = 0;
+        startBackButtons.alpha = 0;*/
         showing = false;
         defaultTextColor = biomeOptions.transform.GetChild(0).GetComponent<Text>().color;
     }
 
     public void Fade()
     {
-        print(showing);
         if (showing) StartCoroutine(FadeOut());
         else StartCoroutine(FadeIn());
     }
@@ -40,10 +44,10 @@ public class LevelSelect : MonoBehaviour
         while (a < 1)
         {
             a += Time.deltaTime;
-            biomeOptions.alpha = a;
+            mainCanvas.alpha = a;
             yield return null;
         }
-        biomeOptions.alpha = 1;
+        mainCanvas.alpha = 1;
     }
 
     IEnumerator FadeOut()
@@ -53,10 +57,10 @@ public class LevelSelect : MonoBehaviour
         while (a > 0)
         {
             a -= Time.deltaTime;
-            biomeOptions.alpha = a;
+            mainCanvas.alpha = a;
             yield return null;
         }
-        biomeOptions.alpha = 0;
+        mainCanvas.alpha = 0;
     }
 
     public void ChooseForest()

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MagicSpawner : MonoBehaviour
 {
     public GameObject magicPrefab;
+    public GameObject ringPrefab;
+
     void Start()
     {
         

@@ -74,7 +74,7 @@ public class OrbScript : MonoBehaviour
 
     public void SpawnBiome()
     {
-        if (spawner == null) SpawnRocks();
+        if (spawner == null) spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
         ColorController.S.biomeType = biomeSpawner;
         TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
         CreatureSpawner creatureSpawner = spawner.GetComponent<CreatureSpawner>();
@@ -89,6 +89,13 @@ public class OrbScript : MonoBehaviour
             creatureSpawner.SetParent();
             creatureSpawner.SpawnCreatures();
         }
+
+        //Create Light Ring
+        GameObject lightRing = Instantiate(spawner.GetComponent<MagicSpawner>().ringPrefab, AudioPeerRoot.S.transform);
+        Vector3 pos = transform.position;
+        pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + 1;
+        lightRing.transform.position = pos;
+
         Camera.main.GetComponent<Skybox>().material = skybox.material;
     }
 

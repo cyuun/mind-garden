@@ -16,6 +16,8 @@ public class LoadingBar : MonoBehaviour
     // Initialize as the initial local scale of the bar fill game object. Used to cache the Y-value (just in case):
     private Vector3 barFillLocalScale;
 
+    public bool dontDestroy = false;
+
     private void Awake()
     {
         

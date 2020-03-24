@@ -123,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magicPrefab: {fileID: 3406605877778384408, guid: e18ec18123ceee54ab5f5d75d7d06213,
     type: 3}
+  ringPrefab: {fileID: 266941138764821626, guid: 9925d5f9be78a6642b0d6c50be49f5a9,
+    type: 3}
 --- !u!45 &7894147243008138209
 Skybox:
   m_ObjectHideFlags: 0

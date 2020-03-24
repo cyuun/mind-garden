@@ -147,6 +147,20 @@ public class SettingsMenu : MonoBehaviour
     public void UpdatePitch(float value)
     {
         float pitch = 80 + (value * 40);
+        if(pitch > 98 && pitch < 102.9)
+        {
+            pitch = 100;
+            pitchSlider.handleRect.localPosition = Vector3.zero;
+            pitchSlider.fillRect.anchorMax = new Vector2(.5f, 0);
+        }
+        else
+        {
+            float x = (value * 200) - 100;
+            pitchSlider.handleRect.localPosition = new Vector3(x, 0, 0);
+            pitchSlider.fillRect.anchorMax = new Vector2(value, 0);
+
+        }
+
         Global.pitch = pitch/100;
         mainMixer.SetFloat("masterPitch", Global.pitch);
         pitchLabel.text = (Mathf.Floor(pitch)).ToString();

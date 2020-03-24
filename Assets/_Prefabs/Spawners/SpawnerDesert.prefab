@@ -99,6 +99,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4667251165700050818, guid: c8177c38a00281a45a0b4825ddb4e849,
         type: 3}
+    - target: {fileID: 3165566574478074693, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: ringPrefab
+      value: 
+      objectReference: {fileID: 8789199869142534659, guid: b123d05ac9c18684ab7c6105859b7ce3,
+        type: 3}
     - target: {fileID: 5482265616271410144, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: m_RootOrder
