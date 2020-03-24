@@ -46,45 +46,15 @@ public class ColorController : MonoBehaviour
 
     public void ChangePattern()
     {
-        pattern++;
-        switch (pattern)
-        {
-            default:
-                _colorIndices3[0] = 0;
-                _colorIndices3[1] = 1;
-                _colorIndices3[2] = 2;
-                
-                break;
-            
-            case 1:
-                _colorIndices3[0] = 0;
-                _colorIndices3[1] = 1;
-                _colorIndices3[2] = 2;
-
-                break;
-            
-            case 2:
-                _colorIndices3[0] = 0;
-                _colorIndices3[1] = 1;
-                _colorIndices3[2] = 2;
-
-                break;
-            
-            case 3:
-                _colorIndices3[0] = 0;
-                _colorIndices3[1] = 1;
-                _colorIndices3[2] = 2;
-                
-                _colorIndices3Tracker[0] = 0;
-                _colorIndices3Tracker[1] = 1;
-                _colorIndices3Tracker[2] = 2;
-                
-                break;
-            
-            case 4:
-                
-                break;
-        }
+        pattern++; 
+        
+        _colorIndices3[0] = 0; 
+        _colorIndices3[1] = 1; 
+        _colorIndices3[2] = 2;
+        
+        _colorIndices3Tracker[0] = 0; 
+        _colorIndices3Tracker[1] = 1; 
+        _colorIndices3Tracker[2] = 2;
     }
     
     public void SetActiveHead(GameObject activeHead)
@@ -506,6 +476,45 @@ public class ColorController : MonoBehaviour
                 break;
             
             case 4:
+                _colorIndices3Tracker[0] = (_colorIndices3Tracker[0] + 1) % 8;
+                _colorIndices3Tracker[1] = (_colorIndices3Tracker[1] + 1) % 8;
+                _colorIndices3Tracker[2] = (_colorIndices3Tracker[2] + 1) % 8;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    switch (_colorIndices3Tracker[i])
+                    {
+                        default:
+                            _colorIndices3[i] = _colorIndices3Tracker[i];
+                            
+                            break;
+                        
+                        case 3:
+                            _colorIndices3[i] = 1;
+                            
+                            break;
+                        
+                        case 4:
+                            _colorIndices3[i] = 2;
+                            
+                            break;
+                        
+                        case 5:
+                            _colorIndices3[i] = 1;
+                            
+                            break;
+                        
+                        case 6:
+                            _colorIndices3[i] = 0;
+                            
+                            break;
+                        
+                        case 7:
+                            _colorIndices3[i] = 1;
+                            
+                            break;
+                    }
+                }
                 
                 break;
         }
