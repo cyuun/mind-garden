@@ -68,6 +68,7 @@ public class AudioAnalyzer : MonoBehaviour
     void OnBeat(Beat beat)
     {
         ColorController.S.ChangeColors();
+        magic.S.Stretch();
         BPM = beat.bpm;
     }
 

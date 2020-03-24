@@ -7,6 +7,8 @@ using SimpleFileBrowser;
 
 public class SongListItem : MonoBehaviour
 {
+    public static SongListItem currentSongPlaying;
+
     public SongInfo songInfo;
     public bool spleeterOn;
     const string RESOURCE_PATH = "Assets/Resources/Spleets/";
@@ -28,12 +30,22 @@ public class SongListItem : MonoBehaviour
 
     public void LoadThisSong()
     {
-        print(songInfo.inputSongPath);
-        if(spleeterOn) Global.currentSongInfo = SpleeterProcess.S.LoadSongTracks(songInfo.inputSongPath, songInfo.inputSong);
-        else Global.currentSongInfo = SpleeterProcess.S.LoadSong(songInfo.inputSongPath, songInfo.inputSong);
-        MenuController.S.backgroundMusic.clip = songInfo.inputSong;
-        MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
-        MenuController.S.backgroundMusic.Play();
+        if(currentSongPlaying != this)
+        {
+            if (spleeterOn) Global.currentSongInfo = SpleeterProcess.S.LoadSongTracks(songInfo.inputSongPath, songInfo.inputSong);
+            else Global.currentSongInfo = SpleeterProcess.S.LoadSong(songInfo.inputSongPath, songInfo.inputSong);
+            MenuController.S.backgroundMusic.clip = songInfo.inputSong;
+            MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
+            MenuController.S.backgroundMusic.Play();
+            currentSongPlaying = this;
+        }
+        else
+        {
+            Global.currentSongInfo = null;
+            MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(false); //Turn on orb if off
+            MenuController.S.backgroundMusic.Stop();
+            currentSongPlaying = null;
+        }
     }
 
     AudioClip LoadInputSong(string inputSongPath, string name)

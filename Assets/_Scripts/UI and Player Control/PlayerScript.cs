@@ -20,7 +20,6 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<FirstPersonController>();
-        StartCoroutine(DelayedSettingsUpdate());
     }
 
     // Update is called once per frame
@@ -39,13 +38,6 @@ public class PlayerScript : MonoBehaviour
             splashing = true;
             StartCoroutine(SplishSplash(water));
         }
-    }
-
-    IEnumerator DelayedSettingsUpdate()
-    {
-        yield return new WaitForSeconds(1);
-        if (SettingsMenu.S) SettingsMenu.S.UpdateSettings();
-        else yield return new WaitForSeconds(.1f);
     }
 
     private void OnTriggerEnter(Collider other)

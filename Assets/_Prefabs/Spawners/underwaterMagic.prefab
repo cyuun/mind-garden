@@ -29270,6 +29270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dab2741aa9db514f9a6b1bfe4440819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioRoot: {fileID: 0}
   sparkPoints:
   - {fileID: 4450723324806490929}
   - {fileID: 4450723324350627132}
@@ -29278,7 +29279,7 @@ MonoBehaviour:
   - {fileID: 4450723324184672136}
   - {fileID: 4450723324121406727}
   - {fileID: 4450723323201639486}
-  signalFromMusic: 1
+  signalFromMusic: 0
   stretch: 16
 --- !u!1 &4450723324806490928
 GameObject:

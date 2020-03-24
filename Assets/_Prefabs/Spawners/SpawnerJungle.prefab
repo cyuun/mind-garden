@@ -75,24 +75,36 @@ PrefabInstance:
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: prefabs.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: prefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 437642893921503403, guid: ff83e0496e396cc47a307c48d9ba48fe,
+      objectReference: {fileID: 3001518382363872306, guid: 303dd5ac64750e94d84fef33bf4c2da1,
         type: 3}
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: yOffset
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3165566574478074693, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: magicPrefab
+      value: 
+      objectReference: {fileID: 8606706257646414625, guid: 42badd9b49bd8c74f9dedc87c25a2a3a,
+        type: 3}
+    - target: {fileID: 3165566574478074693, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: ringPrefab
+      value: 
+      objectReference: {fileID: 5962879653606688920, guid: b6ba145d274cfdc43bba022642df7d95,
+        type: 3}
     - target: {fileID: 5482265616271410144, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
       propertyPath: m_RootOrder
@@ -162,6 +174,5 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c094904bbcdd4784882f63fc101f92d4, type: 3}

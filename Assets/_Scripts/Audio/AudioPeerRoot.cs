@@ -51,7 +51,6 @@ public class AudioPeerRoot : MonoBehaviour
         orb3.SpawnBiome();
         orb4.SpawnBiome();
 
-        
     }
 
     private void Awake()
@@ -61,6 +60,7 @@ public class AudioPeerRoot : MonoBehaviour
 
     void Start()
     {
+        RandomizePositions();
         if (Global.currentSongInfo != null)
         {
             GetComponent<AudioSource>().clip = Global.currentSongInfo.inputSong;
@@ -82,7 +82,6 @@ public class AudioPeerRoot : MonoBehaviour
                     audioPeers[i].volume = .8f;
                     audioPeers[i].outputAudioMixerGroup = mixer.FindMatchingGroups("Master/FullSong")[0];
                 }
-                GetComponent<AudioSource>().Stop();
             }
         }
         foreach(var orb in audioPeers)
@@ -152,6 +151,13 @@ public class AudioPeerRoot : MonoBehaviour
             }
             GetComponent<AudioSource>().Play();
             songPlaying = true;
+        }
+    }
+
+    public void RandomizePositions()
+    {
+        foreach(AudioSource orb in audioPeers)
+        {
         }
     }
 }

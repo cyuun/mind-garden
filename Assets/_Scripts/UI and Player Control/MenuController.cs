@@ -72,9 +72,12 @@ public class MenuController : MonoBehaviour
         // Icon: default (folder icon)
         FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
-        StartCoroutine(LoadSongLibrary());
-        
-        if(Global.playingGame == true)
+        songList = SongLibrary.S.listObject;
+        if(!SongLibrary.libraryCreated) StartCoroutine(LoadSongLibrary());
+        else SongLibrary.S.gameObject.SetActive(true);
+
+
+        if (Global.playingGame == true)
         {
             SettingsMenu.S.UpdateSettings();
             Global.playingGame = false;
@@ -117,8 +120,9 @@ public class MenuController : MonoBehaviour
     {
         if (Global.currentSongInfo != null && !_cameraMoving)
         {
+            LevelSelect.S.Fade();
             StartCoroutine(ZoomCamera(moveDuration));
-            StartCoroutine(ShowStartButton());
+            //StartCoroutine(ShowStartButton());
             StartCoroutine(ZoomHead(moveDuration));
         }
         else
@@ -135,6 +139,7 @@ public class MenuController : MonoBehaviour
         if(Global.currentSongInfo != null)
         {
             Global.playingGame = true;
+            SongLibrary.S.gameObject.SetActive(false);
             startButton.SetActive(false);
             loadScreen.SetActive(true);
             StartCoroutine(LoadBar());
@@ -152,8 +157,9 @@ public class MenuController : MonoBehaviour
     {
         if (!_cameraMoving)
         {
+            LevelSelect.S.Fade();
             StartCoroutine(BackUpCamera(moveDuration));
-            StartCoroutine(HideStartButton());
+            //StartCoroutine(HideStartButton());
             StartCoroutine(BackUpHead(moveDuration));
         }
     }
@@ -237,15 +243,21 @@ public class MenuController : MonoBehaviour
     {
         Transform headT = head.transform;
         float start = headT.position.z;
+        Quaternion startRot = headT.rotation;
+        float rot1 = startRot.eulerAngles.x;
         float end = start - 300;
+        float rot2 = rot1 + 10;
         float temp = start;
         for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
         {
             temp = Mathf.SmoothStep(start, end, t);
             head.transform.position = new Vector3(headT.position.x, headT.position.y, temp);
+            temp = Mathf.SmoothStep(rot1, rot2, t);
+            head.transform.rotation = Quaternion.Euler(temp, startRot.eulerAngles.y, startRot.eulerAngles.z);
             yield return null;
         }
         head.transform.position = new Vector3(headT.position.x, headT.position.y, end);
+        head.transform.rotation = Quaternion.Euler(rot2, startRot.eulerAngles.y, startRot.eulerAngles.z);
     }
 
     IEnumerator BackUpCamera(float duration)
@@ -269,15 +281,22 @@ public class MenuController : MonoBehaviour
     {
         Transform headT = head.transform;
         float start = headT.position.z;
+        Quaternion startRot = headT.rotation;
+        float rot1 = startRot.eulerAngles.x;
         float end = start + 300;
+        float rot2 = rot1 - 10;
         float temp = start;
         for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
         {
+            print(head.transform.rotation.eulerAngles);
             temp = Mathf.SmoothStep(start, end, t);
             head.transform.position = new Vector3(headT.position.x, headT.position.y, temp);
+            temp = Mathf.SmoothStep(rot1, rot2, t);
+            head.transform.rotation = Quaternion.Euler(temp, startRot.eulerAngles.y, startRot.eulerAngles.z);
             yield return null;
         }
         head.transform.position = new Vector3(headT.position.x, headT.position.y, end);
+        head.transform.rotation = Quaternion.Euler(rot2, startRot.eulerAngles.y, startRot.eulerAngles.z);
     }
 
     IEnumerator ViewGallery(float duration)
@@ -357,7 +376,6 @@ public class MenuController : MonoBehaviour
         float tempPos = startPos;
         for (float t = 0; t <= 1; t += (Time.deltaTime / 1))
         {
-            print(startButton.transform.position);
 
             tempPos = Mathf.SmoothStep(startPos, endPos, t);
             startButton.transform.position = new Vector3(tr.position.x, tempPos, tr.position.z);
@@ -605,7 +623,8 @@ public class MenuController : MonoBehaviour
         }
         loadScreen.transform.Find("Cancel").gameObject.SetActive(true);
         loadScreen.SetActive(false);
-
+        SongLibrary.libraryCreated = true;
+        SongLibrary.S.gameObject.SetActive(true);
     }
 
 }

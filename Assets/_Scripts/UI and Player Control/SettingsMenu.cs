@@ -15,25 +15,45 @@ public class SettingsMenu : MonoBehaviour
     public Text volumeLabel;
     public Toggle spleeterToggle;
     public Toggle hintToggle;
+    public Slider pitchSlider;
+    public Text pitchLabel;
     public GameObject pauseMenu;
 
     public float fixedDeltaTime;
     public bool gameIsPaused = false;
     public bool resumed = false;
 
+    private void Awake()
+    {
+        S = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        S = this;
         if (Global.playingGame == true)
         {
-            StartCoroutine(DelayedUpdate(.1f));
+            //StartCoroutine(DelayedUpdate(.1f));
+            UpdateSettings();
         }
         else
         {
-            StartCoroutine(DelayedGlobalUpdate(.1f));
+            //StartCoroutine(DelayedGlobalUpdate(.1f));
+            UpdateGlobalSettings();
         }
         this.fixedDeltaTime = Time.fixedDeltaTime;
+
+        if (mainMixer)
+        {
+            if (Global.spleeterMode)
+            {
+                mainMixer.SetFloat("songVol", -80);
+            }
+            else
+            {
+                mainMixer.SetFloat("songVol", 0);
+            }
+        }
     }
 
     private void Update()
@@ -79,8 +99,10 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioPeerRoot.S.ToggleSong();
         pauseMenu.SetActive(false);
+        //StartCoroutine(ResumeTime());
         Time.timeScale = 1;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         resumed = true;
@@ -91,8 +113,10 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioPeerRoot.S.ToggleSong();
         pauseMenu.SetActive(true);
+        //StartCoroutine(PauseTime());
         Time.timeScale = 0;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -120,11 +144,34 @@ public class SettingsMenu : MonoBehaviour
         Global.showHints = value;
     }
 
+    public void UpdatePitch(float value)
+    {
+        float pitch = 80 + (value * 40);
+        if(pitch > 98 && pitch < 102.9)
+        {
+            pitch = 100;
+            pitchSlider.handleRect.localPosition = Vector3.zero;
+            pitchSlider.fillRect.anchorMax = new Vector2(.5f, 0);
+        }
+        else
+        {
+            float x = (value * 200) - 100;
+            pitchSlider.handleRect.localPosition = new Vector3(x, 0, 0);
+            pitchSlider.fillRect.anchorMax = new Vector2(value, 0);
+
+        }
+
+        Global.pitch = pitch/100;
+        mainMixer.SetFloat("masterPitch", Global.pitch);
+        pitchLabel.text = (Mathf.Floor(pitch)).ToString();
+    }
+
     public void UpdateGlobalSettings()
     {
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
+        UpdatePitch(pitchSlider.value);
     }
 
     public void UpdateSettings()
@@ -132,9 +179,11 @@ public class SettingsMenu : MonoBehaviour
         volumeSlider.value = (Global.masterVolume + 80) / 80;
         spleeterToggle.isOn = Global.callSpleeter;
         hintToggle.isOn = Global.showHints;
+        pitchSlider.value = ((Global.pitch * 100) - 80) / 40;
         UpdateVolume(volumeSlider.value);
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
+        UpdatePitch(pitchSlider.value);
     }
 
     IEnumerator DelayedGlobalUpdate(float delay)
@@ -147,6 +196,30 @@ public class SettingsMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         UpdateSettings();
+    }
+
+    IEnumerator PauseTime()
+    {
+        while(Time.timeScale > 0)
+        {
+            Time.timeScale -= Time.deltaTime;
+            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            yield return null;
+        }
+        Time.timeScale = 0;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+    }
+
+    IEnumerator ResumeTime()
+    {
+        while (Time.timeScale < 0)
+        {
+            Time.timeScale -= Time.deltaTime;
+            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            yield return null;
+        }
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
     }
 
 }
