@@ -38,6 +38,10 @@ public class ColorController : MonoBehaviour
     private Material _fish1Material;
     private Material _fish2Material;
 
+    private bool _lerp = false;
+    [SerializeField] [Range(0, 1)] 
+    private float _lerpSpeed = 0.5f;
+
     public void ChangeBase()
     {
         _colorBase3 = (_colorBase3 + 3) % 9;
@@ -59,6 +63,8 @@ public class ColorController : MonoBehaviour
     
     public void SetActiveHead(GameObject activeHead)
     {
+        _lerp = Global.smoothColorController;
+        
         _paletteIndex = Global.colorPalette;
         _colorBase2 = 0;
         _colorBase3 = 0;
@@ -344,88 +350,107 @@ public class ColorController : MonoBehaviour
         {
             return;
         }
-        
-        _headMaterial.SetColor("_Color", colorPalettes[_paletteIndex].head[_colorIndices3[0]]);
-        _headMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].head[_colorIndices3[1]]);
-        _headMaterial.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].head[_colorIndices3[2]]);
-        
+
         _terrainScript.paintColor =
             colorPalettes[_paletteIndex].terrain[_colorBase2 + _colorIndices2[0]];
-        
-        _rock1Material.SetColor("_Color", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[0]]);
-        _rock1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[1]]);
-        _rock1Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[2]]);
-        
-        _rock2Material.SetColor("_Color", colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[0]]);
-        _rock2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[1]]);
-        _rock2Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[2]]);
-        
-        _rock3Material.SetColor("_Color", colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[0]]);
-        _rock3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[1]]);
-        _rock3Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[2]]);
-        
-        _rock4Material.SetColor("_Color", colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[0]]);
-        _rock4Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[1]]);
-        _rock4Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[2]]);
-        
-        _rock5Material.SetColor("_Color", colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[0]]);
-        _rock5Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[1]]);
-        _rock5Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[2]]);
-        
-        _plantBaseMaterial.SetColor("_Color", colorPalettes[_paletteIndex].plantBase[_colorIndices3[0]]);
-        _plantBaseMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].plantBase[_colorIndices3[1]]);
-        _plantBaseMaterial.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].plantBase[_colorIndices3[2]]);
 
-        _plant1Material.SetColor("_Color", colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[0]]);
-        _plant1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[1]]);
-        _plant1Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[2]]);
-        
-        _plant2Material.SetColor("_Color", colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[0]]);
-        _plant2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[1]]);
-        _plant2Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[2]]);
-        
-        _plant3Material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[0]]);
-        _plant3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[1]]);
-        _plant3Material.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[2]]);
+        if (!_lerp)
+        {
+            _headMaterial.SetColor("_Color", colorPalettes[_paletteIndex].head[_colorIndices3[0]]);
+            _headMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].head[_colorIndices3[1]]);
+            _headMaterial.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].head[_colorIndices3[2]]);
 
-        if (_wings1Material != null)
-        {
-            _wings1Material.SetColor("_Color", colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[0]]);
-            _wings1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[1]]);
-            _wings1Material.SetColor("_ColorDimExtra",
-                colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[2]]);
-        }
+            _rock1Material.SetColor("_Color", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[0]]);
+            _rock1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[1]]);
+            _rock1Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[2]]);
 
-        if (_wings2Material != null)
-        {
-            _wings2Material.SetColor("_Color", colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[0]]);
-            _wings2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[1]]);
-            _wings2Material.SetColor("_ColorDimExtra",
-                colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[2]]);
-        }
+            _rock2Material.SetColor("_Color", colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[0]]);
+            _rock2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[1]]);
+            _rock2Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[2]]);
 
-        if (_bugMaterial != null)
-        {
-            _bugMaterial.SetColor("_Color", colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[0]]);
-            _bugMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[1]]);
-            _bugMaterial.SetColor("_ColorDimExtra",
-                colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[2]]);
-        }
-        
-        if (_fish1Material != null)
-        {
-            _fish1Material.SetColor("_Color", colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[0]]);
-            _fish1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[1]]);
-            _fish1Material.SetColor("_ColorDimExtra",
-                colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[2]]);
-        }
-        
-        if (_fish2Material != null)
-        {
-            _fish2Material.SetColor("_Color", colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[0]]);
-            _fish2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[1]]);
-            _fish2Material.SetColor("_ColorDimExtra",
-                colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[2]]);
+            _rock3Material.SetColor("_Color", colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[0]]);
+            _rock3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[1]]);
+            _rock3Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[2]]);
+
+            _rock4Material.SetColor("_Color", colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[0]]);
+            _rock4Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[1]]);
+            _rock4Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[2]]);
+
+            _rock5Material.SetColor("_Color", colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[0]]);
+            _rock5Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[1]]);
+            _rock5Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[2]]);
+
+            _plantBaseMaterial.SetColor("_Color", colorPalettes[_paletteIndex].plantBase[_colorIndices3[0]]);
+            _plantBaseMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].plantBase[_colorIndices3[1]]);
+            _plantBaseMaterial.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].plantBase[_colorIndices3[2]]);
+
+            _plant1Material.SetColor("_Color", colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[0]]);
+            _plant1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[1]]);
+            _plant1Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[2]]);
+
+            _plant2Material.SetColor("_Color", colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[0]]);
+            _plant2Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[1]]);
+            _plant2Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[2]]);
+
+            _plant3Material.SetColor("_Color", colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[0]]);
+            _plant3Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[1]]);
+            _plant3Material.SetColor("_ColorDimExtra",
+                colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[2]]);
+
+            if (_wings1Material != null)
+            {
+                _wings1Material.SetColor("_Color",
+                    colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[0]]);
+                _wings1Material.SetColor("_ColorDim",
+                    colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[1]]);
+                _wings1Material.SetColor("_ColorDimExtra",
+                    colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[2]]);
+            }
+
+            if (_wings2Material != null)
+            {
+                _wings2Material.SetColor("_Color",
+                    colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[0]]);
+                _wings2Material.SetColor("_ColorDim",
+                    colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[1]]);
+                _wings2Material.SetColor("_ColorDimExtra",
+                    colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[2]]);
+            }
+
+            if (_bugMaterial != null)
+            {
+                _bugMaterial.SetColor("_Color",
+                    colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[0]]);
+                _bugMaterial.SetColor("_ColorDim",
+                    colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[1]]);
+                _bugMaterial.SetColor("_ColorDimExtra",
+                    colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[2]]);
+            }
+
+            if (_fish1Material != null)
+            {
+                _fish1Material.SetColor("_Color", colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[0]]);
+                _fish1Material.SetColor("_ColorDim",
+                    colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[1]]);
+                _fish1Material.SetColor("_ColorDimExtra",
+                    colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[2]]);
+            }
+
+            if (_fish2Material != null)
+            {
+                _fish2Material.SetColor("_Color", colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[0]]);
+                _fish2Material.SetColor("_ColorDim",
+                    colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[1]]);
+                _fish2Material.SetColor("_ColorDimExtra",
+                    colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[2]]);
+            }
         }
 
         ChangeIndices();
@@ -529,5 +554,177 @@ public class ColorController : MonoBehaviour
         _colorIndices3Tracker = new int[3];
 
         S = this;
+    }
+
+    private void Update()
+    {
+        if (_lerp)
+        {
+            _headMaterial.SetColor("_Color",
+                Color.Lerp(_headMaterial.GetColor("_Color"), colorPalettes[_paletteIndex].head[_colorIndices3[0]],
+                    _lerpSpeed));
+            _headMaterial.SetColor("_ColorDim",
+                Color.Lerp(_headMaterial.GetColor("_ColorDim"), colorPalettes[_paletteIndex].head[_colorIndices3[1]],
+                    _lerpSpeed));
+            _headMaterial.SetColor("_ColorDimExtra",
+                Color.Lerp(_headMaterial.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].head[_colorIndices3[2]],
+                    _lerpSpeed));
+
+            _rock1Material.SetColor("_Color",
+                Color.Lerp(_rock1Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _rock1Material.SetColor("_ColorDim",
+                Color.Lerp(_rock1Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _rock1Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_rock1Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _rock2Material.SetColor("_Color",
+                Color.Lerp(_rock2Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _rock2Material.SetColor("_ColorDim",
+                Color.Lerp(_rock2Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _rock2Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_rock2Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].rock2[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _rock3Material.SetColor("_Color",
+                Color.Lerp(_rock3Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _rock3Material.SetColor("_ColorDim",
+                Color.Lerp(_rock3Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _rock3Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_rock3Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].rock3[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _rock4Material.SetColor("_Color",
+                Color.Lerp(_rock4Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _rock4Material.SetColor("_ColorDim",
+                Color.Lerp(_rock4Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _rock4Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_rock4Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].rock4[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _rock5Material.SetColor("_Color",
+                Color.Lerp(_rock5Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _rock5Material.SetColor("_ColorDim",
+                Color.Lerp(_rock5Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _rock5Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_rock5Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].rock5[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _plantBaseMaterial.SetColor("_Color",
+                Color.Lerp(_plantBaseMaterial.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].plantBase[_colorIndices3[0]], _lerpSpeed));
+            _plantBaseMaterial.SetColor("_ColorDim",
+                Color.Lerp(_plantBaseMaterial.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].plantBase[_colorIndices3[1]], _lerpSpeed));
+            _plantBaseMaterial.SetColor("_ColorDimExtra",
+                Color.Lerp(_plantBaseMaterial.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].plantBase[_colorIndices3[2]], _lerpSpeed));
+
+            _plant1Material.SetColor("_Color",
+                Color.Lerp(_plant1Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _plant1Material.SetColor("_ColorDim",
+                Color.Lerp(_plant1Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _plant1Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_plant1Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].plant1[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _plant2Material.SetColor("_Color",
+                Color.Lerp(_plant2Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _plant2Material.SetColor("_ColorDim",
+                Color.Lerp(_plant2Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _plant2Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_plant2Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].plant2[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            _plant3Material.SetColor("_Color",
+                Color.Lerp(_plant3Material.GetColor("_Color"),
+                    colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+            _plant3Material.SetColor("_ColorDim",
+                Color.Lerp(_plant3Material.GetColor("_ColorDim"),
+                    colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+            _plant3Material.SetColor("_ColorDimExtra",
+                Color.Lerp(_plant3Material.GetColor("_ColorDimExtra"),
+                    colorPalettes[_paletteIndex].plant3[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+
+            if (_wings1Material != null)
+            {
+                _wings1Material.SetColor("_Color",
+                    Color.Lerp(_wings1Material.GetColor("_Color"),
+                        colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+                _wings1Material.SetColor("_ColorDim",
+                    Color.Lerp(_wings1Material.GetColor("_ColorDim"),
+                        colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+                _wings1Material.SetColor("_ColorDimExtra",
+                    Color.Lerp(_wings1Material.GetColor("_ColorDimExtra"),
+                        colorPalettes[_paletteIndex].wings1[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+            }
+
+            if (_wings2Material != null)
+            {
+                _wings2Material.SetColor("_Color",
+                    Color.Lerp(_wings2Material.GetColor("_Color"),
+                        colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+                _wings2Material.SetColor("_ColorDim",
+                    Color.Lerp(_wings2Material.GetColor("_ColorDim"),
+                        colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+                _wings2Material.SetColor("_ColorDimExtra",
+                    Color.Lerp(_wings2Material.GetColor("_ColorDimExtra"),
+                        colorPalettes[_paletteIndex].wings2[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+            }
+
+            if (_bugMaterial != null)
+            {
+                _bugMaterial.SetColor("_Color",
+                    Color.Lerp(_bugMaterial.GetColor("_Color"),
+                        colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+                _bugMaterial.SetColor("_ColorDim",
+                    Color.Lerp(_bugMaterial.GetColor("_ColorDim"),
+                        colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+                _bugMaterial.SetColor("_ColorDimExtra",
+                    Color.Lerp(_bugMaterial.GetColor("_ColorDimExtra"),
+                        colorPalettes[_paletteIndex].bugBodies[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+            }
+
+            if (_fish1Material != null)
+            {
+                _fish1Material.SetColor("_Color",
+                    Color.Lerp(_fish1Material.GetColor("_Color"),
+                        colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+                _fish1Material.SetColor("_ColorDim",
+                    Color.Lerp(_fish1Material.GetColor("_ColorDim"),
+                        colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+                _fish1Material.SetColor("_ColorDimExtra",
+                    Color.Lerp(_fish1Material.GetColor("_ColorDimExtra"),
+                        colorPalettes[_paletteIndex].fish1[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+            }
+
+            if (_fish2Material != null)
+            {
+                _fish2Material.SetColor("_Color",
+                    Color.Lerp(_fish2Material.GetColor("_ColorDim"),
+                        colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[0]], _lerpSpeed));
+                _fish2Material.SetColor("_ColorDim",
+                    Color.Lerp(_fish2Material.GetColor("_ColorDim"),
+                        colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[1]], _lerpSpeed));
+                _fish2Material.SetColor("_ColorDimExtra",
+                    Color.Lerp(_fish2Material.GetColor("_ColorDimExtra"),
+                        colorPalettes[_paletteIndex].fish2[_colorBase3 + _colorIndices3[2]], _lerpSpeed));
+            }
+        }
     }
 }

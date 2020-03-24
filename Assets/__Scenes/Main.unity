@@ -1232,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 7462907776954287733, guid: 6c41350fb867c64429aa02958e6af722,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7462907776954287733, guid: 6c41350fb867c64429aa02958e6af722,
         type: 3}
@@ -2658,6 +2658,8 @@ MonoBehaviour:
     - {r: 0.12945755, g: 0.046890974, b: 0.16070803, a: 1}
     - {r: 0.5803464, g: 0.14117648, b: 0.45088884, a: 1}
   biomeType: 1
+  pattern: 0
+  _lerpSpeed: 0.725
 --- !u!4 &1657590584
 Transform:
   m_ObjectHideFlags: 0
