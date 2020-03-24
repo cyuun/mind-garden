@@ -17,6 +17,7 @@ public class ColorController : MonoBehaviour
     private int _colorBase3;
     private int[] _colorIndices2;
     private int[] _colorIndices3;
+    private int[] _colorIndices3Tracker;
 
     private GameObject _activeHead;
     private GameObject _terrain;
@@ -46,6 +47,44 @@ public class ColorController : MonoBehaviour
     public void ChangePattern()
     {
         pattern++;
+        switch (pattern)
+        {
+            default:
+                _colorIndices3[0] = 0;
+                _colorIndices3[1] = 1;
+                _colorIndices3[2] = 2;
+                
+                break;
+            
+            case 1:
+                _colorIndices3[0] = 0;
+                _colorIndices3[1] = 1;
+                _colorIndices3[2] = 2;
+
+                break;
+            
+            case 2:
+                _colorIndices3[0] = 0;
+                _colorIndices3[1] = 1;
+                _colorIndices3[2] = 2;
+
+                break;
+            
+            case 3:
+                _colorIndices3[0] = 0;
+                _colorIndices3[1] = 1;
+                _colorIndices3[2] = 2;
+                
+                _colorIndices3Tracker[0] = 0;
+                _colorIndices3Tracker[1] = 1;
+                _colorIndices3Tracker[2] = 2;
+                
+                break;
+            
+            case 4:
+                
+                break;
+        }
     }
     
     public void SetActiveHead(GameObject activeHead)
@@ -429,24 +468,41 @@ public class ColorController : MonoBehaviour
         switch (pattern)
         {
             default:
-                _colorIndices3[1] = _colorIndices3[1] % 2 + 1;
-                _colorIndices3[2] = _colorIndices3[2] % 2 + 1;
+                _colorIndices3[0] = (_colorIndices3[0] + 1) % 2;
+                _colorIndices3[1] = (_colorIndices3[1] + 1) % 2;
                 
                 break;
             
             case 1:
+                _colorIndices3[1] = _colorIndices3[1] % 2 + 1;
+                _colorIndices3[2] = _colorIndices3[2] % 2 + 1;
+
+                break;
+            
+            case 2:
                 _colorIndices3[0] = (_colorIndices3[0] + 1) % 3;
                 _colorIndices3[1] = (_colorIndices3[1] + 1) % 3;
                 _colorIndices3[2] = (_colorIndices3[2] + 1) % 3;
 
                 break;
             
-            case 2:
-                
-                break;
-            
             case 3:
-                
+                _colorIndices3Tracker[0] = (_colorIndices3Tracker[0] + 1) % 4;
+                _colorIndices3Tracker[1] = (_colorIndices3Tracker[1] + 1) % 4;
+                _colorIndices3Tracker[2] = (_colorIndices3Tracker[2] + 1) % 4;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (_colorIndices3Tracker[i] == 3)
+                    {
+                        _colorIndices3[i] = 1;
+                    }
+                    else
+                    {
+                        _colorIndices3[i] = _colorIndices3Tracker[i];
+                    }
+                }
+
                 break;
             
             case 4:
@@ -461,6 +517,7 @@ public class ColorController : MonoBehaviour
         
         _colorIndices2 = new int[2];
         _colorIndices3 = new int[3];
+        _colorIndices3Tracker = new int[3];
 
         S = this;
     }
