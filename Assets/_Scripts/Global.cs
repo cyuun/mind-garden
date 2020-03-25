@@ -33,13 +33,15 @@ public static class Global
     public static int colorPalette { get { return _colorPalette; } set { _colorPalette = value; } }
     private static bool _smoothColorController = true;
     public static bool smoothColorController { get { return _smoothColorController; } set { _smoothColorController = value; } }
+    private static float _pitch = 1;
+    public static float pitch { get { return _pitch; } set { _pitch = value; } }
+    private static bool _biomeChosen = false;
+    public static bool biomeChosen { get { return _biomeChosen; } set { _biomeChosen = value; } }
+    private static int _seed = 0;
+    public static int seed { get { return _seed; } set { _seed = value; } }
 
     public static bool CompareFloats(float f1, float f2, float tolerance)
     {
         return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
     }
-    private static float _pitch = 1;
-    public static float pitch { get { return _pitch; } set { _pitch = value; } }
-    private static bool _biomeChosen = false;
-    public static bool biomeChosen { get { return _biomeChosen; } set { _biomeChosen = value; } }
 }

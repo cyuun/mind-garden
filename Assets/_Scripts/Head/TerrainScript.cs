@@ -200,10 +200,8 @@ public class TerrainScript : MonoBehaviour
             noisePersistance = Random.Range(.2f, .4f); //Sharpness of peaks
             noiseLacunarity = Random.Range(1f, 5f); //Bumpiness of hills
         }
-        else
-        {
-            //TODO: Determine parameters based on audio analyzer class
-        }
+
+        seed = Global.seed;
 
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
