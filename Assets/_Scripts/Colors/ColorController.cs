@@ -23,6 +23,7 @@ public class ColorController : MonoBehaviour
     private GameObject _terrain;
     private TerrainScript _terrainScript;
     private Material _headMaterial;
+    private Material _grassMaterial;
     private Material _rock1Material;
     private Material _rock2Material;
     private Material _rock3Material;
@@ -80,6 +81,9 @@ public class ColorController : MonoBehaviour
         _terrainScript.SetBasePaint(colorPalettes[_paletteIndex].terrain[6]);
 
         _headMaterial = _activeHead.GetComponent<MeshRenderer>().material;
+
+        _grassMaterial = _activeHead.transform.Find("GrassController").GetChild(0).GetComponent<MeshRenderer>()
+            .sharedMaterial;
         
         bool rock1Attached = false;
         bool rock2Attached = false;
@@ -359,6 +363,9 @@ public class ColorController : MonoBehaviour
             _headMaterial.SetColor("_Color", colorPalettes[_paletteIndex].head[_colorIndices3[0]]);
             _headMaterial.SetColor("_ColorDim", colorPalettes[_paletteIndex].head[_colorIndices3[1]]);
             _headMaterial.SetColor("_ColorDimExtra", colorPalettes[_paletteIndex].head[_colorIndices3[2]]);
+            
+            _grassMaterial.SetColor("_TopColor", colorPalettes[_paletteIndex].grass[_colorBase2 + _colorIndices2[0]]);
+            _grassMaterial.SetColor("_BottomColor", colorPalettes[_paletteIndex].grass[_colorBase2 + _colorIndices2[1]]);
 
             _rock1Material.SetColor("_Color", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[0]]);
             _rock1Material.SetColor("_ColorDim", colorPalettes[_paletteIndex].rock1[_colorBase3 + _colorIndices3[1]]);
@@ -570,6 +577,13 @@ public class ColorController : MonoBehaviour
                 Color.Lerp(_headMaterial.GetColor("_ColorDimExtra"),
                     colorPalettes[_paletteIndex].head[_colorIndices3[2]],
                     _lerpSpeed));
+
+            _grassMaterial.SetColor("_TopColor",
+                Color.Lerp(_grassMaterial.GetColor("_TopColor"),
+                    colorPalettes[_paletteIndex].grass[_colorBase2 + _colorIndices2[0]], _lerpSpeed));
+            _grassMaterial.SetColor("_BottomColor",
+                Color.Lerp(_grassMaterial.GetColor("_BottomColor"),
+                    colorPalettes[_paletteIndex].grass[_colorBase2 + _colorIndices2[1]], _lerpSpeed));
 
             _rock1Material.SetColor("_Color",
                 Color.Lerp(_rock1Material.GetColor("_Color"),

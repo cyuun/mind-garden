@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc23b46c0890b774bb9bbeb2aa16645d, type: 2}
+  - {fileID: 2100000, guid: 6bc33a86b92af67758d35a8ba688184e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,6 +92,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17622f2ba8e45d3eb822071ae2fcd8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassPatchSize: 0.5
-  grassNoiseScale: 10
-  terrainScript: {fileID: 0}
