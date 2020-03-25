@@ -57,6 +57,7 @@ public class AudioAnalyzer : MonoBehaviour
         {
             if (SkyFractal.S) SkyFractal.S.ChangeOutline();
             if (MainSpawner.S)  MainSpawner.S.ChangeSpawner();
+            if (ColorController.S) ColorController.S.ChangeBase();
         }
         prevTime = time;
         if (time >= audioSource.clip.length)
