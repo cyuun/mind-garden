@@ -36,6 +36,12 @@ public class GrassController : MonoBehaviour
         }
     }
 
+    public void AdjustRotation(Vector3 eulerAngles)
+    {
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(new Vector3(currentRotation.x, currentRotation.y - (180 - eulerAngles.y), currentRotation.z));
+    }
+
     private Vector3[] CullVertices(Vector3[] vertices)
     {
         List<Vector3> newVertices = new List<Vector3>();

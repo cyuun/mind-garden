@@ -28,6 +28,7 @@ public class HeadScript : MonoBehaviour
         grassController = transform.Find("GrassController").GetComponent<GrassController>();
         grassController.terrainScript = terrainScript;
         grassController.GenerateGrass();
+        grassController.AdjustRotation(transform.rotation.eulerAngles);
             
         _meshFilter = GetComponent<MeshFilter>();
         _meshCollider = GetComponent<MeshCollider>();
@@ -60,7 +61,7 @@ public class HeadScript : MonoBehaviour
             if (CompareFloats(vertices[i].y, maxHeight, tolerance))
             {
                 Vector3 worldSpaceVertex = VectorObjectToWorld(vertices[i]);
-                vertices[i].y = -transform.position.y + 9 + terrainScript.GetTerrainHeight(worldSpaceVertex.x, worldSpaceVertex.z);
+                vertices[i].y = -transform.position.y + 6 + terrainScript.GetTerrainHeight(worldSpaceVertex.x, worldSpaceVertex.z);
             }
         }
 
@@ -90,7 +91,10 @@ public class HeadScript : MonoBehaviour
 
     private Vector3 VectorObjectToWorld(Vector3 vector)
     {
-        return transform.rotation * new Vector3(vector.x - transform.position.x, vector.y - transform.position.y, vector.z - transform.position.z);
+        return Quaternion.Euler(transform.rotation.eulerAngles - terrain.transform.rotation.eulerAngles) * new Vector3(
+                   vector.x - (transform.position.x - terrain.transform.position.x),
+                   vector.y - (transform.position.y - terrain.transform.position.y),
+                   vector.z - (transform.position.z - terrain.transform.position.z));
     }
     
     private bool CompareFloats(float f1, float f2, float tolerance)
