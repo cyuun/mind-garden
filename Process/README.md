@@ -2,6 +2,14 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 10
+March 17 - 24
+### Player Zoom
+We've been contemplating our "instructions" and how easy it is for the player to understand that they should find the orb and drop it in the pool, and decided that it would be best to have a visual indicator to show the player to drop the orb in the pond. A new ring particle system appears in the pond to encourage the player to go into the pond and insert the orb. The system also speeds the player up so they can run towards the next objective.
+### Merging
+We have many branches at this point, and are merging all recent changes now, including lerping color changing and more menu options, including changing biomes and color pallete. This is the final step needed before we can bring the main scene into VR, which will be happening before March 31st next week.  
+
+---
 ## Week 9
 March 10 - 17
 ### Magic sparks, adjustments and bug fixes
