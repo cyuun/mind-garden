@@ -6,8 +6,13 @@ Mind's Garden is a first person musical exploration game which reads in audio fi
 March 17 - 24
 ### Player Zoom
 We've been contemplating our "instructions" and how easy it is for the player to understand that they should find the orb and drop it in the pool, and decided that it would be best to have a visual indicator to show the player to drop the orb in the pond. A new ring particle system appears in the pond to encourage the player to go into the pond and insert the orb. The system also speeds the player up so they can run towards the next objective.
-### Merging
-We have many branches at this point, and are merging all recent changes now, including lerping color changing and more menu options, including changing biomes and color pallete. This is the final step needed before we can bring the main scene into VR, which will be happening before March 31st next week.  
+
+### Merging & Finishing Touches
+We have many branches at this point, and are merging all recent changes now, including lerping color changing and more menu options, including changing biomes and color pallete. This is the final step needed before we can bring the main scene into VR, which will be happening before March 31st next week. With all these components ready to go, we're piecing things together and tying up lose ends. Minor bugs have been resolved to enhance playability and all the features are also being fine tuned. 
+
+### Level Customization
+With all the biomes and color palettes complete, it was time to set up a screen in the main menu which allowed players to control those. In addition to hand picking the biome and colors, there's also an input field for a terrain seed so appealing landscapes can be revisited. While implementing this, another setting to control song pitch was added for even more customization, and can be accessed from the in-game pause menu. We also intend to add more visual feedback whenever a new choice is selected.
+![LevelSelect](Resources/levelselect.png "Level Select")
 
 ---
 ## Week 9
