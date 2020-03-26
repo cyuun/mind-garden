@@ -23,48 +23,57 @@ public class bounceScript : MonoBehaviour
     Vector3 endRelCenter;
     public float speedTime = 3f;
     bool currSpeeding = false;
-    // Start is called before the first frame update
+
+    PlayerScript player;
+
     void Start()
     {
         controller = GameObject.FindObjectOfType<FirstPersonController>();
         rb = GetComponent<Rigidbody>();
+        player = PlayerScript.S;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        float force = 7f;
-
-        if (other.tag == "enemy" && grounded)
+        if (player.spawned)
         {
-            controller.canMove = false;
-            ParticleSystem ps=other.gameObject.GetComponentInChildren<ParticleSystem>();
-            ps.Play();
-            //Vector3 direction = transform.position - other.transform.position+new Vector3(0,2f,0);
-            Vector3 direction = (-transform.forward + transform.up);
-            direction.Normalize();
+            float force = 7f;
 
-            startPos = transform;
-            endPos = target.transform;
-            StartCoroutine(push(direction, force));
-
-        }
-        else if (other.tag == "enemyFish")
-        {
-            controller.canMove = false;
-            ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
-            ps.Play();
-            Vector3 direction = transform.position - other.transform.position+new Vector3(0,5,0);
-            direction.Normalize();
-            StartCoroutine(push(direction, force));
-        }
-        else if (other.tag == "Speed")
-        {
-            //screen flash?
-            if (!currSpeeding)
+            if (other.tag == "enemy" && grounded)
             {
-                StartCoroutine(speeding());
+                controller.canMove = false;
+                ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
+                ps.Play();
+                //Vector3 direction = transform.position - other.transform.position+new Vector3(0,2f,0);
+                Vector3 direction = (-transform.forward + transform.up);
+                direction.Normalize();
+
+                startPos = transform;
+                endPos = target.transform;
+                StartCoroutine(push(direction, force));
+
             }
-            
+            else if (other.tag == "enemyFish")
+            {
+                controller.canMove = false;
+                ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
+                ps.Play();
+                Vector3 direction = transform.position - other.transform.position + new Vector3(0, 5, 0);
+                direction.Normalize();
+
+                startPos = transform;
+                endPos = target.transform;
+                StartCoroutine(push(direction, force));
+            }
+            else if (other.tag == "Speed")
+            {
+                //screen flash?
+                if (!currSpeeding)
+                {
+                    StartCoroutine(speeding());
+                }
+
+            }
         }
     }
     public void GetCenter(Vector3 direct)
@@ -76,17 +85,25 @@ public class bounceScript : MonoBehaviour
     }
     IEnumerator push(Vector3 direction, float force)
     {
+        GameHUD.S.FlashColor("Red");
+
         GetCenter(Vector3.up);
         float timePassed = 0;
         //rb.isKinematic = false;
         startTime = Time.time;
         while (timePassed < 0.7)
         {
+            if(timePassed > 0.4)
+            {
+                DetectCollisions();
+            }
+
             if (collided)
             {
                 Debug.Log("coll");
                 //rb.isKinematic=true;
-                yield break;
+                collided = false;
+                break;
             }
 
             float fracComplete = (Time.time - startTime) / journeyTime * speed;
@@ -94,7 +111,7 @@ public class bounceScript : MonoBehaviour
             transform.position += centerPoint;
             if (fracComplete >= 1)
             {
-                yield break;
+                break;
             }
 
             //transform.Translate(direction * force * Time.deltaTime, Space.World);
@@ -105,6 +122,8 @@ public class bounceScript : MonoBehaviour
         }
         //rb.isKinematic = true;
         controller.canMove = true;
+        controller.stunned = true;
+
     }
     IEnumerator speeding()
     {
@@ -131,6 +150,20 @@ public class bounceScript : MonoBehaviour
         if (collision.gameObject.tag != "enemy" && collision.gameObject.tag != "enemyFish")
         {
             collided = false;
+        }
+    }
+
+    void DetectCollisions()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, 1);
+        foreach(Collider col in cols)
+        {
+            if (col.gameObject.tag == "Terrain" || (col.gameObject.tag == "Trees" && !col.name.Contains("JunglePlant3")) || col.name.Contains("Sphere"))
+            {
+                Debug.Log(col.name);
+                collided = true;
+                break;
+            }
         }
     }
 }

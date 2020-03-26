@@ -43,7 +43,6 @@ public class newBounceScript : MonoBehaviour
 
             startPos = transform;
             endPos = target.transform;
-            GameHUD.S.FlashColor("Red");
             StartCoroutine(push(direction, force));
 
         }
@@ -56,7 +55,6 @@ public class newBounceScript : MonoBehaviour
             direction.Normalize();
             startPos = transform;
             endPos = target.transform;
-            GameHUD.S.FlashColor("Red");
             StartCoroutine(push(direction, force));
         }
     }
@@ -69,6 +67,8 @@ public class newBounceScript : MonoBehaviour
     }
     IEnumerator push(Vector3 direction, float force)
     {
+        GameHUD.S.FlashColor("Red");
+
         GetCenter(Vector3.up);
         float timePassed = 0;
         //rb.isKinematic = false;

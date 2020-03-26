@@ -555,6 +555,8 @@ public class ColorController : MonoBehaviour
     private void Start()
     {
         pattern = 0;
+
+        _paletteIndex = Global.colorPalette;
         
         _colorIndices2 = new int[2];
         _colorIndices3 = new int[3];

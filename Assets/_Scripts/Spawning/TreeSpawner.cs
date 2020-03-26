@@ -101,12 +101,34 @@ public class TreeSpawner : MonoBehaviour
                         }
                     }
 
-                    foreach (Collider c in Physics.OverlapSphere(treePos, 1f))
+                    foreach (Collider c in Physics.OverlapSphere(treePos, .5f))
                     {
                         if (c.name.Contains("Terrain"))
                         {
                             onTerrain = true;
                         }
+                    }
+
+                    if (tree.name.Contains("JunglePlant3"))
+                    {
+                        /*Transform sensor = tree.transform.GetChild(1);
+                        if (sensor.position.y < terrainScript.GetTerrainHeight(sensor.position.z, sensor.position.z) + 2)
+                        {
+                            onTerrain = false;
+                            break;
+                        }
+                        else
+                        {
+                            Collider[] cols = Physics.OverlapSphere(sensor.position, 3);
+                            foreach (Collider col in cols)
+                            {
+                                if (col.name.Contains("JunglePlant1") || col.name.Contains("Sphere"))
+                                {
+                                    onTerrain = false;
+                                    break;
+                                }
+                            }
+                        }*/
                     }
                 }
 

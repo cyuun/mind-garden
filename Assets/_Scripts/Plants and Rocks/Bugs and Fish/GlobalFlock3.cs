@@ -27,6 +27,8 @@ public class GlobalFlock3 : MonoBehaviour
             allBugs[i].GetComponent<bug3>()._flock = this;
 
         }
+        HandleGoalPos();
+
     }
 
     // Update is called once per frame

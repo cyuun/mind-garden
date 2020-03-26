@@ -27,6 +27,7 @@ public class GlobalFlock : MonoBehaviour
                 bugPrefab, pos, Quaternion.identity, this.transform);
             allBugs[i].GetComponent<bug>()._flock = this;
         }
+        HandleGoalPos();
     }
 
     // Update is called once per frame

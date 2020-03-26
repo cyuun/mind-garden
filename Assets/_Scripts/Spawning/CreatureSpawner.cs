@@ -8,7 +8,7 @@ public class CreatureSpawner : MonoBehaviour
     public bool useAsParent = false;
     public GameObject[] prefabs;
 
-    const int spawnRadiusMin = 15;
+    const int spawnRadiusMin = 30;
     [Range(16, 100)]
     public float spawnRadiusMax;
     [Range(1, 30)]
@@ -38,7 +38,7 @@ public class CreatureSpawner : MonoBehaviour
         for(int i = 0; i < spawnCount; i++)
         {
             GameObject creature = prefabs[Random.Range(0, prefabs.Length)];
-            Vector3 pos;
+            Vector3 pos = Vector3.zero;
             if (flying)
             {
                 float yValue = Random.insideUnitSphere.y;
@@ -48,8 +48,26 @@ public class CreatureSpawner : MonoBehaviour
             }
             else
             {
-                pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
-                pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + yOffset;
+                Collider[] cols;
+                bool collided = true;
+                while (collided)
+                {
+                    pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
+                    pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + yOffset;
+                    cols = Physics.OverlapSphere(pos, 1);
+                    foreach (Collider col in cols)
+                    {
+                        collided = false;
+                        if (col.name.Contains("Sphere") || col.gameObject.tag == "Pond")
+                        {
+                            pos = transform.position + (new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax));
+                            pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + yOffset;
+                            collided = true;
+                            break;
+                        }
+                    }
+
+                }
             }
             creature = Instantiate(creature, pos, Quaternion.Euler(new Vector3(0,Random.Range(0f,360f),0)), CREATURE_PARENT);
             if (creature.GetComponent<GlobalFlock>())

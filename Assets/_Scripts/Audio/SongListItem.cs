@@ -53,6 +53,7 @@ public class SongListItem : MonoBehaviour
         AudioClip inputSong;
         if (Path.GetExtension(inputSongPath) == ".mp3")
         {
+            
             byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(inputSongPath);
             AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
             inputSong = audioClip;

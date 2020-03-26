@@ -139,6 +139,7 @@ public class MenuController : MonoBehaviour
         if(Global.currentSongInfo != null)
         {
             Global.playingGame = true;
+            LevelSelect.S.QuickUpdate();
             SongLibrary.S.gameObject.SetActive(false);
             startButton.SetActive(false);
             loadScreen.SetActive(true);

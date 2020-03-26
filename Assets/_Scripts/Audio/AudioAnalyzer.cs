@@ -56,7 +56,6 @@ public class AudioAnalyzer : MonoBehaviour
         if (segments.Count > 0) //Implement Segment change functions here
         {
             if (SkyFractal.S) SkyFractal.S.ChangeOutline();
-            if (MainSpawner.S)  MainSpawner.S.ChangeSpawner();
         }
         prevTime = time;
         if (time >= audioSource.clip.length)
@@ -69,7 +68,7 @@ public class AudioAnalyzer : MonoBehaviour
     {
         ColorController.S.ChangeColors();
         magic.S.Stretch();
-        BPM = beat.bpm;
+        BPM = beat.bpm * Global.pitch;
     }
 
     void OnOnset(Onset onset)

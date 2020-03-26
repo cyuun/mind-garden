@@ -37,7 +37,7 @@ public static class Global
     public static float pitch { get { return _pitch; } set { _pitch = value; } }
     private static bool _biomeChosen = false;
     public static bool biomeChosen { get { return _biomeChosen; } set { _biomeChosen = value; } }
-    private static int _seed = 0;
+    private static int _seed = -1;
     public static int seed { get { return _seed; } set { _seed = value; } }
 
     public static bool CompareFloats(float f1, float f2, float tolerance)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class jungleEnemy : MonoBehaviour
 {
     public float musicMultiplier = 1.0f;
+    public Transform groundSensor;
     float musicTemp;
     Animator anim;
     bool secondAnim = false;

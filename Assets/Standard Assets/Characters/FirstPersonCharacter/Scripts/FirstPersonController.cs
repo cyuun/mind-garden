@@ -44,6 +44,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public bool canMove = true;
         public bool moving = false;
+        public bool stunned = false;
 
         // Use this for initialization
         private void Start()
@@ -119,8 +120,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                                m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-            m_MoveDir.x = desiredMove.x*speed;
-            m_MoveDir.z = desiredMove.z*speed;
+            m_MoveDir.x = 0;
+            m_MoveDir.z = 0;
+            if (!stunned)
+            {
+                m_MoveDir.x = desiredMove.x * speed;
+                m_MoveDir.z = desiredMove.z * speed;
+
+            }
 
 
             if (m_CharacterController.isGrounded)
@@ -137,8 +144,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             else
             {
-                m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
+                m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
             }
+            
+            if (stunned) { m_MoveDir.y = 0; stunned = false; transform.Translate(Vector3.up, Space.World); }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);

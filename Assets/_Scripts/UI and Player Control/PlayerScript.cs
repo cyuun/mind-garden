@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
 
     Transform water;
     bool splashing = false;
+    public bool spawned = false;
+    TerrainScript terrain;
 
     void Awake()
     {
@@ -20,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<FirstPersonController>();
+        StartCoroutine(SpawnTimer(1f));
+        terrain = AudioPeerRoot.S.terrainScript;
     }
 
     // Update is called once per frame
@@ -71,5 +75,12 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(.4f);
         if (this.water && controller.moving) StartCoroutine(SplishSplash(water));
         else splashing = false;
+    }
+
+    IEnumerator SpawnTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        spawned = true;
     }
 }
