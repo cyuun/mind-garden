@@ -45,7 +45,9 @@ public class TerrainScript : MonoBehaviour
     private MeshFilter _meshFilter;
     private MeshCollider _meshCollider;
     private Mesh _mesh;
+    [SerializeField]
     private Vector3[] _vertices;
+    [SerializeField]
     private int[] _triangles;
 
     private System.Random _rng;
@@ -241,19 +243,17 @@ public class TerrainScript : MonoBehaviour
         float xStep = GetXStep();                                     //the horizontal distance from one grid point to another within the same row
         float zStep = GetZStep();                                     //vertical      "       "   "    "    "    "   "       "     "    "  column
 
-        int v = 0, vPrevious = 0, c = 0;                              //v = number of vertices in the current row being filled
-        for (float z = -zMax/2; z <= zMax/2; z += zStep)              //vPrevious = num  "      "  "  previous...
-        {                                                             //c = number of rows that have been filled yet
-            if (v != 0)
+        int v = 0, r = 0;                                             //v = number of vertices in the current row being filled
+        for (float z = -zMax/2; z <= zMax/2; z += zStep)              //r = number of rows that have been filled yet
+        {                                               
+            if (v > 0)
             {
-                vPrevious = v;
-                v = 0;
-                c++;
+                r++;
             }
 
             for (float x = -xMax/2; x <= xMax/2; x += xStep)
             {
-                if (x < -xMax/2 + xStep/4 && c % 2 == 1)              //if we are at the beginning of our potential to create
+                if (x < -xMax/2 + xStep/4 && r % 2 == 1)              //if we are at the beginning of our potential to create
                 {                                                     //an odd indexed row (not necessarily the beginning of the row itself)
                     x -= xStep / 2;                                   //then shift the row back by a half step
                 }
@@ -261,33 +261,25 @@ public class TerrainScript : MonoBehaviour
                 if ((x * x) / (xMax * xMax) + (z * z) / (zMax * zMax) <= 0.1) //checking if the point is within the ellipse defined by the x and z maxes
                 {
                     tempVertices.Add(new Vector3(x, GetTerrainHeight(x, z), z));         //add new vertex
-                    v++;                                                      //and increase this row's vertex counter
+                    
+                    int vertexLeftIndex = GetIndexLeft(v, tempVertices, xStep, zStep);
+                    int vertexDownLeftIndex = GetIndexDownLeft(v, tempVertices, xStep, zStep);
+                    int vertexDownRightIndex = GetIndexDownRight(v, tempVertices, xStep, zStep);
 
-                    if (vPrevious > 0)
+                    if (vertexLeftIndex >= 0 && vertexDownLeftIndex >= 0)
                     {
-                        int vTotal = tempVertices.Count - 1;                  //the index of the last vertex added
-                        int rowOffsetL = CheckVerticesL(vTotal, vPrevious, 2, xStep, tempVertices);
-                        int rowOffsetR = CheckVerticesR(vTotal, vPrevious, 2, xStep, tempVertices);
-                        if (rowOffsetL > 0 && rowOffsetR > 0)                 //if both vertices from the previous line are good to go
-                        {                                                     //then add the "first" triangle
-                            tempTriangles.Add(vTotal - 0);              //by listing vertices in clockwise order
-                            tempTriangles.Add(vTotal - rowOffsetR + 1);
-                            tempTriangles.Add(vTotal - rowOffsetR);
-
-                            if (v > 1)                                       //if more than one vertex has been added this row
-                            {                                                //then add the "second" triangle of the vertex
-                                tempTriangles.Add(vTotal - 0);
-                                tempTriangles.Add(vTotal - rowOffsetL);
-                                tempTriangles.Add(vTotal - 1);
-                            }
-                        }
-                        else if (rowOffsetL > 0 && rowOffsetR == 0)          //if there's no vertex down one row and to the right
-                        {                                                    //then just add the "second" triangle
-                            tempTriangles.Add(vTotal - 0);
-                            tempTriangles.Add(vTotal - rowOffsetL);
-                            tempTriangles.Add(vTotal - 1);
-                        }
+                        tempTriangles.Add(v);
+                        tempTriangles.Add(vertexDownLeftIndex);
+                        tempTriangles.Add(vertexLeftIndex);
                     }
+                    if (vertexDownLeftIndex >= 0 && vertexDownRightIndex >= 0)
+                    {
+                        tempTriangles.Add(v);
+                        tempTriangles.Add(vertexDownRightIndex);
+                        tempTriangles.Add(vertexDownLeftIndex);
+                    }
+
+                    v++;
                 }
             }
         }
@@ -309,54 +301,50 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
 
-        _meshFilter.mesh = _mesh;
-        _meshCollider.sharedMesh = _mesh;
+        _meshFilter.mesh = GetColliderMesh();
+        _meshCollider.sharedMesh = GetColliderMesh();
     }
-
-    //CheckVerticesL returns 0 if there is no vertex down one row and to the left of the vertex at 'index'
-    //otherwise it returns the proper number of indices back the aforementioned vertex is.
-    private int CheckVerticesL(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
+    
+    private int GetIndexLeft(int index, List<Vector3> vertices, float xStep, float zStep)
     {
-        float x = vertices[index].x;
-
-        int returnOffset = 0;
-        for (int tempOffset = offset - correctionSearchRadius; tempOffset <= offset + correctionSearchRadius; tempOffset++)
+        for (int i = 0; i < vertices.Count; i++)
         {
-            if (tempOffset > 0 && index - tempOffset >= 0)
+            if (Global.CompareFloats(vertices[i].x, vertices[index].x - xStep, xStep / 4) && 
+                Global.CompareFloats(vertices[i].z, vertices[index].z, zStep / 4))
             {
-                float xCheck = vertices[index - tempOffset].x;
-
-                if (Global.CompareFloats(xCheck, x - xStep / 2, xStep / 4))
-                {
-                    returnOffset = tempOffset;
-                }
+                return i;
             }
         }
 
-        return returnOffset;
+        return -1;
     }
 
-    //CheckVerticesR returns 0 if there is no vertex down one row and to the right of the vertex at 'index'
-    //otherwise it returns the proper number of indices back the aforementioned vertex is.
-    private int CheckVerticesR(int index, int offset, int correctionSearchRadius, float xStep, List<Vector3> vertices)
+    private int GetIndexDownLeft(int index, List<Vector3> vertices, float xStep, float zStep)
     {
-        float x = vertices[index].x;
-
-        int returnOffset = 0;
-        for (int tempOffset = offset - correctionSearchRadius; tempOffset <= offset + correctionSearchRadius; tempOffset++)
+        for (int i = 0; i < vertices.Count; i++)
         {
-            if (tempOffset > 0 && index - tempOffset + 1 >= 0)
+            if (Global.CompareFloats(vertices[i].x, vertices[index].x - xStep / 2, xStep / 4) && 
+                Global.CompareFloats(vertices[i].z, vertices[index].z - zStep, zStep / 4))
             {
-                float xCheck = vertices[index - tempOffset + 1].x;
-
-                if (Global.CompareFloats(xCheck, x + xStep / 2, xStep / 4))
-                {
-                    returnOffset = tempOffset;
-                }
+                return i;
             }
         }
 
-        return returnOffset;
+        return -1;
+    }
+
+    private int GetIndexDownRight(int index, List<Vector3> vertices, float xStep, float zStep)
+    {
+        for (int i = 0; i < vertices.Count; i++)
+        {
+            if (Global.CompareFloats(vertices[i].x, vertices[index].x + xStep / 2, xStep / 4) && 
+                Global.CompareFloats(vertices[i].z, vertices[index].z - zStep, zStep / 4))
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     private float GetPerlinHeight(float x, float z)
@@ -520,6 +508,177 @@ public class TerrainScript : MonoBehaviour
     private Vector2 TexPxToWorldPos(Vector2 pos)
     {
         return new Vector2(pos.x * xMax / textureResolution - xMax / 2, pos.y * zMax / textureResolution - zMax / 2);
+    }
+
+    private Mesh GetColliderMesh()
+    {
+        Mesh colliderMesh = new Mesh();
+        
+        int origVertexCount = _vertices.Length;
+        Vector3[] vertices = new Vector3[origVertexCount * 2];
+        for (int i = 0; i < origVertexCount; i++)
+        {
+            vertices[i] = _vertices[i];
+            vertices[i + origVertexCount] = new Vector3(_vertices[i].x, _vertices[i].y - 20, _vertices[i].z);
+        }
+        
+        List<int> triangles = new List<int>();
+        int origTriangleCount = _triangles.Length;
+        for (int i = 0; i < origTriangleCount; i += 3)
+        {
+            triangles.Add(_triangles[i]);
+            triangles.Add(_triangles[i + 1]);
+            triangles.Add(_triangles[i + 2]);
+            
+            triangles.Add(_triangles[i + 2] + origVertexCount);
+            triangles.Add(_triangles[i + 1] + origVertexCount);
+            triangles.Add(_triangles[i] + origVertexCount);
+        }
+
+        float xStep = GetXStep();
+        float zStep = GetZStep();
+        for (int i = 0; i < origVertexCount; i++)
+        {
+            int[] surroundingVertices = GetSurroundingVertices(i, xStep, zStep);
+            int l0Norm = 0;
+            foreach (int vertexIndex in surroundingVertices)
+            {
+                if (vertexIndex >= 0)
+                {
+                    l0Norm++;
+                }
+            }
+            if (l0Norm < 6)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (surroundingVertices[j] < 0)
+                    {
+                        int vertexIndexCW = SearchEdgeVerticesCW(surroundingVertices, j);
+                        int vertexIndexCCW = SearchEdgeVerticesCCW(surroundingVertices, j);
+
+                        if (vertexIndexCW >= 0 && vertexIndexCCW >= 0)
+                        {
+                            triangles.Add(i);
+                            triangles.Add(vertexIndexCCW);
+                            triangles.Add(vertexIndexCCW + origVertexCount);
+                            
+                            triangles.Add(i);
+                            triangles.Add(vertexIndexCCW + origVertexCount);
+                            triangles.Add(i + origVertexCount);
+                            
+                            triangles.Add(i);
+                            triangles.Add(i + origVertexCount);
+                            triangles.Add(vertexIndexCW + origVertexCount);
+                            
+                            triangles.Add(i);
+                            triangles.Add(vertexIndexCW + origVertexCount);
+                            triangles.Add(vertexIndexCW);
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
+
+        colliderMesh.vertices = vertices;
+        colliderMesh.triangles = triangles.ToArray();
+        
+        colliderMesh.RecalculateNormals();
+        colliderMesh.RecalculateBounds();
+        colliderMesh.RecalculateTangents();
+
+        return colliderMesh;
+    }
+
+    private int[] GetSurroundingVertices(int index, float xStep, float zStep)
+    {
+        float searchTolerance = Mathf.Max(xStep, zStep) * 0.25f;
+        int[] vertexIndices = new int[6];
+        for (int i = 0; i < 6; i++)
+        {
+            vertexIndices[i] = -1;
+        }
+
+        float targetX = _vertices[index].x;
+        float targetZ = _vertices[index].z;
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            if (Global.CompareFloats(_vertices[i].x, targetX - xStep / 2, searchTolerance) &&
+                Global.CompareFloats(_vertices[i].z, targetZ + zStep, searchTolerance))
+            {
+                vertexIndices[0] = i;
+            }
+            if (Global.CompareFloats(_vertices[i].x, targetX + xStep / 2, searchTolerance) &&
+                Global.CompareFloats(_vertices[i].z, targetZ + zStep, searchTolerance))
+            {
+                vertexIndices[1] = i;
+            }
+            if (Global.CompareFloats(_vertices[i].x, targetX + xStep, searchTolerance) &&
+                Global.CompareFloats(_vertices[i].z, targetZ, searchTolerance))
+            {
+                vertexIndices[2] = i;
+            }
+            if (Global.CompareFloats(_vertices[i].x, targetX + xStep / 2, searchTolerance) &&
+                Global.CompareFloats(_vertices[i].z, targetZ - zStep, searchTolerance))
+            {
+                vertexIndices[3] = i;
+            }
+            if (Global.CompareFloats(_vertices[i].x, targetX - xStep / 2, searchTolerance) &&
+                Global.CompareFloats(_vertices[i].z, targetZ - zStep, searchTolerance))
+            {
+                vertexIndices[4] = i;
+            }
+            if (Global.CompareFloats(_vertices[i].x, targetX - xStep, searchTolerance) &&
+                Global.CompareFloats(_vertices[i].z, targetZ, searchTolerance))
+            {
+                vertexIndices[5] = i;
+            }
+        }
+
+        return vertexIndices;
+    }
+
+    private int SearchEdgeVerticesCW(int[] edgeVertexIndices, int index)
+    {
+        for (int i = NextIndexCW(index, 6); i != index; i = NextIndexCW(i, 6))
+        {
+            if (edgeVertexIndices[i] >= 0)
+            {
+                return edgeVertexIndices[i];
+            }
+        }
+
+        return -1;
+    }
+    
+    private int SearchEdgeVerticesCCW(int[] edgeVertexIndices, int index)
+    {
+        for (int i = NextIndexCCW(index, 6); i != index; i = NextIndexCCW(i, 6))
+        {
+            if (edgeVertexIndices[i] >= 0)
+            {
+                return edgeVertexIndices[i];
+            }
+        }
+
+        return -1;
+    }
+
+    private int NextIndexCW(int index, int arraySize)
+    {
+        return (index + 1) % arraySize;
+    }
+    
+    private int NextIndexCCW(int index, int arraySize)
+    {
+        if (index > 0)
+        {
+            return index - 1;
+        }
+        
+        return arraySize - 1;
     }
 
     private void ClampVariables()
