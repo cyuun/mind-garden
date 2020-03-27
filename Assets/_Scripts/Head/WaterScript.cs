@@ -7,8 +7,20 @@ public class WaterScript : MonoBehaviour
     public GameObject waterSplashPrefab;
     public static GameObject ring;
 
+    [SerializeField]
+    public static List<Transform> orbPositions = new List<Transform>();
+    public static int orbsFound = 0;
+
     void Start()
     {
+        Transform orbPositions = transform.Find("OrbPositions");
+        if (orbPositions)
+        {
+            foreach(Transform child in orbPositions)
+            {
+                WaterScript.orbPositions.Add(child.transform);
+            }
+        }
         StartCoroutine(DelayMagic(1f));
     }
 

@@ -69,7 +69,7 @@ AudioSource:
   m_GameObject: {fileID: 2134540744059496990}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3541405691111726876, guid: b641cd33616fe9e46bf3e35d93a04ce9,
+  OutputAudioMixerGroup: {fileID: 8036619216545084814, guid: b641cd33616fe9e46bf3e35d93a04ce9,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 485666167617106354, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 75
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 485666167617106354, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 485666167617106354, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75
+      value: 56.8
       objectReference: {fileID: 0}
     - target: {fileID: 485666167617106354, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
@@ -271,31 +271,32 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 24300002, guid: b641cd33616fe9e46bf3e35d93a04ce9,
+        type: 2}
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a05a66ec330a5c94fbe315cf36e9aac7, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: DopplerLevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: MaxDistance
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: rolloffMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
@@ -305,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 979371602852233069, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3619173929816466164, guid: d7584473a968ba643981b0304aa64ef1,
         type: 3}
@@ -337,31 +338,32 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 24300002, guid: b641cd33616fe9e46bf3e35d93a04ce9,
+        type: 2}
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 52c99416d0cccf34a85995b4fd98c09c, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: DopplerLevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: MaxDistance
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: rolloffMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
@@ -371,12 +373,12 @@ PrefabInstance:
     - target: {fileID: 5074417125809634390, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5566995576595690121, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -75
+      value: -42.3
       objectReference: {fileID: 0}
     - target: {fileID: 5566995576595690121, guid: c192687e6134a284da112a810107ecef,
         type: 3}
@@ -386,7 +388,7 @@ PrefabInstance:
     - target: {fileID: 5566995576595690121, guid: c192687e6134a284da112a810107ecef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75
+      value: 78.7
       objectReference: {fileID: 0}
     - target: {fileID: 5566995576595690121, guid: c192687e6134a284da112a810107ecef,
         type: 3}
@@ -463,31 +465,32 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 24300002, guid: b641cd33616fe9e46bf3e35d93a04ce9,
+        type: 2}
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: c631c612fa66fe946b9411210a21c1de, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: DopplerLevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: MaxDistance
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: rolloffMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
@@ -497,7 +500,7 @@ PrefabInstance:
     - target: {fileID: 1530459134141861288, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2168285306521224051, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
@@ -507,7 +510,7 @@ PrefabInstance:
     - target: {fileID: 2168285306521224055, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2168285306521224055, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
@@ -517,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 2168285306521224055, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -125
+      value: -97.1
       objectReference: {fileID: 0}
     - target: {fileID: 2168285306521224055, guid: 027c4c38fefe48a45b15a4fb146c87c2,
         type: 3}
@@ -595,6 +598,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 343930581138773673, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
+        type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022962, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_Name
@@ -613,7 +621,7 @@ PrefabInstance:
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1148383323363022966, guid: 8ddf5f825d5b7ce41a52362eaee11ff1,
         type: 3}

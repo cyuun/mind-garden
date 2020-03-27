@@ -100,7 +100,6 @@ public class bounceScript : MonoBehaviour
 
             if (collided)
             {
-                Debug.Log("coll");
                 //rb.isKinematic=true;
                 collided = false;
                 break;
@@ -160,7 +159,6 @@ public class bounceScript : MonoBehaviour
         {
             if (col.gameObject.tag == "Terrain" || (col.gameObject.tag == "Trees" && !col.name.Contains("JunglePlant3")) || col.name.Contains("Sphere"))
             {
-                Debug.Log(col.name);
                 collided = true;
                 break;
             }

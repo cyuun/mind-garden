@@ -17,6 +17,10 @@ public class LevelSelect : MonoBehaviour
     public InputField inputSeed;
     public Color activeTextColor;
 
+    public Material[] skyboxMats;
+
+    public GameObject terrain;
+
     private void Awake()
     {
         S = this;
@@ -98,18 +102,23 @@ public class LevelSelect : MonoBehaviour
         {
             case 0: //Random
                 ChooseRandom();
+                SetSkybox(4);
                 break;
             case 1: //Forest
                 ChooseForest();
+                SetSkybox(0);
                 break;
             case 2: //Ocean
                 ChooseOcean();
+                SetSkybox(1);
                 break;
             case 3: //Jungle
                 ChooseJungle();
+                SetSkybox(2);
                 break;
             case 4: //Desert
                 ChooseDesert();
+                SetSkybox(3);
                 break;
         }
     }
@@ -148,6 +157,28 @@ public class LevelSelect : MonoBehaviour
         {
             palette--;
             Global.colorPalette = palette;
+        }
+    }
+
+    public void SetSkybox(int selectedBiome)
+    {
+        switch (selectedBiome)
+        {
+            case 0:
+                Camera.main.GetComponent<Skybox>().material = skyboxMats[0];
+                break;
+            case 1:
+                Camera.main.GetComponent<Skybox>().material = skyboxMats[1];
+                break;
+            case 2:
+                Camera.main.GetComponent<Skybox>().material = skyboxMats[2];
+                break;
+            case 3:
+                Camera.main.GetComponent<Skybox>().material = skyboxMats[3];
+                break;
+            case 4:
+                Camera.main.GetComponent<Skybox>().material = skyboxMats[4];
+                break;
         }
     }
 

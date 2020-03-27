@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: bc068a57a9a498c4f8e80c70f13c516a, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 91e0c1dbcc6fa084bb3a6d24d2c5f7fa, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1446,6 +1446,12 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   inputSeed: {fileID: 1019603081}
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  skyboxMats:
+  - {fileID: 2100000, guid: adbbeeb62e7db09448388c61aa1f5712, type: 2}
+  - {fileID: 2100000, guid: bc068a57a9a498c4f8e80c70f13c516a, type: 2}
+  - {fileID: 2100000, guid: e97d5491054ae9741a0c4a887a714f86, type: 2}
+  - {fileID: 2100000, guid: 91e0c1dbcc6fa084bb3a6d24d2c5f7fa, type: 2}
+  terrain: {fileID: 423491854}
 --- !u!225 &178368881
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2430,6 +2436,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421085074}
   m_CullTransparentMesh: 0
+--- !u!1 &423491854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2170387516477454673, guid: 0de2b5b20f676bd4bbdb5517655b4d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 103726457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &425320044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8827,17 +8839,17 @@ MonoBehaviour:
     m_Options:
     - m_Text: Random
       m_Image: {fileID: 0}
-    - m_Text: 1
+    - m_Text: Red
       m_Image: {fileID: 0}
-    - m_Text: 2
+    - m_Text: Blue
       m_Image: {fileID: 0}
-    - m_Text: 3
+    - m_Text: Dark
       m_Image: {fileID: 0}
-    - m_Text: 4
+    - m_Text: Green
       m_Image: {fileID: 0}
-    - m_Text: 5
+    - m_Text: Pastel
       m_Image: {fileID: 0}
-    - m_Text: 6
+    - m_Text: Contrast
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

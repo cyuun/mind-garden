@@ -32,6 +32,7 @@ public class OrbScript : MonoBehaviour
     public float rotationSpeed;
     public float y_offset;
     public float speed = 10f;
+    public Transform pondSpot;
 
     //Amplitude Flash
     public Gradient _colorGrad;
@@ -213,11 +214,12 @@ public class OrbScript : MonoBehaviour
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
             ColorController.S.ChangePattern();
-            target = other.transform;
+
+            target = WaterScript.orbPositions[WaterScript.orbsFound];
+            WaterScript.orbsFound++;
 
             if (!Global.spleeterMode)
             {
-                print("Spleeter:" + Global.callSpleeter);
                 StartCoroutine(LowerVolume());
             }
             
