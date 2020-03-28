@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    public bool dashing = false;
+    public static Dash S;
+    
+    public bool dashing = true;
 
     public float maxDistance = 5;
     public float speed = 100;
@@ -12,13 +14,23 @@ public class Dash : MonoBehaviour
     private float _distanceCovered;
     private GameObject _camera;
 
-    void Start()
+    private TerrainScript _terrainScript;
+
+    public void SetTerrain(TerrainScript terrainScript)
     {
+        _terrainScript = terrainScript;
+        dashing = false;
+    }
+    
+    private void Start()
+    {
+        S = this;
+        
         _distanceCovered = 0;
         _camera = transform.GetChild(0).gameObject;
     }
     
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing)
         {
@@ -34,6 +46,12 @@ public class Dash : MonoBehaviour
         {
             Vector3 origPos = transform.position;
             transform.position = origPos + speed * Time.deltaTime * direction;
+
+            float terrainHeight = _terrainScript.GetTerrainHeight(transform.position.x, transform.position.z) + 0.1f;
+            if (transform.position.y < terrainHeight)
+            {
+                transform.position = new Vector3(transform.position.x, terrainHeight + 0.1f, transform.position.z);
+            } 
 
             _distanceCovered += Vector3.Magnitude(transform.position - origPos);
 
