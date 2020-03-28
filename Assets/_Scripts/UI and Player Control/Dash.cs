@@ -6,21 +6,21 @@ public class Dash : MonoBehaviour
 {
     public static Dash S;
     
-    public bool dashing = true;
-
-    public float maxDistance = 5;
+    public float distance = 5;
     public float speed = 100;
+    public float cooldown = 2;
 
     private float _distanceCovered;
     private GameObject _camera;
     private bool _collided;
+    private bool _canDash;
 
     private TerrainScript _terrainScript;
 
     public void SetTerrain(TerrainScript terrainScript)
     {
         _terrainScript = terrainScript;
-        dashing = false;
+        _canDash = true;
     }
     
     private void Start()
@@ -29,25 +29,27 @@ public class Dash : MonoBehaviour
         
         _distanceCovered = 0;
         _camera = transform.GetChild(0).gameObject;
+
+        _canDash = false;
+        _collided = false;
     }
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _canDash)
         {
-            dashing = true;
+            StartCoroutine(CooldownDash());
             StartCoroutine(UpdateDash(_camera.transform.forward));
         }
     }
 
     private IEnumerator UpdateDash(Vector3 direction)
     {
-        ResetDash();
-        while (_distanceCovered < maxDistance)
+        _distanceCovered = 0;
+        while (_distanceCovered < distance)
         {
             if (_collided)
             {
-                dashing = false;
                 yield break;
             }
             
@@ -64,7 +66,6 @@ public class Dash : MonoBehaviour
                 Mathf.Pow(transform.position.z, 2) / Mathf.Pow(_terrainScript.zMax, 2) > 0.09f)
             {
                 transform.position = origPos;
-                dashing = false;
                 yield break;
             }
 
@@ -72,13 +73,13 @@ public class Dash : MonoBehaviour
 
             yield return null;
         }
-
-        dashing = false;
     }
 
-    private void ResetDash()
+    private IEnumerator CooldownDash()
     {
-        _distanceCovered = 0;
+        _canDash = false;
+        yield return new WaitForSeconds(cooldown);
+        _canDash = true;
     }
     
     private void OnCollisionEnter(Collision collision)
