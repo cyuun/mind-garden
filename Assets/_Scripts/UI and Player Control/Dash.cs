@@ -13,6 +13,7 @@ public class Dash : MonoBehaviour
 
     private float _distanceCovered;
     private GameObject _camera;
+    private bool _collided;
 
     private TerrainScript _terrainScript;
 
@@ -44,6 +45,12 @@ public class Dash : MonoBehaviour
         ResetDash();
         while (_distanceCovered < maxDistance)
         {
+            if (_collided)
+            {
+                dashing = false;
+                yield break;
+            }
+            
             Vector3 origPos = transform.position;
             transform.position = origPos + speed * Time.deltaTime * direction;
 
@@ -51,7 +58,15 @@ public class Dash : MonoBehaviour
             if (transform.position.y < terrainHeight)
             {
                 transform.position = new Vector3(transform.position.x, terrainHeight + 0.1f, transform.position.z);
-            } 
+            }
+
+            if (Mathf.Pow(transform.position.x, 2) / Mathf.Pow(_terrainScript.xMax, 2) +
+                Mathf.Pow(transform.position.z, 2) / Mathf.Pow(_terrainScript.zMax, 2) > 0.09f)
+            {
+                transform.position = origPos;
+                dashing = false;
+                yield break;
+            }
 
             _distanceCovered += Vector3.Magnitude(transform.position - origPos);
 
@@ -64,5 +79,21 @@ public class Dash : MonoBehaviour
     private void ResetDash()
     {
         _distanceCovered = 0;
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Terrain"))
+        {
+            _collided = true;
+        }
+        
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Terrain"))
+        {
+            _collided = false;
+        }
     }
 }
