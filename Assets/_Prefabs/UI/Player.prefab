@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1665871115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780916304835451776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb762b45ffca4434689ed87ca9bad682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &3329661160699361408
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27,6 +39,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+--- !u!114 &330618292610013440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780916304835451778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60506e9506a31fd0a19f317eb30612d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashing: 0
+  maxDistance: 5
+  speed: 60
 --- !u!114 &4364250994812930550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,19 +84,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e85c311ad4443458497a15f0e49f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   controller: {fileID: 0}
---- !u!114 &1665871115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6780916304835451776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb762b45ffca4434689ed87ca9bad682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  startPos: {fileID: 0}
+  endPos: {fileID: 0}
+  journeyTime: 300
+  speed: 20
+  speedTime: 3
 --- !u!1001 &6780916304835419426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,6 +193,14 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_HeadBob.VerticalBobRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_IsWalking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_WalkSpeed
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 405760232481919126, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}

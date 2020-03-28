@@ -301,7 +301,7 @@ public class TerrainScript : MonoBehaviour
         _mesh.RecalculateBounds();
         _mesh.RecalculateTangents();
 
-        _meshFilter.mesh = GetColliderMesh();
+        _meshFilter.mesh = _mesh;
         _meshCollider.sharedMesh = GetColliderMesh();
     }
     
