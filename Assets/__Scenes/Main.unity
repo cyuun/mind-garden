@@ -4186,7 +4186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &873767932501794549
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4763,7 +4763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &873767933505346408
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4908,7 +4908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return The Music Orbs To The Pond !
+  m_Text: Return the 4 Music Orbs to the Pond
 --- !u!222 &873767933683633469
 CanvasRenderer:
   m_ObjectHideFlags: 0

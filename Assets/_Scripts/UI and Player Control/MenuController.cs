@@ -481,9 +481,10 @@ public class MenuController : MonoBehaviour
                     File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
 
                 }
-                AddSong(Global.currentSongInfo, false);
+
 
                 Global.currentSongInfo = SpleeterProcess.S.LoadSong(songPath, inputSong);
+                AddSong(Global.currentSongInfo, false);
                 backgroundMusic.Play();
 
             }

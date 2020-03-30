@@ -95,7 +95,7 @@ public class bounceScript : MonoBehaviour
 
         while (!collided)
         {
-            if (timePassed > 0.4)
+            if (timePassed > 0.1f)
             {
                 DetectCollisions();
             }
