@@ -6,7 +6,10 @@ using RhythmTool;
 
 public class AudioAnalyzer : MonoBehaviour
 {
+    public static AudioAnalyzer S;
     public static float BPM = 0f;
+
+    public bool _active = true;
 
     public RhythmData rhythmData;
     public RhythmAnalyzer analyzer;
@@ -27,13 +30,14 @@ public class AudioAnalyzer : MonoBehaviour
         segments = new List<Value>();
         //Get song from spleeter
         if (Global.currentSongInfo != null) audioSource.clip = Global.currentSongInfo.inputSong;
-        else audioSource.clip = AudioPeerRoot.S.defaultSong;
+        else if(AudioPeerRoot.S) audioSource.clip = AudioPeerRoot.S.defaultSong;
         audioSource.Play();
 
     }
 
     void Start()
     {
+        S = this;
 
         songPlayer = audioSource.GetComponent<RhythmPlayer>();
         eventProvider.Register<Beat>(OnBeat);
@@ -47,28 +51,33 @@ public class AudioAnalyzer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float time = audioSource.time;
-        beats.Clear();
-        onsets.Clear();
-        segments.Clear();
-        rhythmData.GetFeatures<Beat>(beats, prevTime, time);
-        segmenter.GetFeatures(segments, prevTime, time);
-        if (segments.Count > 0) //Implement Segment change functions here
+        if (_active)
         {
-            if (SkyFractal.S) SkyFractal.S.ChangeOutline();
-        }
-        prevTime = time;
-        if (time >= audioSource.clip.length)
-        {
-            EndGame();
+            float time = audioSource.time;
+            beats.Clear();
+            onsets.Clear();
+            segments.Clear();
+            rhythmData.GetFeatures<Beat>(beats, prevTime, time);
+            segmenter.GetFeatures(segments, prevTime, time);
+            if (segments.Count > 0) //Implement Segment change functions here
+            {
+                if (SkyFractal.S) SkyFractal.S.ChangeOutline();
+            }
+            prevTime = time;
+            if (time >= audioSource.clip.length)
+            {
+                EndGame();
+            }
+
         }
     }
 
     void OnBeat(Beat beat)
     {
-        ColorController.S.ChangeColors();
-        magic.S.Stretch();
+        if(ColorController.S) ColorController.S.ChangeColors();
+        if(magic.S) magic.S.Stretch();
         BPM = beat.bpm * Global.pitch;
+        Global.bpm = BPM;
     }
 
     void OnOnset(Onset onset)
@@ -105,6 +114,14 @@ public class AudioAnalyzer : MonoBehaviour
             BPM /= allBeats.Count;
         }
         return BPM;
+    }
+
+    public void AnalyzeClip(AudioClip clip)
+    {
+        rhythmData = analyzer.Analyze(audioSource.clip);
+        songPlayer.rhythmData = rhythmData;
+        segmenter = rhythmData.GetTrack<Value>("Segments");
+
     }
 
     void EndGame()

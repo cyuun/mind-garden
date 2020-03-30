@@ -28,6 +28,7 @@ public class MenuController : MonoBehaviour
     public GameObject loadScreen;
     public GameObject startButton;
     public AudioSource backgroundMusic;
+    public AudioSource silentMusic;
 
 
     void Awake()
@@ -108,6 +109,10 @@ public class MenuController : MonoBehaviour
         }
         newSong.GetComponent<Text>().text = spleeterIcon + info.songName;
         newSong.GetComponent<SongListItem>().songInfo = info;
+
+        silentMusic.clip = info.inputSong;
+        silentMusic.Play();
+        AudioAnalyzer.S.AnalyzeClip(info.inputSong);
     }
 
     public void ExploreFiles()

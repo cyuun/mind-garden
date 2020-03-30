@@ -37,6 +37,10 @@ public class SongListItem : MonoBehaviour
             MenuController.S.backgroundMusic.clip = songInfo.inputSong;
             MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             MenuController.S.backgroundMusic.Play();
+
+            MenuController.S.silentMusic.clip = songInfo.inputSong;
+            MenuController.S.silentMusic.Play();
+            AudioAnalyzer.S.AnalyzeClip(songInfo.inputSong);
             currentSongPlaying = this;
         }
         else

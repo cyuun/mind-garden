@@ -37,7 +37,7 @@ public class bounceScript : MonoBehaviour
     {
         if (player.spawned)
         {
-            float force = 7f;
+            float force = 15f;
 
             if (other.tag == "enemy" && grounded)
             {
@@ -50,7 +50,7 @@ public class bounceScript : MonoBehaviour
 
                 startPos = transform;
                 endPos = target.transform;
-                StartCoroutine(push(direction, force));
+                StartCoroutine(Push(direction, force));
 
             }
             else if (other.tag == "enemyFish")
@@ -63,7 +63,7 @@ public class bounceScript : MonoBehaviour
 
                 startPos = transform;
                 endPos = target.transform;
-                StartCoroutine(push(direction, force));
+                StartCoroutine(Push(direction, force));
             }
             else if (other.tag == "Speed")
             {
@@ -83,6 +83,49 @@ public class bounceScript : MonoBehaviour
         startRelCenter = startPos.position - centerPoint;
         endRelCenter = endPos.position - centerPoint;
     }
+
+    IEnumerator Push(Vector3 direction, float force)
+    {
+        GameHUD.S.FlashColor("Red");
+
+        float dz = -3;
+        float dy = direction.y * force;
+        Vector3 move = new Vector3(0, dy, dz);
+        float timePassed = 0;
+
+        while (!collided)
+        {
+            if (timePassed > 0.4)
+            {
+                DetectCollisions();
+            }
+
+            if (collided)
+            {
+                //rb.isKinematic=true;
+                collided = false;
+                break;
+            }
+
+            move = new Vector3(0, dy, dz);
+            transform.Translate(move * Time.deltaTime);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                controller.canMove = true;
+
+                yield break;
+            }
+
+            timePassed += Time.deltaTime;
+            dy -= .98f;
+            yield return null;
+        }
+        controller.canMove = true;
+        controller.stunned = true;
+
+    }
+
     IEnumerator push(Vector3 direction, float force)
     {
         GameHUD.S.FlashColor("Red");

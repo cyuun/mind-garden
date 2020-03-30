@@ -15,6 +15,7 @@ public class LevelSelect : MonoBehaviour
     bool showing;
     Button activeLevelButton;
     public InputField inputSeed;
+    public Toggle lerpToggle;
     public Color activeTextColor;
 
     public Material[] skyboxMats;
@@ -28,6 +29,7 @@ public class LevelSelect : MonoBehaviour
 
     void Start()
     {
+        QuickUpdate();
         mainCanvas = GetComponent<CanvasGroup>();
         mainCanvas.alpha = 0;
         /*biomeOptions.alpha = 0;
@@ -102,23 +104,23 @@ public class LevelSelect : MonoBehaviour
         {
             case 0: //Random
                 ChooseRandom();
-                SetSkybox(4);
+                SetSkybox(0);
                 break;
             case 1: //Forest
                 ChooseForest();
-                SetSkybox(0);
+                SetSkybox(1);
                 break;
             case 2: //Ocean
                 ChooseOcean();
-                SetSkybox(1);
+                SetSkybox(2);
                 break;
             case 3: //Jungle
                 ChooseJungle();
-                SetSkybox(2);
+                SetSkybox(3);
                 break;
             case 4: //Desert
                 ChooseDesert();
-                SetSkybox(3);
+                SetSkybox(4);
                 break;
         }
     }
@@ -160,6 +162,11 @@ public class LevelSelect : MonoBehaviour
         }
     }
 
+    public void SetLerp(bool lerp)
+    {
+        Global.lerp = lerp;
+    }
+
     public void SetSkybox(int selectedBiome)
     {
         switch (selectedBiome)
@@ -187,5 +194,6 @@ public class LevelSelect : MonoBehaviour
         SetBiome(biomeOptions.value);
         SetColors(colorOptions.value);
         SetSeed();
+        SetLerp(lerpToggle.isOn);
     }
 }

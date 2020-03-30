@@ -71,7 +71,13 @@ public class TreeSpawner : MonoBehaviour
 
                     treePos = GetTreePos(treePos);
                     treePos.y = terrainScript.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-                    if (terrainScript.GetSteepestSlope(treePos.x, treePos.z, 50) > maxSlope)
+
+                    if (tree.name.Contains("JunglePlant3") && terrainScript.GetSteepestSlope(treePos.x, treePos.z, 64) > 20)
+                    {
+                        tooSteep = true;
+                        break;
+                    }
+                    else if (terrainScript.GetSteepestSlope(treePos.x, treePos.z, 64) > maxSlope)
                     {
                         tooSteep = true;
                         break;
@@ -109,27 +115,6 @@ public class TreeSpawner : MonoBehaviour
                         }
                     }
 
-                    if (tree.name.Contains("JunglePlant3"))
-                    {
-                        /*Transform sensor = tree.transform.GetChild(1);
-                        if (sensor.position.y < terrainScript.GetTerrainHeight(sensor.position.z, sensor.position.z) + 2)
-                        {
-                            onTerrain = false;
-                            break;
-                        }
-                        else
-                        {
-                            Collider[] cols = Physics.OverlapSphere(sensor.position, 3);
-                            foreach (Collider col in cols)
-                            {
-                                if (col.name.Contains("JunglePlant1") || col.name.Contains("Sphere"))
-                                {
-                                    onTerrain = false;
-                                    break;
-                                }
-                            }
-                        }*/
-                    }
                 }
 
                 //Instantiate and assign script info
@@ -247,7 +232,6 @@ public class TreeSpawner : MonoBehaviour
                 }
             }
         }
-
     }
 
     public Vector3 GetTreePos(Vector3 startPos)
