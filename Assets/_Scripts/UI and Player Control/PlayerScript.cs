@@ -12,9 +12,13 @@ public class PlayerScript : MonoBehaviour
     Transform water;
     bool splashing = false;
 
+    private Vector3 _respawnLocation = Vector3.zero;
+
     void Awake()
     {
         S = this;
+
+        _respawnLocation = transform.position;
     }
 
     private void Start()
@@ -48,6 +52,10 @@ public class PlayerScript : MonoBehaviour
                 water = other.transform;
                 StartCoroutine(SplishSplash(water));
                 break;
+            
+            case "Respawn":
+                StartCoroutine(Respawn());
+                break;
 
         }
     }
@@ -71,5 +79,11 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(.4f);
         if (this.water && controller.moving) StartCoroutine(SplishSplash(water));
         else splashing = false;
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1);
+        transform.position = _respawnLocation;
     }
 }
