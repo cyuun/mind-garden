@@ -189,6 +189,11 @@ public class LevelSelect : MonoBehaviour
         }
     }
 
+    public void SetTitle(string songName)
+    {
+        startBackButtons.transform.Find("SongTitle").GetComponent<Text>().text = songName;
+    }
+
     public void QuickUpdate()
     {
         SetBiome(biomeOptions.value);

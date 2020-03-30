@@ -10,6 +10,7 @@ public class OrbScript : MonoBehaviour
     public static bool biomeChosen = false;
     public static GameObject magic;
     public static GameObject lightRing;
+    public static int orbsFound = 0;
 
     AudioPeer audioPeer;
     bool following = false;
@@ -209,6 +210,7 @@ public class OrbScript : MonoBehaviour
         if (other.tag == "Pond" && _interactable)
         {
             found = true;
+            orbsFound++;
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
@@ -300,12 +302,15 @@ public class OrbScript : MonoBehaviour
 
     IEnumerator LowerVolume()
     {
-        while (audioTrack.volume > .2f)
+        while (audioTrack.volume > .25f)
         {
             audioTrack.volume -= Time.deltaTime;
             yield return null;
         }
-
+        if(orbsFound == 4)
+        {
+            mixer.SetFloat("songVol", 1.1f);
+        }
     }
 
     IEnumerator RaiseVolume(float dB)

@@ -28,8 +28,8 @@ public class CameraScreenshot : MonoBehaviour
             takeScreenshot = false;
             RenderTexture renderTexture = myCamera.targetTexture;
 
-            Texture2D renderResult = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
-            Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
+            Texture2D renderResult = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+            Rect rect = new Rect(0, 0, Screen.width, Screen.height);
             renderResult.ReadPixels(rect, 0, 0);
 
             if(!Directory.Exists(Application.persistentDataPath + "/Screenshots/"))

@@ -41,6 +41,8 @@ public class SongListItem : MonoBehaviour
             MenuController.S.silentMusic.clip = songInfo.inputSong;
             MenuController.S.silentMusic.Play();
             AudioAnalyzer.S.AnalyzeClip(songInfo.inputSong);
+
+            LevelSelect.S.SetTitle(songInfo.inputSong.name);
             currentSongPlaying = this;
         }
         else
