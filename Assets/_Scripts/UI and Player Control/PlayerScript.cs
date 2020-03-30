@@ -83,6 +83,7 @@ public class PlayerScript : MonoBehaviour
 
     private IEnumerator Respawn()
     {
+        GameHUD.S.RespawnFade();
         yield return new WaitForSeconds(1);
         transform.position = _respawnLocation;
     }
