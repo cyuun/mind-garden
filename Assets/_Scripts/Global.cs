@@ -43,6 +43,8 @@ public static class Global
     public static bool lerp { get { return _lerp; } set { _lerp = value; } }
     private static float _bpm = 0;
     public static float bpm { get { return _bpm; } set { _bpm = value; } }
+    private static int _grassLevel = 2;
+    public static int grassLevel { get { return _grassLevel; } set { _grassLevel = Mathf.Clamp(value, 0, 2); } }
 
     public static bool CompareFloats(float f1, float f2, float tolerance)
     {

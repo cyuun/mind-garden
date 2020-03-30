@@ -207,6 +207,37 @@ MonoBehaviour:
   paintRadius: 13
   brushHardness: 0.17
   paintColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!64 &1547624034
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921367927464601560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6559932801383998556, guid: 3feb252682f69244c8311df4cde68e4a, type: 3}
+--- !u!114 &-1767408691125182702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921367927464601560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aeab3cbd5815b291b30bf42a2e53723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchTerrainHeight: 1
+  rotationSpeed: 300
+  terrain: {fileID: 0}
+  terrainScript: {fileID: 0}
+  grassController: {fileID: 0}
 --- !u!1 &2526739283006976915
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,37 +312,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!64 &1547624034
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7921367927464601560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6559932801383998556, guid: 3feb252682f69244c8311df4cde68e4a, type: 3}
---- !u!114 &-1767408691125182702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7921367927464601560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aeab3cbd5815b291b30bf42a2e53723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  matchTerrainHeight: 1
-  rotationSpeed: 300
-  terrain: {fileID: 0}
-  terrainScript: {fileID: 0}
-  grassController: {fileID: 0}
 --- !u!1 &8861611206362321821
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38971bfe673e8cc88923a8c22f2eea78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassPatchSize: 0.37
+  grassPatchSize: 0.4
   grassNoiseScale: 17.2
   terrainScript: {fileID: 0}
   grassPrefab: {fileID: 2346473743331901792, guid: 43f8ee865758a1908af6f672bd28decc,
@@ -557,15 +557,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3feb252682f69244c8311df4cde68e4a, type: 3}
---- !u!1 &7921367927464601560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 3feb252682f69244c8311df4cde68e4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2220194623697747665}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6608192365148886475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3feb252682f69244c8311df4cde68e4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2220194623697747665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7921367927464601560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 3feb252682f69244c8311df4cde68e4a,
     type: 3}
   m_PrefabInstance: {fileID: 2220194623697747665}
   m_PrefabAsset: {fileID: 0}

@@ -42,6 +42,20 @@ public class GrassController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(currentRotation.x, currentRotation.y - (180 - eulerAngles.y), currentRotation.z));
     }
 
+    private void Start()
+    {
+        switch (Global.grassLevel)
+        {
+            case 0:
+                grassPatchSize = 0;
+                break;
+            
+            case 1:
+                grassPatchSize *= 0.8f;
+                break;
+        }
+    }
+
     private Vector3[] CullVertices(Vector3[] vertices)
     {
         List<Vector3> newVertices = new List<Vector3>();
