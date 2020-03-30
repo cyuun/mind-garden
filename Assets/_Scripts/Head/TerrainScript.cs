@@ -179,6 +179,10 @@ public class TerrainScript : MonoBehaviour
         {
             _paint[i] = color;
         }
+        
+        _texture.SetPixels(_paint);
+        _texture.Apply();
+        _meshRenderer.material.mainTexture = _texture;
     }
 
     public float GetXStep()
@@ -199,6 +203,11 @@ public class TerrainScript : MonoBehaviour
             noiseAmplitude = Random.Range(35f, 50f); //Height of peaks
             noisePersistance = Random.Range(.2f, .4f); //Sharpness of peaks
             noiseLacunarity = Random.Range(1f, 5f); //Bumpiness of hills
+        }
+        else if (Global.bpm > 0)
+        {
+            noiseLacunarity *= Global.bpm / 120;
+            noisePersistance *= (Mathf.Clamp(Global.bpm, 60, 200) / 120 + 1) / 2;
         }
 
         seed = Global.seed;
