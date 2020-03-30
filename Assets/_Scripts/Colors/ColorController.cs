@@ -557,7 +557,11 @@ public class ColorController : MonoBehaviour
         pattern = 0;
 
         _paletteIndex = Global.colorPalette;
-        
+        if (Global.bpm > 0)
+        {
+            _lerpSpeed = Mathf.Clamp(_lerpSpeed * Global.bpm / 140, 0.2f, 0.6f);
+        }
+
         _colorIndices2 = new int[2];
         _colorIndices3 = new int[3];
         _colorIndices3Tracker = new int[3];
