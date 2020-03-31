@@ -54,6 +54,11 @@ public class GrassController : MonoBehaviour
                 grassPatchSize *= 0.8f;
                 break;
         }
+
+        if (Global.currentBiome == Global.BiomeType.desert || Global.currentBiome == Global.BiomeType.underwater)
+        {
+            grassPatchSize = 0;
+        }
     }
 
     private Vector3[] CullVertices(Vector3[] vertices)
@@ -76,6 +81,8 @@ public class GrassController : MonoBehaviour
 
             float perlinValue = Mathf.PerlinNoise(xPerlin0, zPerlin0) * Mathf.PerlinNoise(zPerlin1, xPerlin1) *
                                 Mathf.PerlinNoise(xPerlin2, zPerlin2) * Mathf.PerlinNoise(zPerlin3, xPerlin3);
+
+            perlinValue = Mathf.Clamp(perlinValue, 0, 1);
 
             if (Mathf.Pow(grassPatchSize, 4) > perlinValue && Mathf.Sqrt(vertices[i].x * vertices[i].x + vertices[i].z * vertices[i].z) > terrainScript.paintRadius)
             {
