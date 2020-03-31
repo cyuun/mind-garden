@@ -45,7 +45,6 @@ public class LevelSelect : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        gameObject.SetActive(true);
         showing = true;
         float a = 0;
         while (a < 1)
@@ -55,7 +54,6 @@ public class LevelSelect : MonoBehaviour
             yield return null;
         }
         mainCanvas.alpha = 1;
-        gameObject.SetActive(true);
     }
 
     IEnumerator FadeOut()

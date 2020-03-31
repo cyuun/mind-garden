@@ -24,7 +24,7 @@ public class HeadScript : MonoBehaviour
             AudioPeerRoot.S.SetActiveHead(gameObject);
         }
         ColorController.S.SetActiveHead(gameObject);
-        Dash.S.SetTerrain(terrainScript);
+        if(Dash.S) Dash.S.SetTerrain(terrainScript);
     }
 
     private void Start()

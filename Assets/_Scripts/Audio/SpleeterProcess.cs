@@ -120,16 +120,16 @@ public class SpleeterProcess : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        song.melody = Path.GetDirectoryName(song.inputSongPath) + "\\other.wav";
+                        song.melody = Path.GetDirectoryName(song.inputSongPath) + "/other.wav";
                         break;
                     case 1:
-                        song.bass = Path.GetDirectoryName(song.inputSongPath) + "\\bass.wav";
+                        song.bass = Path.GetDirectoryName(song.inputSongPath) + "/bass.wav";
                         break;
                     case 2:
-                        song.vocals = Path.GetDirectoryName(song.inputSongPath) + "\\vocals.wav";
+                        song.vocals = Path.GetDirectoryName(song.inputSongPath) + "/vocals.wav";
                         break;
                     case 3:
-                        song.drums = Path.GetDirectoryName(song.inputSongPath) + "\\drums.wav";
+                        song.drums = Path.GetDirectoryName(song.inputSongPath) + "/drums.wav";
                         break;
                 }
 

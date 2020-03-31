@@ -126,6 +126,7 @@ public class MenuController : MonoBehaviour
     {
         if (Global.currentSongInfo != null && !_cameraMoving)
         {
+            LevelSelect.S.gameObject.SetActive(true);
             LevelSelect.S.Fade();
             StartCoroutine(ZoomCamera(moveDuration));
             //StartCoroutine(ShowStartButton());
