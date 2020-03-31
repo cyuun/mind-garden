@@ -31,8 +31,10 @@ public class weatherControls : MonoBehaviour
             clouds.gameObject.SetActive(true);
 
             RenderSettings.fogColor = new Color(0.8f, 0.5f, 0.2f, 0.3f);
-            RenderSettings.fogDensity = 0.03f;
+            RenderSettings.fogDensity = 0.0125f;
             RenderSettings.fog = true;
+            
+            if(magic.S) magic.S.gameObject.SetActive(false);
         }
         //Underwater
         if (Global.currentBiome == Global.BiomeType.underwater)
@@ -42,6 +44,8 @@ public class weatherControls : MonoBehaviour
             RenderSettings.fogColor = new Color(0.1f, 0.4f, 1f, 0.6f);
             RenderSettings.fogDensity = 0.03f;
             RenderSettings.fog = true;
+            
+            if(magic.S) magic.S.gameObject.SetActive(false);
         }
         //Rain
         if (Global.currentBiome != Global.BiomeType.underwater)
@@ -77,8 +81,10 @@ public class weatherControls : MonoBehaviour
         {
             //desert fog
             RenderSettings.fogColor = new Color(0.8f, 0.5f, 0.2f, 0.3f);
-            RenderSettings.fogDensity = 0.03f;
+            RenderSettings.fogDensity = 0.0125f;
             RenderSettings.fog = true;
+            
+            if(magic.S) magic.S.gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.I))
         {
@@ -86,6 +92,8 @@ public class weatherControls : MonoBehaviour
             RenderSettings.fogColor = new Color(0.1f, 0.4f, 1f, 0.6f);
             RenderSettings.fogDensity = 0.03f;
             RenderSettings.fog = true;
+            
+            if(magic.S) magic.S.gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.O))
         {
@@ -129,6 +137,8 @@ public class weatherControls : MonoBehaviour
         clouds.gameObject.SetActive(false);
         snow.gameObject.SetActive(false);
         rain.gameObject.SetActive(false);
+            
+        if(magic.S) magic.S.gameObject.SetActive(true);
 
     }
 }
