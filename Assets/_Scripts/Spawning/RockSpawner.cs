@@ -45,7 +45,7 @@ public class RockSpawner : MonoBehaviour
 
             //Select random rock prefab
             GameObject selectedRock = rockPrefabs[Random.Range(0, rockPrefabs.Length)];
-
+            float radius = selectedRock.GetComponent<Rock>().radius;
             //Get/Set position
             Vector3 rockPos = transform.position;
             while (hitRock || hitPond)
@@ -57,8 +57,9 @@ public class RockSpawner : MonoBehaviour
 
                 rockPos += new Vector3(Random.insideUnitSphere.x, 0, Random.insideUnitSphere.z).normalized * Random.Range(spawnRadiusMin, spawnRadiusMax);
                 rockPos.y = terrainScript.GetTerrainHeight(rockPos.x, rockPos.z)-1;
-                foreach (Collider c in Physics.OverlapSphere(rockPos, selectedRock.GetComponent<Rock>().radius))
+                foreach (Collider c in Physics.OverlapSphere(rockPos, radius))
                 {
+
                     if (c.name.Contains("Sphere") || c.name.Contains("Orb"))
                     {
                         hitRock = true;
@@ -86,9 +87,6 @@ public class RockSpawner : MonoBehaviour
                 GameObject myRock;
                 if(randomRotate) myRock = Instantiate(selectedRock, rockPos, Random.rotation, ROCK_PARENT);
                 else myRock = Instantiate(selectedRock, rockPos, Quaternion.identity, ROCK_PARENT);
-                //Resize
-                float scale = Random.Range(scaleMin, scaleMax);
-                myRock.transform.localScale *= scale;
             }
         }
     }

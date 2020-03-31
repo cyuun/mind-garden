@@ -8,13 +8,17 @@ public class GameHUD : MonoBehaviour
 {
     public static GameHUD S;
     public GameObject startMessage;
+    public GameObject spleeterHint;
     public GameObject curtain;
+    public Text screenshotMessage;
     public Color greenFlash;
     public Color redFlash;
     public Color whiteFlash;
 
     [SerializeField]
     public Dictionary<string, Color> curtainPalette;
+
+    private bool showingMessage = false;
 
     void Start()
     {
@@ -24,6 +28,10 @@ public class GameHUD : MonoBehaviour
         if (Global.showHints)
         {
             startMessage.SetActive(true);
+            if (!Global.spleeterMode)
+            {
+                spleeterHint.SetActive(false);
+            }
         }
         curtainPalette = new Dictionary<string, Color>() {
             { "Green", greenFlash },
@@ -63,21 +71,25 @@ public class GameHUD : MonoBehaviour
         }
     }
 
+    public void ScreenshotMessage()
+    {
+        if (!showingMessage)
+        {
+            StartCoroutine(ScreenhotCaptured(4f));
+        }
+    }
+
     IEnumerator FadeStartMessage(float wait)
     {
         yield return new WaitForSeconds(wait);
-
-        Color textColor = startMessage.GetComponentInChildren<Text>().color;
-        Color imageColor = startMessage.GetComponentInChildren<Image>().color;
-        while(textColor.a > 0)
+        float a = GetComponent<CanvasGroup>().alpha;
+        while(a > 0)
         {
-            float alpha = textColor.a - (Time.deltaTime / 2);
-            textColor = new Color(1, 1, 1, alpha);
-            imageColor = new Color(0, 0, 0, alpha);
-            startMessage.GetComponentInChildren<Text>().color = textColor;
-            startMessage.GetComponentInChildren<Image>().color = imageColor;
+            a -= Time.deltaTime;
+            GetComponent<CanvasGroup>().alpha = a;
             yield return null;
         }
+        GetComponent<CanvasGroup>().alpha = 0;
     }
 
     IEnumerator FadeExit()
@@ -93,6 +105,7 @@ public class GameHUD : MonoBehaviour
         }
         bg.color = new Color(0, 0, 0, 1);
         SettingsMenu.S.gameIsPaused = false;
+        LoadingBar.S.gameObject.SetActive(true);
         LoadingBar.S.Show(SceneManager.LoadSceneAsync(0));
     }
 
@@ -137,5 +150,22 @@ public class GameHUD : MonoBehaviour
         }
 
         curtain.SetActive(false);
+    }
+
+    IEnumerator ScreenhotCaptured(float time)
+    {
+        showingMessage = true;
+        Color color = screenshotMessage.color;
+        color.a = 1;
+        screenshotMessage.color = color;
+        yield return new WaitForSeconds(time);
+
+        while (color.a > 0)
+        {
+            color.a -= (Time.deltaTime / (time * 2));
+            screenshotMessage.color = color;
+            yield return null;
+        }
+        showingMessage = false;
     }
 }

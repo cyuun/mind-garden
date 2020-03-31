@@ -26,6 +26,7 @@ public class MenuController : MonoBehaviour
     public GameObject songItemPrefab;
     public GameObject head;
     public GameObject loadScreen;
+    public GameObject levelSelectScreen;
     public GameObject startButton;
     public AudioSource backgroundMusic;
     public AudioSource silentMusic;
@@ -104,7 +105,7 @@ public class MenuController : MonoBehaviour
         string spleeterIcon = "";
         if (spleeter)
         {
-            spleeterIcon = "[S]";
+            spleeterIcon = "*";
             newSong.GetComponent<SongListItem>().spleeterOn = true;
         }
         newSong.GetComponent<Text>().text = spleeterIcon + info.songName;
@@ -155,6 +156,7 @@ public class MenuController : MonoBehaviour
     IEnumerator LoadBar()
     {
         yield return new WaitForSeconds(.1f);
+        LoadingBar.S.gameObject.SetActive(true);
         LoadingBar.S.Show(SceneManager.LoadSceneAsync(1));
 
     }

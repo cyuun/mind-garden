@@ -143,6 +143,7 @@ MonoBehaviour:
   rotationSpeed: 50
   y_offset: 4
   speed: 1
+  pondSpot: {fileID: 0}
   _colorGrad:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 0.24642348, a: 1}
@@ -204,7 +205,7 @@ MonoBehaviour:
   - {fileID: 264849990880409440, guid: 3e6ffb21e7dd10547aa049d4aa2294ac, type: 3}
   spawnRadiusMin: 10
   spawnRadiusMax: 90
-  numOfRocks: 25
+  numOfRocks: 1
   scaleMin: 1
   scaleMax: 2
   randomRotate: 0
@@ -14799,6 +14800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef7b7ee1accb1c4c8be9a7e574f7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   rhythmData: {fileID: 0}
   analyzer: {fileID: 2410601152020299002}
   audioSource: {fileID: 343930581138773673}

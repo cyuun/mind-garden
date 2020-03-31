@@ -56,7 +56,6 @@ public class LoadingBar : MonoBehaviour
     public void Show(AsyncOperation loadingOperation)
     {
         // Enable the loading screen:
-        gameObject.SetActive(true);
         // Store the reference:
         currentLoadingOperation = loadingOperation;
         // Reset the UI:

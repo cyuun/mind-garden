@@ -45,6 +45,7 @@ public class LevelSelect : MonoBehaviour
 
     IEnumerator FadeIn()
     {
+        gameObject.SetActive(true);
         showing = true;
         float a = 0;
         while (a < 1)
@@ -54,6 +55,7 @@ public class LevelSelect : MonoBehaviour
             yield return null;
         }
         mainCanvas.alpha = 1;
+        gameObject.SetActive(true);
     }
 
     IEnumerator FadeOut()
@@ -67,6 +69,7 @@ public class LevelSelect : MonoBehaviour
             yield return null;
         }
         mainCanvas.alpha = 0;
+        gameObject.SetActive(false);
     }
 
     public void ChooseForest()
@@ -172,7 +175,7 @@ public class LevelSelect : MonoBehaviour
 
     public void SetLerp(bool lerp)
     {
-        Global.lerp = lerp;
+        Global.smoothColorController = lerp;
     }
 
     public void SetSkybox(int selectedBiome)
@@ -195,6 +198,11 @@ public class LevelSelect : MonoBehaviour
                 Camera.main.GetComponent<Skybox>().material = skyboxMats[4];
                 break;
         }
+    }
+
+    public void SetTitle(string songName)
+    {
+        startBackButtons.transform.Find("SongTitle").GetComponent<Text>().text = songName;
     }
 
     public void QuickUpdate()
