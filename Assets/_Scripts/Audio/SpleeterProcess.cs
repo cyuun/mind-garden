@@ -82,9 +82,9 @@ public class SpleeterProcess : MonoBehaviour
 
         Process process = new Process();
         // Configure the process using the StartInfo properties.
-        string filePath = Application.streamingAssetsPath + "/spleeter/spleeter/"; //Current Directory plus song path
+        string filePath = Application.streamingAssetsPath + "\\spleeter\\spleeter\\"; //Current Directory plus song path
         outputPath = Application.persistentDataPath + "/Spleets/"; //Use this output for actual song imports
-        //outputPath = Application.dataPath + "/Resources/Spleets/"; //Use this output when importing song resources
+        //outputPath = Application.dataPath + "\\Resources\\Spleets\\"; //Use this output when importing song resources
         process.StartInfo.FileName = filePath + "spleeter.exe"; 
         process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         process.StartInfo.Arguments = "separate -i " + inputSongPath + " -p spleeter:4stems -o \"" + outputPath + "\""; //Shell executable
@@ -120,16 +120,16 @@ public class SpleeterProcess : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        song.melody = Path.GetDirectoryName(song.inputSongPath) + "/other.wav";
+                        song.melody = Path.GetDirectoryName(song.inputSongPath) + "\\other.wav";
                         break;
                     case 1:
-                        song.bass = Path.GetDirectoryName(song.inputSongPath) + "/bass.wav";
+                        song.bass = Path.GetDirectoryName(song.inputSongPath) + "\\bass.wav";
                         break;
                     case 2:
-                        song.vocals = Path.GetDirectoryName(song.inputSongPath) + "/vocals.wav";
+                        song.vocals = Path.GetDirectoryName(song.inputSongPath) + "\\vocals.wav";
                         break;
                     case 3:
-                        song.drums = Path.GetDirectoryName(song.inputSongPath) + "/drums.wav";
+                        song.drums = Path.GetDirectoryName(song.inputSongPath) + "\\drums.wav";
                         break;
                 }
 

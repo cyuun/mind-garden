@@ -10,12 +10,15 @@ public class GameHUD : MonoBehaviour
     public GameObject startMessage;
     public GameObject spleeterHint;
     public GameObject curtain;
+    public Text screenshotMessage;
     public Color greenFlash;
     public Color redFlash;
     public Color whiteFlash;
 
     [SerializeField]
     public Dictionary<string, Color> curtainPalette;
+
+    private bool showingMessage = false;
 
     void Start()
     {
@@ -65,6 +68,14 @@ public class GameHUD : MonoBehaviour
         {
             StartCoroutine(Flash(curtainPalette[color], .2f, .4f));
 
+        }
+    }
+
+    public void ScreenshotMessage()
+    {
+        if (!showingMessage)
+        {
+            StartCoroutine(ScreenhotCaptured(4f));
         }
     }
 
@@ -139,5 +150,22 @@ public class GameHUD : MonoBehaviour
         }
 
         curtain.SetActive(false);
+    }
+
+    IEnumerator ScreenhotCaptured(float time)
+    {
+        showingMessage = true;
+        Color color = screenshotMessage.color;
+        color.a = 1;
+        screenshotMessage.color = color;
+        yield return new WaitForSeconds(time);
+
+        while (color.a > 0)
+        {
+            color.a -= (Time.deltaTime / (time * 2));
+            screenshotMessage.color = color;
+            yield return null;
+        }
+        showingMessage = false;
     }
 }

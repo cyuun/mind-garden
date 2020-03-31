@@ -598,6 +598,181 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79285522}
   m_CullTransparentMesh: 0
+--- !u!1001 &85119375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 599661631}
+    m_Modifications:
+    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Text
+      value: '*Fault - Myrne & Grant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.0085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Fault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.songName
+      value: Fault-Myrne&Grant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSongPath
+      value: Assets\Resources\Spleets\Fault-Myrne&Grant\Fault-Myrne&Grant.mp3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.melody
+      value: Assets\Resources\Spleets\Fault-Myrne&Grant\other.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.bass
+      value: Assets\Resources\Spleets\Fault-Myrne&Grant\bass.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.vocals
+      value: Assets\Resources\Spleets\Fault-Myrne&Grant\vocals.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.drums
+      value: Assets\Resources\Spleets\Fault-Myrne&Grant\drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSong
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
+--- !u!224 &85119376 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 85119375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &90445595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,15 +1549,10 @@ MonoBehaviour:
     type: 3}
   head: {fileID: 1175163416}
   loadScreen: {fileID: 1547484854}
+  levelSelectScreen: {fileID: 0}
   startButton: {fileID: 1282647804}
   backgroundMusic: {fileID: 1941040454}
   silentMusic: {fileID: 1852548309}
---- !u!224 &167475799 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 425320044}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &170096282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,7 +1842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &239879093
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1692,7 +1862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 210.4, y: -146}
+  m_AnchoredPosition: {x: 210.4, y: -53}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &245811022
@@ -2070,12 +2240,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301944360}
   m_CullTransparentMesh: 0
---- !u!224 &338543677 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 3337378284612249007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341887109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,9 +2575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Color Lerp
-
-'
+  m_Text: Lerp Colors
 --- !u!222 &393898630
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2710,170 +2872,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 103726457}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &425320044
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 599661631}
-    m_Modifications:
-    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Text
-      value: '*Say My Name - ODESZA'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -158.0085
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Say My Name
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.songName
-      value: ODESZA-SayMyName(feat.Zyra)-LyricVideo
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSongPath
-      value: Assets/Resources/Spleets/ODESZA-SayMyName(feat.Zyra)-LyricVideo\ODESZA-SayMyName(feat.Zyra)-LyricVideo.mp3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.melody
-      value: Assets/Resources/Spleets/ODESZA-SayMyName(feat.Zyra)-LyricVideo.mp3/other.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.bass
-      value: Assets/Resources/Spleets/ODESZA-SayMyName(feat.Zyra)-LyricVideo.mp3/bass.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.vocals
-      value: Assets/Resources/Spleets/ODESZA-SayMyName(feat.Zyra)-LyricVideo.mp3/vocals.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.drums
-      value: Assets/Resources/Spleets/ODESZA-SayMyName(feat.Zyra)-LyricVideo.mp3/drums.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: spleeterOn
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
 --- !u!1 &428856464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,7 +3278,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!1001 &590412797
+--- !u!1001 &551046289
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3290,7 +3288,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Text
-      value: '*Where The End Begins - Blue Foundation'
+      value: '*Where The End Begins'
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -3355,7 +3353,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175
+      value: -125
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -3400,7 +3398,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_Name
-      value: Where The End Begins
+      value: Song0
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -3415,35 +3413,46 @@ PrefabInstance:
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.inputSongPath
-      value: Assets/Resources/Spleets/BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3
+      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.melody
-      value: Assets/Resources/Spleets/BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3/other.wav
+      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\other.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.bass
-      value: Assets/Resources/Spleets/BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3/bass.wav
+      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\bass.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.vocals
-      value: Assets/Resources/Spleets/BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3/vocals.wav
+      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\vocals.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.drums
-      value: Assets/Resources/Spleets/BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3/drums.wav
+      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\drums.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: spleeterOn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSong
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
+--- !u!224 &551046290 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 551046289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &599530620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,10 +3566,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1128707568}
-  - {fileID: 167475799}
-  - {fileID: 1762583870}
-  - {fileID: 338543677}
+  - {fileID: 551046290}
+  - {fileID: 913087042}
+  - {fileID: 85119376}
   m_Father: {fileID: 1366070539}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4459,7 +4467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 210.4, y: 0}
+  m_AnchoredPosition: {x: 210.4, y: 60}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696094977
@@ -5096,7 +5104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 329, y: 98}
+  m_AnchoredPosition: {x: 417, y: 98}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &756259417
@@ -5130,7 +5138,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: (* Spleeter Mode)
+  m_Text: '* Spleeter Mode'
 --- !u!222 &756259418
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6844,6 +6852,181 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911605813}
   m_CullTransparentMesh: 0
+--- !u!1001 &913087041
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 599661631}
+    m_Modifications:
+    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Text
+      value: '*Someday Somehow - Wyatt Walker Wear'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.0085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Name
+      value: SomedaySomehow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.songName
+      value: Someday-Somehow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSongPath
+      value: Assets\Resources\Spleets\Someday-Somehow\Someday-Somehow.mp3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.melody
+      value: Assets\Resources\Spleets\Someday-Somehow\other.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.bass
+      value: Assets\Resources\Spleets\Someday-Somehow\bass.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.vocals
+      value: Assets\Resources\Spleets\Someday-Somehow\vocals.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.drums
+      value: Assets\Resources\Spleets\Someday-Somehow\drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSong
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
+--- !u!224 &913087042 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 913087041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &920107365
 GameObject:
   m_ObjectHideFlags: 0
@@ -7204,7 +7387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 332, y: -146}
+  m_AnchoredPosition: {x: 332, y: -53}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1019603081
@@ -7630,12 +7813,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085544730}
   m_CullTransparentMesh: 0
---- !u!224 &1128707568 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 590412797}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136803559
 GameObject:
   m_ObjectHideFlags: 0
@@ -8982,7 +9159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.051000003, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
+  m_AnchoredPosition: {x: 0.0000019073486, y: 0}
   m_SizeDelta: {x: 0, y: 1000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1375354895
@@ -9416,7 +9593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -208, y: 0}
+  m_AnchoredPosition: {x: -208, y: 60}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447117377
@@ -11216,176 +11393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8e04882a311f04bb2b37a021edaf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1762583869
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 599661631}
-    m_Modifications:
-    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Text
-      value: '*Get Your Wish - Porter Robinson'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -158.0085
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Get Your Wish
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.songName
-      value: PorterRobinson-GetyourWish(OfficialMusicVideo)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSongPath
-      value: Assets/Resources/Spleets/PorterRobinson-GetyourWish(OfficialMusicVideo)\PorterRobinson-GetyourWish(OfficialMusicVideo).mp3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.melody
-      value: Assets/Resources/Spleets/PorterRobinson-GetyourWish(OfficialMusicVideo).mp3/other.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.bass
-      value: Assets/Resources/Spleets/PorterRobinson-GetyourWish(OfficialMusicVideo).mp3/bass.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.vocals
-      value: Assets/Resources/Spleets/PorterRobinson-GetyourWish(OfficialMusicVideo).mp3/vocals.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.drums
-      value: Assets/Resources/Spleets/PorterRobinson-GetyourWish(OfficialMusicVideo).mp3/drums.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: spleeterOn
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
---- !u!224 &1762583870 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1762583869}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1800390088
 GameObject:
   m_ObjectHideFlags: 0
@@ -13680,167 +13687,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6beec0ee9f05e86449444cfe0944b164, type: 3}
---- !u!1001 &3337378284612249007
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 599661631}
-    m_Modifications:
-    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Text
-      value: '*Drive It Like You Stole It - The Glitch Mob'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -158.0085
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Drive It Like You Stole It
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.songName
-      value: TheGlitchMob-DriveItLikeYouStoleIt
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSongPath
-      value: Assets/Resources/Spleets/TheGlitchMob-DriveItLikeYouStoleIt\TheGlitchMob-DriveItLikeYouStoleIt.mp3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.melody
-      value: Assets/Resources/Spleets/TheGlitchMob-DriveItLikeYouStoleIt.mp3/other.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.bass
-      value: Assets/Resources/Spleets/TheGlitchMob-DriveItLikeYouStoleIt.mp3/bass.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.vocals
-      value: Assets/Resources/Spleets/TheGlitchMob-DriveItLikeYouStoleIt.mp3/vocals.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.drums
-      value: Assets/Resources/Spleets/TheGlitchMob-DriveItLikeYouStoleIt.mp3/drums.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: spleeterOn
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
