@@ -207,6 +207,8 @@ MonoBehaviour:
   paintRadius: 13
   brushHardness: 0.17
   paintColor: {r: 0, g: 0, b: 0, a: 0}
+  _vertices: []
+  _triangles: 
 --- !u!64 &1547624034
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -597,6 +599,11 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 3feb252682f69244c8311df4cde68e4a,
         type: 3}
       propertyPath: m_Name
+      value: Head
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3feb252682f69244c8311df4cde68e4a,
+        type: 3}
+      propertyPath: m_TagString
       value: Head
       objectReference: {fileID: 0}
     m_RemovedComponents: []
