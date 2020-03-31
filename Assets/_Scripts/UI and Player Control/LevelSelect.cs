@@ -154,11 +154,19 @@ public class LevelSelect : MonoBehaviour
         if(palette == 0)
         {
             Global.colorPalette = Random.Range(0, 6);
+            if (ColorController.S != null)
+            {
+                ColorController.S.UpdatePaletteIndex();
+            }
         }
         else
         {
             palette--;
             Global.colorPalette = palette;
+            if (ColorController.S != null)
+            {
+                ColorController.S.UpdatePaletteIndex();
+            }
         }
     }
 

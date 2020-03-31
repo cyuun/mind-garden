@@ -15,9 +15,14 @@ public class HeadScript : MonoBehaviour
     private bool _rotating = false;
     public bool isRotating { get { return _rotating; } set { _rotating = value; } }
 
+    public bool inMainMenu = false;
+
     public void Activate()
     {
-        AudioPeerRoot.S.SetActiveHead(gameObject);
+        if (!inMainMenu)
+        {
+            AudioPeerRoot.S.SetActiveHead(gameObject);
+        }
         ColorController.S.SetActiveHead(gameObject);
     }
 
