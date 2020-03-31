@@ -156,7 +156,7 @@ public class LevelSelect : MonoBehaviour
             Global.colorPalette = Random.Range(0, 6);
             if (ColorController.S != null)
             {
-                ColorController.S.UpdatePaletteIndex();
+                ColorController.S.UpdateFromGlobalValues();
             }
         }
         else
@@ -165,7 +165,7 @@ public class LevelSelect : MonoBehaviour
             Global.colorPalette = palette;
             if (ColorController.S != null)
             {
-                ColorController.S.UpdatePaletteIndex();
+                ColorController.S.UpdateFromGlobalValues();
             }
         }
     }

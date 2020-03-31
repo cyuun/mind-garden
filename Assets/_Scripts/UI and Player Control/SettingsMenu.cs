@@ -18,10 +18,14 @@ public class SettingsMenu : MonoBehaviour
     public Slider pitchSlider;
     public Text pitchLabel;
     public GameObject pauseMenu;
+    public GameObject grassSelect;
+    public GameObject colorToggle;
 
     public float fixedDeltaTime;
     public bool gameIsPaused = false;
     public bool resumed = false;
+
+    private bool _advancedSettingsActive = false;
 
     private void Awake()
     {
@@ -166,6 +170,64 @@ public class SettingsMenu : MonoBehaviour
         pitchLabel.text = (Mathf.Floor(pitch)).ToString();
     }
 
+    public void UpdatePerformance(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                if (_advancedSettingsActive)
+                {
+                    DeactivateAdvancedSettings();
+                }
+                Global.smoothColorController = true;
+                Global.grassLevel = 2;
+                break;
+            
+            case 1:
+                if (_advancedSettingsActive)
+                {
+                    DeactivateAdvancedSettings();
+                }
+                Global.smoothColorController = false;
+                Global.grassLevel = 1;
+                break;
+            
+            case 2:
+                if (!_advancedSettingsActive)
+                {
+                    ActivateAdvancedSettings();
+                }
+                break;
+        }
+        if (ColorController.S != null)
+        {
+            ColorController.S.UpdateFromGlobalValues();
+        }
+    }
+
+    public void UpdateGrassLevel(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                Global.grassLevel = 2;
+                break;
+            
+            case 1:
+                Global.grassLevel = 1;
+                break;
+            
+            case 2:
+                Global.grassLevel = 0;
+                break;
+        }
+    }
+
+    public void UpdateLerp(bool value)
+    {
+        Global.smoothColorController = value;
+    }
+
     public void UpdateGlobalSettings()
     {
         UpdateVolume(volumeSlider.value);
@@ -184,6 +246,22 @@ public class SettingsMenu : MonoBehaviour
         UpdateCallSpleeter(spleeterToggle.isOn);
         UpdateHints(hintToggle.isOn);
         UpdatePitch(pitchSlider.value);
+    }
+
+    private void ActivateAdvancedSettings()
+    {
+        grassSelect.SetActive(true);
+        colorToggle.SetActive(true);
+        UpdateGrassLevel(grassSelect.GetComponentInChildren<Dropdown>().value);
+        UpdateLerp(colorToggle.GetComponentInChildren<Toggle>().isOn);
+        _advancedSettingsActive = true;
+    }
+
+    private void DeactivateAdvancedSettings()
+    {
+        grassSelect.SetActive(false);
+        colorToggle.SetActive(false);
+        _advancedSettingsActive = false;
     }
 
     IEnumerator DelayedGlobalUpdate(float delay)

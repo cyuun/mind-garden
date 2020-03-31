@@ -45,8 +45,9 @@ public class ColorController : MonoBehaviour
     [SerializeField] [Range(0, 1)] 
     private float _lerpSpeed = 0.5f;
 
-    public void UpdatePaletteIndex()
+    public void UpdateFromGlobalValues()
     {
+        _lerp = Global.smoothColorController;
         _paletteIndex = Global.colorPalette;
         ChangeColors();
     }
