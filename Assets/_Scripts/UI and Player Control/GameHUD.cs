@@ -43,7 +43,7 @@ public class GameHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Exit()
@@ -77,6 +77,11 @@ public class GameHUD : MonoBehaviour
         {
             StartCoroutine(ScreenhotCaptured(4f));
         }
+    }
+
+    public void RespawnFade()
+    {
+        StartCoroutine(FadeRespawn());
     }
 
     IEnumerator FadeStartMessage(float wait)
@@ -121,6 +126,28 @@ public class GameHUD : MonoBehaviour
             yield return null;
         }
         StartCoroutine(FadeStartMessage(2f));
+    }
+
+    private IEnumerator FadeRespawn()
+    {
+        curtain.SetActive(true);
+        Image bg = curtain.GetComponentInChildren<Image>();
+        bg.color = new Color(0, 0, 0, 0);
+        float alpha = 0;
+        while (alpha < 1)
+        {
+            alpha += Time.deltaTime;
+            bg.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+        bg.color = new Color(0, 0, 0, 1);
+        while (alpha > 0)
+        {
+            alpha -= 2 * Time.deltaTime;
+            bg.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+        curtain.SetActive(false);
     }
 
     IEnumerator Flash(Color color, float attack, float decay)

@@ -14,9 +14,13 @@ public class PlayerScript : MonoBehaviour
     public bool spawned = false;
     TerrainScript terrain;
 
+    private Vector3 _respawnLocation = Vector3.zero;
+
     void Awake()
     {
         S = this;
+
+        _respawnLocation = transform.position;
     }
 
     private void Start()
@@ -53,6 +57,10 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(SplishSplash(water));
                 break;
 
+            case "Respawn":
+                StartCoroutine(Respawn());
+                break;
+
         }
     }
 
@@ -82,5 +90,12 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         spawned = true;
+    }
+
+    private IEnumerator Respawn()
+    {
+        GameHUD.S.RespawnFade();
+        yield return new WaitForSeconds(1);
+        transform.position = _respawnLocation;
     }
 }
