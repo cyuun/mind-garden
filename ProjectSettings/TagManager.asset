@@ -12,6 +12,8 @@ TagManager:
   - enemy
   - enemyFish
   - Water
+  - Speed
+  - Head
   layers:
   - Default
   - TransparentFX

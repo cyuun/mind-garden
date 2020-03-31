@@ -48,8 +48,11 @@ public class Dash : MonoBehaviour
         _distanceCovered = 0;
         while (_distanceCovered < distance)
         {
+            DetectCollisions();
+            
             if (_collided)
             {
+                _collided = false;
                 yield break;
             }
             
@@ -60,13 +63,6 @@ public class Dash : MonoBehaviour
             if (transform.position.y < terrainHeight)
             {
                 transform.position = new Vector3(transform.position.x, terrainHeight + 0.1f, transform.position.z);
-            }
-
-            if (Mathf.Pow(transform.position.x, 2) / Mathf.Pow(_terrainScript.xMax, 2) +
-                Mathf.Pow(transform.position.z, 2) / Mathf.Pow(_terrainScript.zMax, 2) > 0.09f)
-            {
-                transform.position = origPos;
-                yield break;
             }
 
             _distanceCovered += Vector3.Magnitude(transform.position - origPos);
@@ -84,7 +80,7 @@ public class Dash : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Terrain"))
+        if(!collision.gameObject.CompareTag("Terrain"))
         {
             _collided = true;
         }
@@ -92,9 +88,31 @@ public class Dash : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Terrain"))
+        if(!collision.gameObject.CompareTag("Terrain"))
         {
             _collided = false;
+        }
+    }
+
+    private void DetectCollisions()
+    {
+        Collider[] collisions = Physics.OverlapSphere(transform.position, 1);
+        foreach (Collider collider in collisions)
+        {
+            if (!collider.gameObject.CompareTag("Terrain") && !collider.gameObject.CompareTag("Player") && !collider.gameObject.CompareTag("Pond") && !collider.gameObject.CompareTag("Untagged"))
+            {
+                _collided = true;
+                break;
+            }
+        }
+        collisions = Physics.OverlapSphere(transform.position, 3);
+        foreach (Collider collider in collisions)
+        {
+            if (collider.gameObject.CompareTag("Head"))
+            {
+                _collided = true;
+                break;
+            }
         }
     }
 }
