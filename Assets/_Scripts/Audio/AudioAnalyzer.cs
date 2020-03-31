@@ -68,7 +68,8 @@ public class AudioAnalyzer : MonoBehaviour
                 }
             }
             prevTime = time;
-            if (time >= audioSource.clip.length)
+
+            if (time >= audioSource.clip.length - 1)
             {
                 EndGame();
             }
