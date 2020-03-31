@@ -733,27 +733,27 @@ PrefabInstance:
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.inputSongPath
-      value: Assets\Resources\Spleets\Fault-Myrne&Grant\Fault-Myrne&Grant.mp3
+      value: SongResources/Spleets/Fault-Myrne&Grant/Fault-Myrne&Grant.mp3
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.melody
-      value: Assets\Resources\Spleets\Fault-Myrne&Grant\other.wav
+      value: SongResources/Spleets/Fault-Myrne&Grant/other.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.bass
-      value: Assets\Resources\Spleets\Fault-Myrne&Grant\bass.wav
+      value: SongResources/Spleets/Fault-Myrne&Grant/bass.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.vocals
-      value: Assets\Resources\Spleets\Fault-Myrne&Grant\vocals.wav
+      value: SongResources/Spleets/Fault-Myrne&Grant/vocals.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.drums
-      value: Assets\Resources\Spleets\Fault-Myrne&Grant\drums.wav
+      value: SongResources/Spleets/Fault-Myrne&Grant/drums.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -3283,181 +3283,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!1001 &551046289
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 599661631}
-    m_Modifications:
-    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Text
-      value: '*Where The End Begins'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -158.0085
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Song0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.songName
-      value: BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSongPath
-      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo).mp3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.melody
-      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\other.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.bass
-      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\bass.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.vocals
-      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\vocals.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.drums
-      value: Assets\Resources\Spleets\BlueFoundation&SunGlittersWhereTheEndBegins(OfficialMusicVideo)\drums.wav
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: spleeterOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-        type: 3}
-      propertyPath: songInfo.inputSong
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
---- !u!224 &551046290 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 551046289}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &599530620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,7 +3396,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 551046290}
   - {fileID: 913087042}
   - {fileID: 85119376}
   m_Father: {fileID: 1366070539}
@@ -6992,27 +6816,27 @@ PrefabInstance:
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.inputSongPath
-      value: Assets\Resources\Spleets\Someday-Somehow\Someday-Somehow.mp3
+      value: SongResources/Spleets/Someday-Somehow/Someday-Somehow.mp3
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.melody
-      value: Assets\Resources\Spleets\Someday-Somehow\other.wav
+      value: SongResources/Spleets/Someday-Somehow/other.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.bass
-      value: Assets\Resources\Spleets\Someday-Somehow\bass.wav
+      value: SongResources/Spleets/Someday-Somehow/bass.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.vocals
-      value: Assets\Resources\Spleets\Someday-Somehow\vocals.wav
+      value: SongResources/Spleets/Someday-Somehow/vocals.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: songInfo.drums
-      value: Assets\Resources\Spleets\Someday-Somehow\drums.wav
+      value: SongResources/Spleets/Someday-Somehow/drums.wav
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -9238,7 +9062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.051000003, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000019073486, y: 0}
+  m_AnchoredPosition: {x: -16.982998, y: 0}
   m_SizeDelta: {x: 0, y: 1000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1375354895

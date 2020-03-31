@@ -92,8 +92,8 @@ Material:
     - _WindStrength: 0.5
     - _ZWrite: 1
     m_Colors:
-    - _BottomColor: {r: 0.9062028, g: 0.36443126, b: 0.35269707, a: 1}
+    - _BottomColor: {r: 0.6037996, g: 0.60770583, b: 0.9062028, a: 1}
     - _Color: {r: 0, g: 0.5754717, b: 0.06694827, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TopColor: {r: 1, g: 0.3844511, b: 0.6472877, a: 1}
+    - _TopColor: {r: 0.7410697, g: 0.6590067, b: 1, a: 1}
     - _WindFrequency: {r: 0.05, g: 0.05, b: 0, a: 0}

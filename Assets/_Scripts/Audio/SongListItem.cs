@@ -17,7 +17,11 @@ public class SongListItem : MonoBehaviour
     {
         if(songInfo.inputSongPath != null)
         {
-            songInfo.inputSong = LoadInputSong(songInfo.inputSongPath, songInfo.songName);
+            if (songInfo.inputSongPath.Contains("Resources"))
+            {
+                songInfo.inputSongPath = Application.streamingAssetsPath + "/" + songInfo.inputSongPath;
+            }
+            songInfo.inputSong = LoadInputSong(songInfo.inputSongPath, Path.GetFileNameWithoutExtension(Path.GetFileName(songInfo.inputSongPath)));
             songInfo.inputSong.name = Path.GetFileNameWithoutExtension(Path.GetFileName(songInfo.inputSongPath));
         }
     }
