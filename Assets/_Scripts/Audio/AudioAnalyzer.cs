@@ -62,6 +62,10 @@ public class AudioAnalyzer : MonoBehaviour
             if (segments.Count > 0) //Implement Segment change functions here
             {
                 if (SkyFractal.S) SkyFractal.S.ChangeOutline();
+                if (ColorController.S)
+                {
+                    ColorController.S.ChangeBase();
+                }
             }
             prevTime = time;
             if (time >= audioSource.clip.length)
