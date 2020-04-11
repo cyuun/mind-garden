@@ -25,6 +25,8 @@ public class AudioPeerRoot : MonoBehaviour
         _terrain = _activeHead.transform.Find("Terrain").gameObject;
         terrainScript = _terrain.GetComponent<TerrainScript>();
 
+        OrbScript.orbsFound = 0;
+
         OrbScript orb1 = transform.Find("Orb").GetComponent<OrbScript>();
         OrbScript orb2 = transform.Find("Orb Variant").GetComponent<OrbScript>();
         OrbScript orb3 = transform.Find("Orb Variant 1").GetComponent<OrbScript>();

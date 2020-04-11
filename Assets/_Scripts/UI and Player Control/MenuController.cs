@@ -297,7 +297,6 @@ public class MenuController : MonoBehaviour
         float temp = start;
         for (float t = 0; t <= 1; t += (Time.deltaTime / duration))
         {
-            print(head.transform.rotation.eulerAngles);
             temp = Mathf.SmoothStep(start, end, t);
             head.transform.position = new Vector3(headT.position.x, headT.position.y, temp);
             temp = Mathf.SmoothStep(rot1, rot2, t);

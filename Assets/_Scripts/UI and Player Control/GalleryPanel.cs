@@ -30,6 +30,26 @@ public class GalleryPanel : MonoBehaviour
         if (!MenuController.S._cameraMoving) StartCoroutine(MoveRight());
     }
 
+    public void returnHome()
+    {
+        if (!MenuController.S._cameraMoving) StartCoroutine(MoveHome());
+    }
+
+    IEnumerator MoveHome()
+    {
+        RectTransform tr = gallery.GetComponent<RectTransform>();
+        float startPos = tr.localPosition.x;
+        float endPos = 0;
+        float temp;
+        for (float t = 0; t <= 1; t += Time.deltaTime)
+        {
+            temp = Mathf.SmoothStep(startPos, endPos, t);
+            gallery.GetComponent<RectTransform>().transform.localPosition = new Vector3(temp, tr.localPosition.y, tr.localPosition.z);
+            yield return null;
+        }
+        gallery.GetComponent<RectTransform>().transform.localPosition = new Vector3(endPos, tr.localPosition.y, tr.localPosition.z);
+    }
+
     IEnumerator MoveLeft()
     {
         RectTransform tr = gallery.GetComponent<RectTransform>();
