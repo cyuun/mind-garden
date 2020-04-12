@@ -648,7 +648,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -1436,6 +1436,7 @@ GameObject:
   - component: {fileID: 164958733}
   - component: {fileID: 164958732}
   - component: {fileID: 164958736}
+  - component: {fileID: 164958737}
   m_Layer: 5
   m_Name: CenterMenu
   m_TagString: Untagged
@@ -1558,6 +1559,25 @@ MonoBehaviour:
   startButton: {fileID: 1282647804}
   backgroundMusic: {fileID: 1941040454}
   silentMusic: {fileID: 1852548309}
+--- !u!114 &164958737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164958731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78106d9badd4a4d3cb44a16cce25a02a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  intRate: 0
+  intChannels: 0
+  intEncoding: 0
+  FrameSize: 0
+  lengthSamples: 0
+  myClip: {fileID: 0}
 --- !u!1 &170096282
 GameObject:
   m_ObjectHideFlags: 0
@@ -6731,7 +6751,7 @@ PrefabInstance:
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
         type: 3}
@@ -9062,7 +9082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.051000003, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.982998, y: 0}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
   m_SizeDelta: {x: 0, y: 1000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1375354895

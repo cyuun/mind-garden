@@ -423,8 +423,7 @@ public class MenuController : MonoBehaviour
             // Contrary to File.ReadAllBytes, this function works on Android 10+, as well
             if (Path.GetExtension(Global.inputSongPath) == ".mp3")
             {
-                byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result);
-                backgroundMusic.clip = NAudioPlayer.FromMp3Data(bytes);
+                backgroundMusic.clip = MPG123Import.S.Import(FileBrowser.Result);
             }
             else if (Path.GetExtension(Global.inputSongPath) == ".wav")
             {
@@ -564,9 +563,7 @@ public class MenuController : MonoBehaviour
 
                 if (Path.GetExtension(info.inputSongPath) == ".mp3")
                 {
-                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
-                    AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
-                    info.inputSong = audioClip;
+                    info.inputSong = MPG123Import.S.Import(info.inputSongPath);
                 }
                 else if (Path.GetExtension(info.inputSongPath) == ".wav")
                 {
@@ -606,9 +603,7 @@ public class MenuController : MonoBehaviour
 
                 if (Path.GetExtension(info.inputSongPath) == ".mp3")
                 {
-                    byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(info.inputSongPath);
-                    AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
-                    info.inputSong = audioClip;
+                    info.inputSong = MPG123Import.S.Import(info.inputSongPath);
                 }
                 else if (Path.GetExtension(info.inputSongPath) == ".wav")
                 {

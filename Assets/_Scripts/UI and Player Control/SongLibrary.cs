@@ -15,7 +15,7 @@ public class SongLibrary : MonoBehaviour
     }
 
     void Start()
-    {
+    { 
         if (!libraryCreated)
         {
             gameObject.SetActive(false);
