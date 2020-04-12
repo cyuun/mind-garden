@@ -8,7 +8,7 @@ using System.Security.Permissions;
  
 public class MPGImport
 {          
-    const string Mpg123Dll = @"libmpg123.0";
+    const string Mpg123Dll = "mpg123";
 
 #region enums
     public enum mpg123_parms
