@@ -2,6 +2,31 @@
 Mind's Garden is a first person musical exploration game which reads in audio files to procedurally generate various terrains, characters, and experiences for the player to explore and discover. Every audio file produces a unique playthrough.
 
 ---
+## Week 11
+March 24 - 31
+### Dashing
+One mechanic that we've been wanting to implement for a long time, but didn't get around to until now in the last week, is a dash that replaces the default sprint behaivior when you press shift. The dash has an invisible cooldown, just so you can't spam it, and it will stop whenever you hit a plant or rock, however it will allow you to effortlessly glide up mountains and steep cliffs in terrain without stopping or interrupting you. This makes getting around the map more interactive than just hitting the forward button, and also makes things a little bit easier sometimes.
+
+### Finishing Touches
+There were a couple of smaller features we added to the world this week to make everything feel more cohesive and like it belongs. This includes letting the player fall out of the head if they really want to try but then respawning them at the center, hooking up certain aspects of the terrain to the bpm of the song you're playing to, and also making improvements to the menu and settings that are available to the player. Finishing up the game also involved trying to make builds of it and the million bug fixes that have to go in to making those builds. We were able to successfully make a windows version of the game before the 11 weeks were up, but due to some external library errors, we're still working on a Mac OS and Linux version of the game, and we are almost done with them, but they didn't exactly make it in time for the "100%" mark of the game.
+
+---
+## Week 10
+March 17 - 24
+### Player Zoom
+We've been contemplating our "instructions" and how easy it is for the player to understand that they should find the orb and drop it in the pool, and decided that it would be best to have a visual indicator to show the player to drop the orb in the pond. A new ring particle system appears in the pond to encourage the player to go into the pond and insert the orb. The system also speeds the player up so they can run towards the next objective.
+
+### Merging & Finishing Touches
+We have many branches at this point, and are merging all recent changes now, including lerping color changing and more menu options, including changing biomes and color pallete. This is the final step needed before we can bring the main scene into VR, which will be happening before March 31st next week. With all these components ready to go, we're piecing things together and tying up lose ends. Minor bugs have been resolved to enhance playability and all the features are also being fine tuned. 
+
+### Level Customization
+With all the biomes and color palettes complete, it was time to set up a screen in the main menu which allowed players to control those. In addition to hand picking the biome and colors, there's also an input field for a terrain seed so appealing landscapes can be revisited. While implementing this, another setting to control song pitch was added for even more customization, and can be accessed from the in-game pause menu. We also intend to add more visual feedback whenever a new choice is selected.
+![LevelSelect](Resources/levelselect.png "Level Select")
+
+### Color Patterns
+Last week with the big color palette expansion we set ourselves up for more patterns and advanced color changing techniques. This week we implemented those so now the pattern that the color changing follows also changes itself whenever a new orb is dropped in the pond. We also implemented constant linear interpolation every single frame between colors which just makes the game feel so much better. It does come with a cost of performance though, so we made sure to keep the ability to turn it off and return to the old better performing method.
+
+---
 ## Week 9
 March 10 - 17
 ### Magic sparks, adjustments and bug fixes
