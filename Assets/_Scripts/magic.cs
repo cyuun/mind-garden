@@ -51,7 +51,7 @@ public class magic : MonoBehaviour
     
     public void Stretch()
     {
-        if(!signalFromMusic) StartCoroutine(StretchCOR());
+        if(!signalFromMusic && isActiveAndEnabled) StartCoroutine(StretchCOR());
     }
 
     IEnumerator StretchCOR()

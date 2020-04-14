@@ -86,16 +86,12 @@ public class CameraScreenshot : MonoBehaviour
 
         // Grab ALL of the pixels.
         Texture2D raster = new Texture2D(renderTexture.width, renderTexture.height);
-        raster.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        raster.ReadPixels(new Rect(0,0, renderTexture.width, renderTexture.height), 0, 0);
         raster.Apply();
         byte[] bytes = raster.EncodeToPNG();
         string output = Application.persistentDataPath + "/Screenshots/" + System.DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".png";
         File.WriteAllBytes(output, bytes);
         screenshotNum++;
-
-
-        // Write them to disk. Change the path and type as you see fit.
-        File.WriteAllBytes("screenshot.png", raster.EncodeToPNG());
 
         // Restore previous settings.
         Camera.main.targetTexture = null;

@@ -5,29 +5,31 @@ using UnityEngine;
 public class WaterScript : MonoBehaviour
 {
     public GameObject waterSplashPrefab;
+    public List<Transform> positions;
     public static GameObject ring;
 
     [SerializeField]
     public static List<Transform> orbPositions = new List<Transform>();
-    public static int orbsFound = 0;
 
     void Start()
     {
-        Transform orbPositions = transform.Find("OrbPositions");
+        /*Transform orbPositions = transform.Find("OrbPositions");
         if (orbPositions)
         {
             foreach(Transform child in orbPositions)
             {
                 WaterScript.orbPositions.Add(child.transform);
             }
+        }*/
+        if(positions.Count > 0)
+        {
+            orbPositions = positions;
+        }
+        else
+        {
+            print("Orb positions not found");
         }
         StartCoroutine(DelayMagic(1f));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Splash(float x, float z)
@@ -35,6 +37,7 @@ public class WaterScript : MonoBehaviour
         GameObject splash = Instantiate(waterSplashPrefab, new Vector3(x, 6, z), Quaternion.identity, this.transform);
 
     }
+
     IEnumerator DelayMagic(float duration)
     {
         yield return new WaitForSeconds(duration);

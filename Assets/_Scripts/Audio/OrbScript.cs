@@ -209,15 +209,14 @@ public class OrbScript : MonoBehaviour
     {
         if (other.tag == "Pond" && _interactable)
         {
-            found = true;
-            orbsFound++;
             audioTrack.transform.SetParent(target);
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
             ColorController.S.ChangePattern();
 
-            target = WaterScript.orbPositions[WaterScript.orbsFound];
-            WaterScript.orbsFound++;
+            print(OrbScript.orbsFound);
+            target = WaterScript.orbPositions[OrbScript.orbsFound];
+            OrbScript.orbsFound++;
 
             if (!Global.spleeterMode)
             {
