@@ -39,10 +39,6 @@ public class MPG123Import : MonoBehaviour
 
     public AudioClip Import(string path)
     {
-        if(string.IsNullOrEmpty(path))
-            path = EditorUtility.OpenFilePanel ("Open MP3", "", "mp3");
-        
-        
         MPGImport.mpg123_init ();
         handle_mpg = MPGImport.mpg123_new (null, errPtr);
         x = MPGImport.mpg123_open (handle_mpg, path);      
