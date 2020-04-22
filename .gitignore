@@ -44,3 +44,6 @@ ProjectSettings/ProjectVersion.txt
 
 # Spleeter Data Model(s)
 pretrained_models/
+
+# Materials folder cause that's a bitch now
+Assets/_Materials/
