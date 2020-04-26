@@ -21,10 +21,10 @@ public class HeadScript : MonoBehaviour
     {
         if (!inMainMenu)
         {
-            AudioPeerRoot.S.SetActiveHead(gameObject);
+            if (AudioPeerRoot.S) AudioPeerRoot.S.SetActiveHead(gameObject);
+            if(Dash.S) Dash.S.SetTerrain(terrainScript);
         }
-        ColorController.S.SetActiveHead(gameObject);
-        if(Dash.S) Dash.S.SetTerrain(terrainScript);
+        if(ColorController.S) ColorController.S.SetActiveHead(gameObject);
     }
 
     private void Start()
@@ -44,7 +44,7 @@ public class HeadScript : MonoBehaviour
             AdjustMaxVerticesHeight(5);
         }
 
-        if(ColorController.S) StartCoroutine("DelayedActivate");
+        Activate();
     }
 
     void Update()
@@ -106,12 +106,5 @@ public class HeadScript : MonoBehaviour
     private bool CompareFloats(float f1, float f2, float tolerance)
     {
         return (f1 <= f2 + tolerance && f1 >= f2 - tolerance);
-    }
-
-    private IEnumerator DelayedActivate()
-    {
-        yield return new WaitForSeconds(.1f);
-        
-        Activate();
     }
 }

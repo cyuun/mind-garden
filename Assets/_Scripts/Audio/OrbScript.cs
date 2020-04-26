@@ -93,22 +93,23 @@ public class OrbScript : MonoBehaviour
             creatureSpawner.SpawnCreatures();
         }
 
-        //Create Light Ring
-        lightRing = spawner.GetComponent<MagicSpawner>().ringPrefab;
-        GameObject ring = Instantiate(lightRing, AudioPeerRoot.S.transform);
-        Vector3 pos = transform.position;
-        pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + 1;
-        ring.transform.position = pos;
-
         Camera.main.GetComponent<Skybox>().material = skybox.material;
     }
 
     public void RandomizePosition()
     {
         float minDistance = 50f;
+        float minRand = 40f;
+        float maxRand = 110f;
         Vector3 offset = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized;
-        offset *= Random.Range(50f, 70f);
+        offset *= Random.Range(minRand, maxRand);
         Vector3 pos = AudioPeerRoot.S.transform.position + offset;
+        float distanceToEdge = (Mathf.Pow(pos.x, 2) / Mathf.Pow(terrainScript.xMax, 2) +
+                                Mathf.Pow(pos.z, 2) / Mathf.Pow(terrainScript.zMax, 2)) * 10;
+        if (distanceToEdge >= 0.9f)
+        {
+            pos *= (0.9f / distanceToEdge);
+        }
 
         foreach (AudioSource orb in AudioPeerRoot.S.audioPeers)
         {
@@ -147,6 +148,13 @@ public class OrbScript : MonoBehaviour
         _endColor = new Color(0, 0, 0, 1);
         _scale = transform.localScale;
         rend = GetComponent<Renderer>();
+        
+        //Create Light Ring
+        lightRing = spawner.GetComponent<MagicSpawner>().ringPrefab;
+        GameObject ring = Instantiate(lightRing, AudioPeerRoot.S.transform);
+        Vector3 pos = transform.position;
+        pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + 1;
+        ring.transform.position = pos;
     }
 
     // Update is called once per frame
