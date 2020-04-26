@@ -125,9 +125,9 @@ public class TreeSpawner : MonoBehaviour
                     tre.transform.rotation = Quaternion.Euler(new Vector3(0, yRot, 0));
 
                     AudioSource closest = AudioPeerRoot.S.audioPeers[0];
+                    float min = Vector3.Distance(treePos, closest.transform.position);
                     foreach (AudioSource o in AudioPeerRoot.S.audioPeers)
                     {
-                        float min = Vector3.Distance(treePos, closest.transform.position);
                         float dist = Vector3.Distance(treePos, o.transform.position);
                         if (dist < min)
                         {

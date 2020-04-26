@@ -77,6 +77,8 @@ public class OrbScript : MonoBehaviour
 
     public void SpawnBiome()
     {
+        if(_interactable) RandomizePosition();
+        
         if (spawner == null) spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
         ColorController.S.biomeType = biomeSpawner;
         TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
@@ -92,6 +94,13 @@ public class OrbScript : MonoBehaviour
             creatureSpawner.SetParent();
             creatureSpawner.SpawnCreatures();
         }
+        
+        //Create Light Ring
+        lightRing = spawner.GetComponent<MagicSpawner>().ringPrefab;
+        GameObject ring = Instantiate(lightRing, AudioPeerRoot.S.transform);
+        Vector3 pos = transform.position;
+        pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + 1;
+        ring.transform.position = pos;
 
         Camera.main.GetComponent<Skybox>().material = skybox.material;
     }
@@ -125,8 +134,6 @@ public class OrbScript : MonoBehaviour
 
     void Start()
     {
-        if(_interactable) RandomizePosition();
-
         rb = GetComponent<Rigidbody>();
         velocity = Vector3.one * speed;
         audioPeer = audioTrack.GetComponent<AudioPeer>();
@@ -148,13 +155,6 @@ public class OrbScript : MonoBehaviour
         _endColor = new Color(0, 0, 0, 1);
         _scale = transform.localScale;
         rend = GetComponent<Renderer>();
-        
-        //Create Light Ring
-        lightRing = spawner.GetComponent<MagicSpawner>().ringPrefab;
-        GameObject ring = Instantiate(lightRing, AudioPeerRoot.S.transform);
-        Vector3 pos = transform.position;
-        pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + 1;
-        ring.transform.position = pos;
     }
 
     // Update is called once per frame
