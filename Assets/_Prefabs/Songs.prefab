@@ -1,0 +1,585 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7593621414464112028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7593621414464112029}
+  m_Layer: 5
+  m_Name: Songs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7593621414464112029
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593621414464112028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5129962468826407537}
+  - {fileID: 5129962469640743359}
+  - {fileID: 5129962470640947347}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &7593621414100091875
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7593621414464112029}
+    m_Modifications:
+    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Text
+      value: '*Someday Somehow - Wyatt Walker Wear'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.0085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Name
+      value: SomedaySomehow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.songName
+      value: Someday-Somehow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSongPath
+      value: SongResources/Spleets/Someday-Somehow/Someday-Somehow.mp3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.melody
+      value: SongResources/Spleets/Someday-Somehow/other.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.bass
+      value: SongResources/Spleets/Someday-Somehow/bass.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.vocals
+      value: SongResources/Spleets/Someday-Somehow/vocals.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.drums
+      value: SongResources/Spleets/Someday-Somehow/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSong
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426350, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
+--- !u!224 &5129962468826407537 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 7593621414100091875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7593621414888998957
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7593621414464112029}
+    m_Modifications:
+    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Text
+      value: '*Fault - Myrne & Grant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.0085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Fault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.songName
+      value: Fault-Myrne&Grant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSongPath
+      value: SongResources/Spleets/Fault-Myrne&Grant/Fault-Myrne&Grant.mp3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.melody
+      value: SongResources/Spleets/Fault-Myrne&Grant/other.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.bass
+      value: SongResources/Spleets/Fault-Myrne&Grant/bass.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.vocals
+      value: SongResources/Spleets/Fault-Myrne&Grant/vocals.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.drums
+      value: SongResources/Spleets/Fault-Myrne&Grant/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSong
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426350, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
+--- !u!224 &5129962469640743359 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 7593621414888998957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7593621416191471873
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7593621414464112029}
+    m_Modifications:
+    - target: {fileID: 3337378284274426257, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Text
+      value: '*Climates - MNMLST'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.0085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Climates
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426259, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.songName
+      value: Fault-Myrne&Grant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSongPath
+      value: SongResources/Spleets/MNMLST-Climates(Elk)/MNMLST-Climates(Elk).mp3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.melody
+      value: SongResources/Spleets/MNMLST-Climates(Elk)/other.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.bass
+      value: SongResources/Spleets/MNMLST-Climates(Elk)/bass.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.vocals
+      value: SongResources/Spleets/MNMLST-Climates(Elk)/vocals.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.drums
+      value: SongResources/Spleets/MNMLST-Climates(Elk)/drums.wav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: spleeterOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426349, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: songInfo.inputSong
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337378284274426350, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25d14b70557b37d40a8d79102f5bd4bf, type: 3}
+--- !u!224 &5129962470640947347 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3337378284274426258, guid: 25d14b70557b37d40a8d79102f5bd4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 7593621416191471873}
+  m_PrefabAsset: {fileID: 0}

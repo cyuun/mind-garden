@@ -171,11 +171,11 @@ public class bounceScript : MonoBehaviour
     {
         GameHUD.S.FlashColor("Green");
         currSpeeding = true;
-        controller.m_WalkSpeed *= 2f;
-        controller.m_RunSpeed *= 2f;
+        float walkSpeed = controller.m_WalkSpeed;
+        float runSpeed = 9;
+        controller.m_WalkSpeed = runSpeed;
         yield return new WaitForSeconds(speedTime);
-        controller.m_WalkSpeed /= 2f;
-        controller.m_RunSpeed /= 2f;
+        controller.m_WalkSpeed = walkSpeed;
         currSpeeding = false;
     }
     private void OnCollisionEnter(Collision collision)

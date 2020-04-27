@@ -23,6 +23,8 @@ public class AudioAnalyzer : MonoBehaviour
     private List<Value> segments;
     private Track<Value> segmenter;
 
+    private bool _gameEnded = false;
+
     void Awake()
     {
         beats = new List<Beat>();
@@ -69,8 +71,9 @@ public class AudioAnalyzer : MonoBehaviour
             }
             prevTime = time;
 
-            if (time >= audioSource.clip.length - 1)
+            if (time >= audioSource.clip.length - 1 && !_gameEnded)
             {
+                _gameEnded = true;
                 EndGame();
             }
 

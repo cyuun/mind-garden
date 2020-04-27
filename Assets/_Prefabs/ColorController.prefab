@@ -964,4 +964,5 @@ MonoBehaviour:
     - {r: 0.5803464, g: 0.14117648, b: 0.45088884, a: 1}
   biomeType: 1
   pattern: 0
-  _lerpSpeed: 0.5
+  inMainMenu: 0
+  _lerpSpeed: 0.32

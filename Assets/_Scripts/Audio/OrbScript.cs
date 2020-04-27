@@ -77,6 +77,8 @@ public class OrbScript : MonoBehaviour
 
     public void SpawnBiome()
     {
+        if(_interactable) RandomizePosition();
+        
         if (spawner == null) spawner = Instantiate(biomeSpawners[(int)biomeSpawner], transform.position, Quaternion.identity, transform);
         ColorController.S.biomeType = biomeSpawner;
         TreeSpawner treeSpawner = spawner.GetComponent<TreeSpawner>();
@@ -92,7 +94,7 @@ public class OrbScript : MonoBehaviour
             creatureSpawner.SetParent();
             creatureSpawner.SpawnCreatures();
         }
-
+        
         //Create Light Ring
         lightRing = spawner.GetComponent<MagicSpawner>().ringPrefab;
         GameObject ring = Instantiate(lightRing, AudioPeerRoot.S.transform);
@@ -106,9 +108,17 @@ public class OrbScript : MonoBehaviour
     public void RandomizePosition()
     {
         float minDistance = 50f;
+        float minRand = 40f;
+        float maxRand = 110f;
         Vector3 offset = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized;
-        offset *= Random.Range(50f, 70f);
+        offset *= Random.Range(minRand, maxRand);
         Vector3 pos = AudioPeerRoot.S.transform.position + offset;
+        float distanceToEdge = (Mathf.Pow(pos.x, 2) / Mathf.Pow(terrainScript.xMax, 2) +
+                                Mathf.Pow(pos.z, 2) / Mathf.Pow(terrainScript.zMax, 2)) * 10;
+        if (distanceToEdge >= 0.9f)
+        {
+            pos *= (0.9f / distanceToEdge);
+        }
 
         foreach (AudioSource orb in AudioPeerRoot.S.audioPeers)
         {
@@ -124,8 +134,6 @@ public class OrbScript : MonoBehaviour
 
     void Start()
     {
-        if(_interactable) RandomizePosition();
-
         rb = GetComponent<Rigidbody>();
         velocity = Vector3.one * speed;
         audioPeer = audioTrack.GetComponent<AudioPeer>();

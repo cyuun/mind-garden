@@ -625,11 +625,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template_3D
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: D:\git\minds-garden\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: ATLAS
+  metroCertificateIssuer: ATLAS
+  metroCertificateNotAfter: 00ae3245213ad701
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 
