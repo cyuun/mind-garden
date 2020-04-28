@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using Valve.VR;
 
 public class newBounceScript : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class newBounceScript : MonoBehaviour
     Vector3 centerPoint;
     Vector3 startRelCenter;
     Vector3 endRelCenter;
+    public SteamVR_Action_Vibration vibrate;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class newBounceScript : MonoBehaviour
             controller.canMove = false;
             ParticleSystem ps=other.gameObject.GetComponentInChildren<ParticleSystem>();
             ps.Play();
+            vibrate.Execute(0, 0.5f, 150, 75, SteamVR_Input_Sources.Any);
             //Vector3 direction = transform.position - other.transform.position+new Vector3(0,2f,0);
             Vector3 direction = (-transform.forward + transform.up);
             direction.Normalize();
@@ -51,6 +54,7 @@ public class newBounceScript : MonoBehaviour
             controller.canMove = false;
             ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
             ps.Play();
+            vibrate.Execute(0, 0.5f, 150, 75, SteamVR_Input_Sources.Any);
             Vector3 direction = transform.position - other.transform.position+new Vector3(0,5,0);
             direction.Normalize();
             startPos = transform;
@@ -77,9 +81,9 @@ public class newBounceScript : MonoBehaviour
         {
             if (collided)
             {
-                Debug.Log("coll");
+                //Debug.Log("coll");
                 //rb.isKinematic=true;
-                yield break;
+                //yield break;
             }
 
             float fracComplete = (Time.time - startTime) / journeyTime * speed;
@@ -103,7 +107,7 @@ public class newBounceScript : MonoBehaviour
     {
         if(collision.gameObject.tag!="enemy" && collision.gameObject.tag!= "enemyFish")
         {
-            Debug.Log("coll1");
+            //Debug.Log("coll1");
             collided = true;
         }
         

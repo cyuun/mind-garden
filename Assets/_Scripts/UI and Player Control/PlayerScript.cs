@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using Valve.VR;
 
 public class PlayerScript : MonoBehaviour
 {
     public static PlayerScript S;
-
+    public SteamVR_Action_Boolean takeShot=null;
+    public SteamVR_Action_Vibration vibrate;
     public FirstPersonController controller;
 
     Transform water;
     bool splashing = false;
-    public bool spawned = false;
-    TerrainScript terrain;
 
     void Awake()
     {
@@ -22,8 +22,6 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<FirstPersonController>();
-        StartCoroutine(SpawnTimer(1f));
-        terrain = AudioPeerRoot.S.terrainScript;
     }
 
     // Update is called once per frame
@@ -31,8 +29,10 @@ public class PlayerScript : MonoBehaviour
     {
         if (!SettingsMenu.S.gameIsPaused)
         {
-            if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
+            if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1) || takeShot.GetState(SteamVR_Input_Sources.LeftHand))
             {
+                vibrate.Execute(0, 0.1f, 150, 75, SteamVR_Input_Sources.LeftHand);
+                //SteamVR_Controller.Input([the index of the controller you want to vibrate]).TriggerHapticPulse([length in microseconds as ushort]);
                 CameraScreenshot.TakeScreenshot_Static(Screen.width, Screen.height);
             }
         }
@@ -75,12 +75,5 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(.4f);
         if (this.water && controller.moving) StartCoroutine(SplishSplash(water));
         else splashing = false;
-    }
-
-    IEnumerator SpawnTimer(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-
-        spawned = true;
     }
 }

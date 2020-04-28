@@ -26,9 +26,10 @@ public class MenuController : MonoBehaviour
     public GameObject songItemPrefab;
     public GameObject head;
     public GameObject loadScreen;
+    public GameObject loadScreen2;
     public GameObject startButton;
     public AudioSource backgroundMusic;
-    public AudioSource silentMusic;
+    vrification vr;
 
 
     void Awake()
@@ -87,6 +88,7 @@ public class MenuController : MonoBehaviour
         {
             SettingsMenu.S.UpdateGlobalSettings();
         }
+        vr = GetComponent<vrification>();
     }
 
     public void AddSong(SongInfo info, bool spleeter)
@@ -109,10 +111,6 @@ public class MenuController : MonoBehaviour
         }
         newSong.GetComponent<Text>().text = spleeterIcon + info.songName;
         newSong.GetComponent<SongListItem>().songInfo = info;
-
-        silentMusic.clip = info.inputSong;
-        silentMusic.Play();
-        AudioAnalyzer.S.AnalyzeClip(info.inputSong);
     }
 
     public void ExploreFiles()
@@ -144,7 +142,6 @@ public class MenuController : MonoBehaviour
         if(Global.currentSongInfo != null)
         {
             Global.playingGame = true;
-            LevelSelect.S.QuickUpdate();
             SongLibrary.S.gameObject.SetActive(false);
             startButton.SetActive(false);
             loadScreen.SetActive(true);
@@ -154,7 +151,9 @@ public class MenuController : MonoBehaviour
 
     IEnumerator LoadBar()
     {
-        yield return new WaitForSeconds(.1f);
+        loadScreen2.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        yield return vr.SwitchToVR();
         LoadingBar.S.Show(SceneManager.LoadSceneAsync(1));
 
     }
@@ -481,10 +480,9 @@ public class MenuController : MonoBehaviour
                     File.Copy(songPath, Path.Combine(outputPath, inputSong.name + Path.GetExtension(songPath)));
 
                 }
-
+                AddSong(Global.currentSongInfo, false);
 
                 Global.currentSongInfo = SpleeterProcess.S.LoadSong(songPath, inputSong);
-                AddSong(Global.currentSongInfo, false);
                 backgroundMusic.Play();
 
             }

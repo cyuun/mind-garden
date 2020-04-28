@@ -12,6 +12,7 @@ public class GameHUD : MonoBehaviour
     public Color greenFlash;
     public Color redFlash;
     public Color whiteFlash;
+    vrification vr;
 
     [SerializeField]
     public Dictionary<string, Color> curtainPalette;
@@ -30,12 +31,12 @@ public class GameHUD : MonoBehaviour
             { "Red", redFlash },
             { "White", whiteFlash },
         };
+        vr = GetComponent<vrification>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Exit()
@@ -93,6 +94,8 @@ public class GameHUD : MonoBehaviour
         }
         bg.color = new Color(0, 0, 0, 1);
         SettingsMenu.S.gameIsPaused = false;
+        yield return vr.SwitchTo2D();
+        yield return new WaitForSeconds(0.01f);
         LoadingBar.S.Show(SceneManager.LoadSceneAsync(0));
     }
 

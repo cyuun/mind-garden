@@ -37,10 +37,6 @@ public class SongListItem : MonoBehaviour
             MenuController.S.backgroundMusic.clip = songInfo.inputSong;
             MenuController.S.backgroundMusic.transform.parent.gameObject.SetActive(true); //Turn on orb if off
             MenuController.S.backgroundMusic.Play();
-
-            MenuController.S.silentMusic.clip = songInfo.inputSong;
-            MenuController.S.silentMusic.Play();
-            AudioAnalyzer.S.AnalyzeClip(songInfo.inputSong);
             currentSongPlaying = this;
         }
         else
@@ -57,7 +53,6 @@ public class SongListItem : MonoBehaviour
         AudioClip inputSong;
         if (Path.GetExtension(inputSongPath) == ".mp3")
         {
-            
             byte[] bytes = FileBrowserHelpers.ReadBytesFromFile(inputSongPath);
             AudioClip audioClip = NAudioPlayer.FromMp3Data(bytes);
             inputSong = audioClip;

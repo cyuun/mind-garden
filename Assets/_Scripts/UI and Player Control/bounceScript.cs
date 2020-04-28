@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using Valve.VR;
 
 public class bounceScript : MonoBehaviour
 {
@@ -23,57 +24,51 @@ public class bounceScript : MonoBehaviour
     Vector3 endRelCenter;
     public float speedTime = 3f;
     bool currSpeeding = false;
-
-    PlayerScript player;
-
+    public SteamVR_Action_Vibration vibrate;
+    // Start is called before the first frame update
     void Start()
     {
         controller = GameObject.FindObjectOfType<FirstPersonController>();
         rb = GetComponent<Rigidbody>();
-        player = PlayerScript.S;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (player.spawned)
+        float force = 7f;
+
+        if (other.tag == "enemy" && grounded)
         {
-            float force = 15f;
+            controller.canMove = false;
+            ParticleSystem ps=other.gameObject.GetComponentInChildren<ParticleSystem>();
+            ps.Play();
+            vibrate.Execute(0, 0.5f, 150, 75, SteamVR_Input_Sources.Any);
+            //Vector3 direction = transform.position - other.transform.position+new Vector3(0,2f,0);
+            Vector3 direction = (-transform.forward + transform.up);
+            direction.Normalize();
 
-            if (other.tag == "enemy" && grounded)
+            startPos = transform;
+            endPos = target.transform;
+            StartCoroutine(push(direction, force));
+
+        }
+        else if (other.tag == "enemyFish")
+        {
+            controller.canMove = false;
+            ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
+            ps.Play();
+            vibrate.Execute(0, 0.5f, 150, 75, SteamVR_Input_Sources.LeftHand);
+            Vector3 direction = transform.position - other.transform.position+new Vector3(0,5,0);
+            direction.Normalize();
+            StartCoroutine(push(direction, force));
+        }
+        else if (other.tag == "Speed")
+        {
+            //screen flash?
+            if (!currSpeeding)
             {
-                controller.canMove = false;
-                ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
-                ps.Play();
-                //Vector3 direction = transform.position - other.transform.position+new Vector3(0,2f,0);
-                Vector3 direction = (-transform.forward + transform.up);
-                direction.Normalize();
-
-                startPos = transform;
-                endPos = target.transform;
-                StartCoroutine(Push(direction, force));
-
+                StartCoroutine(speeding());
             }
-            else if (other.tag == "enemyFish")
-            {
-                controller.canMove = false;
-                ParticleSystem ps = other.gameObject.GetComponentInChildren<ParticleSystem>();
-                ps.Play();
-                Vector3 direction = transform.position - other.transform.position + new Vector3(0, 5, 0);
-                direction.Normalize();
-
-                startPos = transform;
-                endPos = target.transform;
-                StartCoroutine(Push(direction, force));
-            }
-            else if (other.tag == "Speed")
-            {
-                //screen flash?
-                if (!currSpeeding)
-                {
-                    StartCoroutine(speeding());
-                }
-
-            }
+            
         }
     }
     public void GetCenter(Vector3 direct)
@@ -83,69 +78,19 @@ public class bounceScript : MonoBehaviour
         startRelCenter = startPos.position - centerPoint;
         endRelCenter = endPos.position - centerPoint;
     }
-
-    IEnumerator Push(Vector3 direction, float force)
-    {
-        GameHUD.S.FlashColor("Red");
-
-        float dz = -3;
-        float dy = direction.y * force;
-        Vector3 move = new Vector3(0, dy, dz);
-        float timePassed = 0;
-
-        while (!collided)
-        {
-            if (timePassed > 0.1f)
-            {
-                DetectCollisions();
-            }
-
-            if (collided)
-            {
-                //rb.isKinematic=true;
-                collided = false;
-                break;
-            }
-
-            move = new Vector3(0, dy, dz);
-            transform.Translate(move * Time.deltaTime);
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                controller.canMove = true;
-
-                yield break;
-            }
-
-            timePassed += Time.deltaTime;
-            dy -= .98f;
-            yield return null;
-        }
-        controller.canMove = true;
-        controller.stunned = true;
-
-    }
-
     IEnumerator push(Vector3 direction, float force)
     {
-        GameHUD.S.FlashColor("Red");
-
         GetCenter(Vector3.up);
         float timePassed = 0;
         //rb.isKinematic = false;
         startTime = Time.time;
         while (timePassed < 0.7)
         {
-            if(timePassed > 0.4)
-            {
-                DetectCollisions();
-            }
-
             if (collided)
             {
+                //Debug.Log("coll");
                 //rb.isKinematic=true;
-                collided = false;
-                break;
+                //yield break;
             }
 
             float fracComplete = (Time.time - startTime) / journeyTime * speed;
@@ -153,7 +98,7 @@ public class bounceScript : MonoBehaviour
             transform.position += centerPoint;
             if (fracComplete >= 1)
             {
-                break;
+                yield break;
             }
 
             //transform.Translate(direction * force * Time.deltaTime, Space.World);
@@ -164,8 +109,6 @@ public class bounceScript : MonoBehaviour
         }
         //rb.isKinematic = true;
         controller.canMove = true;
-        controller.stunned = true;
-
     }
     IEnumerator speeding()
     {
@@ -182,7 +125,7 @@ public class bounceScript : MonoBehaviour
     {
         if(collision.gameObject.tag!="enemy" && collision.gameObject.tag!= "enemyFish")
         {
-            Debug.Log("coll1");
+            //Debug.Log("coll1");
             collided = true;
         }
         
@@ -192,19 +135,6 @@ public class bounceScript : MonoBehaviour
         if (collision.gameObject.tag != "enemy" && collision.gameObject.tag != "enemyFish")
         {
             collided = false;
-        }
-    }
-
-    void DetectCollisions()
-    {
-        Collider[] cols = Physics.OverlapSphere(transform.position, 1);
-        foreach(Collider col in cols)
-        {
-            if (col.gameObject.tag == "Terrain" || (col.gameObject.tag == "Trees" && !col.name.Contains("JunglePlant3")) || col.name.Contains("Sphere"))
-            {
-                collided = true;
-                break;
-            }
         }
     }
 }

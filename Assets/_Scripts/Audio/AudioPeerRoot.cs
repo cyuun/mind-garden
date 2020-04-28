@@ -51,10 +51,6 @@ public class AudioPeerRoot : MonoBehaviour
         orb3.SpawnBiome();
         orb4.SpawnBiome();
 
-        if(Global.currentBiome == Global.BiomeType.desert)
-        {
-            activeHead.GetComponent<HeadScript>().grassController.gameObject.SetActive(false); //Turns off grass in desert
-        }
     }
 
     private void Awake()

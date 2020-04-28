@@ -49,6 +49,9 @@ MonoBehaviour:
   clouds: {fileID: 7462907777689035283}
   rain: {fileID: 3086866111589830904}
   snow: {fileID: 3086866111188706310}
+  fogProbability: 1
+  rainProbability: 0.5
+  snowProbability: 1
 --- !u!1 &7462907777437535326
 GameObject:
   m_ObjectHideFlags: 0
@@ -9608,7 +9611,7 @@ ParticleSystemRenderer:
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
-  m_AllowRoll: 1
+  m_AllowRoll: 0
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
@@ -10302,6 +10305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568511044720104206, guid: 0d05858f3d3662045a8c1f1bf83d5e89,
+        type: 3}
+      propertyPath: m_AllowRoll
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5568511044720104207, guid: 0d05858f3d3662045a8c1f1bf83d5e89,
         type: 3}

@@ -9,7 +9,7 @@ public class OrbScript : MonoBehaviour
     public static Global.BiomeType biomeSpawner;
     public static bool biomeChosen = false;
     public static GameObject magic;
-    public static GameObject lightRing;
+    public Camera screenshotCam;
 
     AudioPeer audioPeer;
     bool following = false;
@@ -32,7 +32,6 @@ public class OrbScript : MonoBehaviour
     public float rotationSpeed;
     public float y_offset;
     public float speed = 10f;
-    public Transform pondSpot;
 
     //Amplitude Flash
     public Gradient _colorGrad;
@@ -93,20 +92,20 @@ public class OrbScript : MonoBehaviour
         }
 
         //Create Light Ring
-        lightRing = spawner.GetComponent<MagicSpawner>().ringPrefab;
-        GameObject ring = Instantiate(lightRing, AudioPeerRoot.S.transform);
+        GameObject lightRing = Instantiate(spawner.GetComponent<MagicSpawner>().ringPrefab, AudioPeerRoot.S.transform);
         Vector3 pos = transform.position;
         pos.y = terrainScript.GetTerrainHeight(pos.x, pos.z) + 1;
-        ring.transform.position = pos;
+        lightRing.transform.position = pos;
 
         Camera.main.GetComponent<Skybox>().material = skybox.material;
+        screenshotCam.GetComponent<Skybox>().material = skybox.material;
     }
 
     public void RandomizePosition()
     {
         float minDistance = 50f;
         Vector3 offset = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized;
-        offset *= Random.Range(50f, 70f);
+        offset *= Random.Range(75f, 100f);
         Vector3 pos = AudioPeerRoot.S.transform.position + offset;
 
         foreach (AudioSource orb in AudioPeerRoot.S.audioPeers)
@@ -201,6 +200,7 @@ public class OrbScript : MonoBehaviour
         {
             glow.Stop();
             glowing = false;
+            print("noglow");
         }
     }
 
@@ -213,12 +213,11 @@ public class OrbScript : MonoBehaviour
             audioTrack.spatialBlend = 0;
             SkyFractal.S.ChangeOutline();
             ColorController.S.ChangePattern();
-
-            target = WaterScript.orbPositions[WaterScript.orbsFound];
-            WaterScript.orbsFound++;
+            target = other.transform;
 
             if (!Global.spleeterMode)
             {
+                print("Spleeter:" + Global.callSpleeter);
                 StartCoroutine(LowerVolume());
             }
             
@@ -227,7 +226,6 @@ public class OrbScript : MonoBehaviour
         {
             if (!following) target = other.transform;
             found = true;
-            WaterScript.ring.SetActive(true);
             ToggleParticles();
             ToggleFollow();
             glow.Stop();

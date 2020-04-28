@@ -42,8 +42,7 @@ public class desertPlantBig : Plant
 
             piece1.transform.localScale = new Vector3(0.0034f, 0.0034f, v1);
             piece2.transform.localScale = new Vector3(0.0034f, 0.0034f, v2);
-            transform.Rotate(0, (_audioPeer._amplitudeBuffer * Time.deltaTime * 500), 0);
-            //transform.localScale = new Vector3(1, v3, 1);
+            transform.localScale = new Vector3(1, v3, 1);
 
         }
 

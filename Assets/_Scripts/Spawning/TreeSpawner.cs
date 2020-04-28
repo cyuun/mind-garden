@@ -71,13 +71,7 @@ public class TreeSpawner : MonoBehaviour
 
                     treePos = GetTreePos(treePos);
                     treePos.y = terrainScript.GetTerrainHeight(treePos.x, treePos.z) + yOffset;
-
-                    if (tree.name.Contains("JunglePlant3") && terrainScript.GetSteepestSlope(treePos.x, treePos.z, 64) > 20)
-                    {
-                        tooSteep = true;
-                        break;
-                    }
-                    else if (terrainScript.GetSteepestSlope(treePos.x, treePos.z, 64) > maxSlope)
+                    if (terrainScript.GetSteepestSlope(treePos.x, treePos.z, 50) > maxSlope)
                     {
                         tooSteep = true;
                         break;
@@ -107,14 +101,13 @@ public class TreeSpawner : MonoBehaviour
                         }
                     }
 
-                    foreach (Collider c in Physics.OverlapSphere(treePos, .5f))
+                    foreach (Collider c in Physics.OverlapSphere(treePos, 1f))
                     {
                         if (c.name.Contains("Terrain"))
                         {
                             onTerrain = true;
                         }
                     }
-
                 }
 
                 //Instantiate and assign script info
@@ -232,6 +225,7 @@ public class TreeSpawner : MonoBehaviour
                 }
             }
         }
+
     }
 
     public Vector3 GetTreePos(Vector3 startPos)

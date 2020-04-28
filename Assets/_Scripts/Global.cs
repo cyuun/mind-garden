@@ -10,7 +10,7 @@ public static class Global
     public static SongInfo currentSongInfo;
     private static BiomeType _biome;
     public static BiomeType currentBiome { get { return _biome; } set { _biome = value; } }
-
+    
     public enum BiomeType
     {
         desert,
@@ -37,12 +37,8 @@ public static class Global
     public static float pitch { get { return _pitch; } set { _pitch = value; } }
     private static bool _biomeChosen = false;
     public static bool biomeChosen { get { return _biomeChosen; } set { _biomeChosen = value; } }
-    private static int _seed = -1;
+    private static int _seed = 0;
     public static int seed { get { return _seed; } set { _seed = value; } }
-    private static bool _lerp = true;
-    public static bool lerp { get { return _lerp; } set { _lerp = value; } }
-    private static float _bpm = 0;
-    public static float bpm { get { return _bpm; } set { _bpm = value; } }
 
     public static bool CompareFloats(float f1, float f2, float tolerance)
     {

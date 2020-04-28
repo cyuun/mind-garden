@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Valve.VR;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -22,6 +24,14 @@ public class SettingsMenu : MonoBehaviour
     public float fixedDeltaTime;
     public bool gameIsPaused = false;
     public bool resumed = false;
+    public Canvas canvas;
+    public Transform player;
+    public GameObject pointer;
+    public FirstPersonController firstPersonController;
+    public Camera camNormal;
+    public Camera camPointer;
+
+    public SteamVR_Action_Boolean settings;
 
     private void Awake()
     {
@@ -58,10 +68,11 @@ public class SettingsMenu : MonoBehaviour
 
     private void Update()
     {
+        
         if (Global.playingGame)
         {
 #if UNITY_EDITOR
-            if (Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Return) || settings.GetStateDown(SteamVR_Input_Sources.Any))
             {
                 if (gameIsPaused)
                 {
@@ -73,7 +84,7 @@ public class SettingsMenu : MonoBehaviour
                 }
             }
 #else
-             if (Input.GetKeyUp(KeyCode.Escape))
+             if (Input.GetKeyUp(KeyCode.Escape) || settings.GetStateDown(SteamVR_Input_Sources.Any))
             {
                 if (gameIsPaused)
                 {
@@ -92,6 +103,9 @@ public class SettingsMenu : MonoBehaviour
     public void Exit()
     {
         //TODO: Fade to black coroutine
+        firstPersonController.canMove = false;
+        canvas.worldCamera = camNormal;
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
         GameHUD.S.Exit();
     }
 
@@ -106,7 +120,10 @@ public class SettingsMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         resumed = true;
-        gameIsPaused = false;
+        canvas.worldCamera = camNormal;
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        pointer.SetActive(false);
+        StartCoroutine(noJump());
     }
 
     void Pause()
@@ -119,8 +136,9 @@ public class SettingsMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.worldCamera = camPointer;
+        pointer.SetActive(true);
         gameIsPaused = true;
     }
 
@@ -220,6 +238,13 @@ public class SettingsMenu : MonoBehaviour
         }
         Time.timeScale = 1;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+    }
+    IEnumerator noJump()
+    {
+        firstPersonController.m_JumpSpeed = -1;
+        yield return new WaitForSeconds(0.1f);
+        firstPersonController.m_JumpSpeed=10;
+        gameIsPaused = false;
     }
 
 }

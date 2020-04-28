@@ -74,6 +74,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
         type: 3}
+      propertyPath: prefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
+      propertyPath: prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3001518382363872306, guid: 303dd5ac64750e94d84fef33bf4c2da1,
+        type: 3}
+    - target: {fileID: 2332086164498011841, guid: c094904bbcdd4784882f63fc101f92d4,
+        type: 3}
       propertyPath: yOffset
       value: 3
       objectReference: {fileID: 0}
